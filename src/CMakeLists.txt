@@ -3,5 +3,5 @@ project(CPPDesignPatternsforLowLatencyTrading)
 
 set(SOURCE_FILES main.cpp)
 
-add_executable(CPPDesignPatternsforLowLatencyTrading ${SOURCE_FILES})
-install(TARGETS CPPDesignPatternsforLowLatencyTrading DESTINATION ${DIVISIBLE_INSTALL_BIN_DIR})
+add_executable(main ${SOURCE_FILES})
+install(TARGETS main DESTINATION ${DIVISIBLE_INSTALL_BIN_DIR})
