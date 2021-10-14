@@ -1,4 +1,5 @@
 #include <string>
+#pragma once
 
 class Logger {
 public:
