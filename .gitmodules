@@ -1,7 +1,3 @@
-[submodule "googletest"]
-  path = test/lib/googletest
-  url = https://github.com/google/googletest.git
-  branch = master
-[submodule "extern/googletest"]
-	path = extern/googletest
+[submodule "lib/googletest"]
+	path = lib/googletest
 	url = git@github.com:google/googletest.git
