@@ -1,3 +1,4 @@
+
 # Compiled Object files
 **/.DS_Store
 *.slo
@@ -54,3 +55,11 @@ lib/**/*
 bin/*
 test/test_runner
 test/lib/**/*
+
+# idea settings
+.idea/
+
+# tmp files
+*.swp
+\#*#
+*~
