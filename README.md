@@ -18,7 +18,7 @@ Good introduction to CMake: https://cliutils.gitlab.io/modern-cmake/
 
 ## Build
 1. Run `cmake --build build`
-1. Install the files with: `make install`
+1. Install the files with: `cmake --install build`
 
 ## Testing
 1. Build
