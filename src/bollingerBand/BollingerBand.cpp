@@ -10,8 +10,10 @@ BollingerBand::BollingerBand(int max) : maxElements(max) {
     currElementCount = 0;
     currAvg = 0;
     currStdDev = 0;
+    currentHeldVolume = 0;
    // initialise memory for the queue all at initialisation
     marketPrices = new deque<double>(max);
+    logger = new Logger();
 }
 
 BollingerBand::~BollingerBand() {
@@ -56,17 +58,19 @@ void BollingerBand::process(const MarketData& data) {
     if (currStdDev != 0) {
         if (data.getPrice() <= currAvg - 2 * currStdDev) {
             buy(data);
+            ++currentHeldVolume;
         }
         if (data.getPrice() >= currAvg + 2 * currStdDev) {
             sell(data);
+            --currentHeldVolume;
         }
     }
 }
 
 void BollingerBand::buy(const MarketData& data) {
-    Logger::log("buy " + data.getSymbol() + "\n");
+    logger->addMessage("buy " + data.getSymbol() + "\n");
 }
 
 void BollingerBand::sell(const MarketData& data) {
-    Logger::log("sell " + data.getSymbol() + "\n");
+    logger->addMessage("sell " + data.getSymbol() + "\n");
 }
