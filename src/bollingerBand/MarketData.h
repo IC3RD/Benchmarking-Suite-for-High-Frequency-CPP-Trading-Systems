@@ -6,13 +6,15 @@ using namespace std;
 
 class MarketData {
     public:
-        MarketData(string, double, int);
+        MarketData(string, int, int, int);
         int getVolume() const;
-        double getPrice() const;
+        int getPrice() const;
         string getSymbol() const;   
 
     private:
         const string symbol;
-        const double price;
-        const int volume;     
+        const int price;
+        const int volume;
+        const int sellPrice;
+        const int buyPrice;     
 };

@@ -1,7 +1,13 @@
+#include <list>
 #include <string>
 #pragma once
 
 class Logger {
 public:
-    static void log(std::string message);
+    Logger();
+    ~Logger();    
+    void addMessage(std::string message);
+    void logMessage();
+private:
+    std::list<std::string> *messages;
 };

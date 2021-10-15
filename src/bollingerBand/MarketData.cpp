@@ -2,14 +2,14 @@
 #include "MarketData.h"
 using namespace std;
 
-MarketData::MarketData(const string s, double p, int v) : symbol(s), price(p), volume(v) {};    
+MarketData::MarketData(const string s, int buy, int sell, int v) : symbol(s), price(buy + sell / 2), volume(v), sellPrice(sell), buyPrice(buy) {};    
 
 int MarketData::getVolume() const
 {
     return volume;
 }
 
-double MarketData::getPrice() const
+int MarketData::getPrice() const
 {
     return price;
 }

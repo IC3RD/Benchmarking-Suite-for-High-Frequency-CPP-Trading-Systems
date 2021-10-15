@@ -9,9 +9,9 @@ using namespace std;
 
 int main()
 {
-    const MarketData& data = MarketData("Bitcoin", 3, 10);
-    const MarketData& data1 = MarketData("Bitcoin", 4, 10);
-    const MarketData& data2 = MarketData("Bitcoin", 5, 10);
+    const MarketData& data = MarketData("Bitcoin", 4, 2, 10);
+    const MarketData& data1 = MarketData("Bitcoin", 5, 3, 10);
+    const MarketData& data2 = MarketData("Bitcoin", 6, 4, 10);
 
     cout << "Price is " << data.getPrice() << "\n";
     cout << "Volume is " << data.getVolume() << "\n";

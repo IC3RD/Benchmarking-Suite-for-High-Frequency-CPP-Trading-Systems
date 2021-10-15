@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <deque>
 #include "MarketData.h"
+#include "Logger.h"
 #pragma once
 using namespace std;
 
@@ -16,8 +17,10 @@ private:
     void buy(const MarketData& data);
     void sell(const MarketData& data);
     int currElementCount;
+    int currentHeldVolume;    
     const int maxElements;
     double currAvg;
     double currStdDev;
     deque<double> *marketPrices;
+    Logger *logger;
 };
