@@ -1,6 +1,9 @@
-[submodule "lib/googletest"]
-	path = lib/googletest
-	url = git@github.com:google/googletest.git
 [submodule "test/lib/googletest"]
 	path = test/lib/googletest
 	url = git@github.com:google/googletest.git
+[submodule "lib/IXWebSocket"]
+	path = lib/IXWebSocket
+	url = https://github.com/machinezone/IXWebSocket.git
+[submodule "lib/json"]
+	path = lib/json
+	url = https://github.com/nlohmann/json
