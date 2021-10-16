@@ -5,27 +5,14 @@
 //  return 0;
 //}
 
-/*
- *  main.cpp
- *  Author: Benjamin Sergeant
- *  Copyright (c) 2020 Machine Zone, Inc. All rights reserved.
- *
- *  Super simple standalone example. See ws folder, unittest and doc/usage.md for more.
- *
- *  On macOS
- *  $ mkdir -p build ; (cd build ; cmake -DUSE_TLS=1 .. ; make -j ; make install)
- *  $ clang++ --std=c++11 --stdlib=libc++ main.cpp -lixwebsocket -lz -framework Security -framework Foundation
- *  $ ./a.out
- *
- *  Or use cmake -DBUILD_DEMO=ON option for other platforms
- */
-
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
 #include <ixwebsocket/IXUserAgent.h>
 #include <iostream>
+#include <iomanip>
 #include <chrono>
 #include <thread>
+#include <json/single_include/nlohmann/json.hpp>
 
 int main()
 {
@@ -50,7 +37,12 @@ int main()
         {
             if (msg->type == ix::WebSocketMessageType::Message)
             {
-                std::cout << "received message: " << msg->str << std::endl;
+                std::cout << "received message: " << std::endl;
+
+                using json = nlohmann::json;
+                json j = json::parse(msg->str);
+                std::cout << std::setw(4) << j << std::endl;
+                
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Open)
