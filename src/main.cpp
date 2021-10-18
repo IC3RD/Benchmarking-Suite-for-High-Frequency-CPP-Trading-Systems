@@ -5,6 +5,7 @@
 //  return 0;
 //}
 
+#include <BitMEXApi.h>
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
 #include <ixwebsocket/IXUserAgent.h>
@@ -16,6 +17,9 @@
 
 int main()
 {
+    string bitmexKey = "unkdj30VcxpWe9Yeam8t7mxP";
+    string bitmexSecret = "xx3NBrE_qj_TwbWEki3JYEqp2EgMVfQw59bOCMZupYhKs4UD";
+
     // Required on Windows
     ix::initNetSystem();
 
@@ -93,5 +97,7 @@ int main()
     }
     */
 
+    BitMEXApi bitmex = new BitMEXApi(bitmexKey, bitmexSecret);
+ 
     return 0;
 }

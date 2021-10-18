@@ -1,13 +1,19 @@
 #include <list>
 #include <string>
+#include <Order.h>
 #pragma once
+using namespace std;
 
 class Logger {
 public:
     Logger();
     ~Logger();    
-    void addMessage(std::string message);
+    void addMessage(string message);
     void logMessage();
+    void addOrder(Order order);
+    void printAllOrders();
+
 private:
-    std::list<std::string> *messages;
+    list<string> *messages;
+    list<Order> *orders;
 };
