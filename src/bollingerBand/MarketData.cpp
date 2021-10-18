@@ -1,20 +1,47 @@
-
+#include "BollingerBand.h"
 #include "MarketData.h"
 using namespace std;
 
-MarketData::MarketData(const string s, int buy, int sell, int v) : symbol(s), price(buy + sell / 2), volume(v), sellPrice(sell), buyPrice(buy) {};    
+MarketData::MarketData(const string s, int buy, int sell, int v) : symbol(s), price((buy + sell) / 2), volume(v), sellPrice(sell), buyPrice(buy), tradingStrategy(new BollingerBand(100)) {};    
 
-int MarketData::getVolume() const
+const int MarketData::getVolume() const
 {
     return volume;
 }
 
-int MarketData::getPrice() const
+const int MarketData::getPrice() const
 {
     return price;
 }
 
-string MarketData::getSymbol() const
+const string MarketData::getSymbol() const
 {
     return symbol;
 }
+
+BollingerBand *MarketData::getStrategy() const 
+{
+  return tradingStrategy;
+}
+
+void MarketData::updateBuy(int b)
+{
+    buyPrice = b;
+    price = (sellPrice + buyPrice) / 2;
+}
+
+void MarketData::updateSell(int s)
+{
+    sellPrice = s;
+    price = (sellPrice + buyPrice) / 2;
+}
+
+void MarketData::updateVolume(int v)
+{
+    volume = v;
+}
+
+void MarketData::newMarketData() {
+  tradingStrategy->strategy(this);
+}
+

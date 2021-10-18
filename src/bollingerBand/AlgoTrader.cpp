@@ -9,21 +9,24 @@ using namespace std;
 
 int main()
 {
-    const MarketData& data = MarketData("Bitcoin", 4, 2, 10);
-    const MarketData& data1 = MarketData("Bitcoin", 5, 3, 10);
-    const MarketData& data2 = MarketData("Bitcoin", 6, 4, 10);
+    MarketData *data = new MarketData("Bitcoin", 4, 2, 10);
+    BollingerBand *band = data->getStrategy();
 
-    cout << "Price is " << data.getPrice() << "\n";
-    cout << "Volume is " << data.getVolume() << "\n";
-    cout << "Symbol is " << data.getSymbol() << "\n";
+    cout << "Price is " << data->getPrice() << "\n";
+    cout << "Volume is " << data->getVolume() << "\n";
+    cout << "Symbol is " << data->getSymbol() << "\n"; 
+    data->newMarketData();
 
-    BollingerBand band1 = BollingerBand(10);
-    band1.insertNewData(data);
-    band1.insertNewData(data1);
-    band1.insertNewData(data2);
-
-    cout << "Curr moving average is "<< band1.getCurrMovingAverage() << "\n";
-    cout << "Curr std dev is "<< band1.getCurrStdDeviation() << "\n";
+    data->updateBuy(5);
+    data->updateSell(3);
+    data->newMarketData();
+    
+    data->updateBuy(6);
+    data->updateSell(4);
+    data->newMarketData();
+    
+    cout << "Curr moving average is "<< band->getCurrMovingAverage() << "\n";
+    cout << "Curr std dev is "<< band->getCurrStdDeviation() << "\n";
     return 0;
 
 }

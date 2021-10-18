@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <deque>
+#ifndef DATA
+#define DATA
 #include "MarketData.h"
 #include "Logger.h"
 #pragma once
@@ -9,13 +11,13 @@ class BollingerBand {
 public:
     double getCurrMovingAverage();
     double getCurrStdDeviation();
-    void insertNewData(const MarketData& data);
+    void strategy(MarketData *data);
     BollingerBand(int max);
     ~BollingerBand();
 private:
-    void process(const MarketData& data);
-    void buy(const MarketData& data);
-    void sell(const MarketData& data);
+    void process(MarketData const *data);
+    void buy(MarketData const *data);
+    void sell(MarketData const *data);
     int currElementCount;
     int currentHeldVolume;    
     const int maxElements;
@@ -24,3 +26,5 @@ private:
     deque<double> *marketPrices;
     Logger *logger;
 };
+
+#endif
