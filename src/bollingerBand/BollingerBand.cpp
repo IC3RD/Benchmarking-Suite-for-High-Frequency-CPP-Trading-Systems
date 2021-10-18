@@ -66,9 +66,11 @@ void BollingerBand::process(MarketData const *data) {
 }
 
 void BollingerBand::buy(MarketData const *data) {
+    cout << "Buy\n";
     logger->addMessage("buy " + data->getSymbol() + "\n");
 }
 
 void BollingerBand::sell(MarketData const *data) {
+    cout << "Sell\n";
     logger->addMessage("sell " + data->getSymbol() + "\n");
 }

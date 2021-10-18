@@ -13,6 +13,8 @@
 #include <chrono>
 #include <thread>
 #include <json/single_include/nlohmann/json.hpp>
+#include "bollingerBand/BollingerBand.h"
+#include "bollingerBand/MarketData.h"
 
 int main()
 {
@@ -31,6 +33,8 @@ int main()
 
     bool established = false;
 
+    MarketData *data = nullptr;
+
     // Setup a callback to be fired (in a background thread, watch out for race conditions !)
     // when a message or an event (open, close, error) is received
     webSocket.setOnMessageCallback([&](const ix::WebSocketMessagePtr& msg)
@@ -41,8 +45,28 @@ int main()
 
                 using json = nlohmann::json;
                 json j = json::parse(msg->str);
-                std::cout << std::setw(4) << j << std::endl;
-                
+                //gstd::cout << std::setw(4) << j << std::endl;
+
+                if (j.contains("data")) {
+                    if (!data) {
+                        data = new MarketData("Bitcoin", j.at("data")[0].at("askPrice"), j.at("data")[0].at("bidPrice"), j.at("data")[0].at("volume"));
+                        data->newMarketData();
+                    } else {
+                        if (j.at("data")[0].contains("askPrice")) {
+                            data->updateSell(j.at("data")[0].at("askPrice"));
+                            data->newMarketData();
+                        }
+                        if (j.at("data")[0].contains("bidPrice")) {
+                            data->updateBuy(j.at("data")[0].at("bidPrice"));
+                            data->newMarketData();
+                        }
+                        if (j.at("data")[0].contains("volume")) {
+                            data->updateVolume(j.at("data")[0].at("volume"));
+                            data->newMarketData();
+                        }
+                    }
+                }
+
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Open)
@@ -77,7 +101,7 @@ int main()
     std::cout << "waited " << waited_ms << " milliseconds" << std::endl;
 
     // send the request
-    webSocket.send("{\"op\":\"subscribe\",\"args\":[\"orderBookL2_25:XBTUSD\",\"instrument\"]}");
+    webSocket.send("{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}");
 
 
     // terminate by pressing enter
