@@ -98,6 +98,10 @@ int main()
     */
 
     BitMEXApi bitmex = new BitMEXApi(bitmexKey, bitmexSecret);
- 
+    
+    Order test = new Order("XBTUSD", 100, 200, 1, true);
+
+    bitmex.placeOrder(test);
+
     return 0;
 }

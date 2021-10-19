@@ -11,6 +11,14 @@ BitMEXApi::BitMEXApi(string apiKey, string apiSecret)
     apiSecret = apiSecret;
 }
 
-string BitMEXApi::query(){
+string BitMEXApi::placeOrder(Order order){
     cout << "Test";
+}
+
+string BitMEXApi::params(Order order){
+    string params = "{ ";
+    params + "\"symbol\" : \"" + order.getSymbol() + "\","
+           + "\"price\" : \"" + to_string(order.getPrice()) + "\","
+           + "\"volume\" : \"" + to_string(order.getVolume()) + "\"," 
+           + " }";
 }
