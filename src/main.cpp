@@ -5,7 +5,6 @@
 //  return 0;
 //}
 
-#include <BitMEXApi.h>
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
 #include <ixwebsocket/IXUserAgent.h>
@@ -19,9 +18,6 @@
 
 int main()
 {
-    string bitmexKey = "unkdj30VcxpWe9Yeam8t7mxP";
-    string bitmexSecret = "xx3NBrE_qj_TwbWEki3JYEqp2EgMVfQw59bOCMZupYhKs4UD";
-
     // Required on Windows
     ix::initNetSystem();
 
@@ -120,12 +116,5 @@ int main()
         std::cout << "> " << std::flush;
     }
     */
-
-    BitMEXApi bitmex = new BitMEXApi(bitmexKey, bitmexSecret);
-    
-    Order test = new Order("XBTUSD", 100, 200, 1, true);
-
-    bitmex.placeOrder(test);
-
     return 0;
 }

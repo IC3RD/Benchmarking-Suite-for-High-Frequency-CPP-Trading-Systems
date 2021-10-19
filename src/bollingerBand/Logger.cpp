@@ -26,12 +26,15 @@ void Logger::logMessage() {
 
 void Logger::addOrder(Order order) {
   orders->push_front(order);
+  
+  bitmex.placeOrder(order);
 }
 
 void Logger::printAllOrders() {
-  for (Order o : orders){
-    cout << "OrderType: " << o.isBuy ? "Buy" : "Sell" << " Symbol: " << o.getSymbol << " Price: " 
-         << o.getPrice << " Volume: " << o.getVolume;
+  for (Order o : *orders){
+    string buyOrSell = o.isBuyOrder() ? "Buy" : "Sell";
+    cout << "OrderType: " + buyOrSell + " Symbol: " + o.getSymbol() + " Price: " 
+         + to_string(o.getPrice()) + " Volume: " + to_string(o.getVolume());
   }
   cout << "All orders printed";
 }

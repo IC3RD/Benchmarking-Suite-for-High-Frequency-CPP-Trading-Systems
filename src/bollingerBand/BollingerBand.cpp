@@ -54,11 +54,11 @@ double BollingerBand::getCurrStdDeviation() {
 
 void BollingerBand::process(MarketData const *data) {
     if (currStdDev != 0) {
-        if (data->getPrice() <= currAvg - 2 * currStdDev) {
+        if (data->getBuyPrice() <= currAvg - 2 * currStdDev) {
             buy(data);
             ++currentHeldVolume;
         }
-        if (data->getPrice() >= currAvg + 2 * currStdDev) {
+        if (data->getSellPrice() >= currAvg + 2 * currStdDev) {
             sell(data);
             --currentHeldVolume;
         }
@@ -68,9 +68,11 @@ void BollingerBand::process(MarketData const *data) {
 void BollingerBand::buy(MarketData const *data) {
     cout << "Buy\n";
     logger->addMessage("buy " + data->getSymbol() + "\n");
+    logger->addOrder(Order(data->getSymbol(), data->getBuyPrice(), 1, true));
 }
 
 void BollingerBand::sell(MarketData const *data) {
     cout << "Sell\n";
     logger->addMessage("sell " + data->getSymbol() + "\n");
+    logger->addOrder(Order(data->getSymbol(), data->getSellPrice(), 1, false));
 }

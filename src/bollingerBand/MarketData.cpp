@@ -14,6 +14,16 @@ const int MarketData::getPrice() const
     return price;
 }
 
+const int MarketData::getBuyPrice() const
+{
+    return buyPrice;
+}
+
+const int MarketData::getSellPrice() const
+{
+    return sellPrice;
+}
+
 const string MarketData::getSymbol() const
 {
     return symbol;

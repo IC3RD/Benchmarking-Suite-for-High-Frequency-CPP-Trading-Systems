@@ -6,18 +6,15 @@ using namespace std;
 
 class Order {
     public:
-        Order(string, int, int, int, bool);
+        Order(string, int, int, bool);
         int getVolume() const;
         int getPrice() const;
-        bool isBuy() const;
+        bool isBuyOrder() const;
         string getSymbol() const;   
-        bool isBuy() const;
 
     private:
         const string symbol;
         const int price;
         const int volume;
-        const int sellPrice;
-        const int buyPrice;  
         const bool isBuy; // If not it is a sell order   
 };

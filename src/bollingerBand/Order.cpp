@@ -4,7 +4,8 @@
 #include <map>
 using namespace std;
 
-Order::Order(const string s, int buy, int sell, int v, bool isBuy) : symbol(s), price(isBuy ? buy : sell), volume(v), sellPrice(sell), buyPrice(buy), isBuy(isBuy) {};    
+Order::Order(const string s, int p, int v, bool isBuy) 
+    : symbol(s), price(p), volume(v), isBuy(isBuy) {};    
 
 int Order::getVolume() const
 {
@@ -21,7 +22,7 @@ string Order::getSymbol() const
     return symbol;
 }
 
-bool Order::isBuy() const
+bool Order::isBuyOrder() const
 {
     return isBuy;
 }

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES BollingerBand.cpp Logger.cpp MarketData.cpp AlgoTrader.cpp)
+set(SOURCE_FILES BollingerBand.cpp Logger.cpp MarketData.cpp AlgoTrader.cpp Order.cpp BitMEXApi.cpp)
 
 
 add_executable(trader ${SOURCE_FILES})
