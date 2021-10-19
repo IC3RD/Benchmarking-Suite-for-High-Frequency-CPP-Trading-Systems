@@ -20,7 +20,7 @@ BollingerBand::~BollingerBand() {
     delete marketPrices;
 }
 
-void BollingerBand::insertNewData(const MarketData& data) {
+void BollingerBand::strategy(MarketData *data) {
     double removed = 0;
     int newElementCount = currElementCount + 1;
     if (currElementCount == maxElements) {
@@ -28,9 +28,9 @@ void BollingerBand::insertNewData(const MarketData& data) {
         marketPrices->pop_front();
         newElementCount = maxElements;
     }
-    marketPrices->push_back(data.getPrice());
+    marketPrices->push_back(data->getPrice());
     // calculate the new average from the old one
-    double newAvg = (currAvg * currElementCount - removed + data.getPrice()) / newElementCount;
+    double newAvg = (currAvg * currElementCount - removed + data->getPrice()) / newElementCount;
     double sumSquareMeanDiffs = 0;
     auto it = marketPrices->cend();
     --it; //Since cend() points to the element after the back of the queue
@@ -38,11 +38,9 @@ void BollingerBand::insertNewData(const MarketData& data) {
         sumSquareMeanDiffs += (*it) * (*it) - newAvg * newAvg;
         --it;
     }
-    
     currElementCount = newElementCount;
     currAvg = newAvg;
     currStdDev = sqrt(sumSquareMeanDiffs / newElementCount);
-
     process(data);
 }
 
@@ -54,23 +52,25 @@ double BollingerBand::getCurrStdDeviation() {
     return currStdDev;
 }
 
-void BollingerBand::process(const MarketData& data) {
+void BollingerBand::process(MarketData const *data) {
     if (currStdDev != 0) {
-        if (data.getPrice() <= currAvg - 2 * currStdDev) {
+        if (data->getPrice() <= currAvg - 2 * currStdDev) {
             buy(data);
             ++currentHeldVolume;
         }
-        if (data.getPrice() >= currAvg + 2 * currStdDev) {
+        if (data->getPrice() >= currAvg + 2 * currStdDev) {
             sell(data);
             --currentHeldVolume;
         }
     }
 }
 
-void BollingerBand::buy(const MarketData& data) {
-    logger->addMessage("buy " + data.getSymbol() + "\n");
+void BollingerBand::buy(MarketData const *data) {
+    cout << "Buy\n";
+    logger->addMessage("buy " + data->getSymbol() + "\n");
 }
 
-void BollingerBand::sell(const MarketData& data) {
-    logger->addMessage("sell " + data.getSymbol() + "\n");
+void BollingerBand::sell(MarketData const *data) {
+    cout << "Sell\n";
+    logger->addMessage("sell " + data->getSymbol() + "\n");
 }
