@@ -1,5 +1,6 @@
 #include <string>
 #include "Order.h"
+#include <curl/curl.h>
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class BitMEXApi
         BitMEXApi(string apiKey, string apiSecret);
         string params(Order order); 
         void placeOrder(Order order);
+        void authenticate(CURL *curl, struct curl_slist **chunk);
     private: 
         string domain = "https://testnet.bitmex.com";
         string apiKey;
