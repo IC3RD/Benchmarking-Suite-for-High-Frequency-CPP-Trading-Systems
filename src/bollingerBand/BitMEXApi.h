@@ -10,7 +10,8 @@ class BitMEXApi
         BitMEXApi(string apiKey, string apiSecret);
         string params(Order order); 
         void placeOrder(Order order);
-        void authenticate(CURL *curl, struct curl_slist **chunk);
+        void generateHeaders(CURL *curl, struct curl_slist **chunk, Order order);
+        string generatePostFields(Order order);
     private: 
         string domain = "https://testnet.bitmex.com";
         string apiKey;

@@ -5,8 +5,8 @@
 
 #pragma once
 
-#define BITMEX_KEY "unkdj30VcxpWe9Yeam8t7mxP"
-#define BITMEX_SECRET "xx3NBrE_qj_TwbWEki3JYEqp2EgMVfQw59bOCMZupYhKs4UD"
+#define BITMEX_KEY "DQakAekZhCUpMyp8-oBjSZj0"
+#define BITMEX_SECRET "_hTVt28pJk094DJI4HBU98V-GsBMiToqqvrOvjUcGhilKuMF"
 
 using namespace std;
 
