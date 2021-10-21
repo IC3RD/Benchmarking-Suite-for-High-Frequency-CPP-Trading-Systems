@@ -4,11 +4,9 @@
 struct ExampleTests : public :: testing::Test {
 
   virtual void SetUp() override {
-    std::cout << "Setting up example unit test \n";    
   }
 
   virtual void TearDown() override {
-    std::cout << "Tearing down example unit test \n";    
   }
 };
 

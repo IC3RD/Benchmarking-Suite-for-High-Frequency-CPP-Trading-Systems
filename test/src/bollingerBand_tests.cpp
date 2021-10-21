@@ -6,29 +6,23 @@ struct BollingerBandTests : public :: testing::Test {
   
   BollingerBand* band;
   
-  BollingerBand getTestBand() {
+  BollingerBand& getTestBand() {
     return *band;
   }
   
   virtual void SetUp() override {
-    cout << "Setting up bollinger band unit test \n";    
     band = new BollingerBand(100);
   }
 
   virtual void TearDown() override {
-    cout << "Tearing down bollinger band unit test \n";    
     delete band;
   }
 };
 
 TEST_F(BollingerBandTests, correctMeanCalculatedInitially) {  
-  cout << "start";  
-  MarketData *data = new MarketData("Example", 6, 4, 100);
-  cout << "initialised";
-  getTestBand().strategy(data);
-  cout << "yeah";
+  MarketData data = MarketData("Example", 6, 4, 100);
+  getTestBand().strategy(&data);
   ASSERT_EQ(getTestBand().getCurrMovingAverage(), 5);
-  delete data;
 }
 
 TEST_F(BollingerBandTests, correctMeanCalculatedAfter10Inputs) {

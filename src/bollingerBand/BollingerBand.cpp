@@ -41,7 +41,11 @@ void BollingerBand::strategy(MarketData *data) {
     }
     currElementCount = newElementCount;
     currAvg = newAvg;
-    currStdDev = sqrt(sumSquareMeanDiffs / newElementCount);
+    if (newElementCount <= 1) {
+      currStdDev = 0;
+    } else {
+      currStdDev = sqrt(sumSquareMeanDiffs / (newElementCount - 1));
+    } 
     process(data);
 }
 
@@ -68,10 +72,10 @@ void BollingerBand::process(MarketData const *data) {
 
 void BollingerBand::buy(MarketData const *data) {
     cout << "Buy\n";
-    //logger->addMessage("buy " + data->getSymbol() + "\n");
+    logger->addMessage("buy " + data->getSymbol() + "\n");
 }
 
 void BollingerBand::sell(MarketData const *data) {
     cout << "Sell\n";
-    //logger->addMessage("sell " + data->getSymbol() + "\n");
+    logger->addMessage("sell " + data->getSymbol() + "\n");
 }
