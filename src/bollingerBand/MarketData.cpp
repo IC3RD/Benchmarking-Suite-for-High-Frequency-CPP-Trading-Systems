@@ -4,6 +4,10 @@ using namespace std;
 
 MarketData::MarketData(const string s, int buy, int sell, int v) : symbol(s), price((buy + sell) / 2), volume(v), sellPrice(sell), buyPrice(buy), tradingStrategy(new BollingerBand(100)) {};    
 
+MarketData::~MarketData() {
+  delete tradingStrategy;
+}
+
 const int MarketData::getVolume() const
 {
     return volume;

@@ -11,13 +11,14 @@ BollingerBand::BollingerBand(int max) : maxElements(max) {
     currAvg = 0;
     currStdDev = 0;
     currentHeldVolume = 0;
-   // initialise memory for the queue all at initialisation
+    // initialise memory for the queue all at initialisation
     marketPrices = new deque<double>(max);
     logger = new Logger();
 }
 
 BollingerBand::~BollingerBand() {
     delete marketPrices;
+    //delete logger;
 }
 
 void BollingerBand::strategy(MarketData *data) {
@@ -67,10 +68,10 @@ void BollingerBand::process(MarketData const *data) {
 
 void BollingerBand::buy(MarketData const *data) {
     cout << "Buy\n";
-    logger->addMessage("buy " + data->getSymbol() + "\n");
+    //logger->addMessage("buy " + data->getSymbol() + "\n");
 }
 
 void BollingerBand::sell(MarketData const *data) {
     cout << "Sell\n";
-    logger->addMessage("sell " + data->getSymbol() + "\n");
+    //logger->addMessage("sell " + data->getSymbol() + "\n");
 }
