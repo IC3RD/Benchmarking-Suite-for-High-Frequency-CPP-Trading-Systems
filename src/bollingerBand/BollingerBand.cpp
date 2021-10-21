@@ -11,13 +11,14 @@ BollingerBand::BollingerBand(int max) : maxElements(max) {
     currAvg = 0;
     currStdDev = 0;
     currentHeldVolume = 0;
-   // initialise memory for the queue all at initialisation
+    // initialise memory for the queue all at initialisation
     marketPrices = new deque<double>(max);
     logger = new Logger();
 }
 
 BollingerBand::~BollingerBand() {
     delete marketPrices;
+    //delete logger;
 }
 
 void BollingerBand::strategy(MarketData *data) {
@@ -40,7 +41,11 @@ void BollingerBand::strategy(MarketData *data) {
     }
     currElementCount = newElementCount;
     currAvg = newAvg;
-    currStdDev = sqrt(sumSquareMeanDiffs / newElementCount);
+    if (newElementCount <= 1) {
+      currStdDev = 0;
+    } else {
+      currStdDev = sqrt(sumSquareMeanDiffs / (newElementCount - 1));
+    } 
     process(data);
 }
 

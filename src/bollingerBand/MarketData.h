@@ -10,6 +10,7 @@ class BollingerBand;
 class MarketData {
     public:
         MarketData(string, int, int, int);
+        ~MarketData();
         const int getVolume() const;
         const int getPrice() const;
         const string getSymbol() const;
