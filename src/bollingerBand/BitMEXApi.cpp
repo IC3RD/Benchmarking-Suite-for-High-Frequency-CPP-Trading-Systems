@@ -91,9 +91,9 @@ void BitMEXApi::placeOrder(Order order) {
         curl_easy_setopt(curl, CURLOPT_URL, "https://testnet.bitmex.com/api/v1/order");
 //        curl_easy_setopt(curl, CURLOPT_URL, "https://httpbin.org/post");
         string str_data = BitMEXApi::generatePostFields(order);
-        char *output = curl_easy_escape(curl, str_data.c_str(), str_data.length());
+//        char *output = curl_easy_escape(curl, str_data.c_str(), str_data.length());
         cout << "Data to be sent: " << str_data << '\n';
-        str_data = output;
+//        str_data = output;
         cout << "Easy Escaped: " << str_data << '\n';
 //        curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS, data);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, str_data.c_str());
