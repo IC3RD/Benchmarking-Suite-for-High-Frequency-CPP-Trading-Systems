@@ -66,7 +66,8 @@ string BitMEXApi::generatePostFields(Order order) {
 
     // Can modify this later.
     string currency = "XBTUSD";
-    int quantity = 1;
+    // apparently this needs to be in multiples of 100 or you get Invalid leavesQty for lotSize
+    int quantity = 100;
     string output = "";
 
     output += "symbol=" + currency + "&side=" + (order.isBuyOrder() ? "Buy" : "Sell") + "&orderQty=" +
