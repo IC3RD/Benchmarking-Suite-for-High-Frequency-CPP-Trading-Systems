@@ -1,13 +1,26 @@
 #include <list>
 #include <string>
+#include "Order.h"
+#include "BitMEXApi.h"
+
 #pragma once
+
+#define BITMEX_KEY "DQakAekZhCUpMyp8-oBjSZj0"
+#define BITMEX_SECRET "_hTVt28pJk094DJI4HBU98V-GsBMiToqqvrOvjUcGhilKuMF"
+
+using namespace std;
 
 class Logger {
 public:
     Logger();
     ~Logger();    
-    void addMessage(std::string message);
+    void addMessage(string message);
     void logMessage();
+    void addOrder(Order order);
+    void printAllOrders();
+
 private:
-    std::list<std::string> *messages;
+    list<string> *messages;
+    list<Order> *orders;
+    BitMEXApi bitmex = BitMEXApi(BITMEX_KEY, BITMEX_SECRET);
 };

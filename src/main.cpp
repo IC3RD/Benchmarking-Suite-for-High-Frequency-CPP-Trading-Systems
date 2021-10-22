@@ -18,6 +18,7 @@
 
 int main()
 {
+
     // Required on Windows
     ix::initNetSystem();
 
@@ -116,6 +117,5 @@ int main()
         std::cout << "> " << std::flush;
     }
     */
-
     return 0;
 }
