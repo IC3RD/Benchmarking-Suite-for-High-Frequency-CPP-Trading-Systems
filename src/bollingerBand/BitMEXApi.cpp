@@ -12,7 +12,7 @@ BitMEXApi::BitMEXApi(string apiKey, string apiSecret)
         : apiKey(apiKey), apiSecret(apiSecret) {};
 
 // Adds headers to curl request. See: https://www.bitmex.com/app/apiKeysUsage
-void BitMEXApi::generateHeaders(CURL *curl, struct curl_slist **chunk, Order order) {
+void BitMEXApi::generateHeaders(CURL *curl, struct curl_slist **chunk, Order order, string data) {
 
     *chunk = curl_slist_append(*chunk, "Accept:");
 
@@ -38,12 +38,12 @@ void BitMEXApi::generateHeaders(CURL *curl, struct curl_slist **chunk, Order ord
     string verb = "POST";
     string path = "/api/v1/order";
     auto expires = expiry_time;
-    string data = BitMEXApi::generatePostFields(order);
+//    string data = BitMEXApi::generatePostFields(order);
 
-    cout << "> String to encode: " << verb + path + to_string(expires) + data << "\n";
+    cout << "> String to encode: " << verb + path + to_string(expires) + data.c_str() << "\n";
 
     Poco::HMACEngine<SHA256Engine> hmac{this->apiSecret};
-    hmac.update(verb + path + to_string(expires) + data);
+    hmac.update(verb + path + to_string(expires) + data.c_str());
 
     string hmac_hex = Poco::DigestEngine::digestToHex(hmac.digest());
     string api_signature_header = "api-signature:" + hmac_hex;
@@ -84,16 +84,24 @@ void BitMEXApi::placeOrder(Order order) {
     curl = curl_easy_init();
     if (curl) {
         // Debugging purposes: set verbose mode to true.
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+//        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+
+        curl_easy_setopt(curl,CURLOPT_POST,1L);
 
         curl_easy_setopt(curl, CURLOPT_URL, "https://testnet.bitmex.com/api/v1/order");
-        const char *data = BitMEXApi::generatePostFields(order).c_str();
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, strlen(data));
+//        curl_easy_setopt(curl, CURLOPT_URL, "https://httpbin.org/post");
+        string str_data = BitMEXApi::generatePostFields(order);
+        char *output = curl_easy_escape(curl, str_data.c_str(), str_data.length());
+        cout << "Data to be sent: " << str_data << '\n';
+        str_data = output;
+        cout << "Easy Escaped: " << str_data << '\n';
+//        curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS, data);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, str_data.c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, str_data.length());
 
         // Add the headers.
         struct curl_slist *chunk = NULL;
-        BitMEXApi::generateHeaders(curl, &chunk, order);
+        BitMEXApi::generateHeaders(curl, &chunk, order, str_data);
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
         res = curl_easy_perform(curl);
