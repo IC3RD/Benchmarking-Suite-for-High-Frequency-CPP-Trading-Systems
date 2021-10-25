@@ -9,4 +9,4 @@
 	url = https://github.com/nlohmann/json
 [submodule "lib/Poco"]
 	path = lib/Poco
-	url = https://github.com/pocoproject/poco.git
+	url = git@github.com:pocoproject/poco.git
