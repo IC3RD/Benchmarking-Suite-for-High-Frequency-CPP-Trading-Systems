@@ -8,15 +8,15 @@ Good introduction to CMake: https://cliutils.gitlab.io/modern-cmake/
 **OS X**:
 
 1. Install cmake: `brew install cmake`
-1. Install gcc11.2+: `brew install gcc@11`
-1. Check gcc is correctly installed: `g++-11 --version`
+1. Install gcc10+: `brew install gcc@10`
+1. Check gcc is correctly installed: `g++-10 --version`
 1. Install clang-format: `brew install clang-format`
 
 ## Setup
 1. Check out submodules: `git submodule update --init --recursive`
-1. Configure CMake: `cmake -S . -B build`
 
 ## Build
+1. Generate build Makefiles: `cmake -S . -B build`
 1. Run `cmake --build build`
 1. Install the files with: `cmake --install build`
 

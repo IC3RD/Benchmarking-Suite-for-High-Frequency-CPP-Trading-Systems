@@ -41,7 +41,7 @@
 **/CMakeScripts
 **/compile_commands.json
 
-include/divisible/*
+include/**/*
 
 
 ## Local 
@@ -49,12 +49,12 @@ include/divisible/*
 .idea/*.xml
 
 build/**/*
-
-include/*
 lib/**/*
-bin/*
+bin/**/*
 test/test_runner
 test/lib/**/*
+test/bin/**/*
+Testing/**/*
 
 # idea settings
 .idea/

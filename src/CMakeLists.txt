@@ -4,14 +4,18 @@ project(CPPDesignPatternsforLowLatencyTrading)
 set(SOURCE_FILES main.cpp)
 
 add_executable(main ${SOURCE_FILES})
-install(TARGETS main DESTINATION ${DIVISIBLE_INSTALL_BIN_DIR})
+install(TARGETS main DESTINATION ${INSTALL_BIN_DIR})
 
-find_package(Poco REQUIRED Foundation Crypto Util JSON NetSSL)
-
-target_link_libraries(main PUBLIC ixwebsocket bollingerBand curl Poco::Foundation
-        Poco::Crypto
-        Poco::Util
-        Poco::JSON
-        Poco::NetSSL)
+target_link_libraries(main PUBLIC
+        ixwebsocket
+        bollingerBand
+        curl
+        Foundation
+        Crypto
+        Util
+        JSON
+        NetSSL
+        OpenSSL::SSL
+        )
 
 add_subdirectory(bollingerBand)
