@@ -1,5 +1,7 @@
 #include <deque>
 #include <cmath>
+#include <chrono>
+#include <algorithm>
 #include <iostream>
 #include "BitMEXApi.h"
 #include <curl/curl.h>
