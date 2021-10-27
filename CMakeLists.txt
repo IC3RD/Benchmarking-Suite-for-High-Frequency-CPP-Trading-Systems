@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 3.2)
 
-set(CC /usr/local/bin/gcc-10)
-set(CXX /usr/local/bin/g++-10)
-set(CMAKE_C_COMPILER /usr/local/bin/gcc-10)
-set(CMAKE_CXX_COMPILER /usr/local/bin/g++-10)
+set(CC /usr/bin/gcc)
+set(CXX /usr/bin/g++)
+set(CMAKE_C_COMPILER /usr/bin/gcc)
+set(CMAKE_CXX_COMPILER /usr/bin/g++)
+
+if (APPLE)
+  set(CC /usr/local/bin/gcc-10)
+  set(CXX /usr/local/bin/g++-10)
+  set(CMAKE_C_COMPILER /usr/local/bin/gcc-10)
+  set(CMAKE_CXX_COMPILER /usr/local/bin/g++-10)
+endif()
+
 
 project(CPPDesignPatternsLowLatency)
 
@@ -28,7 +36,6 @@ set(POCO_INCLUDE_DIRS
         "${POCO_DIR}/Crypto/include"
         "${POCO_DIR}/Data/include"
         "${POCO_DIR}/Encodings/include"
-        "${POCO_DIR}/Foundation/include"
         "${POCO_DIR}/JSON/include"
         "${POCO_DIR}/MongoDB/include"
         "${POCO_DIR}/Net/include"
@@ -41,6 +48,7 @@ set(POCO_INCLUDE_DIRS
         "${POCO_DIR}/Util/include"
         "${POCO_DIR}/XML/include"
         "${POCO_DIR}/Zip/include"
+        "${POCO_DIR}/Foundation/include"
 )
 
 include_directories(${INSTALL_INCLUDE_DIR})
