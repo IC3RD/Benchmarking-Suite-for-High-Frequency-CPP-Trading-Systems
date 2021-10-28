@@ -13,6 +13,8 @@ public:
     }
 
     OrderManager() = default;
+
+    virtual string getURL() = 0;
 };
 
 
