@@ -6,11 +6,13 @@
 
 class OrderManager {
 public:
-    virtual void createOrder(Order order);
+    virtual void submitOrder(Order order) = 0;
 
-    virtual void submitOrder(Order order);
+    OrderBuilder createOrderBuilder() {
+      return {};
+    }
 
-    virtual OrderBuilder createOrderBuilder();
+    OrderManager() = default;
 };
 
 

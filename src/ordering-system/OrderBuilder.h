@@ -15,7 +15,7 @@ public:
 
     void amendPrice(int newPrice);
 
-    virtual Order toOrder();
+    Order toOrder() const {return {"implement this", price, 0, true};}
 
 private:
     bool isBuyOrder;
