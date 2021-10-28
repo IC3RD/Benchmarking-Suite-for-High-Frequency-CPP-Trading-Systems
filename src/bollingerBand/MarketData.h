@@ -1,9 +1,9 @@
+#pragma once
+
 #include <stdio.h>
 
 #include <string>
-#ifndef BAND
-#define BAND
-#include "BollingerBand.h"
+
 using namespace std;
 
 class BollingerBand;
@@ -31,5 +31,3 @@ class MarketData {
   int buyPrice;
   BollingerBand *tradingStrategy;
 };
-
-#endif
