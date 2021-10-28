@@ -1,10 +1,10 @@
+#pragma once
+
 #include <list>
 #include <string>
 
 #include "BitMEXApi.h"
 #include "Order.h"
-
-#pragma once
 
 #define BITMEX_KEY "DQakAekZhCUpMyp8-oBjSZj0"
 #define BITMEX_SECRET "_hTVt28pJk094DJI4HBU98V-GsBMiToqqvrOvjUcGhilKuMF"

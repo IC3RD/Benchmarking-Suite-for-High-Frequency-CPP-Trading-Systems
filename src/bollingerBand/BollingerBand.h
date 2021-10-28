@@ -1,11 +1,12 @@
+#pragma once
+
 #include <stdio.h>
 
 #include <deque>
-#ifndef DATA
-#define DATA
+
 #include "Logger.h"
 #include "MarketData.h"
-#pragma once
+
 using namespace std;
 
 class BollingerBand {
@@ -28,5 +29,3 @@ class BollingerBand {
   deque<double> *marketPrices;
   Logger *logger;
 };
-
-#endif
