@@ -16,6 +16,8 @@ target_link_libraries(main PUBLIC
         JSON
         NetSSL
         OpenSSL::SSL
+        ordering-system
         )
 
 add_subdirectory(bollingerBand)
+add_subdirectory(ordering-system)
