@@ -1,25 +1,19 @@
 #include <gtest/gtest.h>
+
 #include "../../src/bollingerBand/BollingerBand.h"
 #include "../../src/bollingerBand/MarketData.h"
 
-struct BollingerBandTests : public :: testing::Test {
-  
+struct BollingerBandTests : public ::testing::Test {
   BollingerBand* band;
-  
-  BollingerBand& getTestBand() {
-    return *band;
-  }
-  
-  virtual void SetUp() override {
-    band = new BollingerBand(100);
-  }
 
-  virtual void TearDown() override {
-    delete band;
-  }
+  BollingerBand& getTestBand() { return *band; }
+
+  virtual void SetUp() override { band = new BollingerBand(100); }
+
+  virtual void TearDown() override { delete band; }
 };
 
-TEST_F(BollingerBandTests, correctMeanCalculatedInitially) {  
+TEST_F(BollingerBandTests, correctMeanCalculatedInitially) {
   MarketData data = MarketData("Example", 6, 4, 100);
   getTestBand().strategy(&data);
   ASSERT_EQ(getTestBand().getCurrMovingAverage(), 5);
@@ -44,7 +38,8 @@ TEST_F(BollingerBandTests, stdDeviationOfSamePricesIsZero) {
 TEST_F(BollingerBandTests, stdDeviationCorrectAfter10Inputs) {
   for (int i = 0; i < 10; i++) {
     MarketData data = MarketData("Example", 2 + i, i, 100);
-    getTestBand().strategy(&data); 
+    getTestBand().strategy(&data);
   }
-  ASSERT_TRUE(getTestBand().getCurrStdDeviation() >= 3.027 && getTestBand().getCurrStdDeviation() <= 3.029);
+  ASSERT_TRUE(getTestBand().getCurrStdDeviation() >= 3.027 &&
+              getTestBand().getCurrStdDeviation() <= 3.029);
 }
