@@ -46,7 +46,8 @@ void BitMEXApi::generateHeaders(CURL *curl, struct curl_slist **chunk,
   //    string data = BitMEXApi::generatePostFields(order);
 
   std::cout << "> String to encode: "
-       << verb + path + std::to_string(expires) + data.c_str() << std::endl;
+            << verb + path + std::to_string(expires) + data.c_str()
+            << std::endl;
 
   Poco::HMACEngine<SHA256Engine> hmac{this->apiSecret};
   hmac.update(verb + path + std::to_string(expires) + data.c_str());
@@ -92,7 +93,7 @@ void BitMEXApi::placeOrder(Order order) {
   // 'https://www.bitmex.com/api/v1/order'
 
   std::cout << "> Submitting Order: " << BitMEXApi::generatePostFields(order)
-       << std::endl;
+            << std::endl;
   CURL *curl;
   CURLcode res;
   curl = curl_easy_init();

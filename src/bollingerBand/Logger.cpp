@@ -31,8 +31,8 @@ void Logger::printAllOrders() {
   for (Order o : *orders) {
     std::string buyOrSell = o.isBuyOrder() ? "Buy" : "Sell";
     std::cout << "OrderType: " + buyOrSell + " Symbol: " + o.getSymbol() +
-                " Price: " + std::to_string(o.getPrice()) +
-                " Volume: " + std::to_string(o.getVolume());
+                     " Price: " + std::to_string(o.getPrice()) +
+                     " Volume: " + std::to_string(o.getVolume());
   }
   std::cout << "All orders printed";
 }
