@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES BitMEXListener.cpp BinanceListener.cpp CoinbaseListener.cpp)
+set(SOURCE_FILES BitMEXListener.cpp BinanceListener.cpp CoinbaseListener.cpp
+    FTXListener.cpp KrakenListener.cpp)
 
 add_library(listener ${SOURCE_FILES})
 

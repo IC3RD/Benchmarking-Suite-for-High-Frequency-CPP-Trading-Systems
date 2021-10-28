@@ -5,21 +5,21 @@
 #include <iomanip>
 #include <string>
 #include <json/single_include/nlohmann/json.hpp>
-#include "BinanceListener.h"
+#include "KrakenListener.h"
 
-void BinanceListener::startListening() 
+void KrakenListener::startListening() 
 {
     webSocket.setUrl(url);
     setHandlers();
     webSocket.start();
 }
 
-void BinanceListener::sendRequest(std::string request)
+void KrakenListener::sendRequest(std::string request)
 {
     webSocket.send(request);
 }
 
-void BinanceListener::setHandlers()
+void KrakenListener::setHandlers()
 {
     // Setup a callback to be fired (in a background thread,
     // watch out for race conditions !)
@@ -32,12 +32,12 @@ void BinanceListener::setHandlers()
 
                 using json = nlohmann::json;
                 json j = json::parse(msg->str);
-                // std::cout << std::setw(4) << j << std::endl;
+                std::cout << std::setw(4) << j << std::endl;
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Open)
             {
-                std::cout << "Connection established to Binance" << std::endl;
+                std::cout << "Connection established to Kraken" << std::endl;
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Error)

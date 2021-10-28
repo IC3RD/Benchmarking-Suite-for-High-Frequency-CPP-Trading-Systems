@@ -10,6 +10,8 @@
 #include "marketInfoListener/BitMEXListener.h"
 #include "marketInfoListener/BinanceListener.h"
 #include "marketInfoListener/CoinbaseListener.h"
+#include "marketInfoListener/FTXListener.h"
+#include "marketInfoListener/KrakenListener.h"
 
 int main()
 {
@@ -21,6 +23,8 @@ int main()
     listeners.push_back(new BitMEXListener());
     listeners.push_back(new BinanceListener());
     listeners.push_back(new CoinbaseListener());
+    listeners.push_back(new FTXListener());
+    listeners.push_back(new KrakenListener());
 
     // BitMEXListener bitmexListener;
     // bitmexListener.startListening();
@@ -170,11 +174,12 @@ int main()
     std::cout << "> " << std::flush;
 
     // send the request
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     listeners[0]->sendRequest("{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}");
     listeners[2]->sendRequest("{\"type\": \"subscribe\", \"product_ids\": [\"BTC-USD\"], \"channels\": [\"ticker\"]}");
+    listeners[3]->sendRequest("{\"op\": \"subscribe\", \"channel\": \"trades\", \"market\": \"BTC-PERP\"}");
+    listeners[4]->sendRequest("{\"event\":\"subscribe\", \"subscription\":{\"name\":\"ticker\"}, \"pair\":[\"BTC/USD\"]}");
 
-    // webSocket2.send("{\"method\":\"SUBSCRIBE\",\"params\":[\"btcusd@depth\"],\"id\":1}");
 
     // terminate by pressing enter
     std::string text;

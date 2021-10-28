@@ -32,12 +32,12 @@ void CoinbaseListener::setHandlers()
 
                 using json = nlohmann::json;
                 json j = json::parse(msg->str);
-                std::cout << std::setw(4) << j << std::endl;
+                // std::cout << std::setw(4) << j << std::endl;
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Open)
             {
-                std::cout << "Connection established" << std::endl;
+                std::cout << "Connection established to Coinbase" << std::endl;
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Error)

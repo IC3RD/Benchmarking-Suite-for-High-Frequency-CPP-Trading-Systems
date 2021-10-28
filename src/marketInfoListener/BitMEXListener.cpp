@@ -57,7 +57,7 @@ void BitMEXListener::setHandlers()
             }
             else if (msg->type == ix::WebSocketMessageType::Open)
             {
-                std::cout << "Connection established" << std::endl;
+                std::cout << "Connection established to BitMEX" << std::endl;
                 std::cout << "> " << std::flush;
             }
             else if (msg->type == ix::WebSocketMessageType::Error)
