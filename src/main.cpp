@@ -174,8 +174,9 @@ int main()
     std::cout << "> " << std::flush;
 
     // send the request
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
     listeners[0]->sendRequest("{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}");
+    listeners[1]->sendRequest("{\"method\":\"SUBSCRIBE\",\"params\":[\"btcusdt@depth\"],\"id\":1}");
     listeners[2]->sendRequest("{\"type\": \"subscribe\", \"product_ids\": [\"BTC-USD\"], \"channels\": [\"ticker\"]}");
     listeners[3]->sendRequest("{\"op\": \"subscribe\", \"channel\": \"trades\", \"market\": \"BTC-PERP\"}");
     listeners[4]->sendRequest("{\"event\":\"subscribe\", \"subscription\":{\"name\":\"ticker\"}, \"pair\":[\"BTC/USD\"]}");

@@ -12,7 +12,7 @@ public:
     
 private:
     ix::WebSocket webSocket;
-    const std::string url = "wss://stream.binance.com:9443/ws/bnbbtc@depth";
+    const std::string url = "wss://stream.binance.com:9443/ws";
 
     void setHandlers();
 };
