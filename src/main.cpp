@@ -1,10 +1,3 @@
-//#include <iostream>
-//
-//int main() {
-//  std::cout << "Hello, World!" << std::endl;
-//  return 0;
-//}
-
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
 #include <ixwebsocket/IXUserAgent.h>
@@ -12,9 +5,11 @@
 #include <iomanip>
 #include <chrono>
 #include <thread>
-#include <json/single_include/nlohmann/json.hpp>
-#include "bollingerBand/BollingerBand.h"
-#include "bollingerBand/MarketData.h"
+#include <vector>
+#include "marketInfoListener/Listener.h"
+#include "marketInfoListener/BitMEXListener.h"
+#include "marketInfoListener/BinanceListener.h"
+#include "marketInfoListener/CoinbaseListener.h"
 
 int main()
 {
@@ -22,6 +17,22 @@ int main()
     // Required on Windows
     ix::initNetSystem();
 
+    std::vector<Listener*> listeners;
+    listeners.push_back(new BitMEXListener());
+    listeners.push_back(new BinanceListener());
+    listeners.push_back(new CoinbaseListener());
+
+    // BitMEXListener bitmexListener;
+    // bitmexListener.startListening();
+    // BinanceListener binanceListener;
+    // binanceListener.startListening();
+
+    for (auto listener : listeners)
+    {
+        listener->startListening();
+    }
+
+    /*
     // Our websocket object
     ix::WebSocket webSocket;
     ix::WebSocket webSocket2;
@@ -52,7 +63,7 @@ int main()
 
                 using json = nlohmann::json;
                 json j = json::parse(msg->str);
-                //gstd::cout << std::setw(4) << j << std::endl;
+                // std::cout << std::setw(4) << j << std::endl;
 
                 if (j.contains("data")) {
                     if (!data) {
@@ -100,7 +111,6 @@ int main()
                 using json = nlohmann::json;
                 json j = json::parse(msg->str);
                 std::cout << std::setw(4) << j << std::endl;
-
                 /*
                 if (j.contains("data")) {
                     if (!data) {
@@ -122,6 +132,7 @@ int main()
                     }
                 }
                 */
+                /*
 
                 std::cout << "> " << std::flush;
             }
@@ -144,8 +155,6 @@ int main()
     // we can start our background thread and receive messages
     webSocket.start();
     webSocket2.start();
-    // Display a prompt
-    std::cout << "> " << std::flush;
 
     // sleep for sometime so that message is sent after connection is established
     int wait_unit_ms = 100;
@@ -156,9 +165,14 @@ int main()
         std::this_thread::sleep_for(std::chrono::milliseconds(wait_unit_ms));
     }
     std::cout << "waited " << waited_ms << " milliseconds" << std::endl;
+    */ 
+    // Display a prompt
+    std::cout << "> " << std::flush;
 
     // send the request
-    webSocket.send("{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}");
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    listeners[0]->sendRequest("{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}");
+    listeners[2]->sendRequest("{\"type\": \"subscribe\", \"product_ids\": [\"BTC-USD\"], \"channels\": [\"ticker\"]}");
 
     // webSocket2.send("{\"method\":\"SUBSCRIBE\",\"params\":[\"btcusd@depth\"],\"id\":1}");
 

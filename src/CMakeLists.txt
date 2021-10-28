@@ -9,6 +9,7 @@ install(TARGETS main DESTINATION ${INSTALL_BIN_DIR})
 target_link_libraries(main PUBLIC
         ixwebsocket
         bollingerBand
+        listener
         curl
         Foundation
         Crypto
@@ -19,3 +20,4 @@ target_link_libraries(main PUBLIC
         )
 
 add_subdirectory(bollingerBand)
+add_subdirectory(marketInfoListener)
