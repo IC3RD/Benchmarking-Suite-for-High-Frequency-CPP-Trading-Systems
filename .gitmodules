@@ -10,6 +10,3 @@
 [submodule "lib/Poco"]
 	path = lib/Poco
 	url = git@github.com:pocoproject/poco.git
-[submodule "include/cbpro-cpp"]
-	path = include/cbpro-cpp
-	url = https://github.com/BBottoml/cbpro-cpp
