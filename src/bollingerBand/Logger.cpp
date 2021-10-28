@@ -1,6 +1,7 @@
+#include "Logger.h"
+
 #include <iostream>
 #include <string>
-#include "Logger.h"
 
 using namespace std;
 
@@ -14,10 +15,8 @@ Logger::~Logger() {
   delete orders;
 }
 
-//optimise to store these and then print on command when out of the hotpath
-void Logger::addMessage(string message) {
-  messages->push_back(message);
-}
+// optimise to store these and then print on command when out of the hotpath
+void Logger::addMessage(string message) { messages->push_back(message); }
 
 void Logger::logMessage() {
   cout << messages->front() << "\n";
@@ -26,16 +25,16 @@ void Logger::logMessage() {
 
 void Logger::addOrder(Order order) {
   orders->push_front(order);
-  
+
   bitmex.placeOrder(order);
 }
 
 void Logger::printAllOrders() {
-  for (Order o : *orders){
+  for (Order o : *orders) {
     string buyOrSell = o.isBuyOrder() ? "Buy" : "Sell";
-    cout << "OrderType: " + buyOrSell + " Symbol: " + o.getSymbol() + " Price: " 
-         + to_string(o.getPrice()) + " Volume: " + to_string(o.getVolume());
+    cout << "OrderType: " + buyOrSell + " Symbol: " + o.getSymbol() +
+                " Price: " + to_string(o.getPrice()) +
+                " Volume: " + to_string(o.getVolume());
   }
   cout << "All orders printed";
 }
-
