@@ -1,16 +1,11 @@
 #include "BitmexOrderManager.h"
 #include <Poco/HMACEngine.h>
-#include <utils/SHA256Engine.h>
 #include <chrono>
 #include <cstdio>
 #include <curl/curl.h>
+#include <debug.h>
 #include <iostream>
-
-// Macro to print things for debugging purposes.
-#define DEBUG(x)                                                               \
-  do {                                                                         \
-    std::cout << "> " << x << std::endl;                                       \
-  } while (0)
+#include <utils/SHA256Engine.h>
 
 BitmexOrderManager::BitmexOrderManager() = default;
 
