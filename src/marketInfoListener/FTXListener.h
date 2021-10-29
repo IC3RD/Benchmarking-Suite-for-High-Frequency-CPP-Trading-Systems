@@ -1,9 +1,10 @@
 #pragma once
 #include "Listener.h"
 
-class FTXListener: public Listener {
+class FTXListener : public Listener {
 public:
-    FTXListener();
+  FTXListener();
+
 protected:
-    void passJSON(nlohmann::json json);
+  void passJSON(nlohmann::json json);
 };

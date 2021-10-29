@@ -1,9 +1,10 @@
 #pragma once
 #include "Listener.h"
 
-class CoinbaseListener: public Listener {
+class CoinbaseListener : public Listener {
 public:
-    CoinbaseListener();
+  CoinbaseListener();
+
 protected:
-    void passJSON(nlohmann::json json);
+  void passJSON(nlohmann::json json);
 };

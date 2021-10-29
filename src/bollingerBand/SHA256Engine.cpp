@@ -7,4 +7,3 @@
 
 // Call concrete constructor.
 SHA256Engine::SHA256Engine() : DigestEngine("SHA256") {}
-

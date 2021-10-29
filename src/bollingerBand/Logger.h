@@ -1,7 +1,7 @@
+#include "BitMEXApi.h"
+#include "Order.h"
 #include <list>
 #include <string>
-#include "Order.h"
-#include "BitMEXApi.h"
 
 #pragma once
 
@@ -12,15 +12,15 @@ using namespace std;
 
 class Logger {
 public:
-    Logger();
-    ~Logger();    
-    void addMessage(string message);
-    void logMessage();
-    void addOrder(Order order);
-    void printAllOrders();
+  Logger();
+  ~Logger();
+  void addMessage(string message);
+  void logMessage();
+  void addOrder(Order order);
+  void printAllOrders();
 
 private:
-    list<string> *messages;
-    list<Order> *orders;
-    BitMEXApi bitmex = BitMEXApi(BITMEX_KEY, BITMEX_SECRET);
+  list<string> *messages;
+  list<Order> *orders;
+  BitMEXApi bitmex = BitMEXApi(BITMEX_KEY, BITMEX_SECRET);
 };

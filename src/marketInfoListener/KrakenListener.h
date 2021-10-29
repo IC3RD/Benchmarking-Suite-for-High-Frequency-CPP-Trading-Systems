@@ -1,9 +1,10 @@
 #pragma once
 #include "Listener.h"
 
-class KrakenListener: public Listener {
+class KrakenListener : public Listener {
 public:
-    KrakenListener();
+  KrakenListener();
+
 protected:
-    void passJSON(nlohmann::json json);
+  void passJSON(nlohmann::json json);
 };

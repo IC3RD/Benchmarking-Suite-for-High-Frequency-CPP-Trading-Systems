@@ -2,12 +2,14 @@
 #include "Listener.h"
 //#include "../bollingerBand/MarketData.h"
 
-class BitMEXListener: public Listener {
+class BitMEXListener : public Listener {
 public:
-    BitMEXListener();
+  BitMEXListener();
+
 protected:
-    void passJSON(nlohmann::json json);
+  void passJSON(nlohmann::json json);
+
 private:
-    ix::WebSocket webSocket;
-    //MarketData *data = nullptr;
+  ix::WebSocket webSocket;
+  // MarketData *data = nullptr;
 };
