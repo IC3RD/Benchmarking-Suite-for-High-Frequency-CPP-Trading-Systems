@@ -1,7 +1,7 @@
 #include "debug.h"
 
 #include <OrderManager.h>
-#include <coinbase/CoinbaseOrderManager.h>
+#include <binance/BinanceOrderManager.h>
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -17,11 +17,11 @@ int main() {
    */
 
   std::unique_ptr<OrderManager> manager =
-      std::make_unique<CoinbaseOrderManager>();
+      std::make_unique<BinanceOrderManager>();
 
   OrderBuilder ob = manager->createOrderBuilder();
 
-  ob.createBuyOrder(520);
+  ob.createBuyOrder(60000);
   ob.addLimit(52);
 
   manager->submitOrder(ob.toOrder());
