@@ -93,7 +93,7 @@ string BinanceOrderManager::parseOrder(const Order& order) {
 
     string timestamp = generateTimestamp();
 
-    int quantity = 100;
+    double quantity = 0.005;
     string output;
 
     output += "symbol=" + currency + "&side=" + (order.isBuyOrder() ? "BUY" : "SELL") + "&type=LIMIT&timeInForce=GTC" + "&quantity=" +
@@ -114,10 +114,10 @@ string BinanceOrderManager::getURL() {
     }
 }
 string BinanceOrderManager::getSecretKey() {
-    return "a5d4715abe345ff2df4833d1276f56b6bcd08bdb4578d7148974aef28104ad17"; //this is wrong key
+    return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU"; //this is wrong key
 }
 string BinanceOrderManager::getPublicKey() {
-    return "aa5c6c0c9793ef57e72d3794d8beb1a965a15a6279faaf179827005af1e09fa6"; //this too
+    return "sBe2iw3BTx9bpOofw9ejD5pmAGc7qlVKp3qruGcGbCPtGenVtSEThdeh7WmpPoQq"; //this too
 }
 
 std::string BinanceOrderManager::base64_encode(const std::string &in) {
