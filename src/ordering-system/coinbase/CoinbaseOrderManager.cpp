@@ -1,11 +1,11 @@
 #include "CoinbaseOrderManager.h"
-#include <Base64.h>
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
-#include <SHA256Engine.h>
+#include <utils/SHA256Engine.h>
 #include <chrono>
 #include <curl/curl.h>
+#include <utils/Base64.h>
 
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                                                               \

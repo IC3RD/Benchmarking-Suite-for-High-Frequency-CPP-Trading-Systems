@@ -1,6 +1,6 @@
 #include "BitmexOrderManager.h"
 #include <Poco/HMACEngine.h>
-#include <SHA256Engine.h>
+#include <utils/SHA256Engine.h>
 #include <chrono>
 #include <cstdio>
 #include <curl/curl.h>

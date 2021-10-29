@@ -4,7 +4,11 @@ project(CPPDesignPatternsforLowLatencyTrading)
 set(SOURCE_FILES OrderManager.cpp OrderManager.h OrderBuilder.cpp
         OrderBuilder.h
         coinbase/CoinbaseOrderManager.h
-        coinbase/CoinbaseOrderManager.cpp Base64.h bitmex/BitmexOrderManager.cpp bitmex/BitmexOrderManager.h)
+        coinbase/CoinbaseOrderManager.cpp utils/Base64.h
+        bitmex/BitmexOrderManager.cpp
+        bitmex/BitmexOrderManager.h
+        utils/SHA256Engine.h
+        utils/SHA256Engine.cpp)
 
 add_library(ordering-system ${SOURCE_FILES})
 
