@@ -3,7 +3,7 @@
 #include <ixwebsocket/IXUserAgent.h>
 #include <ixwebsocket/IXWebSocket.h>
 
-#include <json/single_include/g.hpp>
+#include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
 class Listener {
