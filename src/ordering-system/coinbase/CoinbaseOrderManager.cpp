@@ -10,7 +10,7 @@
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                                                               \
   do {                                                                         \
-    std::cout << "< " << x << std::endl;                                       \
+    std::cout << "> " << x << std::endl;                                       \
   } while (0)
 
 void CoinbaseOrderManager::submitOrder(Order order) {
@@ -43,7 +43,7 @@ void CoinbaseOrderManager::submitOrder(Order order) {
               curl_easy_strerror(res));
     }
 
-    // Cleanup
+    // Cleanup.
     curl_easy_cleanup(curl);
     cout << std::endl;
   }
@@ -86,7 +86,7 @@ string CoinbaseOrderManager::authenticate(const string &message,
   return encoded;
 }
 
-string CoinbaseOrderManager::parseOrder(const Order& order) {
+string CoinbaseOrderManager::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
 
   json->set("side", order.isBuyOrder() ? "buy" : "sell");
