@@ -3,13 +3,13 @@
 //#include "../bollingerBand/MarketData.h"
 
 class BitMEXListener : public Listener {
-public:
+ public:
   BitMEXListener();
 
-protected:
+ protected:
   void passJSON(nlohmann::json json);
 
-private:
+ private:
   ix::WebSocket webSocket;
   // MarketData *data = nullptr;
 };

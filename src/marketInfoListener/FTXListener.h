@@ -2,9 +2,9 @@
 #include "Listener.h"
 
 class FTXListener : public Listener {
-public:
+ public:
   FTXListener();
 
-protected:
+ protected:
   void passJSON(nlohmann::json json);
 };

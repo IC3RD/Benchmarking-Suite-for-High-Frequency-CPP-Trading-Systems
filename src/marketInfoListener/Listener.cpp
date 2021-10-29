@@ -1,4 +1,5 @@
 #include "Listener.h"
+
 #include <iostream>
 
 Listener::Listener(std::string url, std::string request, std::string exchange)

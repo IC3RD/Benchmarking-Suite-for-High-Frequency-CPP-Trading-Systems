@@ -2,9 +2,9 @@
 #include "Listener.h"
 
 class CoinbaseListener : public Listener {
-public:
+ public:
   CoinbaseListener();
 
-protected:
+ protected:
   void passJSON(nlohmann::json json);
 };

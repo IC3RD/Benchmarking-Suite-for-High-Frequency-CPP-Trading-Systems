@@ -1,17 +1,19 @@
+#include <ixwebsocket/IXNetSystem.h>
+#include <ixwebsocket/IXUserAgent.h>
+#include <ixwebsocket/IXWebSocket.h>
+
+#include <chrono>
+#include <iomanip>
+#include <iostream>
+#include <thread>
+#include <vector>
+
 #include "marketInfoListener/BinanceListener.h"
 #include "marketInfoListener/BitMEXListener.h"
 #include "marketInfoListener/CoinbaseListener.h"
 #include "marketInfoListener/FTXListener.h"
 #include "marketInfoListener/KrakenListener.h"
 #include "marketInfoListener/Listener.h"
-#include <chrono>
-#include <iomanip>
-#include <iostream>
-#include <ixwebsocket/IXNetSystem.h>
-#include <ixwebsocket/IXUserAgent.h>
-#include <ixwebsocket/IXWebSocket.h>
-#include <thread>
-#include <vector>
 
 int main() {
   // Required on Windows

@@ -2,9 +2,9 @@
 #include "Listener.h"
 
 class KrakenListener : public Listener {
-public:
+ public:
   KrakenListener();
 
-protected:
+ protected:
   void passJSON(nlohmann::json json);
 };
