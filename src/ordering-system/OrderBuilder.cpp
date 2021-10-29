@@ -4,6 +4,10 @@ void OrderBuilder::addLimit(int limit) {
     this->limit = limit;
 }
 
+void OrderBuilder::amendVolume(int volume) {
+  this->volume = volume;
+}
+
 void OrderBuilder::createBuyOrder(int price) {
     this->isBuyOrder = true;
     this->price = price;

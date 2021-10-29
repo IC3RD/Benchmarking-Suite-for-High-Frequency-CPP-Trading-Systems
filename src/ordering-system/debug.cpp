@@ -8,12 +8,12 @@
 
 int main() {
   std::cout << "Executing Order System\n";
-  /* Sample class usage: */
 
-  /* ExchangeAPIFactory factory {Exchange.Coinbase}; (Exchange.Coinbase is enum)
-     OrderManager manager = factory.createOrderManager();
-     // Since we haven't implemented a factory yet i'll just create an instance
-     // manually.
+  /* Sample class usage:
+   * ExchangeAPIFactory factory {Exchange.Coinbase}; (Exchange.Coinbase is enum)
+   * OrderManager manager = factory.createOrderManager();
+   * // Since we haven't implemented a factory yet i'll just create an
+   * // instance.
    */
 
   std::unique_ptr<OrderManager> manager =
@@ -21,9 +21,9 @@ int main() {
 
   OrderBuilder ob = manager->createOrderBuilder();
 
-  ob.createBuyOrder(520);
-  ob.addLimit(52);
+  ob.createBuyOrder(500);
+  ob.addLimit(1);
+  ob.amendVolume(100);
 
   manager->submitOrder(ob.toOrder());
-
 }

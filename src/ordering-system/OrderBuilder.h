@@ -15,12 +15,16 @@ public:
 
     void amendPrice(int newPrice);
 
-    Order toOrder() const {return {"implement this", price, 0, true};}
+    void amendVolume(int volume);
+
+    Order toOrder() const {
+      return {"implement this", price, volume, isBuyOrder};}
 
 private:
     bool isBuyOrder;
     int limit;
     int price;
+    int volume;
 };
 
 

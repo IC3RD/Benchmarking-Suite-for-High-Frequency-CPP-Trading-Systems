@@ -16,13 +16,13 @@ public:
 
 private:
   string parseOrder(Order order);
-  string authenticate(string message, string timestamp);
+  string authenticate(const string& message, const string& timestamp);
   string generateTimestamp();
-  void generateHeaders(struct curl_slist **chunk, string data);
+  void generateHeaders(struct curl_slist **chunk, const string& data);
   string getSecretKey();
   string getPublicKey();
-  static std::string base64_encode(const std::string &in);
-  static std::string base64_decode(const std::string &in);
+  std::string hex_to_string(const std::string& in);
+
 
 };
 

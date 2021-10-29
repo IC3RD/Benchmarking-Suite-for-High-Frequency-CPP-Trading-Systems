@@ -2,9 +2,12 @@
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
+#include <Poco/Base64Encoder.h>
+#include <Poco/Base64Decoder.h>
 #include <SHA256Engine.h>
 #include <chrono>
 #include <curl/curl.h>
+#include<Base64.h>
 
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                                                               \
@@ -14,6 +17,7 @@
 
 void CoinbaseOrderManager::submitOrder(Order order) {
   string order_data = parseOrder(order);
+//  string order_data = "";
   DEBUG("Posting order of " + order_data);
 
   CURL *curl;
@@ -27,10 +31,12 @@ void CoinbaseOrderManager::submitOrder(Order order) {
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
+    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
 
     // Add required headers.
-    struct curl_slist *chunk = NULL;
+    struct curl_slist *chunk = nullptr;
     generateHeaders(&chunk, order_data);
+
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
     res = curl_easy_perform(curl);
@@ -54,31 +60,49 @@ string CoinbaseOrderManager::generateTimestamp() {
 }
 
 void CoinbaseOrderManager::generateHeaders(struct curl_slist **chunk,
-                                           string data) {
+                                           const string& data) {
   *chunk = curl_slist_append(*chunk, "Accept: application/json");
   *chunk = curl_slist_append(*chunk, "Content-Type: application/json");
-  *chunk = curl_slist_append(*chunk, "User-Agent: CPPDesignPatternsAgent");
+  *chunk = curl_slist_append(*chunk, "User-Agent: CoinbaseProAPI");
   *chunk =
-      curl_slist_append(*chunk, ("cb-access-key: " + getPublicKey()).c_str());
+      curl_slist_append(*chunk, ("cb-access-key:" + getPublicKey()).c_str());
   string timestamp = generateTimestamp();
   string signature = authenticate(data, timestamp);
-  *chunk = curl_slist_append(*chunk, ("cb-access-sign: " + signature).c_str());
+  *chunk = curl_slist_append(*chunk, ("cb-access-sign:" + signature).c_str());
   *chunk =
-      curl_slist_append(*chunk, ("cb-access-timestamp: " + timestamp).c_str());
-  *chunk = curl_slist_append(*chunk, "cb-access-passphrase: c116en8tfv6");
+      curl_slist_append(*chunk, ("cb-access-timestamp:" + timestamp).c_str());
+  *chunk = curl_slist_append(*chunk, "cb-access-passphrase:c116en8tfv6");
 }
 
-string CoinbaseOrderManager::authenticate(string message, string timestamp) {
+string CoinbaseOrderManager::authenticate(const string& message, const string& timestamp) {
+//  DEBUG("Decoded" + getSecretKey());
+//  string decoded;
+//  istringstream istr(getSecretKey().c_str());
+//  ostringstream ostr;
+//  Poco::Base64Decoder b64in{istr, Poco::BASE64_URL_ENCODING};
+//  copy(std::istreambuf_iterator<char>(b64in),
+//       std::istreambuf_iterator<char>(),
+//       std::ostreambuf_iterator<char>(ostr));
+//  decoded = ostr.str();
+  string decoded;
+  macaron::Base64::Decode(getSecretKey(), decoded);
 
-  Poco::HMACEngine<SHA256Engine> hmac{getSecretKey()};
+  DEBUG(decoded);
+
+  Poco::HMACEngine<SHA256Engine> hmac{decoded};
+
 
   // timestamp + method + requestPath + body
-  string toSign = timestamp + "POST" + "/orders" + message;
-  string decoded = base64_decode(toSign);
-  hmac.update(decoded);
+  string toSign = timestamp + "POST" + "/orders" + message.c_str();
+  DEBUG(toSign);
+//  string decoded = base64_decode(toSign);
+  hmac.update(toSign);
+
+
 
   string digest = Poco::DigestEngine::digestToHex(hmac.digest());
-  string encoded = base64_encode(digest);
+  string hex_str = hex_to_string(digest);
+  string encoded = macaron::Base64::Encode(hex_str);
   return encoded;
 }
 
@@ -102,7 +126,6 @@ string CoinbaseOrderManager::parseOrder(Order order) {
 
   std::stringstream ss;
   Poco::JSON::Stringifier::stringify(json, ss);
-
   return ss.str();
 }
 
@@ -110,63 +133,40 @@ CoinbaseOrderManager::CoinbaseOrderManager() : OrderManager() {}
 
 string CoinbaseOrderManager::getURL() {
   // Amend if you are debugging.
-  bool debug = true;
+  bool debug = false;
   if (debug) {
     return "https://httpbin.org/post";
   } else {
-    return "https://api-public.sandbox.pro.coinbase.com";
+    return "https://api-public.sandbox.pro.coinbase.com/orders";
   }
 }
+
 string CoinbaseOrderManager::getSecretKey() {
-  return "ASK JAKE FOR SECRET KEY";
+  return "jgEtlhOBhGESP7JUQ2w6Dm46Wbar8zWv5ib3PEYfTC7avQ8M8ohxNHvLESnJGHhRYlOZp"
+         "iMzPiEaU8onVlNgSg==";
 }
 string CoinbaseOrderManager::getPublicKey() {
   return "00dcf06c3d7402c3272eef11593446b0";
 }
 
-std::string CoinbaseOrderManager::base64_encode(const std::string &in) {
+std::string CoinbaseOrderManager::hex_to_string(const std::string& in) {
+  std::string output;
 
-  std::string out;
-
-  int val = 0, valb = -6;
-  for (unsigned char c : in) {
-    val = (val << 8) + c;
-    valb += 8;
-    while (valb >= 0) {
-      out.push_back(
-          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-              [(val >> valb) & 0x3F]);
-      valb -= 6;
-    }
+  if ((in.length() % 2) != 0) {
+    throw std::runtime_error("String is not valid length ...");
   }
-  if (valb > -6)
-    out.push_back(
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-            [((val << 8) >> (valb + 8)) & 0x3F]);
-  while (out.size() % 4)
-    out.push_back('=');
-  return out;
+
+  size_t cnt = in.length() / 2;
+
+  for (size_t i = 0; cnt > i; ++i) {
+    uint32_t s = 0;
+    std::stringstream ss;
+    ss << std::hex << in.substr(i * 2, 2);
+    ss >> s;
+
+    output.push_back(static_cast<unsigned char>(s));
+  }
+
+  return output;
 }
 
-std::string CoinbaseOrderManager::base64_decode(const std::string &in) {
-
-  std::string out;
-
-  std::vector<int> T(256, -1);
-  for (int i = 0; i < 64; i++)
-    T["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[i]] =
-        i;
-
-  int val = 0, valb = -8;
-  for (unsigned char c : in) {
-    if (T[c] == -1)
-      break;
-    val = (val << 6) + T[c];
-    valb += 6;
-    if (valb >= 0) {
-      out.push_back(char((val >> valb) & 0xFF));
-      valb -= 8;
-    }
-  }
-  return out;
-}
