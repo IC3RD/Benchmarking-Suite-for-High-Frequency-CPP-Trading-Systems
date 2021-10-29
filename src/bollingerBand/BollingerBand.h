@@ -7,6 +7,8 @@
 #include "Logger.h"
 #include "MarketData.h"
 
+class MarketData;
+
 class BollingerBand {
  public:
   double getCurrMovingAverage();
