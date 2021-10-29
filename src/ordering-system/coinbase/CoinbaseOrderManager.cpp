@@ -45,7 +45,7 @@ void CoinbaseOrderManager::submitOrder(Order order) {
 
     // Cleanup
     curl_easy_cleanup(curl);
-    cout << "\n";
+    cout << std::endl;
   }
 }
 
@@ -86,7 +86,7 @@ string CoinbaseOrderManager::authenticate(const string &message,
   return encoded;
 }
 
-string CoinbaseOrderManager::parseOrder(Order order) {
+string CoinbaseOrderManager::parseOrder(const Order& order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
 
   json->set("side", order.isBuyOrder() ? "buy" : "sell");

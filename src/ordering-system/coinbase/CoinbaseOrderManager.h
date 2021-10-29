@@ -13,18 +13,16 @@ public:
   CoinbaseOrderManager();
   void submitOrder(Order order) override;
   string getURL() override;
-  string getExchangeName();
+  string getExchangeName() override;
 
 private:
-  string parseOrder(Order order);
-  string authenticate(const string& message, const string& timestamp);
-  string generateTimestamp();
-  void generateHeaders(struct curl_slist **chunk, const string& data);
-  string getSecretKey();
-  string getPublicKey();
-  std::string hex_to_string(const std::string& in);
-
-
+  static string parseOrder(const Order &order);
+  string authenticate(const string &message, const string &timestamp);
+  static string generateTimestamp();
+  void generateHeaders(struct curl_slist **chunk, const string &data);
+  string getSecretKey() override;
+  string getPublicKey() override;
+  static std::string hex_to_string(const std::string &in);
 };
 
 #endif // CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDERMANAGER_H
