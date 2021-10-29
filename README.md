@@ -28,6 +28,19 @@ Good introduction to CMake: https://cliutils.gitlab.io/modern-cmake/
 1. Build
 2. Run `bin/main`
 
+## Set up CLion
+For some strange mysterious reason, CLion uses their own version of CMake 
+rather than the one installed in the system. Their version doesn't fully 
+support C++17 and causes issues in compiling some of our code. 
+
+To change it, it's worth to edit some settings:
+
+1. In `Build, Execution, Deployment`, please make sure to edit CMake, GCC \& 
+   G++ to point to your own versions (location of which you can get with 
+   running `which <command>`).
+1. In CMake settings, please select `Build Directory` as `build/`.
+   
+
 ## Naming convention
 
 branch name: \<issue-key\>-\<branch-name\>

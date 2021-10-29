@@ -1,7 +1,10 @@
 #pragma once
+
 #include <stdio.h>
+
 #include <string>
 #include "BollingerBand.h"
+
 using namespace std;
 
 class BollingerBand;

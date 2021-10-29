@@ -12,7 +12,7 @@ endforeach ()
 add_custom_target(
         clangformat
         COMMAND echo ${ALL_SOURCE_FILES}; clang-format
-        -style=llvm
+        -style=file
         -i
         ${ALL_SOURCE_FILES}
 

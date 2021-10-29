@@ -1,8 +1,11 @@
 #pragma once
+
 #include <stdio.h>
+
 #include <deque>
 #include "MarketData.h"
 #include "Logger.h"
+
 using namespace std;
 
 class MarketData;
