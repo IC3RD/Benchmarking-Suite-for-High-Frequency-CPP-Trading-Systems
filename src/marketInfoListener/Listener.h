@@ -1,14 +1,25 @@
 #pragma once
 #include <string>
+#include <ixwebsocket/IXNetSystem.h>
+#include <ixwebsocket/IXWebSocket.h>
+#include <ixwebsocket/IXUserAgent.h>
+#include <json/single_include/g.hpp>
 
 class Listener {
 public:
-    virtual ~Listener(){}
+    Listener(std::string url, std::string request, std::string exchange);
+    ~Listener() {};
     /* start to listen to incoming data */
-    virtual void startListening() = 0;
+    void startListening();
     /* send the message/request to the connected server */
-    virtual void sendRequest(std::string) = 0;
-private:
+    void sendRequest();
+protected:
+    /* Does the exchange specific parsing of json recieved from exchange */
+    virtual void passJSON(nlohmann::json json) = 0;
     /* set up callback/thread to react to incoming data */
-    virtual void setHandlers() = 0;
+    void setHandlers();
+    ix::WebSocket webSocket;
+    const std::string url;
+    const std::string request;
+    const std::string exchange;
 };

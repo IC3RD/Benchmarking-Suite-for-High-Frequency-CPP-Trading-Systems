@@ -1,71 +1,30 @@
-#include <ixwebsocket/IXNetSystem.h>
-#include <ixwebsocket/IXWebSocket.h>
-#include <ixwebsocket/IXUserAgent.h>
-#include <iostream>
-#include <string>
 #include <json/single_include/nlohmann/json.hpp>
-#include "../bollingerBand/BollingerBand.h"
 #include "BitMEXListener.h"
 
-void BitMEXListener::startListening()
-{
-    webSocket.setUrl(url);
-    setHandlers();
-    webSocket.start();
-}
+BitMEXListener::BitMEXListener() : Listener("wss://www.bitmex.com/realtime", "{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}", "BITMEX") {}
 
-void BitMEXListener::sendRequest(std::string request)
-{
-    webSocket.send(request);
-}
-
-void BitMEXListener::setHandlers()
-{
-    // Setup a callback to be fired (in a background thread,
-    // watch out for race conditions !)
-    // when a message or an event (open, close, error) is received
-    webSocket.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg)
-        {
-            if (msg->type == ix::WebSocketMessageType::Message)
-            {
-                std::cout << "received message: " << std::endl;
-
-                using json = nlohmann::json;
-                json j = json::parse(msg->str);
-
-                if (j.contains("data")) {
-                    if (!data) {
-                        data = new MarketData("Bitcoin", j.at("data")[0].at("askPrice"), j.at("data")[0].at("bidPrice"), j.at("data")[0].at("volume"));
-                        data->newMarketData();
-                    } else {
-                        if (j.at("data")[0].contains("askPrice")) {
-                            data->updateSell(j.at("data")[0].at("askPrice"));
-                            data->newMarketData();
-                        }
-                        if (j.at("data")[0].contains("bidPrice")) {
-                            data->updateBuy(j.at("data")[0].at("bidPrice"));
-                            data->newMarketData();
-                        }
-                        if (j.at("data")[0].contains("volume")) {
-                            data->updateVolume(j.at("data")[0].at("volume"));
-                            data->newMarketData();
-                        }
-                    }
-                }
-
-                std::cout << "> " << std::flush;
+void BitMEXListener::passJSON(nlohmann::json json) {
+    if (json.contains("data")) {
+        // Since this is tightly coupled to MarketData the implementation will depend on how we tie that up with
+        // multiple exchanges
+        /*
+        if (!data) {
+            data = new MarketData("Bitcoin", json.at("data")[0].at("askPrice"), json.at("data")[0].at("bidPrice"), json.at("data")[0].at("volume"));
+            data->newMarketData();
+        } else {
+            if (json.at("data")[0].contains("askPrice")) {
+                data->updateSell(json.at("data")[0].at("askPrice"));
+                data->newMarketData();
             }
-            else if (msg->type == ix::WebSocketMessageType::Open)
-            {
-                std::cout << "Connection established to BitMEX" << std::endl;
-                std::cout << "> " << std::flush;
+            if (json.at("data")[0].contains("bidPrice")) {
+                data->updateBuy(json.at("data")[0].at("bidPrice"));
+                data->newMarketData();
             }
-            else if (msg->type == ix::WebSocketMessageType::Error)
-            {
-                // Maybe SSL is not configured properly
-                std::cout << "Connection error: " << msg->errorInfo.reason << std::endl;
-                std::cout << "> " << std::flush;
+            if (json.at("data")[0].contains("volume")) {
+                data->updateVolume(json.at("data")[0].at("volume"));
+                data->newMarketData();
             }
         }
-    );
+         */
+    }
 }
