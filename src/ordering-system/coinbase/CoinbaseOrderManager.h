@@ -13,6 +13,7 @@ public:
   CoinbaseOrderManager();
   void submitOrder(Order order) override;
   string getURL() override;
+  string getExchangeName();
 
 private:
   string parseOrder(Order order);

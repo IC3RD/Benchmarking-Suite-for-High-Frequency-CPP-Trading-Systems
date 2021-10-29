@@ -1,24 +1,22 @@
 #include "CoinbaseOrderManager.h"
+#include <Base64.h>
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
-#include <Poco/Base64Encoder.h>
-#include <Poco/Base64Decoder.h>
 #include <SHA256Engine.h>
 #include <chrono>
 #include <curl/curl.h>
-#include<Base64.h>
 
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                                                               \
   do {                                                                         \
-    std::cout << x << std::endl;                                               \
+    std::cout << "< " << x << std::endl;                                       \
   } while (0)
 
 void CoinbaseOrderManager::submitOrder(Order order) {
   string order_data = parseOrder(order);
-//  string order_data = "";
-  DEBUG("Posting order of " + order_data);
+  DEBUG("Submitting order with data: " + order_data + " to " +
+        getExchangeName() + "...");
 
   CURL *curl;
   CURLcode res;
@@ -45,7 +43,7 @@ void CoinbaseOrderManager::submitOrder(Order order) {
               curl_easy_strerror(res));
     }
 
-    /* always cleanup */
+    // Cleanup
     curl_easy_cleanup(curl);
     cout << "\n";
   }
@@ -60,7 +58,7 @@ string CoinbaseOrderManager::generateTimestamp() {
 }
 
 void CoinbaseOrderManager::generateHeaders(struct curl_slist **chunk,
-                                           const string& data) {
+                                           const string &data) {
   *chunk = curl_slist_append(*chunk, "Accept: application/json");
   *chunk = curl_slist_append(*chunk, "Content-Type: application/json");
   *chunk = curl_slist_append(*chunk, "User-Agent: CoinbaseProAPI");
@@ -74,32 +72,14 @@ void CoinbaseOrderManager::generateHeaders(struct curl_slist **chunk,
   *chunk = curl_slist_append(*chunk, "cb-access-passphrase:c116en8tfv6");
 }
 
-string CoinbaseOrderManager::authenticate(const string& message, const string& timestamp) {
-//  DEBUG("Decoded" + getSecretKey());
-//  string decoded;
-//  istringstream istr(getSecretKey().c_str());
-//  ostringstream ostr;
-//  Poco::Base64Decoder b64in{istr, Poco::BASE64_URL_ENCODING};
-//  copy(std::istreambuf_iterator<char>(b64in),
-//       std::istreambuf_iterator<char>(),
-//       std::ostreambuf_iterator<char>(ostr));
-//  decoded = ostr.str();
+string CoinbaseOrderManager::authenticate(const string &message,
+                                          const string &timestamp) {
   string decoded;
   macaron::Base64::Decode(getSecretKey(), decoded);
-
-  DEBUG(decoded);
-
   Poco::HMACEngine<SHA256Engine> hmac{decoded};
-
-
   // timestamp + method + requestPath + body
   string toSign = timestamp + "POST" + "/orders" + message.c_str();
-  DEBUG(toSign);
-//  string decoded = base64_decode(toSign);
   hmac.update(toSign);
-
-
-
   string digest = Poco::DigestEngine::digestToHex(hmac.digest());
   string hex_str = hex_to_string(digest);
   string encoded = macaron::Base64::Encode(hex_str);
@@ -149,7 +129,9 @@ string CoinbaseOrderManager::getPublicKey() {
   return "00dcf06c3d7402c3272eef11593446b0";
 }
 
-std::string CoinbaseOrderManager::hex_to_string(const std::string& in) {
+string CoinbaseOrderManager::getExchangeName() { return "Coinbase"; }
+
+std::string CoinbaseOrderManager::hex_to_string(const std::string &in) {
   std::string output;
 
   if ((in.length() % 2) != 0) {
@@ -169,4 +151,3 @@ std::string CoinbaseOrderManager::hex_to_string(const std::string& in) {
 
   return output;
 }
-

@@ -7,7 +7,7 @@
 #include <memory>
 
 int main() {
-  std::cout << "Executing Order System\n";
+  std::cout << "debug: Testing Order System...";
 
   /* Sample class usage:
    * ExchangeAPIFactory factory {Exchange.Coinbase}; (Exchange.Coinbase is enum)
