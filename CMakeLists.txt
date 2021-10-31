@@ -27,6 +27,7 @@ set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 set(INSTALL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(INSTALL_BIN_DIR ${PROJECT_SOURCE_DIR}/bin)
 set(INSTALL_LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
+set(INSTALL_SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 
 set(POCO_DIR lib/Poco)
 set(POCO_INCLUDE_DIRS
@@ -53,6 +54,7 @@ set(POCO_INCLUDE_DIRS
 
 include_directories(${INSTALL_INCLUDE_DIR})
 include_directories(${INSTALL_LIB_DIR})
+include_directories(${INSTALL_SRC_DIR})
 
 find_package(OpenSSL REQUIRED)
 
