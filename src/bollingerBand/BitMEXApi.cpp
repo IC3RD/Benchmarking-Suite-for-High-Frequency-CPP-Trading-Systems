@@ -1,15 +1,12 @@
 #include "BitMEXApi.h"
-
+#include "SHA256Engine.h"
 #include <Poco/HMACEngine.h>
-#include <curl/curl.h>
-
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <curl/curl.h>
 #include <deque>
 #include <iostream>
-
-#include "SHA256Engine.h"
 
 using namespace std;
 

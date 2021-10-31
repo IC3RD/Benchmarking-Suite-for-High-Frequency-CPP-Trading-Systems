@@ -1,15 +1,11 @@
-#pragma once
-
-#include <curl/curl.h>
-
-#include <string>
-
 #include "Order.h"
+#include <curl/curl.h>
+#include <string>
 
 using namespace std;
 
 class BitMEXApi {
- public:
+public:
   BitMEXApi(string apiKey, string apiSecret);
   string params(Order order);
   void placeOrder(Order order);
@@ -17,7 +13,7 @@ class BitMEXApi {
                        string data);
   string generatePostFields(Order order);
 
- private:
+private:
   string domain = "https://testnet.bitmex.com";
   string apiKey;
   string apiSecret;

@@ -1,12 +1,9 @@
 #include "BollingerBand.h"
-
-#include <math.h>
-
-#include <deque>
-#include <iostream>
-
 #include "Logger.h"
 #include "MarketData.h"
+#include <deque>
+#include <iostream>
+#include <math.h>
 using namespace std;
 
 BollingerBand::BollingerBand(int max) : maxElements(max) {
