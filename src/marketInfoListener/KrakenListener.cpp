@@ -5,12 +5,12 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-KrakenListener::KrakenListener()
+KrakenListener::KrakenListener(DataManager &dataManager)
     : Listener(
           "wss://ws.kraken.com/",
           "{\"event\":\"subscribe\", \"subscription\":{\"name\":\"ticker\"}, "
           "\"pair\":[\"BTC/USD\"]}",
-          "KRAKEN") {}
+          "KRAKEN", dataManager) {}
 
 // reference: https://docs.kraken.com/websockets/#message-ticker
 void KrakenListener::passJSON(nlohmann::json json) {

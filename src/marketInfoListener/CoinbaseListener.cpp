@@ -5,11 +5,11 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-CoinbaseListener::CoinbaseListener()
+CoinbaseListener::CoinbaseListener(DataManager &dataManager)
     : Listener("wss://ws-feed.exchange.coinbase.com",
                "{\"type\": \"subscribe\", \"product_ids\": [\"BTC-USD\"], "
                "\"channels\": [\"ticker\"]}",
-               "COINBASE") {}
+               "COINBASE", dataManager) {}
 
 // reference: just looking at the printing json, the dictionary's keys are very
 // explict :)

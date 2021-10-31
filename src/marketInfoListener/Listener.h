@@ -6,9 +6,12 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
+#include "dataManager/DataManager.h"
+
 class Listener {
  public:
-  Listener(std::string url, std::string request, std::string exchange);
+  Listener(std::string url, std::string request, std::string exchange,
+           DataManager &dataManager);
   ~Listener(){};
   /* start to listen to incoming data */
   void startListening();
@@ -24,4 +27,7 @@ class Listener {
   const std::string url;
   const std::string request;
   const std::string exchange;
+
+ private:
+  DataManager jcentralDataManager;
 };

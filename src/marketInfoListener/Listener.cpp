@@ -2,8 +2,12 @@
 
 #include <iostream>
 
-Listener::Listener(std::string url, std::string request, std::string exchange)
-    : url(url), request(request), exchange(exchange) {}
+Listener::Listener(std::string url, std::string request, std::string exchange,
+                   DataManager &dataManager)
+    : url(url),
+      request(request),
+      exchange(exchange),
+      centralDataManager(dataManager) {}
 
 void Listener::startListening() {
   webSocket.setUrl(url);
@@ -17,7 +21,8 @@ void Listener::setHandlers() {
   // when a message or an event (open, close, error) is received
   webSocket.setOnMessageCallback([&](const ix::WebSocketMessagePtr &msg) {
     if (msg->type == ix::WebSocketMessageType::Message) {
-      std::cout << "received message from exchange: " << exchange << std::endl;
+      // std::cout << "received message from exchange: " << exchange <<
+      // std::endl;
 
       using json = nlohmann::json;
       json j = json::parse(msg->str);
@@ -25,6 +30,10 @@ void Listener::setHandlers() {
       // specific exchange put this in an if statement with exchange == "BITMEX"
       // std::cout << std::setw(4) << j << std::endl;
       passJSON(j);
+
+      // TODO: addEntry should be called in each listener's passJSON function
+      centralDataManager.addEntry({1, 2, 3});
+
       std::cout << "> " << std::flush;
     } else if (msg->type == ix::WebSocketMessageType::Open) {
       std::cout << "Connection established to exchange: " << exchange
