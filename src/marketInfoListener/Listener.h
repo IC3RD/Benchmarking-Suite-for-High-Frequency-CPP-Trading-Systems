@@ -29,5 +29,5 @@ class Listener {
   const std::string exchange;
 
  private:
-  DataManager jcentralDataManager;
+  DataManager &centralDataManager;
 };
