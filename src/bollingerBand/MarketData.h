@@ -17,7 +17,7 @@ public:
   const int getPrice() const;
   const int getBuyPrice() const;
   const int getSellPrice() const;
-  const string getSymbol() const;
+  const std::string getSymbol() const;
   BollingerBand *getStrategy() const;
   void updateBuy(int);
   void updateSell(int);
