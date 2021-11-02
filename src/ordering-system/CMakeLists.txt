@@ -8,7 +8,9 @@ set(SOURCE_FILES OrderManager.cpp OrderManager.h OrderBuilder.cpp
         bitmex/BitmexOrderManager.cpp
         bitmex/BitmexOrderManager.h
         utils/SHA256Engine.h
-        utils/SHA256Engine.cpp)
+        utils/SHA256Engine.cpp
+        binance/BinanceOrderManager.cpp
+        binance/BinanceOrderManager.h)
 
 add_library(ordering-system ${SOURCE_FILES})
 

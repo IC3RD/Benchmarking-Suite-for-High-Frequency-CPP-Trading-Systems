@@ -3,6 +3,7 @@
 #include <OrderManager.h>
 #include <bitmex/BitmexOrderManager.h>
 #include <coinbase/CoinbaseOrderManager.h>
+#include <binance/BinanceOrderManager.h>
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -19,12 +20,16 @@ int main() {
 
   std::unique_ptr<OrderManager> coinbaseManager =
       std::make_unique<CoinbaseOrderManager>();
+  std::unique_ptr<OrderManager> manager =
+      std::make_unique<BinanceOrderManager>();
 
   OrderBuilder ob = coinbaseManager->createOrderBuilder();
 
   ob.createBuyOrder(500);
   ob.addLimit(1);
   ob.amendVolume(100);
+  ob.createBuyOrder(60000);
+  ob.addLimit(52);
 
   coinbaseManager->submitOrder(ob.toOrder());
 
