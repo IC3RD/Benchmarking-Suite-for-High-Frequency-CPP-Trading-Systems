@@ -20,6 +20,7 @@ int main() {
 
   std::unique_ptr<OrderManager> coinbaseManager =
       std::make_unique<CoinbaseOrderManager>();
+
   std::unique_ptr<OrderManager> manager =
       std::make_unique<BinanceOrderManager>();
 

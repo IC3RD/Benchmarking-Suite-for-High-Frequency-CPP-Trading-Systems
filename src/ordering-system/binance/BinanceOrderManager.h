@@ -13,16 +13,15 @@ public:
     BinanceOrderManager();
     void submitOrder(Order order) override;
     string getURL() override;
+    string getExchangeName() override;
 
 private:
     string parseOrder(const Order& order);
     string authenticate(string message);
     string generateTimestamp();
     void generateHeaders(struct curl_slist **chunk);
-    string getSecretKey();
-    string getPublicKey();
-    static std::string base64_encode(const std::string &in);
-    static std::string base64_decode(const std::string &in);
+    string getSecretKey() override;
+    string getPublicKey() override;
 
 };
 
