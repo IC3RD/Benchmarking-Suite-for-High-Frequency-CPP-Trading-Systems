@@ -2,11 +2,9 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 Logger::Logger() {
-  messages = new list<string>();
-  orders = new list<Order>();
+  messages = new std::list<std::string>();
+  orders = new std::list<Order>();
 }
 
 Logger::~Logger() {
@@ -15,10 +13,10 @@ Logger::~Logger() {
 }
 
 // optimise to store these and then print on command when out of the hotpath
-void Logger::addMessage(string message) { messages->push_back(message); }
+void Logger::addMessage(std::string message) { messages->push_back(message); }
 
 void Logger::logMessage() {
-  cout << messages->front() << "\n";
+  std::cout << messages->front() << std::endl;
   messages->pop_front();
 }
 
@@ -30,10 +28,10 @@ void Logger::addOrder(Order order) {
 
 void Logger::printAllOrders() {
   for (Order o : *orders) {
-    string buyOrSell = o.isBuyOrder() ? "Buy" : "Sell";
-    cout << "OrderType: " + buyOrSell + " Symbol: " + o.getSymbol() +
-                " Price: " + to_string(o.getPrice()) +
-                " Volume: " + to_string(o.getVolume());
+    std::string buyOrSell = o.isBuyOrder() ? "Buy" : "Sell";
+    std::cout << "OrderType: " + buyOrSell + " Symbol: " + o.getSymbol() +
+                     " Price: " + std::to_string(o.getPrice()) +
+                     " Volume: " + std::to_string(o.getVolume());
   }
-  cout << "All orders printed";
+  std::cout << "All orders printed";
 }

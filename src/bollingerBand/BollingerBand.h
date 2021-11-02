@@ -1,21 +1,23 @@
-#include <deque>
+#pragma once
+
 #include <stdio.h>
-#ifndef DATA
-#define DATA
+
+#include <deque>
+
 #include "Logger.h"
 #include "MarketData.h"
-#pragma once
-using namespace std;
+
+class MarketData;
 
 class BollingerBand {
-public:
+ public:
   double getCurrMovingAverage();
   double getCurrStdDeviation();
   void strategy(MarketData *data);
   BollingerBand(int max);
   ~BollingerBand();
 
-private:
+ private:
   void process(MarketData const *data);
   void buy(MarketData const *data);
   void sell(MarketData const *data);
@@ -24,8 +26,6 @@ private:
   const int maxElements;
   double currAvg;
   double currStdDev;
-  deque<double> *marketPrices;
+  std::deque<double> *marketPrices;
   Logger *logger;
 };
-
-#endif

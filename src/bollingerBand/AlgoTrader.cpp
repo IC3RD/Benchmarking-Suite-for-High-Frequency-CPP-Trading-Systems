@@ -1,19 +1,17 @@
-#include <iostream>
 #include <stdio.h>
-#ifndef Band
-#define Band
+
+#include <iostream>
+
 #include "BollingerBand.h"
 #include "MarketData.h"
-
-using namespace std;
 
 int main() {
   MarketData *data = new MarketData("Bitcoin", 4, 2, 10);
   BollingerBand *band = data->getStrategy();
 
-  cout << "Price is " << data->getPrice() << "\n";
-  cout << "Volume is " << data->getVolume() << "\n";
-  cout << "Symbol is " << data->getSymbol() << "\n";
+  std::cout << "Price is " << data->getPrice() << std::endl;
+  std::cout << "Volume is " << data->getVolume() << std::endl;
+  std::cout << "Symbol is " << data->getSymbol() << std::endl;
   data->newMarketData();
 
   data->updateBuy(5);
@@ -24,9 +22,8 @@ int main() {
   data->updateSell(4);
   data->newMarketData();
 
-  cout << "Curr moving average is " << band->getCurrMovingAverage() << "\n";
-  cout << "Curr std dev is " << band->getCurrStdDeviation() << "\n";
+  std::cout << "Curr moving average is " << band->getCurrMovingAverage()
+            << std::endl;
+  std::cout << "Curr std dev is " << band->getCurrStdDeviation() << std::endl;
   return 0;
 }
-
-#endif

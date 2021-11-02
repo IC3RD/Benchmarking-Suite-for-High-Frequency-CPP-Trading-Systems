@@ -1,10 +1,12 @@
 #include "BollingerBand.h"
-#include "Logger.h"
-#include "MarketData.h"
+
+#include <math.h>
+
 #include <deque>
 #include <iostream>
-#include <math.h>
-using namespace std;
+
+#include "Logger.h"
+#include "MarketData.h"
 
 BollingerBand::BollingerBand(int max) : maxElements(max) {
   currElementCount = 0;
@@ -12,7 +14,7 @@ BollingerBand::BollingerBand(int max) : maxElements(max) {
   currStdDev = 0;
   currentHeldVolume = 0;
   // initialise memory for the queue all at initialisation
-  marketPrices = new deque<double>(max);
+  marketPrices = new std::deque<double>(max);
   logger = new Logger();
 }
 
@@ -68,13 +70,13 @@ void BollingerBand::process(MarketData const *data) {
 }
 
 void BollingerBand::buy(MarketData const *data) {
-  cout << "Buy\n";
+  std::cout << "Buy" << std::endl;
   logger->addMessage("buy " + data->getSymbol() + "\n");
   logger->addOrder(Order(data->getSymbol(), data->getBuyPrice(), 1, true));
 }
 
 void BollingerBand::sell(MarketData const *data) {
-  cout << "Sell\n";
+  std::cout << "Sell" << std::endl;
   logger->addMessage("sell " + data->getSymbol() + "\n");
   logger->addOrder(Order(data->getSymbol(), data->getSellPrice(), 1, false));
 }
