@@ -37,7 +37,7 @@ void BollingerBand::strategy(MarketData *data) {
                   newElementCount;
   double sumSquareMeanDiffs = 0;
   auto it = marketPrices->cend();
-  --it;  // Since cend() points to the element after the back of the queue
+  --it; // Since cend() points to the element after the back of the queue
   for (int i = 0; i < newElementCount && it != marketPrices->cbegin(); ++i) {
     sumSquareMeanDiffs += (*it) * (*it) - newAvg * newAvg;
     --it;

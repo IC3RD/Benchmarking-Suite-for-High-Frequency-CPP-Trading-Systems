@@ -1,5 +1,4 @@
 #include "MarketData.h"
-
 #include "BollingerBand.h"
 
 MarketData::MarketData(const std::string s, int buy, int sell, int v)
