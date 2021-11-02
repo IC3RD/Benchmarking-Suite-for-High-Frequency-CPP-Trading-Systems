@@ -1,4 +1,4 @@
-#include "BitmexOrderManager.h"
+#include "BitmexOrderExecutor.h"
 #include <Poco/HMACEngine.h>
 #include <chrono>
 #include <cstdio>
@@ -7,9 +7,9 @@
 #include <iostream>
 #include <utils/SHA256Engine.h>
 
-BitmexOrderManager::BitmexOrderManager() = default;
+BitmexOrderExecutor::BitmexOrderExecutor() = default;
 
-string BitmexOrderManager::parseOrder(const Order &order) {
+string BitmexOrderExecutor::parseOrder(const Order &order) {
   // TODO: Add support for other coins.
   string currency = "XBTUSD";
 
@@ -23,7 +23,7 @@ string BitmexOrderManager::parseOrder(const Order &order) {
   return output;
 }
 
-void BitmexOrderManager::submitOrder(Order order) {
+void BitmexOrderExecutor::submitOrder(Order order) {
   string order_data = parseOrder(order);
 
   DEBUG("Submitting order with data: " + order_data + " to " +
@@ -42,7 +42,7 @@ void BitmexOrderManager::submitOrder(Order order) {
 
     // Add the headers.
     struct curl_slist *chunk = nullptr;
-    BitmexOrderManager::generateHeaders(&chunk, order_data);
+    BitmexOrderExecutor::generateHeaders(&chunk, order_data);
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
     res = curl_easy_perform(curl);
@@ -56,19 +56,19 @@ void BitmexOrderManager::submitOrder(Order order) {
   }
 }
 
-string BitmexOrderManager::getURL() {
+string BitmexOrderExecutor::getURL() {
   return "https://testnet.bitmex.com/api/v1/order";
 }
 
-string BitmexOrderManager::getExchangeName() { return "BitMEX"; }
+string BitmexOrderExecutor::getExchangeName() { return "BitMEX"; }
 
-string BitmexOrderManager::getSecretKey() {
+string BitmexOrderExecutor::getSecretKey() {
   return "_hTVt28pJk094DJI4HBU98V-GsBMiToqqvrOvjUcGhilKuMF";
 }
 
-string BitmexOrderManager::getPublicKey() { return "DQakAekZhCUpMyp8-oBjSZj0"; }
+string BitmexOrderExecutor::getPublicKey() { return "DQakAekZhCUpMyp8-oBjSZj0"; }
 
-string BitmexOrderManager::generateTimestamp() {
+string BitmexOrderExecutor::generateTimestamp() {
   long api_duration = 14400;
 
   const auto time = std::chrono::system_clock::now();
@@ -80,13 +80,13 @@ string BitmexOrderManager::generateTimestamp() {
   return to_string(expiry_time);
 }
 
-void BitmexOrderManager::generateHeaders(struct curl_slist **chunk,
+void BitmexOrderExecutor::generateHeaders(struct curl_slist **chunk,
                                          const string &data) {
 
   string timestamp = generateTimestamp();
   *chunk = curl_slist_append(*chunk, ("api-expires: " + timestamp).c_str());
   *chunk = curl_slist_append(*chunk, ("api-key: " + getPublicKey()).c_str());
-  string signature = BitmexOrderManager::generateSignature(data, timestamp);
+  string signature = BitmexOrderExecutor::generateSignature(data, timestamp);
   *chunk = curl_slist_append(*chunk, ("api-signature: " + signature).c_str());
 
   *chunk = curl_slist_append(*chunk,
@@ -95,7 +95,7 @@ void BitmexOrderManager::generateHeaders(struct curl_slist **chunk,
   *chunk = curl_slist_append(*chunk, "X-Requested-With: XMLHttpRequest");
 }
 
-string BitmexOrderManager::generateSignature(const string &message,
+string BitmexOrderExecutor::generateSignature(const string &message,
                                              const string &timestamp) {
 
   SHA256Engine engine{};

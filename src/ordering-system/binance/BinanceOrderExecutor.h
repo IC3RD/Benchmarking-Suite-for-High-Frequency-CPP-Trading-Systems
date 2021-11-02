@@ -2,15 +2,15 @@
 // Created by panos on 10/29/21.
 //
 
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDERMANAGER_H
-#define CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDERMANAGER_H
+#ifndef CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
+#define CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
 
 #include <OrderBuilder.h>
-#include <OrderManager.h>
+#include <OrderExecutor.h>
 
-class BinanceOrderManager : public OrderManager {
+class BinanceOrderExecutor : public OrderExecutor {
 public:
-    BinanceOrderManager();
+  BinanceOrderExecutor();
     void submitOrder(Order order) override;
     string getURL() override;
     string getExchangeName() override;
@@ -25,4 +25,4 @@ private:
 
 };
 
-#endif //CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDERMANAGER_H
+#endif // CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H

@@ -1,7 +1,7 @@
 //
 // Created by panos on 10/29/21.
 //
-#include "BinanceOrderManager.h"
+#include "BinanceOrderExecutor.h"
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
@@ -15,7 +15,7 @@
     std::cout << x << std::endl;                                               \
   } while (0)
 
-void BinanceOrderManager::submitOrder(Order order) {
+void BinanceOrderExecutor::submitOrder(Order order) {
     string order_data = parseOrder(order);
     DEBUG("Posting order of " + order_data);
 
@@ -51,7 +51,7 @@ void BinanceOrderManager::submitOrder(Order order) {
     }
 }
 
-string BinanceOrderManager::generateTimestamp() {
+string BinanceOrderExecutor::generateTimestamp() {
     const auto time = std::chrono::system_clock::now();
     const auto current_time =
             std::chrono::duration_cast<std::chrono::milliseconds>(time.time_since_epoch())
@@ -59,13 +59,13 @@ string BinanceOrderManager::generateTimestamp() {
     return to_string(current_time);
 }
 
-void BinanceOrderManager::generateHeaders(struct curl_slist **chunk) {
+void BinanceOrderExecutor::generateHeaders(struct curl_slist **chunk) {
 
     *chunk = curl_slist_append(*chunk, ("X-MBX-APIKEY: " + getPublicKey()).c_str());
     *chunk = curl_slist_append(*chunk, "Content-Type: application/x-www-form-urlencoded");
 }
 
-string BinanceOrderManager::authenticate(string message) {
+string BinanceOrderExecutor::authenticate(string message) {
 
     Poco::HMACEngine<SHA256Engine> hmac{getSecretKey()};
 
@@ -79,7 +79,7 @@ string BinanceOrderManager::authenticate(string message) {
 //curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X
 // POST 'https://api.binance.com/api/v3/order' -d
 // 'symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
-string BinanceOrderManager::parseOrder(const Order& order) {
+string BinanceOrderExecutor::parseOrder(const Order& order) {
     Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
 
     // Price must be in units of 'quote_increment' product units.
@@ -102,9 +102,9 @@ string BinanceOrderManager::parseOrder(const Order& order) {
     return output;
 }
 
-BinanceOrderManager::BinanceOrderManager() : OrderManager() {}
+BinanceOrderExecutor::BinanceOrderExecutor() : OrderExecutor() {}
 
-string BinanceOrderManager::getURL() {
+string BinanceOrderExecutor::getURL() {
     // Amend if you are debugging.
     bool debug = false;
     if (debug) {
@@ -113,10 +113,10 @@ string BinanceOrderManager::getURL() {
         return "https://testnet.binance.vision/api/v3/order?";
     }
 }
-string BinanceOrderManager::getSecretKey() {
+string BinanceOrderExecutor::getSecretKey() {
     return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU"; //this is wrong key
 }
-string BinanceOrderManager::getPublicKey() {
+string BinanceOrderExecutor::getPublicKey() {
     return "sBe2iw3BTx9bpOofw9ejD5pmAGc7qlVKp3qruGcGbCPtGenVtSEThdeh7WmpPoQq"; //this too
 }
-string BinanceOrderManager::getExchangeName() { return "Binance"; }
+string BinanceOrderExecutor::getExchangeName() { return "Binance"; }

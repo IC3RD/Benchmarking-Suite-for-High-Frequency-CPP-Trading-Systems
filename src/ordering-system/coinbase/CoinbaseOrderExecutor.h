@@ -2,15 +2,15 @@
 // Created by Jake Dickie on 28/10/2021.
 //
 
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDERMANAGER_H
-#define CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDERMANAGER_H
+#ifndef CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
+#define CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
 
 #include <OrderBuilder.h>
-#include <OrderManager.h>
+#include <OrderExecutor.h>
 
-class CoinbaseOrderManager : public OrderManager {
+class CoinbaseOrderExecutor : public OrderExecutor {
 public:
-  CoinbaseOrderManager();
+  CoinbaseOrderExecutor();
   void submitOrder(Order order) override;
   string getURL() override;
   string getExchangeName() override;
@@ -25,4 +25,4 @@ private:
   static std::string hex_to_string(const std::string &in);
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDERMANAGER_H
+#endif // CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H

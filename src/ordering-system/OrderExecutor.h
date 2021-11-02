@@ -1,14 +1,14 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDERMANAGER_H
-#define CPPDESIGNPATTERNSLOWLATENCY_ORDERMANAGER_H
+#ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
+#define CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
 
 #include <Order.h>
 #include <OrderBuilder.h>
 
-class OrderManager {
+class OrderExecutor {
 public:
   virtual void submitOrder(Order order) = 0;
   static OrderBuilder createOrderBuilder() { return {}; }
-  OrderManager() = default;
+  OrderExecutor() = default;
   virtual string getURL() = 0;
   virtual string getExchangeName() = 0;
 
@@ -17,4 +17,4 @@ private:
   virtual string getPublicKey() = 0;
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_ORDERMANAGER_H
+#endif // CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H

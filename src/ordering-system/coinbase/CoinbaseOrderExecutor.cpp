@@ -1,4 +1,4 @@
-#include "CoinbaseOrderManager.h"
+#include "CoinbaseOrderExecutor.h"
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
@@ -8,7 +8,7 @@
 #include <utils/Base64.h>
 #include <utils/SHA256Engine.h>
 
-void CoinbaseOrderManager::submitOrder(Order order) {
+void CoinbaseOrderExecutor::submitOrder(Order order) {
   string order_data = parseOrder(order);
   DEBUG("Submitting order with data: " + order_data + " to " +
         getExchangeName() + "...");
@@ -44,7 +44,7 @@ void CoinbaseOrderManager::submitOrder(Order order) {
   }
 }
 
-string CoinbaseOrderManager::generateTimestamp() {
+string CoinbaseOrderExecutor::generateTimestamp() {
   const auto time = std::chrono::system_clock::now();
   const auto current_time =
       std::chrono::duration_cast<std::chrono::seconds>(time.time_since_epoch())
@@ -52,7 +52,7 @@ string CoinbaseOrderManager::generateTimestamp() {
   return to_string(current_time);
 }
 
-void CoinbaseOrderManager::generateHeaders(struct curl_slist **chunk,
+void CoinbaseOrderExecutor::generateHeaders(struct curl_slist **chunk,
                                            const string &data) {
   *chunk = curl_slist_append(*chunk, "Accept: application/json");
   *chunk = curl_slist_append(*chunk, "Content-Type: application/json");
@@ -67,7 +67,7 @@ void CoinbaseOrderManager::generateHeaders(struct curl_slist **chunk,
   *chunk = curl_slist_append(*chunk, "cb-access-passphrase:c116en8tfv6");
 }
 
-string CoinbaseOrderManager::authenticate(const string &message,
+string CoinbaseOrderExecutor::authenticate(const string &message,
                                           const string &timestamp) {
   string decoded;
   macaron::Base64::Decode(getSecretKey(), decoded);
@@ -81,7 +81,7 @@ string CoinbaseOrderManager::authenticate(const string &message,
   return encoded;
 }
 
-string CoinbaseOrderManager::parseOrder(const Order &order) {
+string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
 
   json->set("side", order.isBuyOrder() ? "buy" : "sell");
@@ -104,9 +104,9 @@ string CoinbaseOrderManager::parseOrder(const Order &order) {
   return ss.str();
 }
 
-CoinbaseOrderManager::CoinbaseOrderManager() : OrderManager() {}
+CoinbaseOrderExecutor::CoinbaseOrderExecutor() : OrderExecutor() {}
 
-string CoinbaseOrderManager::getURL() {
+string CoinbaseOrderExecutor::getURL() {
   // Amend if you are debugging.
   bool debug = false;
   if (debug) {
@@ -116,17 +116,17 @@ string CoinbaseOrderManager::getURL() {
   }
 }
 
-string CoinbaseOrderManager::getSecretKey() {
+string CoinbaseOrderExecutor::getSecretKey() {
   return "jgEtlhOBhGESP7JUQ2w6Dm46Wbar8zWv5ib3PEYfTC7avQ8M8ohxNHvLESnJGHhRYlOZp"
          "iMzPiEaU8onVlNgSg==";
 }
-string CoinbaseOrderManager::getPublicKey() {
+string CoinbaseOrderExecutor::getPublicKey() {
   return "00dcf06c3d7402c3272eef11593446b0";
 }
 
-string CoinbaseOrderManager::getExchangeName() { return "Coinbase"; }
+string CoinbaseOrderExecutor::getExchangeName() { return "Coinbase"; }
 
-std::string CoinbaseOrderManager::hex_to_string(const std::string &in) {
+std::string CoinbaseOrderExecutor::hex_to_string(const std::string &in) {
   std::string output;
 
   if ((in.length() % 2) != 0) {

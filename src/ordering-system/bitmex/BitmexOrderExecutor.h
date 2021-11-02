@@ -1,10 +1,10 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDERMANAGER_H
-#define CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDERMANAGER_H
+#ifndef CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
+#define CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
 
-#include <OrderManager.h>
-class BitmexOrderManager : public OrderManager {
+#include <OrderExecutor.h>
+class BitmexOrderExecutor : public OrderExecutor {
 public:
-  BitmexOrderManager();
+  BitmexOrderExecutor();
   void submitOrder(Order order) override;
   string getURL() override;
   string getExchangeName() override;
@@ -18,4 +18,4 @@ private:
   string generateSignature(const string &message, const string &timestamp);
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDERMANAGER_H
+#endif // CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
