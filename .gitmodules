@@ -10,3 +10,12 @@
 [submodule "lib/Poco"]
 	path = lib/Poco
 	url = git@github.com:pocoproject/poco.git
+[submodule "benchmark"]
+	path = benchmark
+	url = https://github.com/google/benchmark
+[submodule "include/benchmark"]
+	path = include/benchmark
+	url = https://github.com/google/benchmark
+[submodule "benchmarking/lib/benchmark"]
+	path = benchmarking/lib/benchmark
+	url = https://github.com/google/benchmark

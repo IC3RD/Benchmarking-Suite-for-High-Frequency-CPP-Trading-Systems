@@ -64,5 +64,6 @@ include_directories(${POCO_INCLUDE_DIRS})
 
 add_subdirectory(src)
 add_subdirectory(test)
+add_subdirectory(benchmarking)
 add_subdirectory(lib)
 
