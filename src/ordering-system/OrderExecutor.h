@@ -5,16 +5,16 @@
 #include <OrderBuilder.h>
 
 class OrderExecutor {
-public:
+ public:
   virtual void submitOrder(Order order) = 0;
   static OrderBuilder createOrderBuilder() { return {}; }
   OrderExecutor() = default;
-  virtual string getURL() = 0;
-  virtual string getExchangeName() = 0;
+  virtual std::string getURL() = 0;
+  virtual std::string getExchangeName() = 0;
 
-private:
-  virtual string getSecretKey() = 0;
-  virtual string getPublicKey() = 0;
+ private:
+  virtual std::string getSecretKey() = 0;
+  virtual std::string getPublicKey() = 0;
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H

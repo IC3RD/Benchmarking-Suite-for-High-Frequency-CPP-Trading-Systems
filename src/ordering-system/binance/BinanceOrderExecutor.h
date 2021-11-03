@@ -9,20 +9,19 @@
 #include <OrderExecutor.h>
 
 class BinanceOrderExecutor : public OrderExecutor {
-public:
+ public:
   BinanceOrderExecutor();
-    void submitOrder(Order order) override;
-    string getURL() override;
-    string getExchangeName() override;
+  void submitOrder(Order order) override;
+  std::string getURL() override;
+  std::string getExchangeName() override;
 
-private:
-    string parseOrder(const Order& order);
-    string authenticate(string message);
-    string generateTimestamp();
-    void generateHeaders(struct curl_slist **chunk);
-    string getSecretKey() override;
-    string getPublicKey() override;
-
+ private:
+  std::string parseOrder(const Order& order);
+  std::string authenticate(std::string message);
+  std::string generateTimestamp();
+  void generateHeaders(struct curl_slist** chunk);
+  std::string getSecretKey() override;
+  std::string getPublicKey() override;
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H

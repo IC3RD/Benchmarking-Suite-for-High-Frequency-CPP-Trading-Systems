@@ -3,19 +3,20 @@
 
 #include <OrderExecutor.h>
 class BitmexOrderExecutor : public OrderExecutor {
-public:
+ public:
   BitmexOrderExecutor();
   void submitOrder(Order order) override;
-  string getURL() override;
-  string getExchangeName() override;
+  std::string getURL() override;
+  std::string getExchangeName() override;
 
-private:
-  string getSecretKey() override;
-  string getPublicKey() override;
-  void generateHeaders(struct curl_slist **chunk, const string &data);
-  static string parseOrder(const Order &order);
-  static string generateTimestamp();
-  string generateSignature(const string &message, const string &timestamp);
+ private:
+  std::string getSecretKey() override;
+  std::string getPublicKey() override;
+  void generateHeaders(struct curl_slist **chunk, const std::string &data);
+  static std::string parseOrder(const Order &order);
+  static std::string generateTimestamp();
+  std::string generateSignature(const std::string &message,
+                                const std::string &timestamp);
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H

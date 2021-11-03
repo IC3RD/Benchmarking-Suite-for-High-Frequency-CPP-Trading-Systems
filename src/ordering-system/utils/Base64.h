@@ -30,7 +30,7 @@
 namespace macaron {
 
 class Base64 {
-public:
+ public:
   static std::string Encode(const std::string data) {
     static constexpr char sEncodingTable[] = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -88,14 +88,11 @@ public:
         64, 64, 64, 64};
 
     size_t in_len = input.size();
-    if (in_len % 4 != 0)
-      return "Input data size is not a multiple of 4";
+    if (in_len % 4 != 0) return "Input data size is not a multiple of 4";
 
     size_t out_len = in_len / 4 * 3;
-    if (input[in_len - 1] == '=')
-      out_len--;
-    if (input[in_len - 2] == '=')
-      out_len--;
+    if (input[in_len - 1] == '=') out_len--;
+    if (input[in_len - 2] == '=') out_len--;
 
     out.resize(out_len);
 
@@ -116,18 +113,15 @@ public:
       uint32_t triple =
           (a << 3 * 6) + (b << 2 * 6) + (c << 1 * 6) + (d << 0 * 6);
 
-      if (j < out_len)
-        out[j++] = (triple >> 2 * 8) & 0xFF;
-      if (j < out_len)
-        out[j++] = (triple >> 1 * 8) & 0xFF;
-      if (j < out_len)
-        out[j++] = (triple >> 0 * 8) & 0xFF;
+      if (j < out_len) out[j++] = (triple >> 2 * 8) & 0xFF;
+      if (j < out_len) out[j++] = (triple >> 1 * 8) & 0xFF;
+      if (j < out_len) out[j++] = (triple >> 0 * 8) & 0xFF;
     }
 
     return "";
   }
 };
 
-} // namespace macaron
+}  // namespace macaron
 
 #endif /* _MACARON_BASE64_H_ */

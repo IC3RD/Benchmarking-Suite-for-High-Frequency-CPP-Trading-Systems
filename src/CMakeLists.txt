@@ -11,7 +11,7 @@ target_link_libraries(main PUBLIC
         bollingerBand
         listener
         dataManager
-        concurrentUnorderedSet
+        #        concurrentUnorderedSet
         curl
         Foundation
         Crypto

@@ -4,7 +4,7 @@
 #include <Order.h>
 
 class OrderBuilder {
-public:
+ public:
   OrderBuilder();
 
   void createBuyOrder(int price);
@@ -21,11 +21,11 @@ public:
     return {"implement this", price, volume, isBuyOrder};
   }
 
-private:
+ private:
   bool isBuyOrder;
   int limit;
   int price;
   int volume;
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_ORDERBUILDER_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_ORDERBUILDER_H

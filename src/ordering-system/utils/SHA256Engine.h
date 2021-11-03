@@ -6,13 +6,14 @@
 #define CPPDESIGNPATTERNSLOWLATENCY_SHA256ENGINE_H
 
 #include <Poco/Crypto/DigestEngine.h>
+
 #include <string>
 
 class SHA256Engine : public Poco::Crypto::DigestEngine {
-public:
+ public:
   enum { BLOCK_SIZE = 64, DIGEST_SIZE = 32 };
 
   SHA256Engine();
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_SHA256ENGINE_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_SHA256ENGINE_H

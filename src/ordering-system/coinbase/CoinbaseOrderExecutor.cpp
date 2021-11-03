@@ -1,15 +1,17 @@
 #include "CoinbaseOrderExecutor.h"
+
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
-#include <chrono>
 #include <curl/curl.h>
 #include <debug.h>
 #include <utils/Base64.h>
 #include <utils/SHA256Engine.h>
 
+#include <chrono>
+
 void CoinbaseOrderExecutor::submitOrder(Order order) {
-  string order_data = parseOrder(order);
+  std::string order_data = parseOrder(order);
   DEBUG("Submitting order with data: " + order_data + " to " +
         getExchangeName() + "...");
 
@@ -20,7 +22,7 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
   if (curl) {
     // Set up request.
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    string URL = getURL();
+    std::string URL = getURL();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
@@ -40,48 +42,48 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
 
     // Cleanup.
     curl_easy_cleanup(curl);
-    cout << std::endl;
+    std::cout << std::endl;
   }
 }
 
-string CoinbaseOrderExecutor::generateTimestamp() {
+std::string CoinbaseOrderExecutor::generateTimestamp() {
   const auto time = std::chrono::system_clock::now();
   const auto current_time =
       std::chrono::duration_cast<std::chrono::seconds>(time.time_since_epoch())
           .count();
-  return to_string(current_time);
+  return std::to_string(current_time);
 }
 
 void CoinbaseOrderExecutor::generateHeaders(struct curl_slist **chunk,
-                                           const string &data) {
+                                            const std::string &data) {
   *chunk = curl_slist_append(*chunk, "Accept: application/json");
   *chunk = curl_slist_append(*chunk, "Content-Type: application/json");
   *chunk = curl_slist_append(*chunk, "User-Agent: CoinbaseProAPI");
   *chunk =
       curl_slist_append(*chunk, ("cb-access-key:" + getPublicKey()).c_str());
-  string timestamp = generateTimestamp();
-  string signature = authenticate(data, timestamp);
+  std::string timestamp = generateTimestamp();
+  std::string signature = authenticate(data, timestamp);
   *chunk = curl_slist_append(*chunk, ("cb-access-sign:" + signature).c_str());
   *chunk =
       curl_slist_append(*chunk, ("cb-access-timestamp:" + timestamp).c_str());
   *chunk = curl_slist_append(*chunk, "cb-access-passphrase:c116en8tfv6");
 }
 
-string CoinbaseOrderExecutor::authenticate(const string &message,
-                                          const string &timestamp) {
-  string decoded;
+std::string CoinbaseOrderExecutor::authenticate(const std::string &message,
+                                                const std::string &timestamp) {
+  std::string decoded;
   macaron::Base64::Decode(getSecretKey(), decoded);
   Poco::HMACEngine<SHA256Engine> hmac{decoded};
   // timestamp + method + requestPath + body
-  string toSign = timestamp + "POST" + "/orders" + message.c_str();
+  std::string toSign = timestamp + "POST" + "/orders" + message.c_str();
   hmac.update(toSign);
-  string digest = Poco::DigestEngine::digestToHex(hmac.digest());
-  string hex_str = hex_to_string(digest);
-  string encoded = macaron::Base64::Encode(hex_str);
+  std::string digest = Poco::DigestEngine::digestToHex(hmac.digest());
+  std::string hex_str = hex_to_string(digest);
+  std::string encoded = macaron::Base64::Encode(hex_str);
   return encoded;
 }
 
-string CoinbaseOrderExecutor::parseOrder(const Order &order) {
+std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
 
   json->set("side", order.isBuyOrder() ? "buy" : "sell");
@@ -95,9 +97,9 @@ string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   // for 'quote_increment' for each type of coin.
   // TODO: What should be price unit in the 'Order' class?
   // FIXME: Change price value depending on units in 'Order' class.
-  json->set("price", to_string(order.getPrice()));
+  json->set("price", std::to_string(order.getPrice()));
 
-  json->set("size", to_string(order.getVolume()));
+  json->set("size", std::to_string(order.getVolume()));
 
   std::stringstream ss;
   Poco::JSON::Stringifier::stringify(json, ss);
@@ -106,7 +108,7 @@ string CoinbaseOrderExecutor::parseOrder(const Order &order) {
 
 CoinbaseOrderExecutor::CoinbaseOrderExecutor() : OrderExecutor() {}
 
-string CoinbaseOrderExecutor::getURL() {
+std::string CoinbaseOrderExecutor::getURL() {
   // Amend if you are debugging.
   bool debug = false;
   if (debug) {
@@ -116,15 +118,15 @@ string CoinbaseOrderExecutor::getURL() {
   }
 }
 
-string CoinbaseOrderExecutor::getSecretKey() {
+std::string CoinbaseOrderExecutor::getSecretKey() {
   return "jgEtlhOBhGESP7JUQ2w6Dm46Wbar8zWv5ib3PEYfTC7avQ8M8ohxNHvLESnJGHhRYlOZp"
          "iMzPiEaU8onVlNgSg==";
 }
-string CoinbaseOrderExecutor::getPublicKey() {
+std::string CoinbaseOrderExecutor::getPublicKey() {
   return "00dcf06c3d7402c3272eef11593446b0";
 }
 
-string CoinbaseOrderExecutor::getExchangeName() { return "Coinbase"; }
+std::string CoinbaseOrderExecutor::getExchangeName() { return "Coinbase"; }
 
 std::string CoinbaseOrderExecutor::hex_to_string(const std::string &in) {
   std::string output;

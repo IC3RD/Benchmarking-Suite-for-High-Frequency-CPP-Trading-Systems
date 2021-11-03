@@ -3,10 +3,10 @@
 
 class debug {
 // Macro to print things for debugging purposes.
-#define DEBUG(x)                                                               \
-  do {                                                                         \
-    std::cout << "> " << x << std::endl;                                       \
+#define DEBUG(x)                         \
+  do {                                   \
+    std::cout << "> " << x << std::endl; \
   } while (0)
 };
 
-#endif // CPPDESIGNPATTERNSLOWLATENCY_DEBUG_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_DEBUG_H

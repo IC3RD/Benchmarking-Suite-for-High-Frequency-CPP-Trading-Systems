@@ -3,6 +3,7 @@
 //
 
 #include "SHA256Engine.h"
+
 #include <Poco/Crypto/DigestEngine.h>
 
 // Call concrete constructor.
