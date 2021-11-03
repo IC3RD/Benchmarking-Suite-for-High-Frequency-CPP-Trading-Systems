@@ -1,5 +1,4 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_DEBUG_H
-#define CPPDESIGNPATTERNSLOWLATENCY_DEBUG_H
+#pragma once
 
 class debug {
 // Macro to print things for debugging purposes.
@@ -9,4 +8,3 @@ class debug {
   } while (0)
 };
 
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_DEBUG_H

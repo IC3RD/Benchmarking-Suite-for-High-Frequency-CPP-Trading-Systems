@@ -10,7 +10,10 @@ set(SOURCE_FILES OrderExecutor.cpp OrderExecutor.h OrderBuilder.cpp
         utils/SHA256Engine.h
         utils/SHA256Engine.cpp
         binance/BinanceOrderExecutor.cpp
-        binance/BinanceOrderExecutor.h)
+        binance/BinanceOrderExecutor.h
+        OrderManager.cpp
+        OrderManager.h
+        Exchange.h)
 
 add_library(ordering-system ${SOURCE_FILES})
 

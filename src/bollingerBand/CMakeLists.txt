@@ -12,4 +12,4 @@ target_link_libraries(bollingerBand PUBLIC
         Crypto
         Util
         JSON
-        NetSSL)
+        NetSSL ordering-system)
