@@ -7,7 +7,7 @@
 #include "Logger.h"
 #include "MarketData.h"
 
-using namespace std;
+class MarketData;
 
 class BollingerBand {
  public:
@@ -26,6 +26,6 @@ class BollingerBand {
   const int maxElements;
   double currAvg;
   double currStdDev;
-  deque<double> *marketPrices;
+  std::deque<double> *marketPrices;
   Logger *logger;
 };
