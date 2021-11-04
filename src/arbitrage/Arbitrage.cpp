@@ -1,46 +1,44 @@
 #include "Arbitrage.h"
 
 #include <math.h>
-
 #include <deque>
 #include <iostream>
 
-#include "Logger.h"
-#include "MarketData.h"
+#include "../exchange/MarketData.h"
 
-
-using namespace std;
 int bitmexFees = 0.0005;
 int binanceFees = 0.00075;
 int coinbaseFees = 0.03; //fixed fee since we are trading at volume of 100
 int volume = 100;
+// TODO: market data for each exchange and only update if value is not -1, as this means only partial update from the exchange
 
-Arbitrage::Arbitrage(int max) : maxElements(max) {
-    orderExecutor = new OrderExecutor();
+Arbitrage::Arbitrage() : TradingStrategy() {
+    exchanges = {
+        Exchange::BITMEX,
+        Exchange::COINBASE,
+        Exchange::BINANCE,
+        Exchange::FTX,
+        Exchange::KRAKEN
+    };
 }
 
-Arbitrage::~Arbitrage() {
-    // delete logger;
-}
+Arbitrage::~Arbitrage() {}
 
-
-void Arbitrage::strategy(list<MarketData> exchanges) {
-
+void Arbitrage::runStrategy() {
     for (int i = 0; i < exchanges.size() - 1; ++i) {
         for (int j = i + 1; j < exchanges.size(); ++j) {
-            process(exchanges.get(i), exchanges.get(j));
+            process(exchangeData.find(exchanges.get(i)), exchangeData.find(exchanges.get(j)));
         }
     }
-
 }
 
-void Arbitrage::process(MarketData const *exchange1, MarketData const *exchange2) {
-    fee1 = exchange1->getFee();
-    fee2 = exchange2->getFee();
-    exchange1SellPrice = exchange1->getSellPrice();
-    exchange1BuyPrice = exchange1->getBuyPrice();
-    exchange2SellPrice = exchange2->getSellPrice();
-    exchange2BuyPrice = exchange2->getBuyPrice();
+void Arbitrage::process(MarketData& exchange1, MarketData& exchange2) {
+    int fee1 = exchange1.getFee();
+    int fee2 = exchange2.getFee();
+    int exchange1SellPrice = exchange1.getSellPrice();
+    int exchange1BuyPrice = exchange1.getBuyPrice();
+    int exchange2SellPrice = exchange2.getSellPrice();
+    int exchange2BuyPrice = exchange2.getBuyPrice();
     if (exchange1SellPrice > exchange2BuyPrice) {
         if (exchange1SellPrice * volume
             - exchange1SellPrice * volume * fee1
@@ -58,14 +56,5 @@ void Arbitrage::process(MarketData const *exchange1, MarketData const *exchange2
             buy(exchange1); //these should be market orders to ensure fill
         }
     }
-}
+};
 
-void Arbitrage::buy(MarketData const *data) {
-    cout << "Buy\n";
-    orderExecutor->placeOrder(Exchange.BITMEX, Order(data->getSymbol(), data->getBuyPrice(), 1, true));
-}
-
-void Arbitrage::sell(MarketData const *data) {
-    cout << "Sell\n";
-    orderExecutor->placeOrder(Exchange.BITMEX, Order(data->getSymbol(), data->getSellPrice(), 1, false));
-}

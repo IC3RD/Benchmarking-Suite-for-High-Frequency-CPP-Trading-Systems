@@ -9,16 +9,23 @@ CoinbaseListener::CoinbaseListener(DataManager &dataManager)
     : Listener("wss://ws-feed.exchange.coinbase.com",
                "{\"type\": \"subscribe\", \"product_ids\": [\"BTC-USD\"], "
                "\"channels\": [\"ticker\"]}",
-               "COINBASE", dataManager) {}
+               Exchange::COINBASE, dataManager) {}
 
 // reference: just looking at the printing json, the dictionary's keys are very
 // explict :)
 void CoinbaseListener::passJSON(nlohmann::json json) {
+  int askPrice = -1;
+  int bidPrice = -1;
+  int askVolume = -1;
+  int bidVolume = -1;
   if (json.contains("best_ask")) {
-    std::string askPrice = json.at("best_ask");
+    askPrice = std::stoi(json.at("best_ask"));
   }
   if (json.contains("best_bid")) {
-    std::string bidPrice = json.at("best_bid");
+    bidPrice = std::stoi(json.at("best_bid"));
+  }
+  if (askPrice != -1 || bidPrice != 1) {
+    constructAndPassMarketData(bidPrice, askPrice, -1, -1);
   }
   // current volume is not obvious here, only gives 24hr volume
 }

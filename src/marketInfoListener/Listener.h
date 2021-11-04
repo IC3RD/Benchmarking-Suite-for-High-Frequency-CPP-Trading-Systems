@@ -5,12 +5,12 @@
 
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
-
+#include "../exchange/Exchange.h"
 #include "dataManager/DataManager.h"
 
 class Listener {
  public:
-  Listener(std::string url, std::string request, std::string exchange,
+  Listener(std::string url, std::string request, Exchange::ExchangeName exchange,
            DataManager &dataManager);
   ~Listener(){};
   /* start to listen to incoming data */
@@ -22,11 +22,12 @@ class Listener {
   /* Does the exchange specific parsing of json recieved from exchange */
   virtual void passJSON(nlohmann::json json) = 0;
   /* set up callback/thread to react to incoming data */
+  void constructAndPassMarketData(int buy, int sell, int buyVolume, int sellVolume);
   void setHandlers();
   ix::WebSocket webSocket;
   const std::string url;
   const std::string request;
-  const std::string exchange;
+  const Exchange::ExchangeName exchange;
 
  private:
   DataManager &centralDataManager;

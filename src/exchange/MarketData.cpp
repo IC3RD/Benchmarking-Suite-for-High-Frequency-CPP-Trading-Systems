@@ -2,20 +2,22 @@
 
 #include "../bollingerBand/BollingerBand.h"
 
-MarketData::MarketData(const std::string s, int buy, int sell, int v, Exchange::ExchangeName exchangeName)
+MarketData::MarketData(const std::string s, int buy, int sell, int buyVolume, int sellVolume, Exchange::ExchangeName exchangeName)
         : symbol(s),
-          price((buy + sell) / 2),
-          volume(v),
+          sellVolume(sellVolume),
+          buyVolume(buyVolume),
           sellPrice(sell),
           buyPrice(buy),
-          tradingStrategy(new BollingerBand(100)),
           exchange(exchangeName),
-          fee(0.0005){};
+          fee(0.0005) {};
+
 //todo:change exchange and to be whatever it is and put in constructor
 
-MarketData::~MarketData() { delete tradingStrategy; }
+MarketData::~MarketData() {}
 
-const int MarketData::getVolume() const { return volume; }
+const int MarketData::getBuyVolume() const { return buyVolume; }
+
+const int MarketData::getSellVolume() const { return sellVolume; }
 
 const int MarketData::getPrice() const { return price; }
 
@@ -25,22 +27,22 @@ const int MarketData::getSellPrice() const { return sellPrice; }
 
 const std::string MarketData::getSymbol() const { return symbol; }
 
-//const Exchange::ExchangeName getExchange() { return exchange; }
+const int MarketData::getFee() const { return fee; }
 
-//const int getFee() { return fee; }
+const Exchange::ExchangeName MarketData::getExchange() const { return exchange; }
 
-BollingerBand *MarketData::getStrategy() const { return tradingStrategy; }
-
-void MarketData::updateBuy(int b) {
-    buyPrice = b;
-    price = (sellPrice + buyPrice) / 2;
+void MarketData::updateBuy(int buy) {
+    buyPrice = buy;
 }
 
-void MarketData::updateSell(int s) {
-    sellPrice = s;
-    price = (sellPrice + buyPrice) / 2;
+void MarketData::updateSell(int sell) {
+    sellPrice = sell;
 }
 
-void MarketData::updateVolume(int v) { volume = v; }
+void MarketData::updateBuyVolume(int buyVol) {
+    buyVolume = buyVol;
+}
 
-void MarketData::newMarketData() { tradingStrategy->strategy(this); }
+void MarketData::updateSellVolume(int sellVol) {
+    sellVolume = sellVol;
+}

@@ -12,4 +12,5 @@ target_link_libraries(arbitrage PUBLIC
         Crypto
         Util
         JSON
-        NetSSL)
+        NetSSL
+        exchange)

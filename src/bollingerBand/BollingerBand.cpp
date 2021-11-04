@@ -6,21 +6,32 @@
 #include "../exchange/Exchange.h"
 using namespace std;
 
-BollingerBand::BollingerBand(int max) : maxElements(max) {
+BollingerBand::BollingerBand(int max) : TradingStrategy(), maxElements(max) {
   currElementCount = 0;
   currAvg = 0;
   currStdDev = 0;
-  currentHeldVolume = 0;
   // initialise memory for the queue all at initialisation
   marketPrices = new std::deque<double>(max);
-  orderExecutor = new OrderExecutor();
 }
 
 BollingerBand::~BollingerBand() {
   delete marketPrices;
 }
 
-void BollingerBand::strategy(MarketData *data) {
+void BollingerBand::runStrategy() {
+  int numOfValidMarketData = 0;
+  int totalPrices = 0;
+  for (std::pair<Exchange::ExchangeName, MarketData&> element : exchangeData)
+  {
+    if (element.second.getBuyPrice() != -1 && element.second.getSellPrice() != -1) {
+      numOfValidMarketData++;
+      totalPrices += (element.second.getBuyPrice() + element.second.getSellPrice()) / 2;
+    }
+  }
+
+  // num of valid market data != 0 since run strategy just aclled
+  totalPrices /= numOfValidMarketData;
+
   double removed = 0;
   int newElementCount = currElementCount + 1;
   if (currElementCount == maxElements) {
@@ -28,9 +39,9 @@ void BollingerBand::strategy(MarketData *data) {
     marketPrices->pop_front();
     newElementCount = maxElements;
   }
-  marketPrices->push_back(data->getPrice());
+  marketPrices->push_back(totalPrices);
   // calculate the new average from the old one
-  double newAvg = (currAvg * currElementCount - removed + data->getPrice()) /
+  double newAvg = (currAvg * currElementCount - removed + totalPrices) /
                   newElementCount;
   double sumSquareMeanDiffs = 0;
   auto it = marketPrices->cend();
@@ -46,32 +57,15 @@ void BollingerBand::strategy(MarketData *data) {
   } else {
     currStdDev = sqrt(sumSquareMeanDiffs / (newElementCount - 1));
   }
-  process(data);
-}
-
-double BollingerBand::getCurrMovingAverage() { return currAvg; }
-
-double BollingerBand::getCurrStdDeviation() { return currStdDev; }
-
-void BollingerBand::process(MarketData const *data) {
   if (currStdDev != 0) {
-    if (data->getBuyPrice() <= currAvg - 2 * currStdDev) {
-      buy(data);
-      ++currentHeldVolume;
-    }
-    if (data->getSellPrice() >= currAvg + 2 * currStdDev) {
-      sell(data);
-      --currentHeldVolume;
+    for (std::pair<Exchange::ExchangeName, MarketData&> element : exchangeData)
+    {
+      if (element.second.getBuyPrice() <= currAvg - 2 * currStdDev) {
+        buy(element.second);
+      }
+      if (element.second.getSellPrice() >= currAvg + 2 * currStdDev) {
+        sell(element.second);
+      }
     }
   }
-}
-
-void BollingerBand::buy(MarketData const *data) {
-  std::cout << "Buy" << std::endl;
-  orderExecutor->placeOrder(Exchange::BITMEX, Order(data->getSymbol(), data->getBuyPrice(), 1, true));
-}
-
-void BollingerBand::sell(MarketData const *data) {
-  std::cout << "Sell" << std::endl;
-  orderExecutor->placeOrder(Exchange::BITMEX, Order(data->getSymbol(), data->getSellPrice(), 1, false));
 }
