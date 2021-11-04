@@ -1,21 +1,24 @@
 #pragma once
 
 #include <stdio.h>
-#include "../dataManager/DataManager.h"
-#include "../ordering-system/OrderExecutor.h"
+#include <unordered_map>
 #include <string>
+
+#include "../ordering-system/OrderExecutor.h"
+#include "MarketData.h"
 
 using namespace std;
 
 class TradingStrategy {
-    public:
-        TradingStrategy();
-        ~TradingStrategy();
-        void updateData(MarketData&);
-        virtual void runStrategy() = 0;
-        virtual void buy(MarketData&);
-        virtual void sell(MarketData&);
-    protected:
-        unordered_map<Exchange::ExchangeName, MarketData&> exchangeData;
-        OrderExecutor *orderExecutor;
+ public:
+  TradingStrategy();
+  ~TradingStrategy();
+  void updateData(MarketData &);
+  virtual void runStrategy() = 0;
+  virtual void buy(MarketData &);
+  virtual void sell(MarketData &);
+
+ protected:
+  unordered_map<Exchange::ExchangeName, MarketData&, hash<int> > exchangeData;
+  OrderExecutor *orderExecutor;
 };

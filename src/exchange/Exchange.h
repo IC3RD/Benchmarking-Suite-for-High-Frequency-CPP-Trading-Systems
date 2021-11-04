@@ -2,16 +2,8 @@
 #define CPPDESIGNPATTERNSLOWLATENCY_EXCHANGE_H
 
 class Exchange {
-public:
-    enum ExchangeName {
-        BITMEX,
-        COINBASE,
-        BINANCE,
-        FTX,
-        KRAKEN
-    };
+ public:
+  enum ExchangeName { BITMEX, COINBASE, BINANCE, FTX, KRAKEN };
 };
 
-
-
-#endif //CPPDESIGNPATTERNSLOWLATENCY_EXCHANGE_H
+#endif  // CPPDESIGNPATTERNSLOWLATENCY_EXCHANGE_H

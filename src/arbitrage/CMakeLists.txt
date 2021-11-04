@@ -13,4 +13,5 @@ target_link_libraries(arbitrage PUBLIC
         Util
         JSON
         NetSSL
-        exchange)
+        exchange
+        ordering-system)

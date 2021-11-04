@@ -7,8 +7,8 @@ using namespace std;
 class OrderManager {
 public:
   virtual void submitOrder(Order order) = 0;
-  static OrderBuilder createOrderBuilder() { return {}; }
-  OrderManager() = default;
+  static OrderBuilder createOrderBuilder() { return OrderBuilder(); }
+  OrderManager(){};
   virtual string getURL() = 0;
   virtual string getExchangeName() = 0;
 

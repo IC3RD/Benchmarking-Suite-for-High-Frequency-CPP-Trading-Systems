@@ -4,11 +4,11 @@
 
 DataManager::DataManager() {
   listenerStrategies = new std::deque<TradingStrategy*>();
+  storeIdx = -1;
+  nextIdx = 0;
 }
 
-DataManager::~DataManager() {
-  delete listenerStrategies;
-}
+DataManager::~DataManager() { delete listenerStrategies; }
 
 void DataManager::addTradingStrategy(TradingStrategy& strategy) {
   listenerStrategies->push_back(&strategy);
@@ -19,10 +19,11 @@ void DataManager::addEntry(MarketData& marketData) {
   int i = ++storeIdx;
   mutex_dataHistory.unlock();
   std::cout << "index where the data should be stored is " << i << std::endl;
-  // each thread has it's own value of i which is correct relative to the concurrent value storeindex
+  // each thread has it's own value of i which is correct relative to the
+  // concurrent value storeindex
   dataHistory[i] = &marketData;
   set.insert(i);
-  for (auto it = listenerStrategies->cbegin(); it != listenerStrategies->cend(); it = it.next()) {
+  for (auto it = listenerStrategies->cbegin(); it != listenerStrategies->cend(); it = std::next(it, 1)) {
     (*it)->updateData(marketData);
   }
 }

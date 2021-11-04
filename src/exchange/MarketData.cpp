@@ -2,16 +2,19 @@
 
 #include "../bollingerBand/BollingerBand.h"
 
-MarketData::MarketData(const std::string s, int buy, int sell, int buyVolume, int sellVolume, Exchange::ExchangeName exchangeName)
-        : symbol(s),
-          sellVolume(sellVolume),
-          buyVolume(buyVolume),
-          sellPrice(sell),
-          buyPrice(buy),
-          exchange(exchangeName),
-          fee(0.0005) {};
+MarketData::MarketData(const std::string s, int buy, int sell, int buyVolume,
+                       int sellVolume, Exchange::ExchangeName exchangeName)
+    : symbol(s),
+      sellVolume(sellVolume),
+      buyVolume(buyVolume),
+      sellPrice(sell),
+      buyPrice(buy),
+      exchange(exchangeName)
+      {
+          fee = 1;
+      };
 
-//todo:change exchange and to be whatever it is and put in constructor
+// todo:change exchange and to be whatever it is and put in constructor
 
 MarketData::~MarketData() {}
 
@@ -29,20 +32,14 @@ const std::string MarketData::getSymbol() const { return symbol; }
 
 const int MarketData::getFee() const { return fee; }
 
-const Exchange::ExchangeName MarketData::getExchange() const { return exchange; }
-
-void MarketData::updateBuy(int buy) {
-    buyPrice = buy;
+const Exchange::ExchangeName MarketData::getExchange() const {
+  return exchange;
 }
 
-void MarketData::updateSell(int sell) {
-    sellPrice = sell;
-}
+void MarketData::updateBuy(int buy) { buyPrice = buy; }
 
-void MarketData::updateBuyVolume(int buyVol) {
-    buyVolume = buyVol;
-}
+void MarketData::updateSell(int sell) { sellPrice = sell; }
 
-void MarketData::updateSellVolume(int sellVol) {
-    sellVolume = sellVol;
-}
+void MarketData::updateBuyVolume(int buyVol) { buyVolume = buyVol; }
+
+void MarketData::updateSellVolume(int sellVol) { sellVolume = sellVol; }

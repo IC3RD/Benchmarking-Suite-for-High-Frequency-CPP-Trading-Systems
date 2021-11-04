@@ -1,9 +1,12 @@
 #include "BollingerBand.h"
-#include "../exchange/MarketData.h"
+
+#include <math.h>
+
 #include <deque>
 #include <iostream>
-#include <math.h>
+
 #include "../exchange/Exchange.h"
+#include "../exchange/MarketData.h"
 using namespace std;
 
 BollingerBand::BollingerBand(int max) : TradingStrategy(), maxElements(max) {
@@ -14,18 +17,17 @@ BollingerBand::BollingerBand(int max) : TradingStrategy(), maxElements(max) {
   marketPrices = new std::deque<double>(max);
 }
 
-BollingerBand::~BollingerBand() {
-  delete marketPrices;
-}
+BollingerBand::~BollingerBand() { delete marketPrices; }
 
 void BollingerBand::runStrategy() {
   int numOfValidMarketData = 0;
   int totalPrices = 0;
-  for (std::pair<Exchange::ExchangeName, MarketData&> element : exchangeData)
-  {
-    if (element.second.getBuyPrice() != -1 && element.second.getSellPrice() != -1) {
+  for (std::pair<Exchange::ExchangeName, MarketData&> element : exchangeData) {
+    if (element.second.getBuyPrice() != -1 &&
+        element.second.getSellPrice() != -1) {
       numOfValidMarketData++;
-      totalPrices += (element.second.getBuyPrice() + element.second.getSellPrice()) / 2;
+      totalPrices +=
+          (element.second.getBuyPrice() + element.second.getSellPrice()) / 2;
     }
   }
 
@@ -41,8 +43,8 @@ void BollingerBand::runStrategy() {
   }
   marketPrices->push_back(totalPrices);
   // calculate the new average from the old one
-  double newAvg = (currAvg * currElementCount - removed + totalPrices) /
-                  newElementCount;
+  double newAvg =
+      (currAvg * currElementCount - removed + totalPrices) / newElementCount;
   double sumSquareMeanDiffs = 0;
   auto it = marketPrices->cend();
   --it;  // Since cend() points to the element after the back of the queue
@@ -58,8 +60,8 @@ void BollingerBand::runStrategy() {
     currStdDev = sqrt(sumSquareMeanDiffs / (newElementCount - 1));
   }
   if (currStdDev != 0) {
-    for (std::pair<Exchange::ExchangeName, MarketData&> element : exchangeData)
-    {
+    for (std::pair<Exchange::ExchangeName, MarketData&> element :
+         exchangeData) {
       if (element.second.getBuyPrice() <= currAvg - 2 * currStdDev) {
         buy(element.second);
       }

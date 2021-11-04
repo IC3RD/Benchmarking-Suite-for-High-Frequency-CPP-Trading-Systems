@@ -18,7 +18,7 @@ public:
   void amendVolume(int volume);
 
   Order toOrder() const {
-    return {"implement this", price, volume, isBuyOrder};
+    return Order("implement this", price, volume, isBuyOrder);
   }
 
 private:

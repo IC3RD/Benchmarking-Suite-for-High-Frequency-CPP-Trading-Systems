@@ -1,17 +1,20 @@
 #pragma once
-#include <deque>
 #include <stdio.h>
+
+#include <deque>
+
 #include "../exchange/MarketData.h"
-#include "../ordering-system/OrderExecutor.h"
 #include "../exchange/Order.h"
 #include "../exchange/TradingStrategy.h"
+#include "../ordering-system/OrderExecutor.h"
 
 class BollingerBand : TradingStrategy {
-public:
+ public:
   BollingerBand(int max);
   ~BollingerBand();
-  void runStrategy(MarketData *data);
-private:
+  void runStrategy();
+
+ private:
   void process(MarketData const *data);
   int currElementCount;
   int currentHeldVolume;

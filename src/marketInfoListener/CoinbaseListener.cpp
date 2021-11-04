@@ -19,10 +19,12 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
   int askVolume = -1;
   int bidVolume = -1;
   if (json.contains("best_ask")) {
-    askPrice = std::stoi(json.at("best_ask"));
+    std::string val = json.at("best_ask");
+    askPrice = std::stoi(val);
   }
   if (json.contains("best_bid")) {
-    bidPrice = std::stoi(json.at("best_bid"));
+    std::string val = json.at("best_bid");
+    bidPrice = std::stoi(val);
   }
   if (askPrice != -1 || bidPrice != 1) {
     constructAndPassMarketData(bidPrice, askPrice, -1, -1);

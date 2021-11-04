@@ -1,13 +1,15 @@
 #pragma once
 
 #include <stdio.h>
-#include "Exchange.h"
+
 #include <string>
+
+#include "Exchange.h"
 
 using namespace std;
 
 class MarketData {
-public:
+ public:
   MarketData(string, int, int, int, int, Exchange::ExchangeName);
   ~MarketData();
   const int getSellVolume() const;
@@ -22,13 +24,14 @@ public:
   void updateBuy(int);
   void updateSellVolume(int);
   void updateBuyVolume(int);
-private:
+
+ private:
   const string symbol;
   int price;
   int sellVolume;
   int sellPrice;
   int buyVolume;
   int buyPrice;
-  const int fee;
+  int fee;
   const Exchange::ExchangeName exchange;
 };

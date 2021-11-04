@@ -7,5 +7,6 @@ add_library(exchange ${SOURCE_FILES})
 
 target_link_libraries(exchange PUBLIC
         JSON
-        dataManager)
+        dataManager
+        ordering-system)
 
