@@ -1,9 +1,13 @@
 #include "DataManager.h"
+#include "../bollingerBand/BollingerBand.h"
+#include "../arbitrage/Arbitrage.h"
 
 #include <iostream>
 
 DataManager::DataManager() {
-  listenerStrategies = new std::deque<TradingStrategy*>();
+  listenerStrategies = new std::deque<TradingStrategy*>(1000);
+  listenerStrategies->push_back(new BollingerBand(100));
+  //listenerStrategies->push_back(new Arbitrage());
   storeIdx = -1;
   nextIdx = 0;
 }
@@ -17,13 +21,16 @@ void DataManager::addTradingStrategy(TradingStrategy& strategy) {
 void DataManager::addEntry(MarketData& marketData) {
   mutex_dataHistory.lock();
   int i = ++storeIdx;
+  if (i >= dataHistory.size()) {
+    dataHistory.resize((i+1)*2);
+  }
   mutex_dataHistory.unlock();
   std::cout << "index where the data should be stored is " << i << std::endl;
   // each thread has it's own value of i which is correct relative to the
   // concurrent value storeindex
   dataHistory[i] = &marketData;
   set.insert(i);
-  for (auto it = listenerStrategies->cbegin(); it != listenerStrategies->cend(); it = std::next(it, 1)) {
+  for (auto it = listenerStrategies->cbegin(); it != listenerStrategies->cend(); ++it) {
     (*it)->updateData(marketData);
   }
 }

@@ -22,8 +22,8 @@ Arbitrage::~Arbitrage() {}
 void Arbitrage::runStrategy() {
   for (int i = 0; i < exchanges.size() - 1; ++i) {
     for (int j = i + 1; j < exchanges.size(); ++j) {
-      process(exchangeData.find(exchanges.get(i)),
-              exchangeData.find(exchanges.get(j)));
+      process(exchangeData->find(exchanges.get(i)),
+              exchangeData->find(exchanges.get(j)));
     }
   }
 }

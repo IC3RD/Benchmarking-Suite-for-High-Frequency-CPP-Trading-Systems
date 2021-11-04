@@ -26,6 +26,6 @@ target_link_libraries(main PUBLIC
 add_subdirectory(bollingerBand)
 add_subdirectory(marketInfoListener)
 add_subdirectory(dataManager)
-add_subdirectory(ConcurrentUnorderedSet)
+add_subdirectory(concurrentUnorderedSet)
 add_subdirectory(exchange)
 add_subdirectory(ordering-system)

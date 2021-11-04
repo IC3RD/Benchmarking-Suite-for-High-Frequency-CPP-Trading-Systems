@@ -8,7 +8,7 @@
 #include "../exchange/TradingStrategy.h"
 #include "../ordering-system/OrderExecutor.h"
 
-class BollingerBand : TradingStrategy {
+class BollingerBand : public TradingStrategy {
  public:
   BollingerBand(int max);
   ~BollingerBand();

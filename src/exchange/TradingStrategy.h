@@ -19,6 +19,6 @@ class TradingStrategy {
   virtual void sell(MarketData &);
 
  protected:
-  unordered_map<Exchange::ExchangeName, MarketData&, hash<int> > exchangeData;
+  unordered_map<Exchange::ExchangeName, MarketData&, hash<int>> *exchangeData;
   OrderExecutor *orderExecutor;
 };
