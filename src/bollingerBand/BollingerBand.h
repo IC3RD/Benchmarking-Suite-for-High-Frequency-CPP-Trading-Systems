@@ -1,9 +1,8 @@
 #include <deque>
 #include <stdio.h>
-#ifndef DATA
-#define DATA
-#include "Logger.h"
-#include "MarketData.h"
+#include "../exchange/MarketData.h"
+#include "../ordering-system/OrderExecutor.h"
+#include "../exchange/Order.h"
 #pragma once
 using namespace std;
 
@@ -27,5 +26,5 @@ private:
   double currAvg;
   double currStdDev;
   std::deque<double> *marketPrices;
-  Logger *logger;
+  OrderExecutor *orderExecutor;
 };

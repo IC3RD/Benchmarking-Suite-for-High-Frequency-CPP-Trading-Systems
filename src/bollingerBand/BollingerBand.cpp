@@ -1,9 +1,9 @@
 #include "BollingerBand.h"
-#include "Logger.h"
-#include "MarketData.h"
+#include "../exchange/MarketData.h"
 #include <deque>
 #include <iostream>
 #include <math.h>
+#include "../exchange/Exchange.h"
 using namespace std;
 
 BollingerBand::BollingerBand(int max) : maxElements(max) {
@@ -13,12 +13,11 @@ BollingerBand::BollingerBand(int max) : maxElements(max) {
   currentHeldVolume = 0;
   // initialise memory for the queue all at initialisation
   marketPrices = new std::deque<double>(max);
-  logger = new Logger();
+  orderExecutor = new OrderExecutor();
 }
 
 BollingerBand::~BollingerBand() {
   delete marketPrices;
-  // delete logger;
 }
 
 void BollingerBand::strategy(MarketData *data) {
@@ -69,12 +68,10 @@ void BollingerBand::process(MarketData const *data) {
 
 void BollingerBand::buy(MarketData const *data) {
   std::cout << "Buy" << std::endl;
-  logger->addMessage("buy " + data->getSymbol() + "\n");
-  logger->addOrder(Order(data->getSymbol(), data->getBuyPrice(), 1, true));
+  orderExecutor->placeOrder(Exchange::BITMEX, Order(data->getSymbol(), data->getBuyPrice(), 1, true));
 }
 
 void BollingerBand::sell(MarketData const *data) {
   std::cout << "Sell" << std::endl;
-  logger->addMessage("sell " + data->getSymbol() + "\n");
-  logger->addOrder(Order(data->getSymbol(), data->getSellPrice(), 1, false));
+  orderExecutor->placeOrder(Exchange::BITMEX, Order(data->getSymbol(), data->getSellPrice(), 1, false));
 }

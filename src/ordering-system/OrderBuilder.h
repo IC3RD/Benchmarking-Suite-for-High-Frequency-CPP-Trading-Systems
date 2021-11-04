@@ -1,7 +1,7 @@
 #ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDERBUILDER_H
 #define CPPDESIGNPATTERNSLOWLATENCY_ORDERBUILDER_H
 
-#include <Order.h>
+#include "../exchange/Order.h"
 
 class OrderBuilder {
 public:

@@ -11,7 +11,9 @@ target_link_libraries(main PUBLIC
         bollingerBand
         listener
         dataManager
-        concurrentUnorderedSet
+        exchange
+        ordering-system
+        #concurrentUnorderedSet
         curl
         Foundation
         Crypto
@@ -19,10 +21,12 @@ target_link_libraries(main PUBLIC
         JSON
         NetSSL
         OpenSSL::SSL
-        ordering-system
+        #ordering-system
         )
 
 add_subdirectory(bollingerBand)
 add_subdirectory(marketInfoListener)
 add_subdirectory(dataManager)
 add_subdirectory(ConcurrentUnorderedSet)
+add_subdirectory(exchange)
+add_subdirectory(ordering-system)

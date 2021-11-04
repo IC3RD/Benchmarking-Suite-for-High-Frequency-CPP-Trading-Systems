@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include <vector>
+#include <iostream>
 
 #include "dataManager/DataManager.h"
 #include "marketInfoListener/BinanceListener.h"
