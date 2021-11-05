@@ -24,7 +24,12 @@ jobs:
         auth_header="$(git config --local --get http.https://github.com/.extraheader)"
         git submodule sync --recursive
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
-      
+
+    - name: Install cURL Headers
+      run: curl https://curl.haxx.se/download/curl-$V.tar.gz | sudo tar xz -C /usr --strip-components=1 curl-$V/include
+      env:
+        V: 7.58.0
+
     - name: Configure CMake
       run: cmake -S . -B build
 
