@@ -22,10 +22,10 @@ int main() {
   DataManager centralDataManager;
   std::vector<Listener *> listeners;
   listeners.push_back(new BitMEXListener(centralDataManager));
-  listeners.push_back(new BinanceListener(centralDataManager));
+  //listeners.push_back(new BinanceListener(centralDataManager));
   listeners.push_back(new CoinbaseListener(centralDataManager));
   listeners.push_back(new FTXListener(centralDataManager));
-  listeners.push_back(new KrakenListener(centralDataManager));
+  //listeners.push_back(new KrakenListener(centralDataManager));
 
   for (Listener *listener : listeners) {
     listener->startListening();
