@@ -11,14 +11,12 @@ using namespace std;
 
 class TradingStrategy {
  public:
-  TradingStrategy();
-  ~TradingStrategy();
   void updateData(MarketData &);
   virtual void runStrategy() = 0;
   virtual void buy(MarketData &);
   virtual void sell(MarketData &);
 
  protected:
-  unordered_map<Exchange::ExchangeName, MarketData&, hash<int>> *exchangeData;
-  OrderExecutor *orderExecutor;
+  unordered_map<Exchange::ExchangeName, MarketData&, hash<int>> exchangeData;
+  OrderExecutor orderExecutor;
 };

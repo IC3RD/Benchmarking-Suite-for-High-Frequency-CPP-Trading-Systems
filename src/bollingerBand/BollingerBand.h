@@ -15,7 +15,7 @@ class BollingerBand : public TradingStrategy {
   void runStrategy();
 
  private:
-  void process(MarketData const *data);
+  //void process(MarketData const *data);
   int currElementCount;
   int currentHeldVolume;
   const int maxElements;

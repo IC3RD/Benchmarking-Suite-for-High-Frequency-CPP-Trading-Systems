@@ -9,7 +9,7 @@
 #include "../exchange/MarketData.h"
 using namespace std;
 
-BollingerBand::BollingerBand(int max) : TradingStrategy(), maxElements(max) {
+BollingerBand::BollingerBand(int max) : maxElements(max) {
   currElementCount = 0;
   currAvg = 0;
   currStdDev = 0;
@@ -22,7 +22,7 @@ BollingerBand::~BollingerBand() { delete marketPrices; }
 void BollingerBand::runStrategy() {
   int numOfValidMarketData = 0;
   int totalPrices = 0;
-  for (std::pair<Exchange::ExchangeName, MarketData&> element : *exchangeData) {
+  for (std::pair<Exchange::ExchangeName, MarketData&> element : exchangeData) {
     if (element.second.getBuyPrice() != -1 &&
         element.second.getSellPrice() != -1) {
       numOfValidMarketData++;
@@ -30,8 +30,9 @@ void BollingerBand::runStrategy() {
           (element.second.getBuyPrice() + element.second.getSellPrice()) / 2;
     }
   }
-
-  // num of valid market data != 0 since run strategy just aclled
+  if (numOfValidMarketData == 0) {
+    return;
+  }
   totalPrices /= numOfValidMarketData;
 
   double removed = 0;
@@ -61,7 +62,7 @@ void BollingerBand::runStrategy() {
   }
   if (currStdDev != 0) {
     for (std::pair<Exchange::ExchangeName, MarketData&> element :
-         *exchangeData) {
+         exchangeData) {
       if (element.second.getBuyPrice() <= currAvg - 2 * currStdDev) {
         buy(element.second);
       }

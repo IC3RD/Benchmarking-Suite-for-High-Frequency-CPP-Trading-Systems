@@ -1,5 +1,4 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDERMANAGER_H
-#define CPPDESIGNPATTERNSLOWLATENCY_ORDERMANAGER_H
+#pragma once
 
 #include "../exchange/Order.h"
 #include "OrderBuilder.h"
@@ -16,5 +15,3 @@ private:
   virtual string getSecretKey() = 0;
   virtual string getPublicKey() = 0;
 };
-
-#endif // CPPDESIGNPATTERNSLOWLATENCY_ORDERMANAGER_H
