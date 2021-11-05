@@ -1,9 +1,11 @@
 #include "KrakenListener.h"
-#include "../exchange/Exchange.h"
+
 #include <iomanip>
 #include <iostream>
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
+
+#include "../exchange/Exchange.h"
 
 KrakenListener::KrakenListener(DataManager &dataManager)
     : Listener(

@@ -1,18 +1,18 @@
 #pragma once
 #include <deque>
+#include <memory>
 #include <mutex>
 #include <vector>
-#include <memory>
 
-#include "../exchange/MarketData.h"
-#include "../exchange/TradingStrategy.h"
 #include "../bollingerBand/BollingerBand.h"
 #include "../concurrentUnorderedSet/CoarseGrainedUnorderedSet.h"
+#include "../exchange/MarketData.h"
+#include "../exchange/TradingStrategy.h"
 
 class DataManager {
  public:
   DataManager();
-  //void addTradingStrategy(TradingStrategy&);
+  // void addTradingStrategy(TradingStrategy&);
   void addEntry(MarketData);
   void sendOrder();
   MarketData& getMostRecentMarketData();

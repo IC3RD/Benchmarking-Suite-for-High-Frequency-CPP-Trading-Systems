@@ -1,10 +1,11 @@
 #pragma once
-#include <exchange/Exchange.h>
-#include <exchange/Order.h>
 #include <OrderExecutor.h>
 #include <binance/BinanceOrderExecutor.h>
 #include <bitmex/BitmexOrderExecutor.h>
 #include <coinbase/CoinbaseOrderExecutor.h>
+#include <exchange/Exchange.h>
+#include <exchange/Order.h>
+
 #include <unordered_map>
 #include <vector>
 
@@ -16,7 +17,8 @@ class OrderManager {
   void submitOrder(Exchange::ExchangeName exchange, Order order);
 
  private:
-//  std::unordered_map<int, Order> *pendingOrders;
+  //  std::unordered_map<int, Order> *pendingOrders;
   std::vector<Order> *portfolio;
-  const std::unordered_map<Exchange::ExchangeName, OrderExecutor *> orderExecutors;
+  const std::unordered_map<Exchange::ExchangeName, OrderExecutor *>
+      orderExecutors;
 };

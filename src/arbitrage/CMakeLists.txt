@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES Arbitrage.cpp )
+set(SOURCE_FILES Arbitrage.cpp)
 
 add_library(arbitrage ${SOURCE_FILES})
 

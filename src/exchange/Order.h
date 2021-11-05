@@ -1,9 +1,10 @@
 ;
 #pragma once
-#include "Exchange.h"
 #include <stdio.h>
 
 #include <string>
+
+#include "Exchange.h"
 
 class Order {
  public:

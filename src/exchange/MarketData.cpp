@@ -9,10 +9,9 @@ MarketData::MarketData(const std::string s, int buy, int sell, int buyVolume,
       buyVolume(buyVolume),
       sellPrice(sell),
       buyPrice(buy),
-      exchange(exchangeName)
-      {
-          fee = 1;
-      };
+      exchange(exchangeName) {
+  fee = 1;
+};
 
 // todo:change exchange and to be whatever it is and put in constructor
 

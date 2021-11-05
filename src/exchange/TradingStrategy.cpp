@@ -22,7 +22,8 @@ void TradingStrategy::updateData(MarketData& newData) {
       (*itr).second.updateSellVolume(newData.getSellVolume());
     }
   } else {
-    //auto pair = std::make_pair<Exchange::ExchangeName, MarketData&>(exchange, newData)
+    // auto pair = std::make_pair<Exchange::ExchangeName, MarketData&>(exchange,
+    // newData)
     exchangeData.insert({exchange, newData});
   }
   runStrategy();
