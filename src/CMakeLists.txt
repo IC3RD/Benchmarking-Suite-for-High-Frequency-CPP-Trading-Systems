@@ -20,6 +20,7 @@ target_link_libraries(main PUBLIC
         NetSSL
         OpenSSL::SSL
         ordering-system
+        ${CURL_LIBRARIES}
         )
 
 add_subdirectory(bollingerBand)
