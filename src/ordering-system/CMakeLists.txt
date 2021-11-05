@@ -1,19 +1,13 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES OrderManager.cpp OrderManager.h OrderBuilder.cpp
-        OrderBuilder.h OrderExecutor.cpp
-        coinbase/CoinbaseOrderManager.h
-        coinbase/CoinbaseOrderManager.cpp utils/Base64.h
-        bitmex/BitmexOrderManager.cpp
-        bitmex/BitmexOrderManager.h
-        utils/SHA256Engine.h
+set(SOURCE_FILES OrderManager.cpp OrderBuilder.cpp
+        OrderExecutor.cpp
+        coinbase/CoinbaseOrderExecutor.cpp
+        bitmex/BitmexOrderExecutor.cpp
         utils/SHA256Engine.cpp
         binance/BinanceOrderExecutor.cpp
-        binance/BinanceOrderExecutor.h
-        OrderManager.cpp
-        OrderManager.h
-        Exchange.h)
+        OrderManager.cpp)
 
 add_library(ordering-system ${SOURCE_FILES})
 
