@@ -16,6 +16,7 @@ std::string BitmexOrderExecutor::parseOrder(const Order &order) {
   std::string currency = "XBTUSD";
 
   // This needs to be in multiples of 100.
+  
   // TODO: translate order volume into one suitable for exchange.
   int quantity = order.getVolume();
   std::string output =

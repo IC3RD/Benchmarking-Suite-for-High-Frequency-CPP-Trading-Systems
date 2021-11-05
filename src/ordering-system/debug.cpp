@@ -21,8 +21,8 @@ int main() {
    */
   DEBUG("Creating order manager...");
   OrderManager manager {};
-  Order order {"BTC", 1, 1, true, BITMEX};
-  manager.submitOrder(order);
+  Order order {"BTC", 1, 1, true};
+  manager.submitOrder(Exchange::BITMEX, order);
   DEBUG("Did it work?");
 
 //  std::unique_ptr<OrderExecutor> coinbaseManager =

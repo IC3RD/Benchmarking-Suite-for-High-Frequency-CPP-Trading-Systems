@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-#include "../ordering-system/OrderExecutor.h"
+#include "OrderManager.h"
 #include "MarketData.h"
 
 using namespace std;
@@ -18,5 +18,5 @@ class TradingStrategy {
 
  protected:
   unordered_map<Exchange::ExchangeName, MarketData&, hash<int>> exchangeData;
-  OrderExecutor orderExecutor;
+  OrderManager orderManager;
 };
