@@ -18,4 +18,4 @@ class CoarseGrainedUnorderedSet : public ConcurrentUnorderedSet<T> {
   std::unordered_set<T> set_;
 };
 
-#include "CoarseGrainedUnorderedSet.cpp"
+#include "CoarseGrainedUnorderedSet.tpp"

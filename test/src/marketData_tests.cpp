@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "../../src/bollingerBand/BollingerBand.h"
-#include "../../src/bollingerBand/MarketData.h"
+#include "../../src/exchange/MarketData.h"
 
 struct MarketDataTests : public ::testing::Test {
   MarketData* marketData;
@@ -9,7 +9,7 @@ struct MarketDataTests : public ::testing::Test {
   MarketData& getData() { return *marketData; }
 
   virtual void SetUp() override {
-    marketData = new MarketData("Example", 7, 3, 100);
+    marketData = new MarketData("Example", 7, 3, 100, Exchange::BITMEX);
   }
 
   virtual void TearDown() override { delete marketData; }

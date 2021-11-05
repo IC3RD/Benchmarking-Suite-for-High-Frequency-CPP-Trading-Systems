@@ -57,13 +57,16 @@ include_directories(${INSTALL_LIB_DIR})
 include_directories(${INSTALL_SRC_DIR})
 
 find_package(OpenSSL REQUIRED)
+set(CURL_LIBRARY "-lcurl")
+find_package(CURL REQUIRED)
 
 include_directories(${OPENSSL_INCLUDE_DIR})
 include_directories(${POCO_INCLUDE_DIRS})
+include_directories(${CURL_INCLUDE_DIR})
 
 
 add_subdirectory(src)
-add_subdirectory(test)
 add_subdirectory(benchmarking)
+#add_subdirectory(test)
 add_subdirectory(lib)
 

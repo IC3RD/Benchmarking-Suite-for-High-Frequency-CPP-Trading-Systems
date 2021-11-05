@@ -9,6 +9,7 @@ Good introduction to CMake: https://cliutils.gitlab.io/modern-cmake/
 
 1. Install cmake: `brew install cmake`
 1. Install gcc10+: `brew install gcc@10`
+1. Install libcurl.
 1. Check gcc is correctly installed: `g++-10 --version`
 1. Install clang-format: `brew install clang-format`
 

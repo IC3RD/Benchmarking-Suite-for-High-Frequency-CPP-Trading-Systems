@@ -1,7 +1,7 @@
 #ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDERBUILDER_H
 #define CPPDESIGNPATTERNSLOWLATENCY_ORDERBUILDER_H
 
-#include <Order.h>
+#include "../exchange/Order.h"
 
 class OrderBuilder {
  public:
@@ -18,7 +18,7 @@ class OrderBuilder {
   void amendVolume(int volume);
 
   Order toOrder() const {
-    return {"implement this", price, volume, isBuyOrder};
+    return Order("implement this", price, volume, isBuyOrder);
   }
 
  private:

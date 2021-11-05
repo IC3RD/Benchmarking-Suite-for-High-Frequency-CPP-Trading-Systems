@@ -1,19 +1,35 @@
 #include "DataManager.h"
 
 #include <iostream>
+#include <memory>
 
-#include "AssetData.h"
+#include "../arbitrage/Arbitrage.h"
+#include "../bollingerBand/BollingerBand.h"
 
-void DataManager::addEntry(AssetData assetData) {
+DataManager::DataManager() {
+  listenerStrategies.push_back(std::make_unique<BollingerBand>(100));
+  // listenerStrategies->push_back(new Arbitrage());
+  nextIdx = 0;
+}
+
+// void DataManager::addTradingStrategy(TradingStrategy &strategy) {
+//  listenerStrategies.push_back(strategy);
+//}
+
+void DataManager::addEntry(MarketData marketData) {
   mutex_dataHistory.lock();
-  int i = ++storeIdx;
-  if (i >= dataHistory.size()) {
-    dataHistory.resize((i + 1) * 2);
-  }
+  dataHistory.push_back(marketData);
+  int i = dataHistory.size() - 1;
+
   mutex_dataHistory.unlock();
   std::cout << "index where the data should be stored is " << i << std::endl;
-  dataHistory[i] = assetData;
-  set.insert(i);
+  // each thread has it's own value of i which is correct relative to the
+  // concurrent value storeindex
+  // set.insert(i); TODO
+  for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
+       ++it) {
+    (*it)->updateData(marketData);
+  }
 }
 
 void DataManager::sendOrder() {
@@ -23,8 +39,8 @@ void DataManager::sendOrder() {
     while (set.contains(nextIdx)) {
       // process and send order if necessary
       std::cout << "The asset being processed is " << nextIdx << std::endl;
-
-      set.erase(nextIdx++);
+      nextIdx++;
+      // set.erase(nextIdx++);
     }
     set.unlock();
   }

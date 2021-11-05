@@ -1,31 +1,25 @@
 #pragma once
-
 #include <stdio.h>
 
 #include <deque>
 
-#include "Logger.h"
-#include "MarketData.h"
+#include "../exchange/MarketData.h"
+#include "../exchange/Order.h"
+#include "../exchange/TradingStrategy.h"
+#include "../ordering-system/OrderExecutor.h"
 
-class MarketData;
-
-class BollingerBand {
+class BollingerBand : public TradingStrategy {
  public:
-  double getCurrMovingAverage();
-  double getCurrStdDeviation();
-  void strategy(MarketData *data);
   BollingerBand(int max);
   ~BollingerBand();
+  void runStrategy();
 
  private:
-  void process(MarketData const *data);
-  void buy(MarketData const *data);
-  void sell(MarketData const *data);
+  //void process(MarketData const *data);
   int currElementCount;
   int currentHeldVolume;
   const int maxElements;
   double currAvg;
   double currStdDev;
   std::deque<double> *marketPrices;
-  Logger *logger;
 };
