@@ -1,5 +1,5 @@
 #include "KrakenListener.h"
-
+#include "../exchange/Exchange.h"
 #include <iomanip>
 #include <iostream>
 #include <json/single_include/nlohmann/json.hpp>
@@ -10,7 +10,7 @@ KrakenListener::KrakenListener(DataManager &dataManager)
           "wss://ws.kraken.com/",
           "{\"event\":\"subscribe\", \"subscription\":{\"name\":\"ticker\"}, "
           "\"pair\":[\"BTC/USD\"]}",
-          "KRAKEN", dataManager) {}
+          Exchange::KRAKEN, dataManager) {}
 
 // reference: https://docs.kraken.com/websockets/#message-ticker
 void KrakenListener::passJSON(nlohmann::json json) {
@@ -20,9 +20,10 @@ void KrakenListener::passJSON(nlohmann::json json) {
   } else if (json.contains("event") && json.at("event") == "heartbeat") {
     // std::cout << "heartbeat";
   } else if (!json.contains("channelID")) {
-    auto &askPrice = json[1].at("a")[0];
+    int askPrice = json[1].at("a")[0];
     int askVolume = json[1].at("a")[1];
-    auto &bidPrice = json[1].at("b")[0];
+    int bidPrice = json[1].at("b")[0];
     int bidVolume = json[1].at("b")[1];
+    constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
   }
 }

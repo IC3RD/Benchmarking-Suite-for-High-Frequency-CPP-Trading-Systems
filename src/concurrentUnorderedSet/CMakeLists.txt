@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.17)
+project(CPPDesignPatternsforLowLatencyTrading)
+
+add_library(concurrentUnorderedSet INTERFACE)
+set_target_properties(concurrentUnorderedSet PROPERTIES LINKER_LANGUAGE CXX)

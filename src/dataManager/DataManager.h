@@ -1,19 +1,27 @@
 #pragma once
+#include <deque>
 #include <mutex>
 #include <vector>
+#include <memory>
 
-#include "AssetData.h"
-#include "ConcurrentUnorderedSet/CoarseGrainedUnorderedSet.h"
+#include "../exchange/MarketData.h"
+#include "../exchange/TradingStrategy.h"
+#include "../bollingerBand/BollingerBand.h"
+#include "../concurrentUnorderedSet/CoarseGrainedUnorderedSet.h"
 
 class DataManager {
  public:
-  void addEntry(AssetData);
+  DataManager();
+  //void addTradingStrategy(TradingStrategy&);
+  void addEntry(MarketData);
   void sendOrder();
+  MarketData& getMostRecentMarketData();
 
  private:
-  std::size_t storeIdx = -1;
-  std::size_t nextIdx = 0;
-  std::vector<AssetData> dataHistory;
+  std::size_t storeIdx;
+  std::size_t nextIdx;
+  std::vector<MarketData> dataHistory;
   std::mutex mutex_dataHistory;
   CoarseGrainedUnorderedSet<std::size_t> set;
+  std::deque<std::unique_ptr<TradingStrategy>> listenerStrategies;
 };

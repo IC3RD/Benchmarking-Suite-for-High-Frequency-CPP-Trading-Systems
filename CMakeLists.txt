@@ -66,6 +66,6 @@ include_directories(${CURL_INCLUDE_DIR})
 
 
 add_subdirectory(src)
-add_subdirectory(test)
+#add_subdirectory(test)
 add_subdirectory(lib)
 

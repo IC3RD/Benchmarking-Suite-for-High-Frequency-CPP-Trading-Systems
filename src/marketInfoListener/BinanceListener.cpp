@@ -9,15 +9,21 @@ BinanceListener::BinanceListener(DataManager &dataManager)
     : Listener(
           "wss://stream.binance.com:9443/ws",
           "{\"method\":\"SUBSCRIBE\",\"params\":[\"btcusdt@depth\"],\"id\":1}",
-          "BINANCE", dataManager) {}
+          Exchange::BINANCE, dataManager) {}
 
 // reference:
 // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md
 void BinanceListener::passJSON(nlohmann::json json) {
+  int askPrice, askVolume, bidPrice, bidVolume = -1;
   if (json.contains("a")) {
-    std::string askPrice = json.at("a")[0][0];
+    askPrice = json.at("a")[0][0];
+    askVolume = json.at("a")[0][1];
   }
   if (json.contains("b")) {
-    std::string bidPrice = json.at("b")[0][0];
+    bidPrice = json.at("b")[0][0];
+    bidVolume = json.at("b")[0][1];
+  }
+  if (askPrice != -1 || bidPrice != -1) {
+    constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
   }
 }

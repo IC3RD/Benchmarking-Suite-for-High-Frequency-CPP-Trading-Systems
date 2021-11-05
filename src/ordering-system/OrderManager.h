@@ -1,19 +1,15 @@
 #pragma once
-#include <Exchange.h>
-#include <Order.h>
-#include <OrderExecutor.h>
-#include <binance/BinanceOrderExecutor.h>
-#include <bitmex/BitmexOrderExecutor.h>
-#include <coinbase/CoinbaseOrderExecutor.h>
-#include <unordered_map>
-#include <vector>
 
+#include "../exchange/Order.h"
+#include "OrderBuilder.h"
+using namespace std;
 class OrderManager {
-  // Algorithm
- public:
-  OrderManager();
-  // Track order and then pass to an OrderExecutor.
-  void submitOrder(Order order);
+public:
+  virtual void submitOrder(Order order) = 0;
+  static OrderBuilder createOrderBuilder() { return OrderBuilder(); }
+  OrderManager(){};
+  virtual string getURL() = 0;
+  virtual string getExchangeName() = 0;
 
  private:
 //  std::unordered_map<int, Order> *pendingOrders;

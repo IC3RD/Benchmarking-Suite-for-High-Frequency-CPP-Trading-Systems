@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES BollingerBand.cpp Logger.cpp MarketData.cpp AlgoTrader.cpp Order.cpp BitMEXApi.cpp SHA256Engine.cpp SHA256Engine.h)
+set(SOURCE_FILES BollingerBand.cpp)
 
 add_library(bollingerBand ${SOURCE_FILES})
 
@@ -12,4 +12,6 @@ target_link_libraries(bollingerBand PUBLIC
         Crypto
         Util
         JSON
-        NetSSL ordering-system)
+        NetSSL
+        exchange
+        ordering-system)

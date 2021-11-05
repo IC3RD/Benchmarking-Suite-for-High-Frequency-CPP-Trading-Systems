@@ -1,3 +1,5 @@
+#include "CoarseGrainedUnorderedSet.h"
+
 template <typename T>
 void CoarseGrainedUnorderedSet<T>::insert(T elem) {
   recursive_mutex_.lock();

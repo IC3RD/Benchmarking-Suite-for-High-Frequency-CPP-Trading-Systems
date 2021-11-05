@@ -5,7 +5,7 @@
 
 #include <string>
 
-    class Order {
+class Order {
  public:
   Order(std::string, int, int, bool);
   Order(std::string symbol, int price, int volume, bool isBuyOrder,
