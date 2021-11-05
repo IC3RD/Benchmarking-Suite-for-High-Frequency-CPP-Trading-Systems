@@ -7,4 +7,3 @@ class debug {
     std::cout << "> " << x << std::endl; \
   } while (0)
 };
-

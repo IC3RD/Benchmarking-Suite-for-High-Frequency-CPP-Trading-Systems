@@ -1,11 +1,12 @@
 #pragma once
 
 #include <stdio.h>
-#include <unordered_map>
-#include <string>
 
-#include "../ordering-system/OrderExecutor.h"
+#include <string>
+#include <unordered_map>
+
 #include "MarketData.h"
+#include "OrderManager.h"
 
 using namespace std;
 
@@ -17,6 +18,6 @@ class TradingStrategy {
   virtual void sell(MarketData &);
 
  protected:
-  unordered_map<Exchange::ExchangeName, MarketData&, hash<int>> exchangeData;
-  OrderExecutor orderExecutor;
+  unordered_map<Exchange::ExchangeName, MarketData &, hash<int>> exchangeData;
+  OrderManager orderManager;
 };
