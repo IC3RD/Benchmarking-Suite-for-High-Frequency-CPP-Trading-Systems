@@ -1,9 +1,9 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
-#include "../exchange/Order.h"
-#include "OrderManager.h"
-#include "../exchange/Exchange.h"
+#pragma once
 #include <memory>
+
+#include "exchange/Order.h"
+#include "OrderManager.h"
+#include "exchange/Exchange.h"
 
 class OrderExecutor {
 public:
@@ -14,5 +14,3 @@ private:
     std::unique_ptr<OrderManager> bitmexManager;
     //TODO: add extra managers for the different exchanges
 };
-
-#endif //CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H

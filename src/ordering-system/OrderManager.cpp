@@ -3,6 +3,7 @@
 //
 
 #include "OrderManager.h"
+#include "OrderExecutor.h"
 
 OrderManager::OrderManager()
     : orderExecutors({{BINANCE, new BinanceOrderExecutor()},

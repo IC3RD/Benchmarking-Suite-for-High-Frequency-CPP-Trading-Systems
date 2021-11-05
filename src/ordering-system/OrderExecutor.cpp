@@ -1,5 +1,5 @@
 #include "OrderExecutor.h"
-#include "../exchange/Exchange.h"
+#include "exchange/Exchange.h"
 #include "OrderManager.h"
 #include "bitmex/BitmexOrderManager.h"
 #include "coinbase/CoinbaseOrderManager.h"
