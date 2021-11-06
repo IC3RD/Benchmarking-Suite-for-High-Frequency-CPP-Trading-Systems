@@ -15,6 +15,7 @@ class Arbitrage : public TradingStrategy {
   Arbitrage();
   ~Arbitrage();
   void runStrategy() override;
+
  private:
   void process(MarketData &, MarketData &);
   list<Exchange::ExchangeName> exchanges;

@@ -47,5 +47,6 @@ void Listener::sendRequest() { webSocket.send(request); }
 
 void Listener::constructAndPassMarketData(int buy, int sell, int buyVolume,
                                           int sellVolume) {
-  centralDataManager.addEntry(MarketData("BTC", buy, sell, buyVolume, sellVolume, exchange));
+  centralDataManager.addEntry(
+      MarketData("BTC", buy, sell, buyVolume, sellVolume, exchange));
 }

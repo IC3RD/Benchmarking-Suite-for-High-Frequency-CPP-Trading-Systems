@@ -1,6 +1,5 @@
 rm -rf build && mkdir build
-git submodule init && git submodule update
-cd build || exit
-cmake ..
-make & make install
-cd ..
+git submodule update --init --recursive
+cmake -S . -B build
+cmake --build build
+cmake --install build

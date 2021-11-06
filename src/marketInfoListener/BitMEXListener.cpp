@@ -15,17 +15,17 @@ void BitMEXListener::passJSON(nlohmann::json json) {
     int bidVolume = -1;
 
     if (json.at("data")[0].contains("askPrice")) {
-        askPrice = json.at("data")[0].at("askPrice");
+      askPrice = json.at("data")[0].at("askPrice");
     }
     if (json.at("data")[0].contains("bidPrice")) {
-        bidPrice = json.at("data")[0].at("bidPrice");
+      bidPrice = json.at("data")[0].at("bidPrice");
     }
     if (json.at("data")[0].contains("volume")) {
-        askVolume = json.at("data")[0].at("volume");
-        bidVolume = askVolume;
+      askVolume = json.at("data")[0].at("volume");
+      bidVolume = askVolume;
     }
     if (askPrice != -1 || bidPrice != -1 || askVolume != -1) {
-        constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
+      constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
     }
   }
 }

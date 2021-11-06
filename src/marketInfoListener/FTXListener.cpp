@@ -11,7 +11,7 @@ FTXListener::FTXListener(DataManager &dataManager)
                "\"market\": \"BTC-PERP\"}",
                Exchange::FTX, dataManager) {}
 
-//reference: https://docs.ftx.com/#websocket-api
+// reference: https://docs.ftx.com/#websocket-api
 void FTXListener::passJSON(nlohmann::json json) {
   if (json.contains("channel") && json.contains("data")) {
     // auto *asks = json.at("data").at("asks");

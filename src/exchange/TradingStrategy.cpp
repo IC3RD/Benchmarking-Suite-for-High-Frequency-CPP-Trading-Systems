@@ -22,7 +22,8 @@ void TradingStrategy::updateData(MarketData& newData) {
       (*itr).second.updateSellVolume(newData.getSellVolume());
     }
   } else {
-    //auto pair = std::make_pair<Exchange::ExchangeName, MarketData&>(exchange, newData)
+    // auto pair = std::make_pair<Exchange::ExchangeName, MarketData&>(exchange,
+    // newData)
     exchangeData.insert({exchange, newData});
   }
   runStrategy();
@@ -30,14 +31,14 @@ void TradingStrategy::updateData(MarketData& newData) {
 
 void TradingStrategy::buy(MarketData& data) {
   std::cout << "Buy\n";
-  orderExecutor.placeOrder(
+  orderManager.submitOrder(
       data.getExchange(),
       Order(data.getSymbol(), data.getBuyPrice(), 100, true));
 }
 
 void TradingStrategy::sell(MarketData& data) {
   std::cout << "Sell\n";
-  orderExecutor.placeOrder(
+  orderManager.submitOrder(
       data.getExchange(),
       Order(data.getSymbol(), data.getSellPrice(), 100, false));
 }

@@ -3,13 +3,14 @@
 //
 #include "BinanceOrderExecutor.h"
 
-#include <Poco/DigestEngine.h>
-#include <Poco/HMACEngine.h>
-#include <Poco/JSON/Object.h>
-#include <SHA256Engine.h>
 #include <curl/curl.h>
 
 #include <chrono>
+
+#include "Poco/DigestEngine.h"
+#include "Poco/HMACEngine.h"
+#include "Poco/JSON/Object.h"
+#include "utils/SHA256Engine.h"
 
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                 \

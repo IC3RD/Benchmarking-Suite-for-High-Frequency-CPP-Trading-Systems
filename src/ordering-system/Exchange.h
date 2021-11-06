@@ -1,3 +1,3 @@
 #pragma once
 
-enum Exchange {BINANCE, BITMEX, COINBASE, FTX, KRAKEN};
+enum Exchange { BINANCE, BITMEX, COINBASE, FTX, KRAKEN };

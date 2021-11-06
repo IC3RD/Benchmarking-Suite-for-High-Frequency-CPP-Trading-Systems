@@ -1,18 +1,16 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
-#include "../exchange/Order.h"
-#include "OrderManager.h"
-#include "../exchange/Exchange.h"
-#include <memory>
+#pragma once
+#include <OrderBuilder.h>
+#include <exchange/Order.h>
 
 class OrderExecutor {
-public:
-    OrderExecutor();
-    void placeOrder(Exchange::ExchangeName exchange, Order order);
-private:
-    std::unique_ptr<OrderManager> coinbaseManager;
-    std::unique_ptr<OrderManager> bitmexManager;
-    //TODO: add extra managers for the different exchanges
-};
+ public:
+  virtual void submitOrder(Order order) = 0;
+  static OrderBuilder createOrderBuilder() { return {}; }
+  OrderExecutor() = default;
+  virtual std::string getURL() = 0;
+  virtual std::string getExchangeName() = 0;
 
-#endif //CPPDESIGNPATTERNSLOWLATENCY_ORDEREXECUTOR_H
+ private:
+  virtual std::string getSecretKey() = 0;
+  virtual std::string getPublicKey() = 0;
+};
