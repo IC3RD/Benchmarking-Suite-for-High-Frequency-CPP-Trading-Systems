@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "dataManager/DataManager.h"
+#include "dataManager/OrderBook.h"
 #include "marketInfoListener/BinanceListener.h"
 #include "marketInfoListener/BitMEXListener.h"
 #include "marketInfoListener/CoinbaseListener.h"
@@ -20,11 +21,12 @@ int main() {
   ix::initNetSystem();
 
   DataManager centralDataManager;
+  OrderBook orderBook;
   std::vector<Listener *> listeners;
-  listeners.push_back(new BitMEXListener(centralDataManager));
+  listeners.push_back(new BitMEXListener(centralDataManager, orderBook));
   // listeners.push_back(new BinanceListener(centralDataManager));
-  listeners.push_back(new CoinbaseListener(centralDataManager));
-  listeners.push_back(new FTXListener(centralDataManager));
+  listeners.push_back(new CoinbaseListener(centralDataManager, orderBook));
+  listeners.push_back(new FTXListener(centralDataManager, orderBook));
   // listeners.push_back(new KrakenListener(centralDataManager));
 
   for (Listener *listener : listeners) {

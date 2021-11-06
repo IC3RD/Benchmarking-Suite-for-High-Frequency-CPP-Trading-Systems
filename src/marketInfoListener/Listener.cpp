@@ -1,14 +1,13 @@
 #include "Listener.h"
-
 #include <iostream>
-#
 
 Listener::Listener(std::string url, std::string request,
-                   Exchange::ExchangeName exchange, DataManager &dataManager)
+                   Exchange::ExchangeName exchange, DataManager &dataManager, OrderBook &orderBook)
     : url(url),
       request(request),
       exchange(exchange),
-      centralDataManager(dataManager) {}
+      centralDataManager(dataManager),
+      orderBook(orderBook) {}
 
 void Listener::startListening() {
   webSocket.setUrl(url);
@@ -49,4 +48,8 @@ void Listener::constructAndPassMarketData(int buy, int sell, int buyVolume,
                                           int sellVolume) {
   centralDataManager.addEntry(
       MarketData("BTC", buy, sell, buyVolume, sellVolume, exchange));
+}
+
+void Listener::constructAndPassOrderData(OrderTypes::OrderType type, int price, double volume) {
+  orderBook.addEntry(OrderData(type, price, volume));
 }

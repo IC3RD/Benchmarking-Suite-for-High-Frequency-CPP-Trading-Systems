@@ -5,11 +5,11 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-FTXListener::FTXListener(DataManager &dataManager)
+FTXListener::FTXListener(DataManager &dataManager, OrderBook &orderBook)
     : Listener("wss://ftx.com/ws/",
                "{\"op\": \"subscribe\", \"channel\": \"orderbook\", "
                "\"market\": \"BTC-PERP\"}",
-               Exchange::FTX, dataManager) {}
+               Exchange::FTX, dataManager, orderBook) {}
 
 // reference: https://docs.ftx.com/#websocket-api
 void FTXListener::passJSON(nlohmann::json json) {

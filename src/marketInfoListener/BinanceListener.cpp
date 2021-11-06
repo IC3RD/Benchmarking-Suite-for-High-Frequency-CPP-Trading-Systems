@@ -5,11 +5,11 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-BinanceListener::BinanceListener(DataManager &dataManager)
+BinanceListener::BinanceListener(DataManager &dataManager, OrderBook &orderBook)
     : Listener(
           "wss://stream.binance.com:9443/ws",
           "{\"method\":\"SUBSCRIBE\",\"params\":[\"btcusdt@depth\"],\"id\":1}",
-          Exchange::BINANCE, dataManager) {}
+          Exchange::BINANCE, dataManager, orderBook) {}
 
 // reference:
 // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md
