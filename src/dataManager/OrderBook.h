@@ -3,6 +3,7 @@
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <memory>
 
 #include "concurrentUnorderedSet/CoarseGrainedUnorderedSet.h"
 #include "exchange/OrderData.h"
@@ -15,7 +16,7 @@ class OrderBook {
   OrderBook();
   ~OrderBook();
   // void addTradingStrategy(TradingStrategy&);
-  void addEntry(OrderData);
+  void addEntry(std::shared_ptr<OrderData>);
   void sendOrder();
 
  private:

@@ -4,9 +4,9 @@ OrderDataStore::OrderDataStore() {
     nextIdx = 0;
 }
 
-void OrderDataStore::addEntry(OrderData orderData) {
+void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
   mutex_dataHistory.lock();
-  dataHistory.push_back(orderData);
+  dataHistory.insert(std::make_pair(orderData->getOrderPrice(), orderData));
   int i = dataHistory.size() - 1;
   mutex_dataHistory.unlock();
   //std::cout << "index where the data should be stored is " << i << std::endl;

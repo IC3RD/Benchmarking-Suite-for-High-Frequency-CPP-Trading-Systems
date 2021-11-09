@@ -26,7 +26,7 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
     bidPrice = std::stoi(val);
   }
   if (askPrice != -1 || bidPrice != 1) {
-    constructAndPassMarketData(bidPrice, askPrice, -1, -1);
+    //constructAndPassMarketData(bidPrice, askPrice, -1, -1);
   }
 
   if (json.contains("type")) {
@@ -35,14 +35,14 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
          for (auto bid : json.at("bids")) {
            std::string priceS = bid[0];
            std::string volumeS = bid[1];
-           //constructAndPassOrderData(OrderTypes::BID, std::stoi(priceS), std::stod(volumeS));
+           constructAndPassOrderData(OrderTypes::BID, std::stol(priceS), std::stod(volumeS));
          }
        }
        if (json.contains("asks")) {
          for (auto ask : json.at("asks")) {
            std::string priceS = ask[0];
            std::string volumeS = ask[1];
-           //constructAndPassOrderData(OrderTypes::ASK, std::stoi(priceS), std::stod(volumeS));
+           constructAndPassOrderData(OrderTypes::ASK, std::stol(priceS), std::stod(volumeS));
          }
        }
      }
@@ -55,9 +55,9 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
            } else {
              type = OrderTypes::ASK;
            }
-           std::string priceS = change[0];
-           std::string volumeS = change[1];
-           //constructAndPassOrderData(type, std::stoi(priceS), std::stod(volumeS));
+           std::string priceS = change[1];
+           std::string volumeS = change[2];
+           constructAndPassOrderData(type, std::stoi(priceS), std::stod(volumeS));
          }
        }
      }

@@ -1,5 +1,6 @@
 #include "Listener.h"
 #include <iostream>
+#include <memory>
 
 Listener::Listener(std::string url, std::string request,
                    Exchange::ExchangeName exchange, DataManager &dataManager, OrderBook &orderBook)
@@ -51,5 +52,7 @@ void Listener::constructAndPassMarketData(int buy, int sell, int buyVolume,
 }
 
 void Listener::constructAndPassOrderData(OrderTypes::OrderType type, int price, double volume) {
-  orderBook.addEntry(OrderData(type, price, volume));
+  std::shared_ptr<OrderData> data = std::make_shared<OrderData>(type, price, volume);
+ 
+  orderBook.addEntry(data);
 }

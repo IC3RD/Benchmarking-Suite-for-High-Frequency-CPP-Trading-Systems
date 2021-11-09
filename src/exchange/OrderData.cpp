@@ -1,6 +1,6 @@
 #include "OrderData.h"
 
-OrderData::OrderData(OrderTypes::OrderType type, int price, double volume) : orderType(type), orderPrice(price), orderVolume(volume) {};
+OrderData::OrderData(OrderTypes::OrderType type, long price, double volume) : orderType(type), orderPrice(price), orderVolume(volume) {};
 
 OrderData::~OrderData() {};
 
@@ -12,6 +12,6 @@ const double OrderData::getOrderVolume() const {
     return orderVolume;
 }
 
-const int OrderData::getOrderPrice() const {
+const long OrderData::getOrderPrice() const {
     return orderPrice;
 }
