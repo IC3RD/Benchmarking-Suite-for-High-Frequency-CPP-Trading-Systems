@@ -18,6 +18,8 @@ class OrderBook {
   // void addTradingStrategy(TradingStrategy&);
   void addEntry(std::shared_ptr<OrderData>);
   void sendOrder();
+  OrderDataStore getBidStore();
+  OrderDataStore getAskStore();
 
  private:
   std::deque<std::unique_ptr<TradingStrategy>> listenerStrategies;

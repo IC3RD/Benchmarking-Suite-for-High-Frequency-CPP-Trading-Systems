@@ -7,6 +7,7 @@
 
 #include "MarketData.h"
 #include "OrderManager.h"
+#include "dataManager/OrderBook.h"
 
 using namespace std;
 
@@ -20,4 +21,5 @@ class TradingStrategy {
  protected:
   unordered_map<Exchange::ExchangeName, MarketData &, hash<int>> exchangeData;
   OrderManager orderManager;
+  OrderBook orderBook;
 };

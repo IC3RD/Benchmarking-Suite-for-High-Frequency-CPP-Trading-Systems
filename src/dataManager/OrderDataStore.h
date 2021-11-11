@@ -11,6 +11,7 @@ public:
   OrderDataStore();
   void addEntry(std::shared_ptr<OrderData>);
   void sendOrder();
+  OrderData getEntry(int i);
 private:
   std::size_t storeIdx;
   std::size_t nextIdx;

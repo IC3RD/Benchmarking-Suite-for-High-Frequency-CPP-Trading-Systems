@@ -12,6 +12,10 @@ void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
   //std::cout << "index where the data should be stored is " << i << std::endl;
 }
 
+OrderData OrderDataStore::getEntry(int i){
+  return *(dataHistory.find(dataHistory.size() - i - 1));
+}
+
 void OrderDataStore::sendOrder() {
   while (true) {
     set.lock();

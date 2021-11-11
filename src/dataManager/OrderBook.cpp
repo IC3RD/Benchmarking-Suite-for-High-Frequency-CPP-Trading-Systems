@@ -26,3 +26,11 @@ void OrderBook::sendOrder() {
     askStore->sendOrder();
     bidStore->sendOrder();
 }
+
+OrderDataStore OrderBook::getBidStore(){
+    return *bidStore;
+}
+
+OrderDataStore OrderBook::getAskStore(){
+    return *askStore;
+}
