@@ -19,14 +19,8 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
   switch (data->getOrderType()) {
     case (OrderTypes::ASK):
       askStore->addEntry(data);
-      if (data->getOrderPrice() < askStore->getBest()) {
-        askStore->updateBest(data->getOrderPrice());
-      }
     case (OrderTypes::BID):
       bidStore->addEntry(data);
-      if (data->getOrderPrice() > bidStore->getBest()) {
-        askStore->updateBest(data->getOrderPrice());
-      }
   }
   for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
        ++it) {
@@ -37,6 +31,22 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
 void OrderBook::sendOrder() {
   askStore->sendOrder();
   bidStore->sendOrder();
+}
+
+const Exchange::ExchangeName OrderBook::getExchange() const { return exchange; }
+
+std::shared_ptr<OrderData> OrderBook::getHighestBid() {
+  if (bidStore->isEmpty()) {
+    return nullptr;
+  }
+  return (--(bidStore->getPriceToOrderDataMap().end()))->second;
+}
+
+std::shared_ptr<OrderData> OrderBook::getLowestAsk() {
+  if (askStore->isEmpty()) {
+    return nullptr;
+  }
+  return askStore->getPriceToOrderDataMap().begin()->second;
 }
 
 std::shared_ptr<OrderDataStore> OrderBook::getBidStore() { return bidStore; }

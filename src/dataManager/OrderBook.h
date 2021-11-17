@@ -23,6 +23,8 @@ class OrderBook {
   const Exchange::ExchangeName getExchange() const;
   std::shared_ptr<OrderDataStore> getBidStore();
   std::shared_ptr<OrderDataStore> getAskStore();
+  std::shared_ptr<OrderData> getHighestBid();
+  std::shared_ptr<OrderData> getLowestAsk();
 
  private:
   std::deque<std::shared_ptr<TradingStrategy>> listenerStrategies;

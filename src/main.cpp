@@ -7,7 +7,6 @@
 #include <thread>
 #include <vector>
 
-#include "dataManager/DataManager.h"
 #include "dataManager/OrderBook.h"
 #include "exchange/Exchange.h"
 #include "marketInfoListener/BinanceListener.h"
@@ -21,28 +20,40 @@ int main() {
   // Required on Windows
   ix::initNetSystem();
 
-  DataManager centralDataManager;
   // Set up order books for each exchange
-  OrderBook binanceOrderBook(Exchange::BINANCE);
-  OrderBook coinbaseOrderBook(Exchange::COINBASE);
+
+  std::shared_ptr<OrderBook> binanceOrderBook = std::make_shared<OrderBook>(Exchange::BINANCE);
+  std::shared_ptr<OrderBook> coinbaseOrderBook = std::make_shared<OrderBook>(Exchange::COINBASE);
+  std::shared_ptr<OrderBook> krakenOrderBook = std::make_shared<OrderBook>(Exchange::KRAKEN);
 
   // initialise shared trading strategy
   std::shared_ptr<BollingerBand> strategy =
-      std::make_shared<BollingerBand>(100);
+      std::make_shared<BollingerBand>();
+
+  strategy->insertNewOrderBook(binanceOrderBook);
+  strategy->insertNewOrderBook(coinbaseOrderBook);
+  strategy->insertNewOrderBook(krakenOrderBook);
+
+  // Some bollinger band specific additions
+  strategy->addExchange(Exchange::BINANCE);
+  strategy->addExchange(Exchange::COINBASE);
+  strategy->addExchange(Exchange::KRAKEN);
 
   // add shared trading strategy to each order book
-  binanceOrderBook.addTradingStrategy(strategy);
-  coinbaseOrderBook.addTradingStrategy(strategy);
+  binanceOrderBook->addTradingStrategy(strategy);
+  coinbaseOrderBook->addTradingStrategy(strategy);
+  krakenOrderBook->addTradingStrategy(strategy);
 
   // initialise the listeners for the exchange
   std::vector<Listener *> listeners;
-  // listeners.push_back(new BitMEXListener(centralDataManager, orderBook));
+  //listeners.push_back(
+    //  new BitMEXListener(centralDataManager, bitmexOrderBook));
   listeners.push_back(
-      new BinanceListener(centralDataManager, binanceOrderBook));
+      new BinanceListener(*binanceOrderBook));
   listeners.push_back(
-      new CoinbaseListener(centralDataManager, coinbaseOrderBook));
-  // listeners.push_back(new FTXListener(centralDataManager, orderBook));
-  // listeners.push_back(new KrakenListener(centralDataManager));
+      new CoinbaseListener(*coinbaseOrderBook));
+  //listeners.push_back(new FTXListener(centralDataManager, orderBook));
+  listeners.push_back(new KrakenListener(*krakenOrderBook));
 
   for (Listener *listener : listeners) {
     listener->startListening();

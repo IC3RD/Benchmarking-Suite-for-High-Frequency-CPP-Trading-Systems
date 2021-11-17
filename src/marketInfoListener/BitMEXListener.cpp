@@ -2,10 +2,10 @@
 
 #include <json/single_include/nlohmann/json.hpp>
 
-BitMEXListener::BitMEXListener(DataManager &dataManager, OrderBook &orderBook)
+BitMEXListener::BitMEXListener(OrderBook &orderBook)
     : Listener("wss://www.bitmex.com/realtime",
-               "{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}",
-               Exchange::BITMEX, dataManager, orderBook) {}
+               "{\"op\":\"subscribe\",\"args\":[\"orderBookL2:XBTUSD\"]}",
+               Exchange::BITMEX, orderBook) {}
 
 void BitMEXListener::passJSON(nlohmann::json json) {
   if (json.contains("data")) {
@@ -25,7 +25,7 @@ void BitMEXListener::passJSON(nlohmann::json json) {
       bidVolume = askVolume;
     }
     if (askPrice != -1 || bidPrice != -1 || askVolume != -1) {
-      constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
+      //constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
     }
   }
 }

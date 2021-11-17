@@ -4,7 +4,7 @@
 
 class KrakenListener : public Listener {
  public:
-  KrakenListener(DataManager &dataManager, OrderBook &orderBook);
+  KrakenListener(OrderBook &orderBook);
 
  protected:
   void passJSON(nlohmann::json json);

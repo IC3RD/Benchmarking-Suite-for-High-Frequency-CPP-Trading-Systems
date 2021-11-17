@@ -5,31 +5,14 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-CoinbaseListener::CoinbaseListener(DataManager &dataManager,
-                                   OrderBook &orderBook)
+CoinbaseListener::CoinbaseListener(OrderBook &orderBook)
     : Listener("wss://ws-feed.exchange.coinbase.com",
                "{\"type\": \"subscribe\", \"product_ids\": [\"BTC-USD\"], "
                "\"channels\": [\"ticker\", \"level2\"]}",
-               Exchange::COINBASE, dataManager, orderBook) {}
+               Exchange::COINBASE, orderBook) {}
 
 // reference: https://docs.cloud.coinbase.com/exchange/docs/channels
 void CoinbaseListener::passJSON(nlohmann::json json) {
-  int askPrice = -1;
-  int bidPrice = -1;
-  int askVolume = -1;
-  int bidVolume = -1;
-  if (json.contains("best_ask")) {
-    std::string val = json.at("best_ask");
-    askPrice = std::stoi(val);
-  }
-  if (json.contains("best_bid")) {
-    std::string val = json.at("best_bid");
-    bidPrice = std::stoi(val);
-  }
-  if (askPrice != -1 || bidPrice != 1) {
-    // constructAndPassMarketData(bidPrice, askPrice, -1, -1);
-  }
-
   if (json.contains("type")) {
     if (json.at("type") == "snapshot") {
       if (json.contains("bids")) {

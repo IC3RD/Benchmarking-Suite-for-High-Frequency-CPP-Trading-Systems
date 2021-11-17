@@ -5,11 +5,11 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-BinanceListener::BinanceListener(DataManager &dataManager, OrderBook &orderBook)
+BinanceListener::BinanceListener(OrderBook &orderBook)
     : Listener(
           "wss://stream.binance.com:9443/ws",
           "{\"method\":\"SUBSCRIBE\",\"params\":[\"btcusdt@depth\"],\"id\":1}",
-          Exchange::BINANCE, dataManager, orderBook) {
+          Exchange::BINANCE, orderBook) {
   lastUpdated = 0;
 }
 
