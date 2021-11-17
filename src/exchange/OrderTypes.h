@@ -1,6 +1,6 @@
 #pragma once
 
 class OrderTypes {
-    public:
-        enum OrderType { ASK, BID};  
+ public:
+  enum OrderType { ASK, BID };
 };
