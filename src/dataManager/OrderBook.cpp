@@ -2,17 +2,16 @@
 
 #include "OrderBook.h"
 
-#include "bollingerBand/BollingerBand.h"
-
 OrderBook::OrderBook(Exchange::ExchangeName exchange) : exchange(exchange) {
-    // these separate stores are causes errors for now
-    bidStore = std::make_unique<OrderDataStore>();
-    askStore = std::make_unique<OrderDataStore>();
+  // these separate stores are causes errors for now
+  bidStore = std::make_shared<OrderDataStore>();
+  askStore = std::make_shared<OrderDataStore>();
 }
 
 OrderBook::~OrderBook() {}
 
-void OrderBook::addTradingStrategy(std::shared_ptr<TradingStrategy> tradingStrategy) {
+void OrderBook::addTradingStrategy(
+    std::shared_ptr<TradingStrategy> tradingStrategy) {
   listenerStrategies.push_back(tradingStrategy);
 }
 
@@ -36,6 +35,10 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
 }
 
 void OrderBook::sendOrder() {
-    askStore->sendOrder();
-    bidStore->sendOrder();
+  askStore->sendOrder();
+  bidStore->sendOrder();
 }
+
+std::shared_ptr<OrderDataStore> OrderBook::getBidStore() { return bidStore; }
+
+std::shared_ptr<OrderDataStore> OrderBook::getAskStore() { return askStore; }
