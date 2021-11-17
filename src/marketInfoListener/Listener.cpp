@@ -1,9 +1,11 @@
 #include "Listener.h"
+
 #include <iostream>
 #include <memory>
 
 Listener::Listener(std::string url, std::string request,
-                   Exchange::ExchangeName exchange, DataManager &dataManager, OrderBook &orderBook)
+                   Exchange::ExchangeName exchange, DataManager &dataManager,
+                   OrderBook &orderBook)
     : url(url),
       request(request),
       exchange(exchange),
@@ -27,8 +29,8 @@ void Listener::setHandlers() {
 
       // uncomment to show json from all listeners, to show the listener of a
       // specific exchange put this in an if statement with exchange == "BITMEX"
-      //if (exchange == Exchange::BINANCE) {
-        //std::cout << std::setw(4) << j << std::endl;
+      // if (exchange == Exchange::BINANCE) {
+      // std::cout << std::setw(4) << j << std::endl;
       //}
       passJSON(j);
 
@@ -53,7 +55,9 @@ void Listener::constructAndPassMarketData(int buy, int sell, int buyVolume,
       MarketData("BTC", buy, sell, buyVolume, sellVolume, exchange));
 }
 
-void Listener::constructAndPassOrderData(OrderTypes::OrderType type, int price, double volume) {
-  std::shared_ptr<OrderData> data = std::make_shared<OrderData>(type, price, volume);
+void Listener::constructAndPassOrderData(OrderTypes::OrderType type, int price,
+                                         double volume) {
+  std::shared_ptr<OrderData> data =
+      std::make_shared<OrderData>(type, price, volume);
   orderBook.addEntry(data);
 }

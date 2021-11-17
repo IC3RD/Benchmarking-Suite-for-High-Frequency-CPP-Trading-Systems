@@ -16,12 +16,14 @@ BinanceListener::BinanceListener(DataManager &dataManager, OrderBook &orderBook)
 // reference:
 // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md
 void BinanceListener::passJSON(nlohmann::json json) {
-  if (json.contains("e") && json.contains("u") && json.contains("U") && json.contains("a") && json.contains("b")) {
+  if (json.contains("e") && json.contains("u") && json.contains("U") &&
+      json.contains("a") && json.contains("b")) {
     if (json.at("e") == "depthUpdate" && json.at("U") > lastUpdated) {
       for (auto ask : json.at("a")) {
         std::string askPrice = ask[0];
         std::string askVolume = ask[1];
-        constructAndPassOrderData(OrderTypes::ASK, (int)std::stol(askPrice) * 100,
+        constructAndPassOrderData(OrderTypes::ASK,
+                                  (int)std::stol(askPrice) * 100,
                                   std::stod(askVolume));
       }
 

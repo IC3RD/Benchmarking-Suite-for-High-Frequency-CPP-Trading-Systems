@@ -29,7 +29,8 @@ class Listener {
   /* set up callback/thread to react to incoming data */
   void constructAndPassMarketData(int buy, int sell, int buyVolume,
                                   int sellVolume);
-  void constructAndPassOrderData(OrderTypes::OrderType type, int price, double volume);
+  void constructAndPassOrderData(OrderTypes::OrderType type, int price,
+                                 double volume);
 
   void setHandlers();
   ix::WebSocket webSocket;
