@@ -25,7 +25,7 @@ void BitMEXListener::passJSON(nlohmann::json json) {
       bidVolume = askVolume;
     }
     if (askPrice != -1 || bidPrice != -1 || askVolume != -1) {
-      //constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
+      // constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
     }
   }
 }
