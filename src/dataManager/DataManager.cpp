@@ -3,8 +3,8 @@
 #include <iostream>
 #include <memory>
 
-#include "../arbitrage/Arbitrage.h"
-#include "../bollingerBand/BollingerBand.h"
+#include "arbitrage/Arbitrage.h"
+#include "bollingerBand/BollingerBand.h"
 
 DataManager::DataManager() {
   listenerStrategies.push_back(std::make_unique<BollingerBand>(100));

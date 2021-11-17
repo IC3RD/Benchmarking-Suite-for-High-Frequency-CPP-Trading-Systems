@@ -2,10 +2,10 @@
 
 #include <json/single_include/nlohmann/json.hpp>
 
-BitMEXListener::BitMEXListener(DataManager &dataManager)
+BitMEXListener::BitMEXListener(DataManager &dataManager, OrderBook &orderBook)
     : Listener("wss://www.bitmex.com/realtime",
                "{\"op\":\"subscribe\",\"args\":[\"instrument:XBTUSD\"]}",
-               Exchange::BITMEX, dataManager) {}
+               Exchange::BITMEX, dataManager, orderBook) {}
 
 void BitMEXListener::passJSON(nlohmann::json json) {
   if (json.contains("data")) {

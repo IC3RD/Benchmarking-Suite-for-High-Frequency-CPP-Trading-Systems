@@ -7,12 +7,12 @@
 
 #include "../exchange/Exchange.h"
 
-KrakenListener::KrakenListener(DataManager &dataManager)
+KrakenListener::KrakenListener(DataManager &dataManager, OrderBook &orderBook)
     : Listener(
           "wss://ws.kraken.com/",
           "{\"event\":\"subscribe\", \"subscription\":{\"name\":\"ticker\"}, "
           "\"pair\":[\"BTC/USD\"]}",
-          Exchange::KRAKEN, dataManager) {}
+          Exchange::KRAKEN, dataManager, orderBook) {}
 
 // reference: https://docs.kraken.com/websockets/#message-ticker
 void KrakenListener::passJSON(nlohmann::json json) {

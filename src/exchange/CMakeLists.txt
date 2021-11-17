@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES Order.cpp MarketData.cpp Exchange.h TradingStrategy.cpp)
+set(SOURCE_FILES Order.cpp MarketData.cpp Exchange.h TradingStrategy.cpp OrderData.cpp OrderTypes.h)
 
 add_library(exchange ${SOURCE_FILES})
 

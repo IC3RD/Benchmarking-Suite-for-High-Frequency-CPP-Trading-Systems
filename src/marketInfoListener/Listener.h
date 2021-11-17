@@ -8,11 +8,15 @@
 
 #include "../exchange/Exchange.h"
 #include "dataManager/DataManager.h"
+#include "dataManager/OrderBook.h"
+#include "exchange/OrderData.h"
+#include "exchange/OrderTypes.h"
 
 class Listener {
  public:
   Listener(std::string url, std::string request,
-           Exchange::ExchangeName exchange, DataManager &dataManager);
+           Exchange::ExchangeName exchange, DataManager &dataManager,
+           OrderBook &orderBook);
   ~Listener(){};
   /* start to listen to incoming data */
   void startListening();
@@ -25,6 +29,9 @@ class Listener {
   /* set up callback/thread to react to incoming data */
   void constructAndPassMarketData(int buy, int sell, int buyVolume,
                                   int sellVolume);
+  void constructAndPassOrderData(OrderTypes::OrderType type, int price,
+                                 double volume);
+
   void setHandlers();
   ix::WebSocket webSocket;
   const std::string url;
@@ -32,5 +39,6 @@ class Listener {
   const Exchange::ExchangeName exchange;
 
  private:
+  OrderBook &orderBook;
   DataManager &centralDataManager;
 };

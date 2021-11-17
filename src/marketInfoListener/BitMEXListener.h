@@ -5,7 +5,7 @@
 
 class BitMEXListener : public Listener {
  public:
-  BitMEXListener(DataManager &dataManager);
+  BitMEXListener(DataManager &dataManager, OrderBook &orderBook);
 
  protected:
   void passJSON(nlohmann::json json);

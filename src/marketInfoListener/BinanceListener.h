@@ -4,8 +4,11 @@
 
 class BinanceListener : public Listener {
  public:
-  BinanceListener(DataManager &dataManager);
+  BinanceListener(DataManager &dataManager, OrderBook &orderBook);
 
  protected:
   void passJSON(nlohmann::json json);
+
+ private:
+  int lastUpdated;
 };

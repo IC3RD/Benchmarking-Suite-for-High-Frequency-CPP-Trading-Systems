@@ -4,7 +4,7 @@
 
 class CoinbaseListener : public Listener {
  public:
-  CoinbaseListener(DataManager &dataManager);
+  CoinbaseListener(DataManager &dataManager, OrderBook &orderBook);
 
  protected:
   void passJSON(nlohmann::json json);
