@@ -22,13 +22,15 @@ int main() {
 
   // Set up order books for each exchange
 
-  std::shared_ptr<OrderBook> binanceOrderBook = std::make_shared<OrderBook>(Exchange::BINANCE);
-  std::shared_ptr<OrderBook> coinbaseOrderBook = std::make_shared<OrderBook>(Exchange::COINBASE);
-  std::shared_ptr<OrderBook> krakenOrderBook = std::make_shared<OrderBook>(Exchange::KRAKEN);
+  std::shared_ptr<OrderBook> binanceOrderBook =
+      std::make_shared<OrderBook>(Exchange::BINANCE);
+  std::shared_ptr<OrderBook> coinbaseOrderBook =
+      std::make_shared<OrderBook>(Exchange::COINBASE);
+  std::shared_ptr<OrderBook> krakenOrderBook =
+      std::make_shared<OrderBook>(Exchange::KRAKEN);
 
   // initialise shared trading strategy
-  std::shared_ptr<BollingerBand> strategy =
-      std::make_shared<BollingerBand>();
+  std::shared_ptr<BollingerBand> strategy = std::make_shared<BollingerBand>();
 
   strategy->insertNewOrderBook(binanceOrderBook);
   strategy->insertNewOrderBook(coinbaseOrderBook);
@@ -46,13 +48,11 @@ int main() {
 
   // initialise the listeners for the exchange
   std::vector<Listener *> listeners;
-  //listeners.push_back(
-    //  new BitMEXListener(centralDataManager, bitmexOrderBook));
-  listeners.push_back(
-      new BinanceListener(*binanceOrderBook));
-  listeners.push_back(
-      new CoinbaseListener(*coinbaseOrderBook));
-  //listeners.push_back(new FTXListener(centralDataManager, orderBook));
+  // listeners.push_back(
+  //  new BitMEXListener(centralDataManager, bitmexOrderBook));
+  listeners.push_back(new BinanceListener(*binanceOrderBook));
+  listeners.push_back(new CoinbaseListener(*coinbaseOrderBook));
+  // listeners.push_back(new FTXListener(centralDataManager, orderBook));
   listeners.push_back(new KrakenListener(*krakenOrderBook));
 
   for (Listener *listener : listeners) {
