@@ -8,4 +8,7 @@ class BinanceListener : public Listener {
 
  protected:
   void passJSON(nlohmann::json json);
+
+ private:
+  int lastUpdated;
 };

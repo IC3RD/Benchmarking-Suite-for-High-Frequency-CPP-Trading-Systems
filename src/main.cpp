@@ -7,6 +7,7 @@
 #include <thread>
 #include <vector>
 
+#include "exchange/Exchange.h"
 #include "dataManager/DataManager.h"
 #include "dataManager/OrderBook.h"
 #include "marketInfoListener/BinanceListener.h"
@@ -21,20 +22,31 @@ int main() {
   ix::initNetSystem();
 
   DataManager centralDataManager;
-  OrderBook orderBook;
+  // Set up order books for each exchange
+  OrderBook binanceOrderBook(Exchange::BINANCE);
+  OrderBook coinbaseOrderBook(Exchange::COINBASE);
+
+  // initialise shared trading strategy
+  std::shared_ptr<BollingerBand> strategy = std::make_shared<BollingerBand>(100);
+
+  // add shared trading strategy to each order book
+  binanceOrderBook.addTradingStrategy(strategy);
+  coinbaseOrderBook.addTradingStrategy(strategy);
+
+  // initialise the listeners for the exchange
   std::vector<Listener *> listeners;
-  listeners.push_back(new BitMEXListener(centralDataManager, orderBook));
-  // listeners.push_back(new BinanceListener(centralDataManager));
-  listeners.push_back(new CoinbaseListener(centralDataManager, orderBook));
-  listeners.push_back(new FTXListener(centralDataManager, orderBook));
-  // listeners.push_back(new KrakenListener(centralDataManager));
+  //listeners.push_back(new BitMEXListener(centralDataManager, orderBook));
+  listeners.push_back(new BinanceListener(centralDataManager, binanceOrderBook));
+  listeners.push_back(new CoinbaseListener(centralDataManager, coinbaseOrderBook));
+  //listeners.push_back(new FTXListener(centralDataManager, orderBook));
+  //listeners.push_back(new KrakenListener(centralDataManager));
 
   for (Listener *listener : listeners) {
     listener->startListening();
   }
 
   // set up a thread to check if order needs to be sent after receiving data
-  std::thread tOrder(&DataManager::sendOrder, std::ref(centralDataManager));
+  //std::thread tOrder(&DataManager::sendOrder, std::ref(centralDataManager));
 
   std::cout << "> " << std::flush;
   // send the request

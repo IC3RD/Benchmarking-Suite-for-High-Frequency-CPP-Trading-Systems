@@ -27,7 +27,9 @@ void Listener::setHandlers() {
 
       // uncomment to show json from all listeners, to show the listener of a
       // specific exchange put this in an if statement with exchange == "BITMEX"
-      // std::cout << std::setw(4) << j << std::endl;
+      //if (exchange == Exchange::BINANCE) {
+        //std::cout << std::setw(4) << j << std::endl;
+      //}
       passJSON(j);
 
       std::cout << "> " << std::flush;
@@ -53,6 +55,5 @@ void Listener::constructAndPassMarketData(int buy, int sell, int buyVolume,
 
 void Listener::constructAndPassOrderData(OrderTypes::OrderType type, int price, double volume) {
   std::shared_ptr<OrderData> data = std::make_shared<OrderData>(type, price, volume);
- 
   orderBook.addEntry(data);
 }
