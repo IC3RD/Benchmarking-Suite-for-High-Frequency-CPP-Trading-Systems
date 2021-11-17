@@ -39,7 +39,7 @@ void BitmexOrderExecutor::submitOrder(Order order) {
 
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getURL();
+    std::string URL = getDestination();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
@@ -60,7 +60,7 @@ void BitmexOrderExecutor::submitOrder(Order order) {
   }
 }
 
-std::string BitmexOrderExecutor::getURL() {
+std::string BitmexOrderExecutor::getDestination() {
   return "https://testnet.bitmex.com/api/v1/order";
 }
 

@@ -29,7 +29,7 @@ void BinanceOrderExecutor::submitOrder(Order order) {
   if (curl) {
     // Set up request.
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getURL();
+    std::string URL = getDestination();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
 
     // Add the sha256 signature to the post fields
@@ -112,7 +112,7 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
 
 BinanceOrderExecutor::BinanceOrderExecutor() : OrderExecutor() {}
 
-std::string BinanceOrderExecutor::getURL() {
+std::string BinanceOrderExecutor::getDestination() {
   // Amend if you are debugging.
   bool debug = false;
   if (debug) {

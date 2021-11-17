@@ -22,7 +22,7 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
   if (curl) {
     // Set up request.
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getURL();
+    std::string URL = getDestination();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
@@ -108,7 +108,7 @@ std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
 
 CoinbaseOrderExecutor::CoinbaseOrderExecutor() : OrderExecutor() {}
 
-std::string CoinbaseOrderExecutor::getURL() {
+std::string CoinbaseOrderExecutor::getDestination() {
   // Amend if you are debugging.
   bool debug = false;
   if (debug) {

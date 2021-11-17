@@ -51,3 +51,25 @@ e.g. `git checkout -b JRA-123-firstbranch`
 commit message: "\<issue-key\> \<commit message\>"
 
 e.g. `git  commit -m "JRA-123 first message"`
+
+## Implementing your own code for benchmarking
+
+##### Adding a new exchange/changing exchange communication  
+
+###### Getting data from exchanges 
+1. Create a new listener for the exchange to implement `Listener.h` methods, namely `passJSON(nlohmann::json json)`
+2. OPTIONAL: To change how order data is constructed and sent edit the methods in `Listener.cpp` as desired
+
+###### Executing orders
+1. Create a new order executor to implement `OrderExecutor.h` methods in ordering-system folder
+2. Update `Exchange.h` to contain the exchange name as an enum
+3. Add new files to source files within `ordering-system/CMakeLists.txt`
+
+##### Adding a new trading strategy/algo
+
+1. Create a new algo to implement methods in `TradingStrategy.h`
+2. Add new files to source files within `tradingStrategies/CMakeLists.txt`
+3. OPTIONAL: To change how and when to run the strategy itself, alter `updateData` method within `TradingStrategy.cpp`
+
+##### 
+

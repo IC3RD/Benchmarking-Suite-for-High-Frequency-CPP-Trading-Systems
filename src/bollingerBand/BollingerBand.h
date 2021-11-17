@@ -6,7 +6,6 @@
 #include "../exchange/MarketData.h"
 #include "../exchange/Order.h"
 #include "../exchange/TradingStrategy.h"
-#include "../ordering-system/OrderExecutor.h"
 
 class BollingerBand : public TradingStrategy {
  public:
