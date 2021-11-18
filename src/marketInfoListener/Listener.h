@@ -7,7 +7,6 @@
 #include <string>
 
 #include "../exchange/Exchange.h"
-#include "dataManager/DataManager.h"
 #include "dataManager/OrderBook.h"
 #include "exchange/OrderData.h"
 #include "exchange/OrderTypes.h"
