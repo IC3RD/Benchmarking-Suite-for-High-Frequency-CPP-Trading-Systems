@@ -1,11 +1,10 @@
 #include "Listener.h"
 
 #include <iostream>
-#include <memory>
 
 Listener::Listener(std::string url, std::string request,
                    Exchange::ExchangeName exchange, OrderBook &orderBook)
-    : url(url), request(request), exchange(exchange), orderBook(orderBook) {}
+    : OrderDataCollector(orderBook, exchange), url(url), request(request) {}
 
 void Listener::startListening() {
   webSocket.setUrl(url);
@@ -44,9 +43,7 @@ void Listener::setHandlers() {
 
 void Listener::sendRequest() { webSocket.send(request); }
 
-void Listener::constructAndPassOrderData(OrderTypes::OrderType type, int price,
-                                         double volume) {
-  std::shared_ptr<OrderData> data =
-      std::make_shared<OrderData>(type, exchange, price, volume);
-  orderBook.addEntry(data);
+void Listener::collectOrderData(OrderTypes::OrderType type, int price,
+                                double volume) {
+  constructAndPassOrderData(type, price, volume);
 }
