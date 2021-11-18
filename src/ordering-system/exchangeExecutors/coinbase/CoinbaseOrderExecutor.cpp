@@ -4,9 +4,9 @@
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
 #include <curl/curl.h>
-#include <debug.h>
-#include <utils/Base64.h>
-#include <utils/SHA256Engine.h>
+#include <ordering-system/exchangeExecutors/debug.h>
+#include <ordering-system/exchangeExecutors/utils/Base64.h>
+#include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>
 
 #include <chrono>
 
@@ -106,7 +106,7 @@ std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   return ss.str();
 }
 
-CoinbaseOrderExecutor::CoinbaseOrderExecutor() : OrderExecutor() {}
+CoinbaseOrderExecutor::CoinbaseOrderExecutor() : ExchangeOrderExecutor() {}
 
 std::string CoinbaseOrderExecutor::getDestination() {
   // Amend if you are debugging.

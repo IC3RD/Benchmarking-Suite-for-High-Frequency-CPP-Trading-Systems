@@ -1,12 +1,12 @@
 #pragma once
-#include <OrderExecutor.h>
+#include <ordering-system/OrderExecutor.h>
 #include <exchange/Order.h>
 
 class ExchangeOrderExecutor : public OrderExecutor {
     public:
         ExchangeOrderExecutor() = default;
-        void submitOrder(Order order) override;
-        std::string getDestination();
+        virtual void submitOrder(Order order) = 0;
+        virtual std::string getDestination() = 0;
         virtual std::string getExchangeName() = 0;
 
     private:

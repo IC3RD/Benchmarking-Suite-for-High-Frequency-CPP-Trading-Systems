@@ -10,7 +10,7 @@
 #include "Poco/DigestEngine.h"
 #include "Poco/HMACEngine.h"
 #include "Poco/JSON/Object.h"
-#include "utils/SHA256Engine.h"
+#include "ordering-system/exchangeExecutors/utils/SHA256Engine.h"
 
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                 \
@@ -110,7 +110,7 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
   return output;
 }
 
-BinanceOrderExecutor::BinanceOrderExecutor() : OrderExecutor() {}
+BinanceOrderExecutor::BinanceOrderExecutor() : ExchangeOrderExecutor() {}
 
 std::string BinanceOrderExecutor::getDestination() {
   // Amend if you are debugging.

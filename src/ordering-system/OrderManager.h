@@ -1,8 +1,8 @@
 #pragma once
 #include <OrderExecutor.h>
-#include <binance/BinanceOrderExecutor.h>
-#include <bitmex/BitmexOrderExecutor.h>
-#include <coinbase/CoinbaseOrderExecutor.h>
+#include <exchangeExecutors/binance/BinanceOrderExecutor.h>
+#include <exchangeExecutors/bitmex/BitmexOrderExecutor.h>
+#include <exchangeExecutors/coinbase/CoinbaseOrderExecutor.h>
 #include <exchange/Exchange.h>
 #include <exchange/Order.h>
 
