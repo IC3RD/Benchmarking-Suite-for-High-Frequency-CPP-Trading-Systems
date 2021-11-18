@@ -56,14 +56,22 @@ e.g. `git  commit -m "JRA-123 first message"`
 
 ##### Adding a new exchange/changing exchange communication  
 
-###### Getting data from exchanges 
+##### Getting data from exchanges 
 1. Create a new listener for the exchange to implement `Listener.h` methods, namely `passJSON(nlohmann::json json)`
 2. OPTIONAL: To change how order data is constructed and sent edit the methods in `Listener.cpp` as desired
 
-###### Executing orders
-1. Create a new order executor to implement `OrderExecutor.h` methods in ordering-system folder
+##### Executing orders
+
+###### Sending orders to an exchange 
+
+1. Create a new order executor to implement `ExchangeOrderExecutor.h` methods in the ordering-system/exchangeExecutors folder
 2. Update `Exchange.h` to contain the exchange name as an enum
 3. Add new files to source files within `ordering-system/CMakeLists.txt`
+
+###### Sending orders to a custom file/place
+
+1. Create a new type of executor class to implement `OrderExecutor.h` similarly to `ExchangeOrderExecutor.h`
+2. Update CMake files as appropriate
 
 ##### Adding a new trading strategy/algo
 
