@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES BollingerBand.cpp)
+set(SOURCE_FILES BollingerBand.cpp Band.cpp)
 
 add_library(bollingerBand ${SOURCE_FILES})
 

@@ -6,18 +6,22 @@
 #include <unordered_map>
 
 #include "MarketData.h"
-#include "OrderManager.h"
+#include "dataManager/OrderBook.h"
+#include "exchange/OrderData.h"
+#include "ordering-system/OrderManager.h"
 
-using namespace std;
+class OrderBook;
 
 class TradingStrategy {
  public:
-  void updateData(MarketData &);
+  virtual void newData(std::shared_ptr<OrderData>) = 0;
   virtual void runStrategy() = 0;
-  virtual void buy(MarketData &);
-  virtual void sell(MarketData &);
+  virtual void buy(std::shared_ptr<OrderData>);
+  virtual void sell(std::shared_ptr<OrderData>);
+  void insertNewOrderBook(std::shared_ptr<OrderBook>);
 
  protected:
-  unordered_map<Exchange::ExchangeName, MarketData &, hash<int>> exchangeData;
+  unordered_map<Exchange::ExchangeName, std::shared_ptr<OrderBook>, hash<int>>
+      exchangeOrderBooks;
   OrderManager orderManager;
 };
