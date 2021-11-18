@@ -3,7 +3,7 @@
 FileReaderListener::FileReaderListener(OrderBook& orderBook,
                                        Exchange::ExchangeName exchange,
                                        std::string file)
-    : OrderDataListener(orderBook, exchange), fileToOpen(file) {}
+    : OrderDataCollector(orderBook, exchange), fileToOpen(file) {}
 
 FileReaderListener::~FileReaderListener() {}
 
