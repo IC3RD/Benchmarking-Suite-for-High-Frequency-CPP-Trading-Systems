@@ -6,17 +6,15 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-#include "../exchange/Exchange.h"
-#include "dataManager/DataManager.h"
 #include "dataManager/OrderBook.h"
+#include "exchange/Exchange.h"
 #include "exchange/OrderData.h"
 #include "exchange/OrderTypes.h"
 
 class Listener {
  public:
   Listener(std::string url, std::string request,
-           Exchange::ExchangeName exchange, DataManager &dataManager,
-           OrderBook &orderBook);
+           Exchange::ExchangeName exchange, OrderBook &orderBook);
   ~Listener(){};
   /* start to listen to incoming data */
   void startListening();
@@ -26,9 +24,7 @@ class Listener {
  protected:
   /* Does the exchange specific parsing of json recieved from exchange */
   virtual void passJSON(nlohmann::json json) = 0;
-  /* set up callback/thread to react to incoming data */
-  void constructAndPassMarketData(int buy, int sell, int buyVolume,
-                                  int sellVolume);
+
   void constructAndPassOrderData(OrderTypes::OrderType type, int price,
                                  double volume);
 
@@ -40,5 +36,4 @@ class Listener {
 
  private:
   OrderBook &orderBook;
-  DataManager &centralDataManager;
 };

@@ -5,11 +5,11 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-FTXListener::FTXListener(DataManager &dataManager, OrderBook &orderBook)
+FTXListener::FTXListener(OrderBook &orderBook)
     : Listener("wss://ftx.com/ws/",
                "{\"op\": \"subscribe\", \"channel\": \"orderbook\", "
                "\"market\": \"BTC-PERP\"}",
-               Exchange::FTX, dataManager, orderBook) {}
+               Exchange::FTX, orderBook) {}
 
 // reference: https://docs.ftx.com/#websocket-api
 void FTXListener::passJSON(nlohmann::json json) {
@@ -28,7 +28,7 @@ void FTXListener::passJSON(nlohmann::json json) {
       int bidVolume = json.at("data").at("bids")[0][1];
     }
     if (askPrice != -1 || bidPrice != -1) {
-      constructAndPassMarketData(bidPrice, bidVolume, askPrice, askVolume);
+      // constructAndPassMarketData(bidPrice, bidVolume, askPrice, askVolume);
     }
   }
 }
