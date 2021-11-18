@@ -6,8 +6,8 @@
 #include <json/single_include/nlohmann/json.hpp>
 #include <string>
 
-#include "../exchange/Exchange.h"
 #include "dataManager/OrderBook.h"
+#include "exchange/Exchange.h"
 #include "exchange/OrderData.h"
 #include "exchange/OrderTypes.h"
 

@@ -1,6 +1,5 @@
 #pragma once
 #include "Listener.h"
-#include "dataManager/DataManager.h"
 
 class BinanceListener : public Listener {
  public:
