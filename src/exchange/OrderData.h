@@ -1,11 +1,12 @@
 #pragma once
 
-#include "OrderTypes.h"
 #include "Exchange.h"
+#include "OrderTypes.h"
 
 class OrderData {
  public:
-  OrderData(OrderTypes::OrderType type, Exchange::ExchangeName name, long price, double volume);
+  OrderData(OrderTypes::OrderType type, Exchange::ExchangeName name, long price,
+            double volume);
   ~OrderData();
   const OrderTypes::OrderType getOrderType() const;
   const Exchange::ExchangeName getExchange() const;
