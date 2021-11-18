@@ -34,6 +34,7 @@ void DataManager::addEntry(MarketData marketData) {
 
 void DataManager::sendOrder() {
   // keep on spinning the thread to check if a new order can be sent
+  std::cout << "Spinning: " << std::this_thread::get_id() << std::endl;
   while (true) {
     set.lock();
     while (set.contains(nextIdx)) {

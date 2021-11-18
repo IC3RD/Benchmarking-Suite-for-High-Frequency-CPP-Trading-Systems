@@ -13,6 +13,8 @@ Listener::Listener(std::string url, std::string request,
 void Listener::startListening() {
   webSocket.setUrl(url);
   setHandlers();
+  std::cout << "starting a new thread from thread_id: " <<
+      std::this_thread::get_id() << std::endl;
   webSocket.start();
 }
 
@@ -21,6 +23,9 @@ void Listener::setHandlers() {
   // watch out for race conditions !)
   // when a message or an event (open, close, error) is received
   webSocket.setOnMessageCallback([&](const ix::WebSocketMessagePtr &msg) {
+    std::cout << "callback to thread_id: " << std::this_thread::get_id() <<
+        std::endl;
+
     if (msg->type == ix::WebSocketMessageType::Message) {
       using json = nlohmann::json;
       json j = json::parse(msg->str);
@@ -32,7 +37,8 @@ void Listener::setHandlers() {
 
       std::cout << "> " << std::flush;
     } else if (msg->type == ix::WebSocketMessageType::Open) {
-      std::cout << "Connection established to exchange: " << exchange
+      std::cout << std::this_thread::get_id() << ": Connection established "
+          "to exchange: " << exchange
                 << std::endl;
       std::cout << "> " << std::flush;
     } else if (msg->type == ix::WebSocketMessageType::Error) {
