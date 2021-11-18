@@ -7,6 +7,7 @@
 #include <thread>
 #include <vector>
 
+#include "bollingerBand/BollingerBand.h"
 #include "dataManager/OrderBook.h"
 #include "exchange/Exchange.h"
 #include "marketInfoListener/BinanceListener.h"
