@@ -14,6 +14,5 @@ target_link_libraries(tradingStrategies PUBLIC
         Util
         JSON
         NetSSL
-        exchange
         dataManager
         ordering-system)

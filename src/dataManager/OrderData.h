@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../exchange/Exchange.h"
+#include "exchange/Exchange.h"
 #include "OrderTypes.h"
 
 class OrderData {

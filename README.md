@@ -54,11 +54,16 @@ e.g. `git  commit -m "JRA-123 first message"`
 
 ## Implementing your own code for benchmarking
 
-#### Adding a new exchange/changing exchange communication  
+#### Adding a new exchange/changing data input feed  
 
-#### Getting data from exchanges 
+###### Getting data from exchanges 
 1. Create a new listener for the exchange to implement `Listener.h` methods, namely `passJSON(nlohmann::json json)`
 2. OPTIONAL: To change how order data is constructed and sent edit the methods in `Listener.cpp` as desired
+
+###### Getting data from a custom plae
+1. Implement methods from `OrderDataCollector.h` in a custom listener. Look at the `fileReaderListener` for an example
+of how to do this.
+2. Update CMake files as required
 
 #### Executing orders
 
@@ -79,5 +84,5 @@ e.g. `git  commit -m "JRA-123 first message"`
 2. Add new files to source files within `tradingStrategies/CMakeLists.txt`
 3. OPTIONAL: To change how and when to run the strategy itself, alter `updateData` method within `TradingStrategy.cpp`
 
-##### 
+#### Changing the map type within the order data system 
 

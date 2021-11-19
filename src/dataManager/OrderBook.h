@@ -7,8 +7,8 @@
 #include "concurrentUnorderedSet/CoarseGrainedUnorderedSet.h"
 #include "dataManager/OrderDataStore.h"
 #include "exchange/Exchange.h"
-#include "exchange/OrderData.h"
-#include "exchange/OrderTypes.h"
+#include "dataManager/OrderData.h"
+#include "dataManager/OrderTypes.h"
 #include "tradingStrategies/TradingStrategy.h"
 
 class TradingStrategy;

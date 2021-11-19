@@ -4,10 +4,10 @@
 
 #include <vector>
 
-#include "../TradingStrategy.h"
+#include "tradingStrategies/TradingStrategy.h"
 #include "dataManager/OrderBook.h"
 #include "dataManager/OrderDataStore.h"
-#include "exchange/OrderData.h"
+#include "dataManager/OrderData.h"
 
 using namespace std;
 

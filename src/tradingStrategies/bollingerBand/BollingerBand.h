@@ -6,7 +6,7 @@
 
 #include "Band.h"
 #include "exchange/Exchange.h"
-#include "exchange/Order.h"
+#include "dataManager/Order.h"
 #include "tradingStrategies/TradingStrategy.h"
 #include "ordering-system/OrderExecutor.h"
 

@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "../exchange/Exchange.h"
+#include "exchange/Exchange.h"
 
 class Order {
  public:
