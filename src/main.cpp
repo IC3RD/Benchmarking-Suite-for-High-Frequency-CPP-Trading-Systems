@@ -7,7 +7,6 @@
 #include <thread>
 #include <vector>
 
-#include "tradingStrategies/bollingerBand/BollingerBand.h"
 #include "dataManager/OrderBook.h"
 #include "exchange/Exchange.h"
 #include "orderDataCollectors/marketInfoListener/BinanceListener.h"
@@ -16,6 +15,7 @@
 #include "orderDataCollectors/marketInfoListener/FTXListener.h"
 #include "orderDataCollectors/marketInfoListener/KrakenListener.h"
 #include "orderDataCollectors/marketInfoListener/Listener.h"
+#include "tradingStrategies/bollingerBand/BollingerBand.h"
 
 int main() {
   // Required on Windows
