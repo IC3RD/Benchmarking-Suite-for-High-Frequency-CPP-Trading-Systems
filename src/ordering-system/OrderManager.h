@@ -1,13 +1,13 @@
 #pragma once
+#include <unordered_map>
+#include <vector>
+
 #include "OrderExecutor.h"
 #include "binance/BinanceOrderExecutor.h"
 #include "bitmex/BitmexOrderExecutor.h"
 #include "coinbase/CoinbaseOrderExecutor.h"
 #include "exchange/Exchange.h"
 #include "exchange/Order.h"
-
-#include <unordered_map>
-#include <vector>
 
 class OrderManager {
  public:

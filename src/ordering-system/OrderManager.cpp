@@ -10,9 +10,10 @@ OrderManager::OrderManager()
   portfolio = new std::vector<Order>();
 }
 
-void OrderManager::submitOrder(Exchange::ExchangeName exchange, const Order& order) {
-  OrderExecutor *executor = orderExecutors.at(exchange);
-  executor->disableOutput();
+void OrderManager::submitOrder(Exchange::ExchangeName exchange,
+                               const Order& order) {
+  OrderExecutor* executor = orderExecutors.at(exchange);
+  executor->enableOutput();
   executor->submitOrder(order);
   portfolio->push_back(order);
 }
