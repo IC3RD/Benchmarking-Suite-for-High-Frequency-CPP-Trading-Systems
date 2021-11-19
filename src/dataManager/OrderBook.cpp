@@ -24,7 +24,7 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
   }
   for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
        ++it) {
-    //(*it)->updateData(bidStore->);
+    (*it)->newData(data);
   }
 }
 

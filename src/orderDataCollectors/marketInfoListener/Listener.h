@@ -7,11 +7,9 @@
 #include <string>
 
 #include "dataManager/OrderBook.h"
-#include "exchange/Exchange.h"
-#include "exchange/OrderData.h"
-#include "exchange/OrderTypes.h"
+#include "orderDataCollectors/OrderDataCollector.h"
 
-class Listener {
+class Listener : OrderDataCollector {
  public:
   Listener(std::string url, std::string request,
            Exchange::ExchangeName exchange, OrderBook &orderBook);
@@ -22,18 +20,11 @@ class Listener {
   void sendRequest();
 
  protected:
+  void collectOrderData(OrderTypes::OrderType type, int price, double volume);
   /* Does the exchange specific parsing of json recieved from exchange */
   virtual void passJSON(nlohmann::json json) = 0;
-
-  void constructAndPassOrderData(OrderTypes::OrderType type, int price,
-                                 double volume);
-
   void setHandlers();
   ix::WebSocket webSocket;
   const std::string url;
   const std::string request;
-  const Exchange::ExchangeName exchange;
-
- private:
-  OrderBook &orderBook;
 };

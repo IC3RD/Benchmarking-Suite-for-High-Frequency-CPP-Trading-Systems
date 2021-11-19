@@ -31,13 +31,15 @@ void BollingerBand::runStrategy() {
       std::shared_ptr<OrderBook> book = it->second;
       std::shared_ptr<OrderData> bestAsk = book->getHighestBid();
       std::shared_ptr<OrderData> bestBid = book->getLowestAsk();
-      if (bestAsk->getOrderPrice() >
-          band.second->getMean() + band.second->getStd()) {
-        buy(bestAsk);
-      }
-      if (bestBid->getOrderPrice() <
-          band.second->getMean() - band.second->getStd()) {
-        sell(bestBid);
+      if (bestAsk != nullptr && bestBid != nullptr) {
+        if (bestAsk->getOrderPrice() >
+            band.second->getMean() + band.second->getStd()) {
+          buy(bestAsk);
+        }
+        if (bestBid->getOrderPrice() <
+            band.second->getMean() - band.second->getStd()) {
+          sell(bestBid);
+        }
       }
     }
   }
