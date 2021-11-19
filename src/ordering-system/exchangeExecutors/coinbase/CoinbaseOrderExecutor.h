@@ -5,14 +5,14 @@
 #ifndef CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
 #define CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
 
-#include <OrderBuilder.h>
-#include <OrderExecutor.h>
+#include <ordering-system/OrderBuilder.h>
+#include <ordering-system/exchangeExecutors/ExchangeOrderExecutor.h>
 
-class CoinbaseOrderExecutor : public OrderExecutor {
+class CoinbaseOrderExecutor : public ExchangeOrderExecutor {
  public:
   CoinbaseOrderExecutor();
   void submitOrder(Order order) override;
-  std::string getURL() override;
+  std::string getDestination() override;
   std::string getExchangeName() override;
 
  private:

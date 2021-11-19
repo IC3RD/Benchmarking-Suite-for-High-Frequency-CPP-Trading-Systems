@@ -1,9 +1,9 @@
 #pragma once
 
 #include "dataManager/OrderBook.h"
+#include "dataManager/OrderData.h"
+#include "dataManager/OrderTypes.h"
 #include "exchange/Exchange.h"
-#include "exchange/OrderData.h"
-#include "exchange/OrderTypes.h"
 
 class OrderDataCollector {
  public:

@@ -5,11 +5,11 @@
 #include <vector>
 
 #include "concurrentUnorderedSet/CoarseGrainedUnorderedSet.h"
+#include "dataManager/OrderData.h"
 #include "dataManager/OrderDataStore.h"
+#include "dataManager/OrderTypes.h"
 #include "exchange/Exchange.h"
-#include "exchange/OrderData.h"
-#include "exchange/OrderTypes.h"
-#include "exchange/TradingStrategy.h"
+#include "tradingStrategies/TradingStrategy.h"
 
 class TradingStrategy;
 
@@ -25,6 +25,8 @@ class OrderBook {
   std::shared_ptr<OrderDataStore> getAskStore();
   std::shared_ptr<OrderData> getHighestBid();
   std::shared_ptr<OrderData> getLowestAsk();
+  std::shared_ptr<OrderData> getBidAt(int i);
+  std::shared_ptr<OrderData> getAskAt(int i);
 
  private:
   std::deque<std::shared_ptr<TradingStrategy>> listenerStrategies;

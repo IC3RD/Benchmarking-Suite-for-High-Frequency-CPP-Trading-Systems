@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Exchange.h"
 #include "OrderTypes.h"
+#include "exchange/Exchange.h"
 
 class OrderData {
  public:

@@ -2,9 +2,9 @@
 
 #include <OrderExecutor.h>
 #include <OrderManager.h>
-#include <binance/BinanceOrderExecutor.h>
-#include <bitmex/BitmexOrderExecutor.h>
-#include <coinbase/CoinbaseOrderExecutor.h>
+#include <ordering-system/exchangeExecutors/binance/BinanceOrderExecutor.h>
+#include <ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h>
+#include <ordering-system/exchangeExecutors/coinbase/CoinbaseOrderExecutor.h>
 
 #include <cstdio>
 #include <iostream>

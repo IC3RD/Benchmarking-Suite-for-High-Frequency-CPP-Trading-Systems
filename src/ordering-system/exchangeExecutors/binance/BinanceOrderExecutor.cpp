@@ -10,7 +10,7 @@
 #include "Poco/DigestEngine.h"
 #include "Poco/HMACEngine.h"
 #include "Poco/JSON/Object.h"
-#include "utils/SHA256Engine.h"
+#include "ordering-system/exchangeExecutors/utils/SHA256Engine.h"
 
 // Macro to print things for debugging purposes.
 #define DEBUG(x)                 \
@@ -29,7 +29,7 @@ void BinanceOrderExecutor::submitOrder(Order order) {
   if (curl) {
     // Set up request.
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getURL();
+    std::string URL = getDestination();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
 
     // Add the sha256 signature to the post fields
@@ -110,9 +110,9 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
   return output;
 }
 
-BinanceOrderExecutor::BinanceOrderExecutor() : OrderExecutor() {}
+BinanceOrderExecutor::BinanceOrderExecutor() : ExchangeOrderExecutor() {}
 
-std::string BinanceOrderExecutor::getURL() {
+std::string BinanceOrderExecutor::getDestination() {
   // Amend if you are debugging.
   bool debug = false;
   if (debug) {
