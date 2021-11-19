@@ -13,7 +13,8 @@
 // Define another benchmark
 static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
     Order order {"XBTUSD", 100, 5, true};
-    BitmexOrderExecutor executor {};
+    BinanceOrderExecutor executor {};
+    executor.enableBenchmarking();
     for (auto _: state) {
         executor.submitOrder(order);
     }
