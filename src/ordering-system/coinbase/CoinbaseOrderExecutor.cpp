@@ -13,10 +13,7 @@
 void CoinbaseOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
 
-  if (output) {
-    PRINT("Submitting order with data: " + order_data + " to " +
-          getExchangeName() + "...");
-  }
+  printOrderDetails(order_data);
 
   CURL *curl;
   curl = curl_easy_init();
@@ -95,11 +92,10 @@ std::string CoinbaseOrderExecutor::getURL() {
 }
 
 std::string CoinbaseOrderExecutor::getSecretKey() {
-  return "jgEtlhOBhGESP7JUQ2w6Dm46Wbar8zWv5ib3PEYfTC7avQ8M8ohxNHvLESnJGHhRYlOZp"
-         "iMzPiEaU8onVlNgSg==";
+  return this->secret_key;
 }
 std::string CoinbaseOrderExecutor::getPublicKey() {
-  return "00dcf06c3d7402c3272eef11593446b0";
+  return this->public_key;
 }
 
 std::string CoinbaseOrderExecutor::getExchangeName() { return "Coinbase"; }

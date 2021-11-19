@@ -21,10 +21,7 @@ std::string BitmexOrderExecutor::parseOrder(const Order &order) {
 void BitmexOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
 
-  if (output) {
-    PRINT("Submitting order with data: " + order_data + " to " +
-          getExchangeName() + "...");
-  }
+  printOrderDetails(order_data);
 
   CURL *curl;
   curl = curl_easy_init();
@@ -52,11 +49,11 @@ std::string BitmexOrderExecutor::getURL() {
 std::string BitmexOrderExecutor::getExchangeName() { return "BitMEX"; }
 
 std::string BitmexOrderExecutor::getSecretKey() {
-  return "_hTVt28pJk094DJI4HBU98V-GsBMiToqqvrOvjUcGhilKuMF";
+  return this->secret_key;
 }
 
 std::string BitmexOrderExecutor::getPublicKey() {
-  return "DQakAekZhCUpMyp8-oBjSZj0";
+  return this->public_key;
 }
 
 std::string BitmexOrderExecutor::generateTimestamp() {

@@ -36,3 +36,9 @@ OrderExecutor::OrderExecutor(std::string secret_key, std::string public_key) {
   this->secret_key = std::move(secret_key);
   this->public_key = std::move(public_key);
 }
+void OrderExecutor::printOrderDetails(const std::string& order_data) {
+  if(output) {
+    std::cout << "Submitting order with data: " + order_data + " to " +
+                     getExchangeName() + "..." << std::endl;
+  }
+}

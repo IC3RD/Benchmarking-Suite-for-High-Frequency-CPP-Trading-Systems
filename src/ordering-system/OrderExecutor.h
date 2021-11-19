@@ -25,13 +25,15 @@ class OrderExecutor {
   void enableOutput();
   void disableOutput();
 
+  void printOrderDetails(const std::string& order_data);
+
  private:
-  std::string secret_key;
-  std::string public_key;
   virtual std::string getSecretKey() = 0;
   virtual std::string getPublicKey() = 0;
 
  protected:
+  std::string secret_key;
+  std::string public_key;
   void sendOrder(CURL *curl);
   bool benchmark = false;
   bool output = true;

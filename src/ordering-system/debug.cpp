@@ -23,5 +23,7 @@ int main() {
 
   OrderManager m{};
   Order order{"BTC", 57999, 100, false};
+  m.submitOrder(Exchange::COINBASE, order);
+  m.submitOrder(Exchange::BINANCE, order);
   m.submitOrder(Exchange::BITMEX, order);
 }

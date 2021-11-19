@@ -13,9 +13,7 @@
 void BinanceOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
 
-  if (output) {
-    PRINT("Posting order: " + order_data);
-  }
+  printOrderDetails(order_data);
 
   CURL *curl;
   curl = curl_easy_init();
@@ -87,10 +85,10 @@ std::string BinanceOrderExecutor::getURL() {
   }
 }
 std::string BinanceOrderExecutor::getSecretKey() {
-  return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU";
+  return this->secret_key;
 }
 std::string BinanceOrderExecutor::getPublicKey() {
-  return "sBe2iw3BTx9bpOofw9ejD5pmAGc7qlVKp3qruGcGbCPtGenVtSEThdeh7WmpPoQq";
+  return this->public_key;
 }
 std::string BinanceOrderExecutor::getExchangeName() { return "Binance"; }
 
