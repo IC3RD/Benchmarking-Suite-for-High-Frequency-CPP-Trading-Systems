@@ -9,5 +9,5 @@ add_library(listener ${SOURCE_FILES})
 target_link_libraries(listener PUBLIC
         curl
         ixwebsocket
-        bollingerBand
+        tradingStrategies
         JSON)

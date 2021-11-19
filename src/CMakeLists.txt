@@ -8,10 +8,10 @@ install(TARGETS main DESTINATION ${INSTALL_BIN_DIR})
 
 target_link_libraries(main PUBLIC
         ixwebsocket
-        bollingerBand
         listener
         dataManager
         exchange
+        tradingStrategies
         ordering-system
         #concurrentUnorderedSet
         curl
@@ -23,7 +23,7 @@ target_link_libraries(main PUBLIC
         OpenSSL::SSL
         )
 
-add_subdirectory(bollingerBand)
+add_subdirectory(tradingStrategies)
 add_subdirectory(orderDataCollectors)
 add_subdirectory(dataManager)
 add_subdirectory(concurrentUnorderedSet)

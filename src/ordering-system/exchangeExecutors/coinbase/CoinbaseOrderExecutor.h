@@ -5,8 +5,8 @@
 #ifndef CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
 #define CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
 
-#include <OrderBuilder.h>
-#include <exchangeExecutors/ExchangeOrderExecutor.h>
+#include <ordering-system/OrderBuilder.h>
+#include <ordering-system/exchangeExecutors/ExchangeOrderExecutor.h>
 
 class CoinbaseOrderExecutor : public ExchangeOrderExecutor {
  public:

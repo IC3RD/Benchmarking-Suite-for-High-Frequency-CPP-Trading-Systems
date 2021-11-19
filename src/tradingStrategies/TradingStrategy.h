@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 
-#include "MarketData.h"
 #include "dataManager/OrderBook.h"
 #include "exchange/OrderData.h"
 #include "ordering-system/OrderManager.h"
@@ -21,7 +20,7 @@ class TradingStrategy {
   void insertNewOrderBook(std::shared_ptr<OrderBook>);
 
  protected:
-  unordered_map<Exchange::ExchangeName, std::shared_ptr<OrderBook>, hash<int>>
+  std::unordered_map<Exchange::ExchangeName, std::shared_ptr<OrderBook>, std::hash<int>>
       exchangeOrderBooks;
   OrderManager orderManager;
 };

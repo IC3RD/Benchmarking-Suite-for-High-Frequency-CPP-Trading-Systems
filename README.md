@@ -54,13 +54,13 @@ e.g. `git  commit -m "JRA-123 first message"`
 
 ## Implementing your own code for benchmarking
 
-##### Adding a new exchange/changing exchange communication  
+#### Adding a new exchange/changing exchange communication  
 
-##### Getting data from exchanges 
+#### Getting data from exchanges 
 1. Create a new listener for the exchange to implement `Listener.h` methods, namely `passJSON(nlohmann::json json)`
 2. OPTIONAL: To change how order data is constructed and sent edit the methods in `Listener.cpp` as desired
 
-##### Executing orders
+#### Executing orders
 
 ###### Sending orders to an exchange 
 
@@ -73,7 +73,7 @@ e.g. `git  commit -m "JRA-123 first message"`
 1. Create a new type of executor class to implement `OrderExecutor.h` similarly to `ExchangeOrderExecutor.h`
 2. Update CMake files as appropriate
 
-##### Adding a new trading strategy/algo
+#### Adding a new trading strategy/algo
 
 1. Create a new algo to implement methods in `TradingStrategy.h`
 2. Add new files to source files within `tradingStrategies/CMakeLists.txt`

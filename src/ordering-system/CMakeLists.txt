@@ -13,14 +13,13 @@ set(SOURCE_FILES OrderExecutor.h OrderBuilder.cpp
         exchangeExecutors/binance/BinanceOrderExecutor.h
         OrderManager.cpp
         OrderManager.h
-        Exchange.h
         exchangeExecutors/ExchangeOrderExecutor.h)
 
 add_library(ordering-system ${SOURCE_FILES})
 
 target_include_directories(ordering-system PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(ordering-system PUBLIC bollingerBand JSON curl)
+target_link_libraries(ordering-system PUBLIC tradingStrategies JSON curl)
 
 #add_subdirectory(coinbase)
 

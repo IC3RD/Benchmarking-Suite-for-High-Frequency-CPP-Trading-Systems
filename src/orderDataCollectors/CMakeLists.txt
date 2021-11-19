@@ -11,5 +11,5 @@ add_subdirectory(fileReaderListener)
 target_link_libraries(orderDataCollectors PUBLIC
         curl
         ixwebsocket
-        bollingerBand
+        tradingStrategies
         JSON)
