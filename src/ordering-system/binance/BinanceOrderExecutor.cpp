@@ -6,15 +6,12 @@
 #include "Poco/JSON/Object.h"
 #include "utils/SHA256Engine.h"
 
-// Macro to print things for debugging purposes.
-#define DEBUG(x)                 \
-  do {                           \
-    std::cout << x << std::endl; \
-  } while (0)
-
 void BinanceOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
-//  DEBUG("Posting order of " + order_data);
+
+//  if(!benchmark) {
+//    PRINT("Posting order of " + order_data);
+//  }
 
   CURL *curl;
   CURLcode res;
