@@ -10,7 +10,6 @@ target_link_libraries(main PUBLIC
         ixwebsocket
         listener
         dataManager
-        exchange
         tradingStrategies
         ordering-system
         #concurrentUnorderedSet
@@ -27,5 +26,4 @@ add_subdirectory(tradingStrategies)
 add_subdirectory(orderDataCollectors)
 add_subdirectory(dataManager)
 add_subdirectory(concurrentUnorderedSet)
-add_subdirectory(exchange)
 add_subdirectory(ordering-system)
