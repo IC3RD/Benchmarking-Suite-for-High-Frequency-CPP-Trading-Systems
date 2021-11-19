@@ -3,7 +3,7 @@
 
 class CoinbaseOrderExecutor : public OrderExecutor {
  public:
-  CoinbaseOrderExecutor();
+  CoinbaseOrderExecutor(std::string secret_key, std::string public_key);
   void submitOrder(Order order) override;
   std::string getURL() override;
   std::string getExchangeName() override;

@@ -12,7 +12,7 @@
 
 class OrderExecutor {
  public:
-  OrderExecutor() = default;
+  OrderExecutor(std::string secret_key, std::string public_key);
 
   virtual void submitOrder(Order order) = 0;
 
@@ -26,6 +26,8 @@ class OrderExecutor {
   void disableOutput();
 
  private:
+  std::string secret_key;
+  std::string public_key;
   virtual std::string getSecretKey() = 0;
   virtual std::string getPublicKey() = 0;
 

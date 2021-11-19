@@ -2,7 +2,7 @@
 #include "OrderExecutor.h"
 class BitmexOrderExecutor : public OrderExecutor {
  public:
-  BitmexOrderExecutor();
+  BitmexOrderExecutor(std::string secret_key, std::string public_key);
   void submitOrder(Order order) override;
   std::string getURL() override;
   std::string getExchangeName() override;

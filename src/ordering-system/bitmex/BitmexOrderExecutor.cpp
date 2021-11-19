@@ -6,8 +6,7 @@
 
 #include <chrono>
 #include <iostream>
-
-BitmexOrderExecutor::BitmexOrderExecutor() = default;
+#include <utility>
 
 std::string BitmexOrderExecutor::parseOrder(const Order &order) {
   std::string currency = "XBTUSD";
@@ -98,3 +97,6 @@ std::string BitmexOrderExecutor::generateSignature(
 
   return hmac_hex;
 }
+BitmexOrderExecutor::BitmexOrderExecutor(std::string secret_key,
+                                         std::string public_key)
+    : OrderExecutor(std::move(secret_key), std::move(public_key)) {}

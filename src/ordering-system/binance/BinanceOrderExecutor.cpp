@@ -3,6 +3,7 @@
 #include <curl/curl.h>
 
 #include <chrono>
+#include <utility>
 
 #include "Poco/DigestEngine.h"
 #include "Poco/HMACEngine.h"
@@ -77,8 +78,6 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
   return output;
 }
 
-BinanceOrderExecutor::BinanceOrderExecutor() : OrderExecutor() {}
-
 std::string BinanceOrderExecutor::getURL() {
   bool debug = false;
   if (debug) {
@@ -94,3 +93,7 @@ std::string BinanceOrderExecutor::getPublicKey() {
   return "sBe2iw3BTx9bpOofw9ejD5pmAGc7qlVKp3qruGcGbCPtGenVtSEThdeh7WmpPoQq";
 }
 std::string BinanceOrderExecutor::getExchangeName() { return "Binance"; }
+
+BinanceOrderExecutor::BinanceOrderExecutor(std::string secret_key,
+                                           std::string public_key)
+    : OrderExecutor(std::move(secret_key), std::move(public_key)) {}

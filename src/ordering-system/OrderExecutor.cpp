@@ -1,5 +1,7 @@
 #include "OrderExecutor.h"
 
+#include <utility>
+
 /* Function required as argument to CURLOPT_WRITEFUNCTION.
  * Is currently defined to disable outputs. */
 size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {
@@ -30,3 +32,7 @@ void OrderExecutor::enableOutput() { this->output = true; }
 void OrderExecutor::disableOutput() { this->output = false; }
 void OrderExecutor::enableBenchmarking() { this->benchmark = true; }
 void OrderExecutor::disableBenchmarking() { this->benchmark = false; }
+OrderExecutor::OrderExecutor(std::string secret_key, std::string public_key) {
+  this->secret_key = std::move(secret_key);
+  this->public_key = std::move(public_key);
+}

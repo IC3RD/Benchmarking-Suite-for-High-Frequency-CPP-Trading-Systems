@@ -8,6 +8,7 @@
 #include <utils/SHA256Engine.h>
 
 #include <chrono>
+#include <utility>
 
 void CoinbaseOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
@@ -84,8 +85,6 @@ std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   return ss.str();
 }
 
-CoinbaseOrderExecutor::CoinbaseOrderExecutor() : OrderExecutor() {}
-
 std::string CoinbaseOrderExecutor::getURL() {
   bool debug = false;
   if (debug) {
@@ -125,3 +124,6 @@ std::string CoinbaseOrderExecutor::hex_to_string(const std::string &in) {
 
   return output;
 }
+CoinbaseOrderExecutor::CoinbaseOrderExecutor(std::string secret_key,
+                                             std::string public_key)
+    : OrderExecutor(std::move(secret_key), std::move(public_key)) {}
