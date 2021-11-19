@@ -91,12 +91,8 @@ std::string CoinbaseOrderExecutor::getURL() {
   }
 }
 
-std::string CoinbaseOrderExecutor::getSecretKey() {
-  return this->secret_key;
-}
-std::string CoinbaseOrderExecutor::getPublicKey() {
-  return this->public_key;
-}
+std::string CoinbaseOrderExecutor::getSecretKey() { return this->secret_key; }
+std::string CoinbaseOrderExecutor::getPublicKey() { return this->public_key; }
 
 std::string CoinbaseOrderExecutor::getExchangeName() { return "Coinbase"; }
 

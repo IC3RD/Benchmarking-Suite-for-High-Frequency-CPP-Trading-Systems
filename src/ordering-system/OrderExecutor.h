@@ -34,7 +34,7 @@ class OrderExecutor {
  protected:
   std::string secret_key;
   std::string public_key;
-  void sendOrder(CURL *curl);
+  void sendOrder(CURL* curl);
   bool benchmark = false;
   bool output = true;
 };

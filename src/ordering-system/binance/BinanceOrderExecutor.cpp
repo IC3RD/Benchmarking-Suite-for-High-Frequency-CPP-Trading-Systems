@@ -84,12 +84,8 @@ std::string BinanceOrderExecutor::getURL() {
     return "https://testnet.binance.vision/api/v3/order?";
   }
 }
-std::string BinanceOrderExecutor::getSecretKey() {
-  return this->secret_key;
-}
-std::string BinanceOrderExecutor::getPublicKey() {
-  return this->public_key;
-}
+std::string BinanceOrderExecutor::getSecretKey() { return this->secret_key; }
+std::string BinanceOrderExecutor::getPublicKey() { return this->public_key; }
 std::string BinanceOrderExecutor::getExchangeName() { return "Binance"; }
 
 BinanceOrderExecutor::BinanceOrderExecutor(std::string secret_key,

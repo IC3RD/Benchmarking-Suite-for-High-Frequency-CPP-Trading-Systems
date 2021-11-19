@@ -48,13 +48,9 @@ std::string BitmexOrderExecutor::getURL() {
 
 std::string BitmexOrderExecutor::getExchangeName() { return "BitMEX"; }
 
-std::string BitmexOrderExecutor::getSecretKey() {
-  return this->secret_key;
-}
+std::string BitmexOrderExecutor::getSecretKey() { return this->secret_key; }
 
-std::string BitmexOrderExecutor::getPublicKey() {
-  return this->public_key;
-}
+std::string BitmexOrderExecutor::getPublicKey() { return this->public_key; }
 
 std::string BitmexOrderExecutor::generateTimestamp() {
   long api_duration = 14400;
