@@ -1,56 +1,41 @@
-//
-// Created by panos on 10/29/21.
-//
 #include "BinanceOrderExecutor.h"
-
 #include <curl/curl.h>
-
 #include <chrono>
-
 #include "Poco/DigestEngine.h"
 #include "Poco/HMACEngine.h"
 #include "Poco/JSON/Object.h"
 #include "utils/SHA256Engine.h"
 
-// Macro to print things for debugging purposes.
-#define DEBUG(x)                 \
-  do {                           \
-    std::cout << x << std::endl; \
-  } while (0)
-
 void BinanceOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
-  DEBUG("Posting order of " + order_data);
+
+//  if(!benchmark) {
+//    PRINT("Posting order of " + order_data);
+//  }
 
   CURL *curl;
   CURLcode res;
   curl = curl_easy_init();
 
   if (curl) {
-    // Set up request.
+    /* Set up request. */
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
     std::string URL = getURL();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
 
-    // Add the sha256 signature to the post fields
+    /* Add the sha256 signature to the post fields. */
     order_data += "&signature=" + authenticate(order_data);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
 
-    // Add required headers.
-    struct curl_slist *chunk = NULL;
+    /* Add required headers. */
+    struct curl_slist *chunk = nullptr;
     generateHeaders(&chunk);
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
-    res = curl_easy_perform(curl);
-    if (res != CURLE_OK) {
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
-    }
-
-    /* always cleanup */
-    curl_easy_cleanup(curl);
-    std::cout << "\n";
+    /* If benchmarking is enabled, we will not actually send the message.
+     * sendOrder handles this. */
+    sendOrder(curl);
   }
 }
 
