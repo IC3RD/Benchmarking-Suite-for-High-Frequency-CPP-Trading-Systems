@@ -12,6 +12,8 @@ class OrderDataStore {
   void addEntry(std::shared_ptr<OrderData>);
   void sendOrder();
   bool isEmpty();
+  std::shared_ptr<OrderData> getFirst();
+  std::shared_ptr<OrderData> getLast();
   std::map<long, std::shared_ptr<OrderData>> getPriceToOrderDataMap();
 
  private:

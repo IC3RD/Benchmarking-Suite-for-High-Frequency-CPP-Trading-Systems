@@ -39,14 +39,14 @@ std::shared_ptr<OrderData> OrderBook::getHighestBid() {
   if (bidStore->isEmpty()) {
     return nullptr;
   }
-  return (--(bidStore->getPriceToOrderDataMap().end()))->second;
+  return bidStore->getLast();
 }
 
 std::shared_ptr<OrderData> OrderBook::getLowestAsk() {
   if (askStore->isEmpty()) {
     return nullptr;
   }
-  return askStore->getPriceToOrderDataMap().begin()->second;
+  return askStore->getFirst();
 }
 
 std::shared_ptr<OrderDataStore> OrderBook::getBidStore() { return bidStore; }
