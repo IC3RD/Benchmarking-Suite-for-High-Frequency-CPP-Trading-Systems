@@ -1,46 +1,32 @@
 #include "OrderExecutor.h"
 
-// We should keep this file in the event we need to implement some behaviour
-// that is common to the subclasses.
-
-// dummy function to prevent printing.
-size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp)
-{
+/* Function required as argument to CURLOPT_WRITEFUNCTION.
+ * Is currently defined to disable outputs. */
+size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {
   return size * nmemb;
 }
 
-// A function that could disable message sending depending on benchmark.
+/* Function that sends prepared curl object over HTTP. */
 void OrderExecutor::sendOrder(CURL *curl) {
-  if(!output) {
+  if (!output) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
   }
 
-  if(!benchmark) {
+  if (!benchmark) {
     auto res = curl_easy_perform(curl);
     if (res != CURLE_OK) {
       fprintf(stderr, "curl_easy_perform() failed: %s\n",
               curl_easy_strerror(res));
     }
 
-    /* always cleanup */
     curl_easy_cleanup(curl);
-    std::cout << "\n";
+    if (output) {
+      std::cout << "\n";
+    }
   }
 }
 
-void OrderExecutor::enableOutput() {
-  this->output = true;
-}
-
-void OrderExecutor::disableOutput() {
-  this->output = false;
-
-}
-
-void OrderExecutor::enableBenchmarking() {
-  this->benchmark = true;
-}
-
-void OrderExecutor::disableBenchmarking() {
-  this->benchmark = false;
-}
+void OrderExecutor::enableOutput() { this->output = true; }
+void OrderExecutor::disableOutput() { this->output = false; }
+void OrderExecutor::enableBenchmarking() { this->benchmark = true; }
+void OrderExecutor::disableBenchmarking() { this->benchmark = false; }

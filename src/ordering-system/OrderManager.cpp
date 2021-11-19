@@ -1,7 +1,3 @@
-//
-// Created by Jake Dickie on 03/11/2021.
-//
-
 #include "OrderManager.h"
 
 #include "exchange/Exchange.h"
@@ -14,10 +10,9 @@ OrderManager::OrderManager()
   portfolio = new std::vector<Order>();
 }
 
-// TODO: add order_ids returned from exchanges to order class after
-//  successful order.
-void OrderManager::submitOrder(Exchange::ExchangeName exchange, Order order) {
+void OrderManager::submitOrder(Exchange::ExchangeName exchange, const Order& order) {
   OrderExecutor *executor = orderExecutors.at(exchange);
+  executor->disableOutput();
   executor->submitOrder(order);
   portfolio->push_back(order);
 }

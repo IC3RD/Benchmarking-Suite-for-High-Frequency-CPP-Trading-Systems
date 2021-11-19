@@ -4,7 +4,6 @@
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
 #include <curl/curl.h>
-#include <debug.h>
 #include <utils/Base64.h>
 #include <utils/SHA256Engine.h>
 
@@ -12,15 +11,16 @@
 
 void CoinbaseOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
-  DEBUG("Submitting order with data: " + order_data + " to " +
-        getExchangeName() + "...");
+
+  if (output) {
+    PRINT("Submitting order with data: " + order_data + " to " +
+          getExchangeName() + "...");
+  }
 
   CURL *curl;
-  CURLcode res;
   curl = curl_easy_init();
 
   if (curl) {
-    // Set up request.
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
     std::string URL = getURL();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
@@ -28,21 +28,12 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
     curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
 
-    // Add required headers.
     struct curl_slist *chunk = nullptr;
     generateHeaders(&chunk, order_data);
 
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
-    res = curl_easy_perform(curl);
-    if (res != CURLE_OK) {
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
-    }
-
-    // Cleanup.
-    curl_easy_cleanup(curl);
-    std::cout << std::endl;
+    sendOrder(curl);
   }
 }
 
@@ -74,7 +65,6 @@ std::string CoinbaseOrderExecutor::authenticate(const std::string &message,
   std::string decoded;
   macaron::Base64::Decode(getSecretKey(), decoded);
   Poco::HMACEngine<SHA256Engine> hmac{decoded};
-  // timestamp + method + requestPath + body
   std::string toSign = timestamp + "POST" + "/orders" + message.c_str();
   hmac.update(toSign);
   std::string digest = Poco::DigestEngine::digestToHex(hmac.digest());
@@ -85,22 +75,10 @@ std::string CoinbaseOrderExecutor::authenticate(const std::string &message,
 
 std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
-
   json->set("side", order.isBuyOrder() ? "buy" : "sell");
-
-  // Assuming is BTC for now...
   json->set("product_id", "BTC-USD");
-
-  // Price must be in units of 'quote_increment' product units.
-  // For BTC-USD it's 0.01. Therefore, $100 = 10000 units.
-  // If we'd like to use multiple coins (likely), we should ask via websocket
-  // for 'quote_increment' for each type of coin.
-  // TODO: What should be price unit in the 'Order' class?
-  // FIXME: Change price value depending on units in 'Order' class.
   json->set("price", std::to_string(order.getPrice()));
-
   json->set("size", std::to_string(order.getVolume()));
-
   std::stringstream ss;
   Poco::JSON::Stringifier::stringify(json, ss);
   return ss.str();
@@ -109,7 +87,6 @@ std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
 CoinbaseOrderExecutor::CoinbaseOrderExecutor() : OrderExecutor() {}
 
 std::string CoinbaseOrderExecutor::getURL() {
-  // Amend if you are debugging.
   bool debug = false;
   if (debug) {
     return "https://httpbin.org/post";
