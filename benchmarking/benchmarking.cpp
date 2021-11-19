@@ -7,7 +7,19 @@
 #include "exchange/Exchange.h"
 #include "exchange/OrderData.h"
 #include "exchange/TradingStrategy.h"
+#include "ordering-system/bitmex/BitmexOrderExecutor.h"
 
+
+// Define another benchmark
+static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
+    Order order {"XBTUSD", 100, 5, true};
+    BitmexOrderExecutor executor {};
+    for (auto _: state) {
+        executor.submitOrder(order);
+    }
+}
+
+BENCHMARK(BM_OrderExecutor_submitOrder);
 
 // Define another benchmark
 static void BM_OrderBook_getHighestBid(benchmark::State &state) {

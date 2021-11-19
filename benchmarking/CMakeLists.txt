@@ -11,6 +11,8 @@ target_link_libraries(benchmarking
         benchmark::benchmark -lpthread
         bollingerBand
         dataManager
+        exchange
+        ordering-system
 )
 
 install(TARGETS benchmarking DESTINATION bin)
