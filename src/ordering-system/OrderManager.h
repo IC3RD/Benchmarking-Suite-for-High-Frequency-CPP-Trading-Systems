@@ -1,7 +1,7 @@
 #pragma once
-#include <ordering-system/OrderExecutor.h>
-#include <exchange/Exchange.h>
 #include <dataManager/Order.h>
+#include <exchange/Exchange.h>
+#include <ordering-system/OrderExecutor.h>
 #include <ordering-system/exchangeExecutors/binance/BinanceOrderExecutor.h>
 #include <ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h>
 #include <ordering-system/exchangeExecutors/coinbase/CoinbaseOrderExecutor.h>

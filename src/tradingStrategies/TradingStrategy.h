@@ -20,7 +20,8 @@ class TradingStrategy {
   void insertNewOrderBook(std::shared_ptr<OrderBook>);
 
  protected:
-  std::unordered_map<Exchange::ExchangeName, std::shared_ptr<OrderBook>, std::hash<int>>
+  std::unordered_map<Exchange::ExchangeName, std::shared_ptr<OrderBook>,
+                     std::hash<int>>
       exchangeOrderBooks;
   OrderManager orderManager;
 };

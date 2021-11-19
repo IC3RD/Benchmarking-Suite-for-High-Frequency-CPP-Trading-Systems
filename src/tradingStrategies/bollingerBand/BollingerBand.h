@@ -3,12 +3,11 @@
 
 #include <unordered_map>
 
-
 #include "Band.h"
-#include "exchange/Exchange.h"
 #include "dataManager/Order.h"
-#include "tradingStrategies/TradingStrategy.h"
+#include "exchange/Exchange.h"
 #include "ordering-system/OrderExecutor.h"
+#include "tradingStrategies/TradingStrategy.h"
 
 class BollingerBand : public TradingStrategy {
  public:

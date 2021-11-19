@@ -1,6 +1,6 @@
 #pragma once
-#include <ordering-system/OrderBuilder.h>
 #include <dataManager/Order.h>
+#include <ordering-system/OrderBuilder.h>
 
 class OrderExecutor {
  public:

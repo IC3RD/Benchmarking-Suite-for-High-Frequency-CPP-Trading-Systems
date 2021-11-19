@@ -48,27 +48,27 @@ std::shared_ptr<OrderData> OrderBook::getLowestAsk() {
   return askStore->getPriceToOrderDataMap().begin()->second;
 }
 
-std::shared_ptr<OrderData> OrderBook::getBidAt(int i){
-    if (bidStore->isEmpty() || i < 0) {
-        return nullptr;
-    }
-    auto it = --(bidStore->getPriceToOrderDataMap().end());
-    while (i > 0) {
-        it--;
-        --i;
-    }
-    return it->second;
+std::shared_ptr<OrderData> OrderBook::getBidAt(int i) {
+  if (bidStore->isEmpty() || i < 0) {
+    return nullptr;
+  }
+  auto it = --(bidStore->getPriceToOrderDataMap().end());
+  while (i > 0) {
+    it--;
+    --i;
+  }
+  return it->second;
 }
-std::shared_ptr<OrderData> OrderBook::getAskAt(int i){
-    if (askStore->isEmpty() || i < 0) {
-        return nullptr;
-    }
-    auto it = (askStore->getPriceToOrderDataMap().begin());
-    while (i > 0) {
-        it++;
-        --i;
-    };
-    return it->second;
+std::shared_ptr<OrderData> OrderBook::getAskAt(int i) {
+  if (askStore->isEmpty() || i < 0) {
+    return nullptr;
+  }
+  auto it = (askStore->getPriceToOrderDataMap().begin());
+  while (i > 0) {
+    it++;
+    --i;
+  };
+  return it->second;
 }
 
 std::shared_ptr<OrderDataStore> OrderBook::getBidStore() { return bidStore; }
