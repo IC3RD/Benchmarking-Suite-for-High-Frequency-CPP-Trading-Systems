@@ -16,6 +16,5 @@ class OrderManager {
 
  private:
   std::vector<Order> *portfolio;
-  std::unordered_map<Exchange::ExchangeName, OrderExecutor *>
-      orderExecutors;
+  std::unordered_map<Exchange::ExchangeName, OrderExecutor *> orderExecutors;
 };
