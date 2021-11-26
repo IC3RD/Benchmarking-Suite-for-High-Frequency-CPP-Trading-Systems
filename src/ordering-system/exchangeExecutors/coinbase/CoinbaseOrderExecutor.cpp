@@ -3,7 +3,6 @@
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
-#include <curl/curl.h>
 #include <ordering-system/exchangeExecutors/debug.h>
 #include <ordering-system/exchangeExecutors/utils/Base64.h>
 #include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>

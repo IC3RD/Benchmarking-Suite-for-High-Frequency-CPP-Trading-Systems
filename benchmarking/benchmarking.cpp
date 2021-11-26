@@ -13,6 +13,7 @@ static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
   Order order{"XBTUSD", 100, 5, true};
   BinanceOrderExecutor executor{};
   executor.enableBenchmarking();
+  executor.disableOutput();
   //    executor.enableOutput();
   for (auto _ : state) {
     executor.submitOrder(order);

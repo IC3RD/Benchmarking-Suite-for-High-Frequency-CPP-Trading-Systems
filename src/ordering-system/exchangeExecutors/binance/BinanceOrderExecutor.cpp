@@ -1,7 +1,4 @@
 #include "BinanceOrderExecutor.h"
-
-#include <curl/curl.h>
-
 #include <chrono>
 
 #include "Poco/DigestEngine.h"

@@ -1,7 +1,6 @@
 #include "BitmexOrderExecutor.h"
 
 #include <Poco/HMACEngine.h>
-#include <curl/curl.h>
 #include <ordering-system/exchangeExecutors/debug.h>
 #include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>
 

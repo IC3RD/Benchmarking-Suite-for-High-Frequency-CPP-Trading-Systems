@@ -19,7 +19,8 @@ add_library(ordering-system ${SOURCE_FILES})
 
 target_include_directories(ordering-system PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(ordering-system PUBLIC tradingStrategies JSON curl)
+target_link_libraries(ordering-system PUBLIC tradingStrategies JSON curl
+        benchmarking)
 
 #add_subdirectory(coinbase)
 
