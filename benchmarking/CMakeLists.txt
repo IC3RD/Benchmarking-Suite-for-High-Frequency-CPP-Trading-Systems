@@ -10,7 +10,6 @@ add_executable(benchmarking ${SOURCE_FILES})
 target_link_libraries(benchmarking
         benchmark::benchmark -lpthread
         dataManager
-        exchange
         ordering-system
         tradingStrategies
         )

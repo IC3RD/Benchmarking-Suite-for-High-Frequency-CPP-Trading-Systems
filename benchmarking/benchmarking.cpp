@@ -1,14 +1,12 @@
-//#include <../include/benchmark/include/benchmark/benchmark.h>
-
 #include <benchmark/benchmark.h>
-
 #include "bollingerBand/BollingerBand.h"
 #include "dataManager/OrderDataStore.h"
 #include "exchange/Exchange.h"
-#include "exchange/OrderData.h"
-#include "exchange/OrderTypes.h"
-#include "exchange/TradingStrategy.h"
-#include "ordering-system/bitmex/BitmexOrderExecutor.h"
+#include "dataManager/OrderData.h"
+#include "dataManager/OrderTypes.h"
+#include "tradingStrategies/TradingStrategy.h"
+#include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
+#include <memory>
 
 // Define another benchmark
 static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
@@ -49,7 +47,7 @@ static void BM_OrderDataStore_addEntry(benchmark::State &state) {
   //            double volume
   //    OrderData test_data {OrderTypes::ASK, Exchange::BITMEX, 500, 100};
   std::shared_ptr ptr =
-      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 500, 100);
+      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 500, 100);
   OrderDataStore dataStore{};
   for (auto _ : state) {
     dataStore.addEntry(ptr);
@@ -62,7 +60,7 @@ BENCHMARK(BM_OrderDataStore_addEntry);
 static void BM_OrderDataStore_addEntry_keyAlreadyExists(
     benchmark::State &state) {
   std::shared_ptr ptr =
-      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 500, 100);
+      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 500, 100);
   OrderDataStore dataStore{};
   dataStore.addEntry(ptr);
   for (auto _ : state) {
@@ -75,7 +73,7 @@ BENCHMARK(BM_OrderDataStore_addEntry_keyAlreadyExists);
 static void BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume(
     benchmark::State &state) {
   std::shared_ptr ptr =
-      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 0, 0);
+      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 0, 0);
   OrderDataStore dataStore{};
   dataStore.addEntry(ptr);
   for (auto _ : state) {
