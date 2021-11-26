@@ -28,6 +28,7 @@ set(INSTALL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(INSTALL_BIN_DIR ${PROJECT_SOURCE_DIR}/bin)
 set(INSTALL_LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
 set(INSTALL_SRC_DIR ${PROJECT_SOURCE_DIR}/src)
+set(INSTALL_BENCHMARK_DIR ${PROJECT_SOURCE_DIR}/benchmarking)
 
 set(POCO_DIR lib/Poco)
 set(POCO_INCLUDE_DIRS
@@ -55,6 +56,7 @@ set(POCO_INCLUDE_DIRS
 include_directories(${INSTALL_INCLUDE_DIR})
 include_directories(${INSTALL_LIB_DIR})
 include_directories(${INSTALL_SRC_DIR})
+include_directories(${INSTALL_BENCHMARK_DIR})
 
 find_package(OpenSSL REQUIRED)
 set(CURL_LIBRARY "-lcurl")
