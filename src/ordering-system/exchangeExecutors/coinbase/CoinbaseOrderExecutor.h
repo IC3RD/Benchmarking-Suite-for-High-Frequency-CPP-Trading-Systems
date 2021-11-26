@@ -1,10 +1,4 @@
-//
-// Created by Jake Dickie on 28/10/2021.
-//
-
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
-
+#pragma once
 #include <ordering-system/OrderBuilder.h>
 #include <ordering-system/exchangeExecutors/ExchangeOrderExecutor.h>
 
@@ -25,5 +19,3 @@ class CoinbaseOrderExecutor : public ExchangeOrderExecutor {
   std::string getPublicKey() override;
   static std::string hex_to_string(const std::string &in);
 };
-
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H

@@ -1,6 +1,4 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
-
+#pragma once
 #include <ordering-system/exchangeExecutors/ExchangeOrderExecutor.h>
 class BitmexOrderExecutor : public ExchangeOrderExecutor {
  public:
@@ -18,5 +16,3 @@ class BitmexOrderExecutor : public ExchangeOrderExecutor {
   std::string generateSignature(const std::string &message,
                                 const std::string &timestamp);
 };
-
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
