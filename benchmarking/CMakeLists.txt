@@ -7,7 +7,6 @@ include_directories(lib/benchmark/include)
 set(SOURCE_FILES benchmarking.cpp mocks/mockCurl.cpp mocks/mockCurl.h)
 
 
-
 add_library(benchmarking ${SOURCE_FILES})
 
 target_include_directories(benchmarking PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

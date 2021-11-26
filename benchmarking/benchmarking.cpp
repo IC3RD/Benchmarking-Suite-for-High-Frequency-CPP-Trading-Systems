@@ -1,12 +1,14 @@
 #include <benchmark/benchmark.h>
-#include "bollingerBand/BollingerBand.h"
-#include "dataManager/OrderDataStore.h"
-#include "exchange/Exchange.h"
-#include "dataManager/OrderData.h"
-#include "dataManager/OrderTypes.h"
-#include "tradingStrategies/TradingStrategy.h"
-#include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
+
 #include <memory>
+
+#include "bollingerBand/BollingerBand.h"
+#include "dataManager/OrderData.h"
+#include "dataManager/OrderDataStore.h"
+#include "dataManager/OrderTypes.h"
+#include "exchange/Exchange.h"
+#include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
+#include "tradingStrategies/TradingStrategy.h"
 
 // Define another benchmark
 static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
