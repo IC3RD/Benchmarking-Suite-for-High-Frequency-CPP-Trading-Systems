@@ -28,7 +28,7 @@ void Arbitrage::runStrategy() {
   }
 }
 
-void Arbitrage::process(MarketData& exchange1, MarketData& exchange2) {
+void Arbitrage::process(MarketData &exchange1, MarketData &exchange2) {
   int fee1 = exchange1.getFee();
   int fee2 = exchange2.getFee();
   int exchange1SellPrice = exchange1.getSellPrice();

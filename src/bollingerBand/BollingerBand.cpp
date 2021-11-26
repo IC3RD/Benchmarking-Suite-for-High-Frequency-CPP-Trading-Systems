@@ -8,6 +8,7 @@
 #include "Band.h"
 
 BollingerBand::BollingerBand() {}
+
 BollingerBand::~BollingerBand() {}
 
 void BollingerBand::addExchange(Exchange::ExchangeName exchange) {

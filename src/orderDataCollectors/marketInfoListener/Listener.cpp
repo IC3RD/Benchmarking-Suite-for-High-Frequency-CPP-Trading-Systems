@@ -1,6 +1,7 @@
 #include "Listener.h"
 
 #include <iostream>
+#include <mutex>
 
 Listener::Listener(std::string url, std::string request,
                    Exchange::ExchangeName exchange, OrderBook &orderBook)

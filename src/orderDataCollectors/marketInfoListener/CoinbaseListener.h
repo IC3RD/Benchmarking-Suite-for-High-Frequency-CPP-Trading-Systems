@@ -1,4 +1,8 @@
 #pragma once
+
+#include <fstream>
+#include <iostream>
+
 #include "Listener.h"
 
 class CoinbaseListener : public Listener {
@@ -7,4 +11,6 @@ class CoinbaseListener : public Listener {
 
  protected:
   void passJSON(nlohmann::json json);
+
+  ofstream file;
 };

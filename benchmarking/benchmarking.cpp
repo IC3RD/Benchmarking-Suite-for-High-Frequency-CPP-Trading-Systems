@@ -20,8 +20,54 @@ static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
         executor.submitOrder(order);
     }
 }
-
 BENCHMARK(BM_OrderExecutor_submitOrder);
+// since submitOrder is very slow due to curl we benchmark all the function it calls instead:
+// calls parseOrder, getUrl, authenticate, generateHeaders, sendOrder
+
+static void BM_OrderExecutor_parseOrder(benchmark::State &state) {
+    Order order {"XBTUSD", 100, 5, true};
+    BinanceOrderExecutor executor {};
+    executor.enableBenchmarking();
+//    executor.enableOutput();
+    for (auto _: state) {
+        executor.parseOrder(order);
+    }
+}
+BENCHMARK(BM_OrderExecutor_parseOrder);
+
+static void BM_OrderExecutor_getUrl(benchmark::State &state) {
+    BinanceOrderExecutor executor {};
+    executor.enableBenchmarking();
+//    executor.enableOutput();
+    for (auto _: state) {
+        executor.getURL();
+    }
+}
+BENCHMARK(BM_OrderExecutor_getUrl);
+
+static void BM_OrderExecutor_authenticate(benchmark::State &state) {
+    std::string message = "this is a test for benchmarking";
+    BinanceOrderExecutor executor {};
+    executor.enableBenchmarking();
+//    executor.enableOutput();
+    for (auto _: state) {
+        executor.authenticate(message);
+    }
+}
+BENCHMARK(BM_OrderExecutor_authenticate);
+
+//this one also uses curl mainly so might not need it
+static void BM_OrderExecutor_generateHeaders(benchmark::State &state) {
+    struct curl_slist *chunk = nullptr;
+    BinanceOrderExecutor executor {};
+    executor.enableBenchmarking();
+//    executor.enableOutput();
+    for (auto _: state) {
+        executor.generateHeaders(&chunk);
+    }
+}
+BENCHMARK(BM_OrderExecutor_generateHeaders);
+//sendOrder is only using curl so makes no sense to include it
 
 // Define another benchmark
 static void BM_OrderBook_getHighestBid(benchmark::State &state) {

@@ -12,6 +12,7 @@ OrderData::~OrderData(){};
 const OrderTypes::OrderType OrderData::getOrderType() const {
   return orderType;
 }
+
 const Exchange::ExchangeName OrderData::getExchange() const { return exchange; }
 
 const double OrderData::getOrderVolume() const { return orderVolume; }

@@ -13,11 +13,14 @@ using namespace std;
 class Arbitrage : public TradingStrategy {
  public:
   Arbitrage();
+
   ~Arbitrage();
+
   void runStrategy() override;
 
  private:
   void process(MarketData &, MarketData &);
+
   list<Exchange::ExchangeName> exchanges;
   OrderExecutor *orderExecutor;
 };

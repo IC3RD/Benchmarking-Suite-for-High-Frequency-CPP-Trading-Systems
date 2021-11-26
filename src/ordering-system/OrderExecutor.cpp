@@ -27,6 +27,9 @@ void OrderExecutor::sendOrder(CURL *curl) {
 }
 
 void OrderExecutor::enableOutput() { this->output = true; }
+
 void OrderExecutor::disableOutput() { this->output = false; }
+
 void OrderExecutor::enableBenchmarking() { this->benchmark = true; }
+
 void OrderExecutor::disableBenchmarking() { this->benchmark = false; }

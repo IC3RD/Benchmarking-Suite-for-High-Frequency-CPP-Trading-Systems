@@ -7,10 +7,15 @@
 class Band {
  public:
   Band();
+
   ~Band();
+
   long getMean();
+
   long getStd();
+
   int getNoOfElements();
+
   void insertNewData(long);
 
  private:

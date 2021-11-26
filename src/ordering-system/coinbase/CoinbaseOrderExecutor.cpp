@@ -99,6 +99,7 @@ std::string CoinbaseOrderExecutor::getSecretKey() {
   return "jgEtlhOBhGESP7JUQ2w6Dm46Wbar8zWv5ib3PEYfTC7avQ8M8ohxNHvLESnJGHhRYlOZp"
          "iMzPiEaU8onVlNgSg==";
 }
+
 std::string CoinbaseOrderExecutor::getPublicKey() {
   return "00dcf06c3d7402c3272eef11593446b0";
 }

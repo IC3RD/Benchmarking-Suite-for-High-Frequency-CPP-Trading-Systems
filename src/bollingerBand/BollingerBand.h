@@ -1,4 +1,5 @@
 #pragma once
+
 #include <stdio.h>
 
 #include <unordered_map>
@@ -13,9 +14,13 @@
 class BollingerBand : public TradingStrategy {
  public:
   BollingerBand();
+
   ~BollingerBand();
+
   void runStrategy();
+
   void newData(std::shared_ptr<OrderData>);
+
   void addExchange(Exchange::ExchangeName exchange);
 
  private:

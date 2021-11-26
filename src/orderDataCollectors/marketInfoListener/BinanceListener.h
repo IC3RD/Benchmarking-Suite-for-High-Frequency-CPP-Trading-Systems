@@ -1,4 +1,8 @@
 #pragma once
+
+#include <fstream>
+#include <iostream>
+
 #include "Listener.h"
 
 class BinanceListener : public Listener {
@@ -10,4 +14,5 @@ class BinanceListener : public Listener {
 
  private:
   int lastUpdated;
+  ofstream file;
 };

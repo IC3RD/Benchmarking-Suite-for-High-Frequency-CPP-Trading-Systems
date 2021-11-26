@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Listener.h"
 
 class KrakenListener : public Listener {

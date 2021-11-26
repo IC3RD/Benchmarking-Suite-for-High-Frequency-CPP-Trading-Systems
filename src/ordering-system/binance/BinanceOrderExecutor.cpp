@@ -56,7 +56,7 @@ void BinanceOrderExecutor::generateHeaders(struct curl_slist **chunk) {
                              "application/x-www-form-urlencoded");
 }
 
-std::string BinanceOrderExecutor::authenticate(std::string message) {
+std::string BinanceOrderExecutor::authenticate(const std::string &message) {
   Poco::HMACEngine<SHA256Engine> hmac{getSecretKey()};
   hmac.update(message);
   std::string digest = Poco::DigestEngine::digestToHex(hmac.digest());
@@ -87,10 +87,13 @@ std::string BinanceOrderExecutor::getURL() {
     return "https://testnet.binance.vision/api/v3/order?";
   }
 }
+
 std::string BinanceOrderExecutor::getSecretKey() {
   return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU";
 }
+
 std::string BinanceOrderExecutor::getPublicKey() {
   return "sBe2iw3BTx9bpOofw9ejD5pmAGc7qlVKp3qruGcGbCPtGenVtSEThdeh7WmpPoQq";
 }
+
 std::string BinanceOrderExecutor::getExchangeName() { return "Binance"; }

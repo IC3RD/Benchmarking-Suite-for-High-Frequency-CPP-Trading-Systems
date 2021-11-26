@@ -1,4 +1,5 @@
 #pragma once
+
 #include <deque>
 #include <memory>
 #include <mutex>
@@ -16,14 +17,23 @@ class TradingStrategy;
 class OrderBook {
  public:
   OrderBook(Exchange::ExchangeName);
+
   ~OrderBook();
+
   void addTradingStrategy(std::shared_ptr<TradingStrategy>);
+
   void addEntry(std::shared_ptr<OrderData>);
+
   void sendOrder();
+
   const Exchange::ExchangeName getExchange() const;
+
   std::shared_ptr<OrderDataStore> getBidStore();
+
   std::shared_ptr<OrderDataStore> getAskStore();
+
   std::shared_ptr<OrderData> getHighestBid();
+
   std::shared_ptr<OrderData> getLowestAsk();
 
  private:

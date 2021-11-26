@@ -11,8 +11,8 @@ OrderManager::OrderManager()
 }
 
 void OrderManager::submitOrder(Exchange::ExchangeName exchange,
-                               const Order& order) {
-  OrderExecutor* executor = orderExecutors.at(exchange);
+                               const Order &order) {
+  OrderExecutor *executor = orderExecutors.at(exchange);
   executor->enableOutput();
   executor->submitOrder(order);
   portfolio->push_back(order);

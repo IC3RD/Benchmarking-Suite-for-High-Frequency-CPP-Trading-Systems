@@ -1,4 +1,5 @@
 #pragma once
+
 #include <map>
 #include <memory>
 #include <mutex>
@@ -9,9 +10,13 @@
 class OrderDataStore {
  public:
   OrderDataStore();
+
   void addEntry(std::shared_ptr<OrderData>);
+
   void sendOrder();
+
   bool isEmpty();
+
   std::map<long, std::shared_ptr<OrderData>> getPriceToOrderDataMap();
 
  private:

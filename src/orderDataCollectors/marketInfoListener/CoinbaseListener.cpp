@@ -13,12 +13,20 @@ CoinbaseListener::CoinbaseListener(OrderBook &orderBook)
 
 // reference: https://docs.cloud.coinbase.com/exchange/docs/channels
 void CoinbaseListener::passJSON(nlohmann::json json) {
+  //    file.open("/home/panos/Desktop/Year_3_project/mockData.txt");
   if (json.contains("type")) {
     if (json.at("type") == "snapshot") {
       if (json.contains("bids")) {
         for (auto bid : json.at("bids")) {
           std::string priceS = bid[0];
           std::string volumeS = bid[1];
+          //                    if (file.is_open()) {
+          //                        file << "BID " << priceS << " " << volumeS
+          //                        << endl;
+          ////                        cout <<
+          ///"-------------------WROTEEEEEEEEEEEEEE----------------"; /
+          ///file.close();
+          //                    }
           collectOrderData(OrderTypes::BID, std::stol(priceS),
                            std::stod(volumeS));
         }
@@ -27,6 +35,10 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
         for (auto ask : json.at("asks")) {
           std::string priceS = ask[0];
           std::string volumeS = ask[1];
+          //                    if (file.is_open()) {
+          //                        file << "ASK " << priceS << " " << volumeS
+          //                        << "\n";
+          //                    }
           collectOrderData(OrderTypes::ASK, std::stol(priceS),
                            std::stod(volumeS));
         }
@@ -48,4 +60,5 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
       }
     }
   }
+  //    file.close();
 }

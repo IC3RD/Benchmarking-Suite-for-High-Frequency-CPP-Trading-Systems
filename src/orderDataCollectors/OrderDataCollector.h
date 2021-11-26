@@ -8,7 +8,9 @@
 class OrderDataCollector {
  public:
   OrderDataCollector(OrderBook &, Exchange::ExchangeName);
+
   ~OrderDataCollector();
+
   void constructAndPassOrderData(OrderTypes::OrderType type, int price,
                                  double volume);
 

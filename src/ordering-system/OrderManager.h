@@ -1,4 +1,5 @@
 #pragma once
+
 #include <unordered_map>
 #include <vector>
 
@@ -12,6 +13,7 @@
 class OrderManager {
  public:
   OrderManager();
+
   void submitOrder(Exchange::ExchangeName exchange, const Order &order);
 
  private:
