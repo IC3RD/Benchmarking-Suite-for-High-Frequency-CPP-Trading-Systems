@@ -1,4 +1,4 @@
-#include "OrderExecutor.h"
+#include "ExchangeOrderExecutor.h"
 
 /* Function required as argument to CURLOPT_WRITEFUNCTION.
  * Is currently defined to disable outputs. */
@@ -7,7 +7,7 @@ size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {
 }
 
 /* Function that sends prepared curl object over HTTP. */
-void OrderExecutor::sendOrder(CURL *curl) {
+void ExchangeOrderExecutor::sendOrder(CURL *curl) {
   if (!output) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
   }
@@ -26,7 +26,7 @@ void OrderExecutor::sendOrder(CURL *curl) {
   }
 }
 
-void OrderExecutor::enableOutput() { this->output = true; }
-void OrderExecutor::disableOutput() { this->output = false; }
-void OrderExecutor::enableBenchmarking() { this->benchmark = true; }
-void OrderExecutor::disableBenchmarking() { this->benchmark = false; }
+void ExchangeOrderExecutor::enableOutput() { this->output = true; }
+void ExchangeOrderExecutor::disableOutput() { this->output = false; }
+void ExchangeOrderExecutor::enableBenchmarking() { this->benchmark = true; }
+void ExchangeOrderExecutor::disableBenchmarking() { this->benchmark = false; }
