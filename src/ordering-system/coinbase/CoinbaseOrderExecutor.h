@@ -1,12 +1,5 @@
-//
-// Created by Jake Dickie on 28/10/2021.
-//
-
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H
-
-#include <OrderBuilder.h>
-#include <OrderExecutor.h>
+#pragma once
+#include "OrderExecutor.h"
 
 class CoinbaseOrderExecutor : public OrderExecutor {
  public:
@@ -25,5 +18,3 @@ class CoinbaseOrderExecutor : public OrderExecutor {
   std::string getPublicKey() override;
   static std::string hex_to_string(const std::string &in);
 };
-
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_COINBASEORDEREXECUTOR_H

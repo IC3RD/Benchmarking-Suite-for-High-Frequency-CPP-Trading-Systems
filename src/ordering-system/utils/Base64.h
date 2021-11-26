@@ -1,5 +1,4 @@
-#ifndef _MACARON_BASE64_H_
-#define _MACARON_BASE64_H_
+#pragma once
 
 /**
  * The MIT License (MIT)
@@ -123,5 +122,3 @@ class Base64 {
 };
 
 }  // namespace macaron
-
-#endif /* _MACARON_BASE64_H_ */

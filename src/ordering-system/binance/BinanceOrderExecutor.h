@@ -1,12 +1,5 @@
-//
-// Created by panos on 10/29/21.
-//
-
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
-
-#include <OrderBuilder.h>
-#include <OrderExecutor.h>
+#pragma once
+#include "OrderExecutor.h"
 
 class BinanceOrderExecutor : public OrderExecutor {
  public:
@@ -23,5 +16,3 @@ class BinanceOrderExecutor : public OrderExecutor {
   std::string getSecretKey() override;
   std::string getPublicKey() override;
 };
-
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
