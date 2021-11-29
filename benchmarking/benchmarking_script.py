@@ -52,9 +52,9 @@ def run_benchmark():
 
 
 def compare(old_file, new_file):
-    os.system(f"./lib/benchmark/tools/compare.py benchmarks outputs/{old_file} outputs/{new_file} | sed 's/\x1b\[["
+    os.system(f"python3 lib/benchmark/tools/compare.py benchmarks outputs/{old_file} outputs/{new_file} | sed 's/\x1b\[["
               f"0-9;]*m//g' > outputs/comparison_{old_file}_{new_file}")
-    os.system("./lib/benchmark/tools/compare.py benchmarks outputs/newFile outputs/newFile1")
+    # os.system("./lib/benchmark/tools/compare.py benchmarks outputs/newFile outputs/newFile1")
 
     f_old = open("outputs/" + old_file)
     f_new = open("outputs/" + new_file)
