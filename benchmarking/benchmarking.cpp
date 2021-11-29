@@ -37,7 +37,7 @@ class OrderDataStoreFixture : public benchmark::Fixture {
   int SIZE = 1000;
 
  public:
-  OrderDataStore orderDataStore{Exchange::BITMEX};
+  OrderDataStore orderDataStore{};
 
   void SetUp(const ::benchmark::State &state) {
     OrderTypes::OrderType orderType;
@@ -49,7 +49,7 @@ class OrderDataStoreFixture : public benchmark::Fixture {
       }
       std::shared_ptr ptr = std::make_shared<OrderData>(
           orderType, Exchange::BITMEX, 500 + i, 100);
-      orderBook.addEntry(ptr);
+      orderDataStore.addEntry(ptr);
     }
   }
 
