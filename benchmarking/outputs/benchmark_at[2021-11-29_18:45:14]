@@ -1,0 +1,194 @@
+{
+  "context": {
+    "date": "2021-11-29T18:45:14+00:00",
+    "host_name": "ubuntu",
+    "executable": "./benchmarking",
+    "num_cpus": 2,
+    "mhz_per_cpu": 1992,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 8388608,
+        "num_sharing": 1
+      }
+    ],
+    "load_avg": [1.21,1.39,1.32],
+    "library_build_type": "debug"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_OrderExecutor_submitOrder",
+      "family_index": 0,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderExecutor_submitOrder",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 11986,
+      "real_time": 5.0726147421673413e+04,
+      "cpu_time": 4.8909922326047054e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderExecutor_parseOrder",
+      "family_index": 1,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderExecutor_parseOrder",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 76628,
+      "real_time": 8.0029178499302980e+03,
+      "cpu_time": 7.9378716004593607e+03,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderExecutor_getUrl",
+      "family_index": 2,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderExecutor_getUrl",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 40126868,
+      "real_time": 1.6809677271654547e+01,
+      "cpu_time": 1.6639300754796011e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderExecutor_authenticate",
+      "family_index": 3,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderExecutor_authenticate",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 27157,
+      "real_time": 2.6213243178627752e+04,
+      "cpu_time": 2.5443827852855615e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderExecutor_generateHeaders",
+      "family_index": 4,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderExecutor_generateHeaders",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 10000,
+      "real_time": 7.9461616100161336e+04,
+      "cpu_time": 7.8722893500000035e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderBook_getHighestBid",
+      "family_index": 5,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderBook_getHighestBid",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 212576762,
+      "real_time": 3.3307085372054885e+00,
+      "cpu_time": 3.2987967377167999e+00,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderBook_getLowestAsk",
+      "family_index": 6,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderBook_getLowestAsk",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 221878196,
+      "real_time": 3.1842937194347325e+00,
+      "cpu_time": 3.1435447131542391e+00,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderDataStore_addEntry",
+      "family_index": 7,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderDataStore_addEntry",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 23857571,
+      "real_time": 2.9309297958354179e+01,
+      "cpu_time": 2.9019170937393426e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderDataStore_addEntry_keyAlreadyExists",
+      "family_index": 8,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderDataStore_addEntry_keyAlreadyExists",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 22533411,
+      "real_time": 2.9813786603378620e+01,
+      "cpu_time": 2.9530905463003311e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume",
+      "family_index": 9,
+      "per_family_instance_index": 0,
+      "run_name": "BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 15360382,
+      "real_time": 4.5312507137036107e+01,
+      "cpu_time": 4.4936827026827807e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_BollingerBand_runStrat",
+      "family_index": 10,
+      "per_family_instance_index": 0,
+      "run_name": "BM_BollingerBand_runStrat",
+      "run_type": "iteration",
+      "repetitions": 1,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 215438167,
+      "real_time": 3.2301985469625105e+00,
+      "cpu_time": 3.1952283134677790e+00,
+      "time_unit": "ns"
+    }
+  ]
+}
