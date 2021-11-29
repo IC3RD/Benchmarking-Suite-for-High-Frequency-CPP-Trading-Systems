@@ -41,12 +41,11 @@ void OrderDataStore::sendOrder() {
 
 bool OrderDataStore::isEmpty() { return priceToOrderDataMap.empty(); }
 
-std::shared_ptr<OrderData> OrderDataStore::getLast(){
-    mutex_dataHistory.lock();
-    std::shared_ptr<OrderData> res = std::prev(priceToOrderDataMap.end())
-                                       ->second;
-    mutex_dataHistory.unlock();
-    return res;
+std::shared_ptr<OrderData> OrderDataStore::getLast() {
+  mutex_dataHistory.lock();
+  std::shared_ptr<OrderData> res = std::prev(priceToOrderDataMap.end())->second;
+  mutex_dataHistory.unlock();
+  return res;
 }
 
 std::shared_ptr<OrderData> OrderDataStore::getFirst() {
