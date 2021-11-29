@@ -15,9 +15,10 @@ endif()
 
 project(CPPDesignPatternsLowLatency)
 
+set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
 set(OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib")
