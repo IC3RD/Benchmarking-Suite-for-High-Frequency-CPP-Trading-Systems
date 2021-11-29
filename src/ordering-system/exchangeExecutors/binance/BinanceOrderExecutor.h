@@ -1,18 +1,12 @@
-//
-// Created by panos on 10/29/21.
-//
+#pragma once
+#include <ordering-system/OrderBuilder.h>
+#include <ordering-system/exchangeExecutors/ExchangeOrderExecutor.h>
 
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H
-
-#include <OrderBuilder.h>
-#include <OrderExecutor.h>
-
-class BinanceOrderExecutor : public OrderExecutor {
+class BinanceOrderExecutor : public ExchangeOrderExecutor {
  public:
   BinanceOrderExecutor();
   void submitOrder(Order order) override;
-  std::string getURL() override;
+  std::string getDestination() override;
   std::string getExchangeName() override;
 
  private:
@@ -23,5 +17,3 @@ class BinanceOrderExecutor : public OrderExecutor {
   std::string getSecretKey() override;
   std::string getPublicKey() override;
 };
-
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_BINANCEORDEREXECUTOR_H

@@ -1,66 +1,52 @@
 #include "BitmexOrderExecutor.h"
 
 #include <Poco/HMACEngine.h>
-#include <curl/curl.h>
-#include <debug.h>
-#include <utils/SHA256Engine.h>
+#include <ordering-system/exchangeExecutors/debug.h>
+#include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>
 
 #include <chrono>
-#include <cstdio>
 #include <iostream>
 
 BitmexOrderExecutor::BitmexOrderExecutor() = default;
 
 std::string BitmexOrderExecutor::parseOrder(const Order &order) {
-  // TODO: Add support for other coins.
   std::string currency = "XBTUSD";
-
-  // This needs to be in multiples of 100.
-
-  // TODO: translate order volume into one suitable for exchange.
   int quantity = order.getVolume();
   std::string output =
       "symbol=" + currency + "&side=" + (order.isBuyOrder() ? "Buy" : "Sell") +
       "&orderQty=" + std::to_string(quantity) +
       "&price=" + std::to_string(order.getPrice()) + "&ordType=Limit";
-
   return output;
 }
 
 void BitmexOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
 
-  DEBUG("Submitting order with data: " + order_data + " to " +
-        getExchangeName() + "...");
+  if (output) {
+    PRINT("Submitting order with data: " + order_data + " to " +
+          getExchangeName() + "...");
+  }
 
   CURL *curl;
-  CURLcode res;
   curl = curl_easy_init();
 
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getURL();
+    std::string URL = getDestination();
     curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
 
-    // Add the headers.
+    /* Add the required headers. */
     struct curl_slist *chunk = nullptr;
     BitmexOrderExecutor::generateHeaders(&chunk, order_data);
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
-    res = curl_easy_perform(curl);
-    if (res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
-
-    // Cleanup.
-    curl_easy_cleanup(curl);
-    std::cout << std::endl;
+    sendOrder(curl);
   }
 }
 
-std::string BitmexOrderExecutor::getURL() {
+std::string BitmexOrderExecutor::getDestination() {
   return "https://testnet.bitmex.com/api/v1/order";
 }
 

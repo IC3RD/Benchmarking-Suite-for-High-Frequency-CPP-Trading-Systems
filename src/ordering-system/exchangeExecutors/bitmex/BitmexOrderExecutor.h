@@ -1,12 +1,10 @@
-#ifndef CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
-#define CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
-
-#include <OrderExecutor.h>
-class BitmexOrderExecutor : public OrderExecutor {
+#pragma once
+#include <ordering-system/exchangeExecutors/ExchangeOrderExecutor.h>
+class BitmexOrderExecutor : public ExchangeOrderExecutor {
  public:
   BitmexOrderExecutor();
   void submitOrder(Order order) override;
-  std::string getURL() override;
+  std::string getDestination() override;
   std::string getExchangeName() override;
 
  private:
@@ -18,5 +16,3 @@ class BitmexOrderExecutor : public OrderExecutor {
   std::string generateSignature(const std::string &message,
                                 const std::string &timestamp);
 };
-
-#endif  // CPPDESIGNPATTERNSLOWLATENCY_BITMEXORDEREXECUTOR_H
