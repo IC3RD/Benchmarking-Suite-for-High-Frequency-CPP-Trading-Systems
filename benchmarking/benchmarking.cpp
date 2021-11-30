@@ -1,3 +1,4 @@
+#include <arbitrage/Arbitrage.h>
 #include <benchmark/benchmark.h>
 
 #include <memory>
@@ -93,5 +94,12 @@ static void BM_BollingerBand_runStrat(benchmark::State &state) {
 }
 
 BENCHMARK(BM_BollingerBand_runStrat);
+
+static void TradingStrategy_Arbitrage(benchmark::State &state) {
+  std::unique_ptr<TradingStrategy> arbitrage = make_unique<Arbitrage>();
+  for (auto _ : state) {
+    // Create Exchange book instances.
+  }
+}
 
 BENCHMARK_MAIN();

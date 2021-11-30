@@ -26,6 +26,8 @@ void Arbitrage::runStrategy() {
   }
 }
 
+
+
 void Arbitrage::process(std::shared_ptr<OrderBook> exchange1Book,
                         std::shared_ptr<OrderBook> exchange2Book) {
   int fee1 = 0.01;
@@ -83,4 +85,8 @@ void Arbitrage::process(std::shared_ptr<OrderBook> exchange1Book,
       }
     }
   }
+}
+
+void Arbitrage::newData(std::shared_ptr<OrderData>){
+    // TODO: Implement this? Or don't make this pure in TradingStrategy?
 };
