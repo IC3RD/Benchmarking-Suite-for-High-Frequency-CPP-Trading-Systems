@@ -1,5 +1,4 @@
 #pragma once
-#include <curl/curl.h>
 #include <dataManager/Order.h>
 #include <ordering-system/OrderBuilder.h>
 

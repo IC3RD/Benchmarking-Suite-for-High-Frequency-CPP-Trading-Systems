@@ -1,19 +1,20 @@
 #pragma once
+#include <curl/curl.h>
 #include <dataManager/Order.h>
 #include <ordering-system/OrderExecutor.h>
-
-#define BENCHMARK_CPP_TEST
-
-#ifdef BENCHMARK_CPP_TEST
-#include "../../../benchmarking/mocks/mockCurl.h"
-#else
-#include <curl/curl.h>
-#endif
 
 #define PRINT(x)                 \
   do {                           \
     std::cout << x << std::endl; \
   } while (0)
+
+#ifdef BENCHMARK_CPP_TEST
+#include "../../../benchmarking/mocks/mockCurl.h"
+#else
+//#include <curl/curl.h>
+#endif
+
+
 
 class ExchangeOrderExecutor : public OrderExecutor {
  public:

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbenchmarkingd.a CMakeFiles/benchmarking.dir/benchmarking.cpp.o
+/usr/bin/ranlib libbenchmarkingd.a

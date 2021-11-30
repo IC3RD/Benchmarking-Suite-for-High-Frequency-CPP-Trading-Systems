@@ -8,6 +8,15 @@ size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {
 
 /* Function that sends prepared curl object over HTTP. */
 void ExchangeOrderExecutor::sendOrder(CURL *curl) {
+#ifdef BENCHMARK_CPP_TEST
+
+  std::cout<<"Including mockCurl."<<std::endl;
+
+#else
+
+  std::cout<<"Including curl."<<std::endl;
+
+#endif
   if (!output) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
   }

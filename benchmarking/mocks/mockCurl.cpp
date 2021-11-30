@@ -67,6 +67,7 @@ char *curl_easy_escape(CURL *curl, const char *string, int length) {
  * exception handling, in which case we return nullptr.
  */
 CURL *curl_easy_init() {
+  std::cout << "Using mocked curl object" << std::endl;
   if (test_failure_mode == easy_init_error) {
     return nullptr;
   } else {
