@@ -11,7 +11,8 @@ void BinanceOrderExecutor::submitOrder(Order order) {
   std::string order_data = parseOrder(order);
 
   if (output) {
-    PRINT("Posting order: " + order_data);
+    PRINT("Submitting order with data: " + order_data + " to " +
+          getExchangeName() + "...");
   }
 
   CURL *curl;
