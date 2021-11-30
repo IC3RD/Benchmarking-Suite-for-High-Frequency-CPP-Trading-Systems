@@ -126,10 +126,25 @@ static void BM_BollingerBand_runStrat(benchmark::State &state) {
 
 BENCHMARK(BM_BollingerBand_runStrat);
 
-static void TradingStrategy_Arbitrage(benchmark::State &state) {
+BENCHMARK_F(OrderBookFixture, TradingStrategy_Arbitrage)
+(benchmark::State &state) {
   std::unique_ptr<TradingStrategy> arbitrage = make_unique<Arbitrage>();
   for (auto _ : state) {
-    // Create Exchange book instances.
+    // Add two instances for arbitrage
+    arbitrage->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    arbitrage->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    arbitrage->runStrategy();
+  }
+}
+
+BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand)
+(benchmark::State &state) {
+  std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
+  for (auto _ : state) {
+    // Add two instances for arbitrage
+    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    bollingerBand->runStrategy();
   }
 }
 
