@@ -3,6 +3,8 @@
 #include <memory>
 
 #include "dataManager/OrderData.h"
+#include "dataManager/OrderBook.h"
+
 
 class Band {
  public:
@@ -11,7 +13,7 @@ class Band {
   long getMean();
   long getStd();
   int getNoOfElements();
-  void insertNewData(long);
+  void insertNewData(long, std::shared_ptr<OrderBook>);
 
  private:
   long meanPrice;
