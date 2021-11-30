@@ -18,7 +18,9 @@ void BollingerBand::newData(std::shared_ptr<OrderData> newData) {
   auto it = exchangeToBandMap.find(newData->getExchange());
   if (it != exchangeToBandMap.end()) {
     // maybe this should not use the order price
-    it->second->insertNewData(newData->getOrderPrice(), exchangeOrderBooks.find(newData->getExchange())->second);
+    it->second->insertNewData(
+        newData->getOrderPrice(),
+        exchangeOrderBooks.find(newData->getExchange())->second);
     runStrategy();
   }
 }

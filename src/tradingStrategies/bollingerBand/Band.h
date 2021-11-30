@@ -2,9 +2,8 @@
 
 #include <memory>
 
-#include "dataManager/OrderData.h"
 #include "dataManager/OrderBook.h"
-
+#include "dataManager/OrderData.h"
 
 class Band {
  public:
