@@ -6,9 +6,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import json
 from datetime import datetime
+from fpdf import FPDF
 
 
-def plotting(old_data, new_data, functions_names):
+def plotting(old_data, new_data, functions_names, is_cpu: bool):
     n_groups = len(functions_names)
 
     fig, ax = plt.subplots()
@@ -30,7 +31,10 @@ def plotting(old_data, new_data, functions_names):
 
     plt.xlabel('Function name')
     plt.ylabel('Time (ns)')
-    plt.title('Time per function')
+    if is_cpu:
+        plt.title('CPU time per function')
+    else:
+        plt.title('Time per function')
     plt.xticks(index + bar_width, functions_names)
     plt.legend()
 
@@ -47,7 +51,7 @@ def run_benchmark():
 
     file_name = f"benchmark_at[{time}]"
     os.chdir("../cmake-build-debug/benchmarking")  # this is where the executable of benchmarking is
-    os.system(f"./benchmarking --benchmark_out=../../benchmarking/outputs/{file_name}")
+    os.system(f"./benchmarker --benchmark_out=../../benchmarking/outputs/{file_name}")
     os.chdir("../../benchmarking")
     return file_name
 
@@ -70,6 +74,7 @@ def compare(old_file, new_file):
     dict_old = dict_old['benchmarks']
     dict_new = dict_new['benchmarks']
 
+    # Initialise the lists with the title of each column to plot the table later
     names_list = []
     old_times = []
     new_times = []
@@ -92,7 +97,31 @@ def compare(old_file, new_file):
         time_differences.append(new_time - old_time)
         cpu_time_differences.append(new_cpu_time - old_cpu_time)
 
-    plotting(old_times, new_times, names_list)
+    plotting(old_times, new_times, names_list, False)
+    plotting(old_cpu_times, new_cpu_times, names_list, True)
+    produce_pdf(file_name,
+                zip(names_list, old_times, new_times, old_cpu_times, new_cpu_times, time_differences,
+                    cpu_time_differences))
+
+
+def produce_pdf(new_file_name, zipped_data):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Times", size=10)
+    line_height = pdf.font_size * 2.5
+    col_width = (pdf.w - 2 * pdf.l_margin) / 15  # change the '4' to something else to fit to the page
+    # allow for more space for function names
+    # change the decimal places of the values to 3-4
+    # add titles to the table
+    # pdf.cell(8 * col_width, line_height, datum, border=1) # edit this to add titles
+    for row in zipped_data:
+        for datum in row:
+            if type(datum) is str:
+                pdf.cell(8 * col_width, line_height, datum, border=1)
+            else:
+                pdf.cell(col_width, line_height, "{:.2f}".format(datum), border=1)
+        pdf.ln(line_height)
+    pdf.output(f'outputs/{new_file_name}.pdf')
 
 
 if __name__ == "__main__":
