@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "bollingerBand/BollingerBand.h"
+#include "tradingStrategies/bollingerBand/BollingerBand.h"
 #include "dataManager/OrderData.h"
 #include "dataManager/OrderDataStore.h"
 #include "dataManager/OrderTypes.h"
@@ -10,19 +10,8 @@
 #include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
 #include "tradingStrategies/TradingStrategy.h"
 
-// Define another benchmark
-static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
-  Order order{"XBTUSD", 100, 5, true};
-  BinanceOrderExecutor executor{};
-  executor.enableBenchmarking();
-  executor.disableOutput();
-  //    executor.enableOutput();
-  for (auto _ : state) {
-    executor.submitOrder(order);
-  }
-}
 
-BENCHMARK(BM_OrderExecutor_submitOrder);
+/// naming convention for benchmarking functions: BM_CLASS-NAME_FUNCTION-NAME
 
 // Define another benchmark
 static void BM_OrderBook_getHighestBid(benchmark::State &state) {
@@ -43,6 +32,28 @@ static void BM_OrderBook_getLowestAsk(benchmark::State &state) {
 }
 
 BENCHMARK(BM_OrderBook_getLowestAsk);
+
+// Define another benchmark
+static void BM_BollingerBand_runStrat(benchmark::State &state) {
+  BollingerBand band{};
+  for (auto _ : state) band.runStrategy();
+}
+
+BENCHMARK(BM_BollingerBand_runStrat);
+
+// Define another benchmark
+static void BM_OrderManager_submitOrder(benchmark::State &state) {
+  Order order{"XBTUSD", 100, 5, true};
+  BinanceOrderExecutor executor{};
+  executor.enableBenchmarking();
+  executor.disableOutput();
+  //    executor.enableOutput();
+  for (auto _ : state) {
+    executor.submitOrder(order);
+  }
+}
+
+BENCHMARK(BM_OrderManager_submitOrder);
 
 // Define another benchmark
 static void BM_OrderDataStore_addEntry(benchmark::State &state) {
@@ -85,13 +96,5 @@ static void BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume(
 }
 
 BENCHMARK(BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume);
-
-// Define another benchmark
-static void BM_BollingerBand_runStrat(benchmark::State &state) {
-  BollingerBand band{};
-  for (auto _ : state) band.runStrategy();
-}
-
-BENCHMARK(BM_BollingerBand_runStrat);
 
 BENCHMARK_MAIN();
