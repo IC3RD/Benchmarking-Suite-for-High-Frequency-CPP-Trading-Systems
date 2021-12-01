@@ -5,9 +5,9 @@ SET(ENABLE_CPP_BENCHMARKS FALSE CACHE BOOL "Option to enable benchmarking.")
 if (ENABLE_CPP_BENCHMARKS)
     message(">>> !!Benchmarking ENABLED...")
     add_definitions(-DENABLE_CPP_BENCHMARKS)
-else()
+else ()
     message(">>> !!Benchmarking DISABLED...")
-endif()
+endif ()
 
 set(SOURCE_FILES main.cpp)
 
