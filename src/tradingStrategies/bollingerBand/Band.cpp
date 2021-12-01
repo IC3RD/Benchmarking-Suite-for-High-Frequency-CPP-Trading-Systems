@@ -19,10 +19,11 @@ long Band::getStd() { return stdDeviation; }
 int Band::getNoOfElements() { return noOfElements; }
 
 void Band::insertNewData(long price, std::shared_ptr<OrderBook> book) {
-  if (price > book->getLowestAsk()->getOrderPrice() + stdDeviation || price <
-  book->getHighestBid()->getOrderPrice() - stdDeviation) { return;
-      //this is just a measure to ensure data that is far from our bands is not
-  affected
+  if (price > book->getLowestAsk()->getOrderPrice() + stdDeviation ||
+      price < book->getHighestBid()->getOrderPrice() - stdDeviation) {
+    return;
+    // this is just a measure to ensure data that is far from our bands is not
+    // affected
   }
 
   long newMean = (meanPrice * noOfElements + price) / (noOfElements + 1);
