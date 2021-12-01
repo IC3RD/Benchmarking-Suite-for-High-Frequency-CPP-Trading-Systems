@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
+SET(ENABLE_CPP_BENCHMARKS FALSE CACHE BOOL "Option to enable benchmarking.")
+if (ENABLE_CPP_BENCHMARKS)
+    message(">>> !!Benchmarking ENABLED...")
+    add_definitions(-DENABLE_CPP_BENCHMARKS)
+else()
+    message(">>> !!Benchmarking DISABLED...")
+endif()
+
 set(SOURCE_FILES main.cpp)
 
 add_executable(main ${SOURCE_FILES})
@@ -27,3 +35,5 @@ add_subdirectory(orderDataCollectors)
 add_subdirectory(dataManager)
 add_subdirectory(concurrentUnorderedSet)
 add_subdirectory(ordering-system)
+
+

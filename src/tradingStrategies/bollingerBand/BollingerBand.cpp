@@ -24,6 +24,13 @@ void BollingerBand::newData(std::shared_ptr<OrderData> newData) {
 }
 
 void BollingerBand::runStrategy() {
+  std::cout << "test" << std::endl;
+#ifdef ENABLE_CPP_BENCHMARKS
+  std::cout << "Benchmarking enabled." << std::endl;
+#endif
+#ifndef ENABLE_CPP_BENCHMARKS
+  std::cout << "Benchmarking disabled." << std::endl;
+#endif
   for (std::pair<Exchange::ExchangeName, std::shared_ptr<Band>> band :
        exchangeToBandMap) {
     auto it = exchangeOrderBooks.find(band.first);
