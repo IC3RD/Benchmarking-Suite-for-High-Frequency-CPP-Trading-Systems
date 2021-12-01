@@ -57,102 +57,109 @@ class OrderDataStoreFixture : public benchmark::Fixture {
   void TearDown(const ::benchmark::State &state) {}
 };
 
-//// Define another benchmark
-// static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
-//   Order order{"XBTUSD", 100, 5, true};
-//   BinanceOrderExecutor executor{};
-//   executor.enableBenchmarking();
-//   executor.disableOutput();
-//   //    executor.enableOutput();
-//   for (auto _ : state) {
-//     executor.submitOrder(order);
-//   }
-// }
-//
-// BENCHMARK(BM_OrderExecutor_submitOrder);
-//
-//// Define another benchmark
-// BENCHMARK_F(OrderBookFixture, BM_OrderBook_getHighestBid)
-//(benchmark::State &state) {
-//   for (auto _ : state) {
-//     orderBook.getHighestBid();
-//   }
-// }
-//
-//// Define another benchmark
-// BENCHMARK_F(OrderBookFixture, BM_OrderBook_getLowestAsk)
-//(benchmark::State &state) {
-//   for (auto _ : state) {
-//     orderBook.getLowestAsk();
-//   }
-// }
-//
-//// Define another benchmark
-// BENCHMARK_F(OrderDataStoreFixture, BM_OrderDataStore_addEntry)
-//(benchmark::State &state) {
-//   std::shared_ptr ptr =
-//       std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 600,
-//       100);
-//   for (auto _ : state) {
-//     orderDataStore.addEntry(ptr);
-//   }
-// }
-//
-//// OrderDataStore but path where key already exists...but volume != 0
-// BENCHMARK_F(OrderDataStoreFixture,
-// BM_OrderDataStore_addEntry_keyAlreadyExists) (benchmark::State &state) {
-//   std::shared_ptr ptr =
-//       std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 200,
-//       100);
-//   orderDataStore.addEntry(ptr);
-//   for (auto _ : state) {
-//     orderDataStore.addEntry(ptr);
-//   }
-// }
-// BENCHMARK_F(OrderDataStoreFixture,
-//             BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume)
-//(benchmark::State &state) {
-//   std::shared_ptr ptr =
-//       std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 0, 0);
-//   orderDataStore.addEntry(ptr);
-//   for (auto _ : state) {
-//     orderDataStore.addEntry(ptr);
-//   }
-// }
-//
-//// Define another benchmark
-// static void BM_BollingerBand_runStrat(benchmark::State &state) {
-//   BollingerBand band{};
-//   for (auto _ : state) band.runStrategy();
-// }
-//
-// BENCHMARK(BM_BollingerBand_runStrat);
+/*
+// Define another benchmark
+ static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
+   Order order{"XBTUSD", 100, 5, true};
+   BinanceOrderExecutor executor{};
+   executor.enableBenchmarking();
+   executor.disableOutput();
+   //    executor.enableOutput();
+   for (auto _ : state) {
+     executor.submitOrder(order);
+   }
+ }
 
-// BENCHMARK_F(OrderBookFixture, TradingStrategy_Arbitrage_runStrategy)
-//(benchmark::State &state) {
-//   std::unique_ptr<TradingStrategy> arbitrage = make_unique<Arbitrage>();
-//   for (auto _ : state) {
-//     // Add two instances for arbitrage
-//     arbitrage->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-//     arbitrage->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-//     arbitrage->runStrategy();
-//   }
-// }
+ BENCHMARK(BM_OrderExecutor_submitOrder);
+
+// Define another benchmark
+ BENCHMARK_F(OrderBookFixture, BM_OrderBook_getHighestBid)
+(benchmark::State &state) {
+   for (auto _ : state) {
+     orderBook.getHighestBid();
+   }
+ }
+
+// Define another benchmark
+ BENCHMARK_F(OrderBookFixture, BM_OrderBook_getLowestAsk)
+(benchmark::State &state) {
+   for (auto _ : state) {
+     orderBook.getLowestAsk();
+   }
+ }
+
+// Define another benchmark
+ BENCHMARK_F(OrderDataStoreFixture, BM_OrderDataStore_addEntry)
+(benchmark::State &state) {
+   std::shared_ptr ptr =
+       std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 600,
+       100);
+   for (auto _ : state) {
+     orderDataStore.addEntry(ptr);
+   }
+ }
+
+// OrderDataStore but path where key already exists...but volume != 0
+ BENCHMARK_F(OrderDataStoreFixture,
+ BM_OrderDataStore_addEntry_keyAlreadyExists) (benchmark::State &state) {
+   std::shared_ptr ptr =
+       std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 200,
+       100);
+   orderDataStore.addEntry(ptr);
+   for (auto _ : state) {
+     orderDataStore.addEntry(ptr);
+   }
+ }
+ BENCHMARK_F(OrderDataStoreFixture,
+             BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume)
+(benchmark::State &state) {
+   std::shared_ptr ptr =
+       std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 0, 0);
+   orderDataStore.addEntry(ptr);
+   for (auto _ : state) {
+     orderDataStore.addEntry(ptr);
+   }
+ }
+
+// Define another benchmark
+ static void BM_BollingerBand_runStrat(benchmark::State &state) {
+   BollingerBand band{};
+   for (auto _ : state) band.runStrategy();
+ }
+
+ BENCHMARK(BM_BollingerBand_runStrat);
+*/
+
+/* TradingStrategy.h
+virtual void newData(std::shared_ptr<OrderData>) = 0;
+virtual void runStrategy() = 0;
+
+** Don't need to test these four, they call submitOrder which we will test
+** separately
+void executeBuy(std::shared_ptr<OrderData> data);
+void executeSell(std::shared_ptr<OrderData> data);
+virtual void buy(std::shared_ptr<OrderData>);
+virtual void sell(std::shared_ptr<OrderData>);
+
+void insertNewOrderBook(std::shared_ptr<OrderBook>);
+*/
+
+// Here are two examples using the BollingerBand class.
 
 BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand_runStrategy)
 (benchmark::State &state) {
   std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
   for (auto _ : state) {
     // Add two instances for arbitrage
-    //    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-    //    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-    //    bollingerBand->runStrategy();
-    bollingerBand->buy(std::make_shared<OrderData>(OrderTypes::OrderType::ASK,
-                                                   Exchange::BITMEX, 100, 100));
+    // TODO: These OrderBooks are not resulting in any trades. We should
+    //  create some OrderBooks that actually result in buy/sell executions.
+    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    bollingerBand->runStrategy();
   }
 }
 
-BENCHMARK_F(OrderBookFixture, TradingStrategy_insertNewOrderBook)
+BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand_insertNewOrderBook)
 (benchmark::State &state) {
   std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
   for (auto _ : state) {
@@ -160,14 +167,24 @@ BENCHMARK_F(OrderBookFixture, TradingStrategy_insertNewOrderBook)
   }
 }
 
-/* TradingStrategy.h
-virtual void newData(std::shared_ptr<OrderData>) = 0;
-virtual void runStrategy() = 0;
-void executeBuy(std::shared_ptr<OrderData> data);
-void executeSell(std::shared_ptr<OrderData> data);
-virtual void buy(std::shared_ptr<OrderData>);
-virtual void sell(std::shared_ptr<OrderData>);
-void insertNewOrderBook(std::shared_ptr<OrderBook>);
+/* OrderExecutor.h
+virtual void submitOrder(Order order) = 0;
+I think this is the only function we should test.
  */
+
+static void OrderExecutor_Binance_submitOrder(benchmark::State &state) {
+  Order order{"XBTUSD", 100, 5, true};
+  BinanceOrderExecutor executor{};
+  executor.enableBenchmarking();
+  executor.disableOutput();
+  //    executor.enableOutput();
+  for (auto _ : state) {
+    executor.submitOrder(order);
+  }
+}
+
+BENCHMARK(OrderExecutor_Binance_submitOrder);
+
+
 
 BENCHMARK_MAIN();

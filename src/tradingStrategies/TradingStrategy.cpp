@@ -3,7 +3,6 @@
 #include "TradingStrategy.h"
 
 #include <iostream>
-#include <string>
 #include <utility>
 
 void TradingStrategy::insertNewOrderBook(std::shared_ptr<OrderBook> book) {
@@ -29,14 +28,14 @@ void TradingStrategy::executeSell(std::shared_ptr<OrderData> data) {
 // this will enable us to still benchmark the execution.
 void TradingStrategy::buy(std::shared_ptr<OrderData> data) {
 #ifndef ENABLE_CPP_BENCHMARKS
-  PRINT("Actually executing buy...");
+  // Actually execute the buy
   executeBuy(std::move(data));
 #endif
 }
 
 void TradingStrategy::sell(std::shared_ptr<OrderData> data) {
 #ifndef ENABLE_CPP_BENCHMARKS
-  PRINT("Actually executing sell...");
+  // Actually execute the sell
   executeSell(std::move(data));
 #endif
 }
