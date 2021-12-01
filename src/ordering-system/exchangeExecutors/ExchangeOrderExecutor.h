@@ -22,7 +22,7 @@ class ExchangeOrderExecutor : public OrderExecutor {
   virtual std::string getPublicKey() = 0;
 
  protected:
-  void sendOrder(CURL *curl);
+  void sendOrder();
   bool output = true;
   std::unique_ptr<CurlManager> curlManager;
 };

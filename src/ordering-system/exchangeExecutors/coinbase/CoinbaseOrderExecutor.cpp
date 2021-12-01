@@ -33,7 +33,7 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
 
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
-    sendOrder(curl);
+    sendOrder();
   }
 }
 

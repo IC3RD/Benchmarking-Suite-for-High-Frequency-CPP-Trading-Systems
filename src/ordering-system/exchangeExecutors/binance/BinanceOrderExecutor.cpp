@@ -34,7 +34,7 @@ void BinanceOrderExecutor::submitOrder(Order order) {
     generateHeaders(&chunk);
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
 
-    sendOrder(curl);
+    sendOrder();
   }
 }
 
@@ -81,7 +81,7 @@ BinanceOrderExecutor::BinanceOrderExecutor() : ExchangeOrderExecutor() {}
 std::string BinanceOrderExecutor::getDestination() {
   return "https://testnet.binance.vision/api/v3/order?";
 }
-}
+
 std::string BinanceOrderExecutor::getSecretKey() {
   return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU";
 }

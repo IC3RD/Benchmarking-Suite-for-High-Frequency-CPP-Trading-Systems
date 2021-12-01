@@ -7,13 +7,14 @@ class CurlManager {
  public:
   CurlManager();
   // Append a header of the form "key:value" to the request.
-  void addHeader(const std::string& header);
+  void appendHeader(const std::string& header);
   void sendRequest(bool output);
   void initCurl();
   void addDestination(const std::string& destination);
   void addPostFields(const std::string& fields);
+  void appendHeadersToRequest();
 
  private:
-  CURL* curl{};
-  struct curl_slist* chunk{};
+  CURL* curl;
+  struct curl_slist* chunk;
 };
