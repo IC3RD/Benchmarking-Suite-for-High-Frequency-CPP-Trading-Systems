@@ -2,13 +2,9 @@
 #include <dataManager/Order.h>
 #include <ordering-system/OrderExecutor.h>
 
-#define BENCHMARK_CPP_TEST
+#include <memory>
 
-#ifdef BENCHMARK_CPP_TEST
-#include "../../../benchmarking/mocks/mockCurl.h"
-#else
-#include <curl/curl.h>
-#endif
+#include "utils/CurlManager.h"
 
 #define PRINT(x)                 \
   do {                           \
@@ -17,8 +13,7 @@
 
 class ExchangeOrderExecutor : public OrderExecutor {
  public:
-  ExchangeOrderExecutor() = default;
-  ;
+  ExchangeOrderExecutor();
   void enableOutput();
   void disableOutput();
 
@@ -29,4 +24,5 @@ class ExchangeOrderExecutor : public OrderExecutor {
  protected:
   void sendOrder(CURL *curl);
   bool output = true;
+  std::unique_ptr<CurlManager> curlManager;
 };

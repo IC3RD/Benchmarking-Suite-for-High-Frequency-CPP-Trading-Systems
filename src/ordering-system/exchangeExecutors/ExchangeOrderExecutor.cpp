@@ -1,5 +1,9 @@
 #include "ExchangeOrderExecutor.h"
 
+ExchangeOrderExecutor::ExchangeOrderExecutor() {
+  this->curlManager = std::make_unique<CurlManager>();
+}
+
 /* Function required as argument to CURLOPT_WRITEFUNCTION.
  * Is currently defined to disable outputs. */
 size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp) {

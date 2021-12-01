@@ -1,22 +1,22 @@
-#include "curlManager.h"
+#include "CurlManager.h"
 
 #include <curl/curl.h>
 
 #include <iostream>
 #include <string>
 
-curlManager::curlManager() { initCurl(); }
+CurlManager::CurlManager() { initCurl(); }
 
-void curlManager::initCurl() {
+void CurlManager::initCurl() {
   this->curl = curl_easy_init();
   this->chunk = nullptr;
 }
 
-void curlManager::addHeader(const std::string& header) {
+void CurlManager::addHeader(const std::string& header) {
   this->chunk = curl_slist_append(chunk, header.c_str());
 }
 
-void curlManager::sendRequest(bool output) {
+void CurlManager::sendRequest(bool output) {
   auto res = curl_easy_perform(this->curl);
   if (res != CURLE_OK) {
     fprintf(stderr, "curl_easy_perform() failed: %s\n",
@@ -28,10 +28,10 @@ void curlManager::sendRequest(bool output) {
     std::cout << "\n";
   }
 }
-void curlManager::addDestination(const std::string& destination) {
+void CurlManager::addDestination(const std::string& destination) {
   curl_easy_setopt(this->curl, CURLOPT_URL, destination.c_str());
 }
-void curlManager::addPostFields(const std::string& fields) {
+void CurlManager::addPostFields(const std::string& fields) {
   curl_easy_setopt(this->curl, CURLOPT_POSTFIELDS, fields.c_str());
   curl_easy_setopt(this->curl, CURLOPT_POSTFIELDSIZE, fields.length());
 }

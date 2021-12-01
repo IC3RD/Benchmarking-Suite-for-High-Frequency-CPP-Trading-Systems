@@ -3,9 +3,9 @@
 
 #include <string>
 
-class curlManager {
+class CurlManager {
  public:
-  curlManager();
+  CurlManager();
   // Append a header of the form "key:value" to the request.
   void addHeader(const std::string& header);
   void sendRequest(bool output);
