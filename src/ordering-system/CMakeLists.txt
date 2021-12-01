@@ -13,7 +13,7 @@ set(SOURCE_FILES OrderExecutor.h
         OrderManager.cpp
         OrderManager.h
         exchangeExecutors/ExchangeOrderExecutor.h
-        exchangeExecutors/ExchangeOrderExecutor.cpp)
+        exchangeExecutors/ExchangeOrderExecutor.cpp exchangeExecutors/utils/curlManager.cpp exchangeExecutors/utils/curlManager.h)
 
 add_library(ordering-system ${SOURCE_FILES})
 

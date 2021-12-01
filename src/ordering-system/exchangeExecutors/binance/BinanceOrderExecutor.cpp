@@ -79,13 +79,8 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
 BinanceOrderExecutor::BinanceOrderExecutor() : ExchangeOrderExecutor() {}
 
 std::string BinanceOrderExecutor::getDestination() {
-  // Amend if you are debugging.
-  bool debug = false;
-  if (debug) {
-    return "https://httpbin.org/post";
-  } else {
-    return "https://testnet.binance.vision/api/v3/order?";
-  }
+  return "https://testnet.binance.vision/api/v3/order?";
+}
 }
 std::string BinanceOrderExecutor::getSecretKey() {
   return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU";

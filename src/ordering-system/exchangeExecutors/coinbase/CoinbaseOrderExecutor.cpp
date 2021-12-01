@@ -87,13 +87,7 @@ std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
 CoinbaseOrderExecutor::CoinbaseOrderExecutor() : ExchangeOrderExecutor() {}
 
 std::string CoinbaseOrderExecutor::getDestination() {
-  // Amend if you are debugging.
-  bool debug = false;
-  if (debug) {
-    return "https://httpbin.org/post";
-  } else {
-    return "https://api-public.sandbox.pro.coinbase.com/orders";
-  }
+  return "https://api-public.sandbox.pro.coinbase.com/orders";
 }
 
 std::string CoinbaseOrderExecutor::getSecretKey() {

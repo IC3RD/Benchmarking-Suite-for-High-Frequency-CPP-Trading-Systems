@@ -175,7 +175,6 @@ I think this is the only function we should test.
 static void OrderExecutor_Binance_submitOrder(benchmark::State &state) {
   Order order{"XBTUSD", 100, 5, true};
   BinanceOrderExecutor executor{};
-  executor.enableBenchmarking();
   executor.disableOutput();
   //    executor.enableOutput();
   for (auto _ : state) {

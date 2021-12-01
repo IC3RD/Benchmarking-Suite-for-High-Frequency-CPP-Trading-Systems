@@ -18,8 +18,7 @@
 class ExchangeOrderExecutor : public OrderExecutor {
  public:
   ExchangeOrderExecutor() = default;
-  void enableBenchmarking();
-  void disableBenchmarking();
+  ;
   void enableOutput();
   void disableOutput();
 
@@ -29,6 +28,5 @@ class ExchangeOrderExecutor : public OrderExecutor {
 
  protected:
   void sendOrder(CURL *curl);
-  bool benchmark = false;
   bool output = true;
 };
