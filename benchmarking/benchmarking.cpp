@@ -167,23 +167,70 @@ BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand_insertNewOrderBook)
   }
 }
 
-/* OrderExecutor.h
-virtual void submitOrder(Order order) = 0;
-I think this is the only function we should test.
- */
+/* Benchmarking ExchangeOrderExecutor implementations: */
 
-static void OrderExecutor_Binance_submitOrder(benchmark::State &state) {
+// *** START of Binance ***
+static void ExchangeOrderExecutor_BinanceOrderExecutor_parseOrder
+    (benchmark::State &state) {
   Order order{"XBTUSD", 100, 5, true};
   BinanceOrderExecutor executor{};
   executor.disableOutput();
-  //    executor.enableOutput();
+  for (auto _ : state) {
+    executor.parseOrder(order);
+  }
+};
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_parseOrder);
+
+static void ExchangeOrderExecutor_BinanceOrderExecutor_authenticate
+    (benchmark::State &state) {
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
+  for (auto _ : state) {
+    executor.authenticate("Dummy Message");
+  }
+}
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_authenticate);
+
+static void ExchangeOrderExecutor_BinanceOrderExecutor_generateTimestamp
+    (benchmark::State &state) {
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
+  for (auto _ : state) {
+    executor.generateTimestamp();
+  }
+}
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_generateTimestamp);
+
+static void ExchangeOrderExecutor_BinanceOrderExecutor_generateHeaders
+    (benchmark::State &state) {
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
+  for (auto _ : state) {
+    executor.generateHeaders();
+  }
+}
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_generateHeaders);
+
+// This benchmarks the entire BinanceOrderExecutor 'hotpath'.
+// Make sure to compile with -DENABLE_CPP_BENCHMARKS
+// This function will not execute otherwise.
+static void ExchangeOrderExecutor_BinanceOrderExecutor_submitOrder
+    (benchmark::State &state) {
+  Order order{"XBTUSD", 100, 5, true};
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
   for (auto _ : state) {
     executor.submitOrder(order);
   }
 }
 
-BENCHMARK(OrderExecutor_Binance_submitOrder);
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_submitOrder);
 
 
+// *** END of Binance ***
 
 BENCHMARK_MAIN();

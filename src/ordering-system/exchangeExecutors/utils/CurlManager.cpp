@@ -17,6 +17,11 @@ void CurlManager::initCurl() {
   this->curl = curl_easy_init();
   this->chunk = nullptr;
 #endif
+
+#ifdef ENABLE_CPP_BENCHMARKS
+  this->curl = nullptr;
+  this->chunk = nullptr;
+#endif
 }
 
 void CurlManager::appendHeader(const std::string& header) {
