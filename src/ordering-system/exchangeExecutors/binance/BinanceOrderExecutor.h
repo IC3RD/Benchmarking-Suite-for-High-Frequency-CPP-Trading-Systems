@@ -13,7 +13,7 @@ class BinanceOrderExecutor : public ExchangeOrderExecutor {
   std::string parseOrder(const Order& order);
   std::string authenticate(std::string message);
   std::string generateTimestamp();
-  void generateHeaders(struct curl_slist** chunk);
+  void generateHeaders();
   std::string getSecretKey() override;
   std::string getPublicKey() override;
 };

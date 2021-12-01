@@ -15,6 +15,6 @@ class CurlManager {
   void appendHeadersToRequest();
 
  private:
-  CURL* curl;
-  struct curl_slist* chunk;
+  CURL* curl{};
+  struct curl_slist* chunk{};
 };

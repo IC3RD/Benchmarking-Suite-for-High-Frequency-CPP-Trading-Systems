@@ -15,27 +15,13 @@ void BinanceOrderExecutor::submitOrder(Order order) {
           getExchangeName() + "...");
   }
 
-  CURL *curl;
-  curl = curl_easy_init();
-
-  if (curl) {
-    /* Set up request. */
-    curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getDestination();
-    curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
-
-    /* Add the sha256 signature to the post fields. */
-    order_data += "&signature=" + authenticate(order_data);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
-
-    /* Add required headers. */
-    struct curl_slist *chunk = nullptr;
-    generateHeaders(&chunk);
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-
-    sendOrder();
-  }
+  std::string URL = getDestination();
+  curlManager->addDestination(URL);
+  order_data += "&signature=" + authenticate(order_data);
+  curlManager->addPostFields(order_data);
+  generateHeaders();
+  curlManager->appendHeadersToRequest();
+  sendOrder();
 }
 
 std::string BinanceOrderExecutor::generateTimestamp() {
@@ -47,12 +33,9 @@ std::string BinanceOrderExecutor::generateTimestamp() {
   return std::to_string(current_time);
 }
 
-void BinanceOrderExecutor::generateHeaders(struct curl_slist **chunk) {
-  *chunk =
-      curl_slist_append(*chunk, ("X-MBX-APIKEY: " + getPublicKey()).c_str());
-  *chunk = curl_slist_append(*chunk,
-                             "Content-Type: "
-                             "application/x-www-form-urlencoded");
+void BinanceOrderExecutor::generateHeaders() {
+  curlManager->addPostFields("X-MBX-APIKEY: " + getPublicKey());
+  curlManager->addPostFields("Content-Type: application/x-www-form-urlencoded");
 }
 
 std::string BinanceOrderExecutor::authenticate(std::string message) {
