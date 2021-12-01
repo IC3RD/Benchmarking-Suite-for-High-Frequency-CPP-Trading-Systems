@@ -7,15 +7,8 @@
 
 CurlManager::CurlManager() { initCurl(); }
 
-/* Function required as argument to CURLOPT_WRITEFUNCTION.
- * Is currently defined to disable outputs. */
+/* Callback function to disable curl outputs.*/
 size_t write_data(void* buffer, size_t size, size_t nmemb, void* userp) {
-  return size * nmemb;
-}
-
-static size_t WriteCallback(void* contents, size_t size, size_t nmemb,
-                            void* userp) {
-  ((std::string*)userp)->append((char*)contents, size * nmemb);
   return size * nmemb;
 }
 
@@ -33,28 +26,19 @@ void CurlManager::appendHeadersToRequest() {
 }
 
 void CurlManager::sendRequest(bool output) {
-  curl_easy_setopt(this->curl, CURLOPT_VERBOSE, 1L);
-//  std::string readBuffer;
-//  if (!output) {
-//    curl_easy_setopt(this->curl, CURLOPT_WRITEFUNCTION, write_data);
-//  } else {
-//    curl_easy_setopt(this->curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-//    curl_easy_setopt(this->curl, CURLOPT_WRITEDATA, &readBuffer);
-//  }
+  if (!output) {
+    curl_easy_setopt(this->curl, CURLOPT_WRITEFUNCTION, write_data);
+  }
   if (curl) {
     auto res = curl_easy_perform(this->curl);
     if (res != CURLE_OK) {
       fprintf(stderr, "curl_easy_perform() failed: %s\n",
               curl_easy_strerror(res));
-    } else {
-      std::cout << "Curl was okay i guess" << std::endl;
     }
-
     curl_easy_cleanup(curl);
     if (output) {
       std::cout << "\n";
     }
-//    std::cout << readBuffer << std::endl;
   }
 }
 void CurlManager::addDestination(const std::string& destination) {

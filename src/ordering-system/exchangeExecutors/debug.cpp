@@ -19,11 +19,11 @@ int main() {
    * // Since we haven't implemented a factory yet i'll just create an
    * // instance.
    */
-//  DEBUG("Creating order manager...");
-//  OrderManager manager{};
-//  Order order{"BTC", 1, 1, true};
-//  manager.submitOrder(Exchange::BITMEX, order);
-//  DEBUG("Did it work?");
+  //  DEBUG("Creating order manager...");
+  //  OrderManager manager{};
+  //  Order order{"BTC", 1, 1, true};
+  //  manager.submitOrder(Exchange::BITMEX, order);
+  //  DEBUG("Did it work?");
 
   //  std::unique_ptr<OrderExecutor> coinbaseManager =
   //      std::make_unique<CoinbaseOrderExecutor>();
@@ -41,10 +41,13 @@ int main() {
   //
   //  coinbaseManager->submitOrder(ob.toOrder());
   //
-    Order order{"BTC", 1, 1, true};
-    std::unique_ptr<ExchangeOrderExecutor> bitmex =
-        std::make_unique<BitmexOrderExecutor>();
-    bitmex->enableOutput();
-    bitmex->submitOrder(order);
+  Order order{"BTC", 1, 1, true};
+  //    std::unique_ptr<ExchangeOrderExecutor> bitmex =
+  //        std::make_unique<BitmexOrderExecutor>();
+  auto bitmex = new BitmexOrderExecutor();
+  bitmex->enableOutput();
+  //    bitmex->disableOutput();
+  bitmex->submitOrder(order);
+  delete bitmex;
   //  bitmex_manager->submitOrder(ob.toOrder());
 }

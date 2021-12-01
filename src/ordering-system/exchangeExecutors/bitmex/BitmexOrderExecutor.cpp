@@ -1,7 +1,6 @@
 #include "BitmexOrderExecutor.h"
 
 #include <Poco/HMACEngine.h>
-#include <ordering-system/exchangeExecutors/debug.h>
 #include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>
 
 #include <chrono>
@@ -37,8 +36,8 @@ void BitmexOrderExecutor::submitOrder(Order order) {
 }
 
 std::string BitmexOrderExecutor::getDestination() {
-//  return "https://testnet.bitmex.com/api/v1/order";
-    return "https://httpbin.org/post";
+  return "https://testnet.bitmex.com/api/v1/order";
+  //    return "https://httpbin.org/post";
 }
 
 std::string BitmexOrderExecutor::getExchangeName() { return "BitMEX"; }

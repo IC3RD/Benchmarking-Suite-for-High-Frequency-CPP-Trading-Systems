@@ -3,8 +3,7 @@ project(CPPDesignPatternsforLowLatencyTrading)
 set(BENCHMARK_ENABLE_TESTING OFF)
 add_subdirectory(lib/benchmark)
 include_directories(lib/benchmark/include)
-#include_directories(../src/)
-set(SOURCE_FILES benchmarking.cpp mocks/mockCurl.cpp mocks/mockCurl.h)
+set(SOURCE_FILES benchmarking.cpp)
 
 
 add_library(benchmarking ${SOURCE_FILES})
