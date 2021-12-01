@@ -14,7 +14,7 @@ class CoinbaseOrderExecutor : public ExchangeOrderExecutor {
   std::string authenticate(const std::string &message,
                            const std::string &timestamp);
   static std::string generateTimestamp();
-  void generateHeaders(struct curl_slist **chunk, const std::string &data);
+  void generateHeaders(const std::string &data);
   std::string getSecretKey() override;
   std::string getPublicKey() override;
   static std::string hex_to_string(const std::string &in);

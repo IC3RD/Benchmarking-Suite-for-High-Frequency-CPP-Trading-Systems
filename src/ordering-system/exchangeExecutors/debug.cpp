@@ -21,4 +21,9 @@ int main() {
   binance->enableOutput();
   binance->submitOrder(order);
   delete binance;
+
+  auto coinbase = new CoinbaseOrderExecutor();
+  coinbase->enableOutput();
+  coinbase->submitOrder(order);
+  delete coinbase;
 }

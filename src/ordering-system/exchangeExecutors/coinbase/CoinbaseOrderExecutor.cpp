@@ -3,7 +3,6 @@
 #include <Poco/DigestEngine.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JSON/Object.h>
-#include <ordering-system/exchangeExecutors/debug.h>
 #include <ordering-system/exchangeExecutors/utils/Base64.h>
 #include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>
 
@@ -17,24 +16,12 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
           getExchangeName() + "...");
   }
 
-  CURL *curl;
-  curl = curl_easy_init();
-
-  if (curl) {
-    curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getDestination();
-    curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
-    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
-
-    struct curl_slist *chunk = nullptr;
-    generateHeaders(&chunk, order_data);
-
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-
-    sendOrder();
-  }
+  std::string URL = getDestination();
+  curlManager->addDestination(URL);
+  curlManager->addPostFields(order_data);
+  generateHeaders(order_data);
+  curlManager->appendHeadersToRequest();
+  sendOrder();
 }
 
 std::string CoinbaseOrderExecutor::generateTimestamp() {
@@ -45,19 +32,16 @@ std::string CoinbaseOrderExecutor::generateTimestamp() {
   return std::to_string(current_time);
 }
 
-void CoinbaseOrderExecutor::generateHeaders(struct curl_slist **chunk,
-                                            const std::string &data) {
-  *chunk = curl_slist_append(*chunk, "Accept: application/json");
-  *chunk = curl_slist_append(*chunk, "Content-Type: application/json");
-  *chunk = curl_slist_append(*chunk, "User-Agent: CoinbaseProAPI");
-  *chunk =
-      curl_slist_append(*chunk, ("cb-access-key:" + getPublicKey()).c_str());
+void CoinbaseOrderExecutor::generateHeaders(const std::string &data) {
+  curlManager->appendHeader("Accept: application/json");
+  curlManager->appendHeader("Content-Type: application/json");
+  curlManager->appendHeader("User-Agent: CoinbaseProAPI");
+  curlManager->appendHeader("cb-access-key:" + getPublicKey());
   std::string timestamp = generateTimestamp();
   std::string signature = authenticate(data, timestamp);
-  *chunk = curl_slist_append(*chunk, ("cb-access-sign:" + signature).c_str());
-  *chunk =
-      curl_slist_append(*chunk, ("cb-access-timestamp:" + timestamp).c_str());
-  *chunk = curl_slist_append(*chunk, "cb-access-passphrase:c116en8tfv6");
+  curlManager->appendHeader("cb-access-sign:" + signature);
+  curlManager->appendHeader("cb-access-timestamp:" + timestamp);
+  curlManager->appendHeader("cb-access-passphrase:c116en8tfv6");
 }
 
 std::string CoinbaseOrderExecutor::authenticate(const std::string &message,
