@@ -12,7 +12,7 @@ class CurlManager {
   void appendHeadersToRequest();
   // Pass the request to curl to perform.
   void sendRequest(bool output);
-  // Reset/Initialise internal curl object and header chunks.
+  // Reset/Initialise internal curl object and chunk.
   void initCurl();
   // Add a URL to the request.
   void addDestination(const std::string& destination);
