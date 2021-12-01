@@ -99,28 +99,99 @@ def compare(old_file, new_file):
 
     plotting(old_times, new_times, names_list, False)
     plotting(old_cpu_times, new_cpu_times, names_list, True)
-    produce_pdf(file_name,
-                zip(names_list, old_times, new_times, old_cpu_times, new_cpu_times, time_differences,
-                    cpu_time_differences))
+    produce_pdf(old_file, new_file, file_name,
+                split_data(zip(names_list, old_times, new_times, old_cpu_times, new_cpu_times, time_differences,
+                               cpu_time_differences)))
 
 
-def produce_pdf(new_file_name, zipped_data):
+# will get the zipped data and will split it into classes
+def split_data(zipped_data):
+    order_book = []
+    strategy = []
+    order_manager = []
+    order_data_store = []
+    for row in zipped_data:
+        for col in row:
+            if type(col) is str:
+                if str(col).startswith('BM_OrderBook'):
+                    order_book.append(row)
+                    break
+                elif str(col).startswith('BM_Strategy'):
+                    strategy.append(row)
+                    break
+                elif str(col).startswith('BM_OrderManager'):
+                    order_manager.append(row)
+                    break
+                elif str(col).startswith('BM_OrderDataStore'):
+                    order_data_store.append(row)
+                    break
+                else:
+                    print("something went wrong: " + col)
+                    break
+    return [order_book, strategy, order_manager, order_data_store]
+
+
+def add_init_text(pdf, file1, file2, line_height):
+    pdf.set_font_size(10)
+    text = f'The results of the comparison between {file1} and {file2}.\nAll the timings are measured in nanoseconds.'
+    pdf.multi_cell(pdf.w - 2 * pdf.l_margin, line_height, text)
+
+
+def add_text(class_name, pdf, line_height):
+    pdf.set_font_size(10)
+    text = 'These are the results of the functions in the '
+    text2 = ' class'
+    pdf.cell(pdf.get_string_width(text), line_height * 3, text)
+    pdf.set_font('Times', 'B', 10)
+    pdf.cell(pdf.get_string_width(class_name), line_height * 3, class_name)
+    pdf.set_font('Times', '', 10)
+    pdf.cell(pdf.get_string_width(text2), line_height * 3, text2)
+    pdf.ln(line_height)
+
+
+def add_title(pdf, col_width, line_height):
+    pdf.set_font_size(7)
+    pdf.cell(2 * col_width + 1, line_height, 'Function Name', border=1)
+    pdf.cell(col_width + 1, line_height, 'Previous Time', border=1)
+    pdf.cell(col_width + 1, line_height, 'New Time', border=1)
+    pdf.cell(col_width + 1, line_height, 'Previous CPU Time', border=1)
+    pdf.cell(col_width + 1, line_height, 'New CPU Time', border=1)
+    pdf.cell(col_width + 1, line_height, 'Time Difference', border=1)
+    pdf.cell(col_width + 1, line_height, 'CPU Time Difference', border=1)
+    pdf.ln(line_height)
+
+
+def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Times", size=10)
+    pdf.set_font("Times", size=6)
     line_height = pdf.font_size * 2.5
-    col_width = (pdf.w - 2 * pdf.l_margin) / 15  # change the '4' to something else to fit to the page
-    # allow for more space for function names
-    # change the decimal places of the values to 3-4
-    # add titles to the table
-    # pdf.cell(8 * col_width, line_height, datum, border=1) # edit this to add titles
-    for row in zipped_data:
-        for datum in row:
-            if type(datum) is str:
-                pdf.cell(8 * col_width, line_height, datum, border=1)
-            else:
-                pdf.cell(col_width, line_height, "{:.2f}".format(datum), border=1)
+    col_width = (pdf.w - 2 * pdf.l_margin - 8) / 8
+
+    add_init_text(pdf, old_file1, old_file2, line_height)
+
+    for table in zipped_data:
+        class_name = str(table[0][0]).split('_')[1]  # naming convention is BM_CLASS-NAME_FUNCTION-NAME
+        add_text(class_name, pdf, line_height)
         pdf.ln(line_height)
+        add_title(pdf, col_width, line_height)
+        pdf.set_font_size(6)
+        for row in table:
+            for i, value in enumerate(row):
+                if type(value) is str:
+                    pdf.cell(2 * col_width + 1, line_height, value, border=1)
+                else:
+                    fill = False  # boolean flag to set cell filling on and off
+                    if i >= 5:
+                        fill = True
+                        if value < 0:
+                            pdf.set_fill_color(0, 255, 0)
+                        else:
+                            pdf.set_fill_color(255, 0, 0)
+                    string = "{:.2f}".format(value)
+                    pdf.cell(col_width + 1, line_height, string, border=1, fill=fill)
+            pdf.ln(line_height)
+        pdf.ln(line_height*1.5)
     pdf.output(f'outputs/{new_file_name}.pdf')
 
 

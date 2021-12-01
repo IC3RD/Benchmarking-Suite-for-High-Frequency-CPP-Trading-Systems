@@ -34,12 +34,12 @@ static void BM_OrderBook_getLowestAsk(benchmark::State &state) {
 BENCHMARK(BM_OrderBook_getLowestAsk);
 
 // Define another benchmark
-static void BM_BollingerBand_runStrat(benchmark::State &state) {
+static void BM_Strategy_runStrat(benchmark::State &state) {
   BollingerBand band{};
   for (auto _ : state) band.runStrategy();
 }
 
-BENCHMARK(BM_BollingerBand_runStrat);
+BENCHMARK(BM_Strategy_runStrat);
 
 // Define another benchmark
 static void BM_OrderManager_submitOrder(benchmark::State &state) {
