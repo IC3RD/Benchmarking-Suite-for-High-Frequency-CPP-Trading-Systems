@@ -5,8 +5,7 @@
 OrderManager::OrderManager()
     : orderExecutors({{Exchange::BINANCE, new BinanceOrderExecutor()},
                       {Exchange::BITMEX, new BitmexOrderExecutor()},
-                      {Exchange::COINBASE, new CoinbaseOrderExecutor()},
-                      {Exchange::KRAKEN, new CoinbaseOrderExecutor()}}) {
+                      {Exchange::COINBASE, new CoinbaseOrderExecutor()}}) {
   portfolio = new std::vector<Order>();
 }
 
