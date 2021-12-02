@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import subprocess
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,11 +36,13 @@ def plotting(old_data, new_data, functions_names, is_cpu: bool):
         plt.title('CPU time per function')
     else:
         plt.title('Time per function')
-    plt.xticks(index + bar_width, functions_names)
+    plt.xticks(index + 0.5*bar_width, functions_names, rotation=20, fontsize=4)
     plt.legend()
-
     plt.tight_layout()
-    plt.show()
+    if is_cpu:
+        plt.savefig("CPU test", dpi=250)
+    else:
+        plt.savefig("test", dpi=250)
 
 
 # runs the benchmark and saved the output in /outputs
@@ -161,6 +164,24 @@ def add_title(pdf, col_width, line_height):
     pdf.ln(line_height)
 
 
+def add_plots(pdf):
+    pdf.add_page()
+    pdf.set_font_size(14)
+    pdf.cell(pdf.w - 2 * pdf.l_margin, pdf.font_size * 2.5, 'This the graph shows the difference in total '
+                                                            'time between runs:')
+    pdf.ln(pdf.font_size * 2.5)
+    pdf.image('test.png', h=pdf.h/2)
+
+    pdf.add_page()
+    pdf.set_font_size(14)
+    pdf.cell(pdf.w - 2 * pdf.l_margin, pdf.font_size * 2.5, 'This the graph shows the difference in CPU '
+                                                            'time between runs:')
+    pdf.ln(pdf.font_size * 2.5)
+    pdf.image('CPU test.png', h=pdf.h/2)
+    os.remove('test.png')
+    os.remove('CPU test.png')
+
+
 def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
     pdf = FPDF()
     pdf.add_page()
@@ -192,7 +213,9 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
                     pdf.cell(col_width + 1, line_height, string, border=1, fill=fill)
             pdf.ln(line_height)
         pdf.ln(line_height*1.5)
+    add_plots(pdf)
     pdf.output(f'outputs/{new_file_name}.pdf')
+    os.system(f'xdg-open outputs/{new_file_name}.pdf')  # why isn't this working?
 
 
 if __name__ == "__main__":
