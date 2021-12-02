@@ -35,4 +35,5 @@ class OrderBook {
   std::shared_ptr<OrderDataStore> bidStore;
   std::shared_ptr<OrderDataStore> askStore;
   const Exchange::ExchangeName exchange;
+  std::shared_ptr<OrderDataStore> stores[2];
 };
