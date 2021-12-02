@@ -4,7 +4,7 @@
 
 #include <memory>
 
-#include "tradingStrategies/bollingerBand/BollingerBand.h"
+#include "bollingerBand/BollingerBand.h"
 #include "dataManager/OrderData.h"
 #include "dataManager/OrderDataStore.h"
 #include "dataManager/OrderTypes.h"
@@ -12,8 +12,6 @@
 #include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
 #include "tradingStrategies/TradingStrategy.h"
 
-
-/// naming convention for benchmarking functions: BM_CLASS-NAME_FUNCTION-NAME
 class OrderBookFixture : public benchmark::Fixture {
   int SIZE = 1000;
 
@@ -176,36 +174,6 @@ BENCHMARK_F(OrderBookFixture, OrderBook_addEntry)
 
 BENCHMARK_F(OrderBookFixture, OrderBook_getHighestBid)
 (benchmark::State &state) {
-// Define another benchmark
-static void BM_Strategy_runStrat(benchmark::State &state) {
-  BollingerBand band{};
-  for (auto _ : state) band.runStrategy();
-}
-
-BENCHMARK(BM_Strategy_runStrat);
-
-// Define another benchmark
-static void BM_OrderManager_submitOrder(benchmark::State &state) {
-  Order order{"XBTUSD", 100, 5, true};
-  BinanceOrderExecutor executor{};
-  executor.enableBenchmarking();
-  executor.disableOutput();
-  //    executor.enableOutput();
-  for (auto _ : state) {
-    executor.submitOrder(order);
-  }
-}
-
-BENCHMARK(BM_OrderManager_submitOrder);
-
-// Define another benchmark
-static void BM_OrderDataStore_addEntry(benchmark::State &state) {
-  // OrderTypes::OrderType type, Exchange::ExchangeName name, long price,
-  //            double volume
-  //    OrderData test_data {OrderTypes::ASK, Exchange::BITMEX, 500, 100};
-  std::shared_ptr ptr =
-      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 500, 100);
-  OrderDataStore dataStore{};
   for (auto _ : state) {
     orderBook.getHighestBid();
   }
