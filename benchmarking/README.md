@@ -1,4 +1,5 @@
 # Set-Up and Prerequisites 
+- This script is meant for Linux machines - it will not work for any other OS
 - Set as your python interpreter the venv folder in the root directory of the project
 - Build the project as specified in the root directory `README.md` file
 - Make sure to load (run) the `CMameLists.txt` file in the root directory to get the benchmarker executable
