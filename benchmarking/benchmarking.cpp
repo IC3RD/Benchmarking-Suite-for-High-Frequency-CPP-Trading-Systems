@@ -186,20 +186,6 @@ BENCHMARK_F(OrderBookFixture, OrderBook_getLowestAsk)
   }
 }
 
-// BENCHMARK_F(OrderBookFixture, OrderBook_getBidAt)
-//(benchmark::State &state) {
-//   for (auto _ : state) {
-//     orderBook.getBidAt(2);
-//   }
-// }
-
-// BENCHMARK_F(OrderBookFixture, OrderBook_getAskAt)
-//(benchmark::State &state) {
-//   for (auto _ : state) {
-//     orderBook.getAskAt(2);
-//   }
-// }
-
 /* End of benchmarking OrderBook */
 
 /* OrderDataStore */
@@ -217,12 +203,32 @@ BENCHMARK_F(OrderDataStoreFixture, OrderDataStore_addEntry)
 #if BENCHMARK_HOTPATH && !defined(ENABLE_CPP_BENCHMARKS)
 BENCHMARK_F(OrderBookFixture, benchmark_hotpath)
 (benchmark::State &state) {
+  std::shared_ptr<OrderBook> binanceOrderBook =
+      std::make_shared<OrderBook>(Exchange::BINANCE);
+
+  std::shared_ptr<BollingerBand> strategy = std::make_shared<BollingerBand>();
+
+  strategy->insertNewOrderBook(binanceOrderBook);
+  strategy->addExchange(Exchange::BINANCE);
+
+  binanceOrderBook->addTradingStrategy(strategy);
+
+  std::shared_ptr<OrderData> data1 =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BINANCE, 600, 100);
+  std::shared_ptr<OrderData> data2 =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BINANCE, 550, 100);
+  binanceOrderBook->addEntry(data1);
+  binanceOrderBook->addEntry(data2);
+
   std::shared_ptr<OrderDataCollector> odc =
-      make_shared<OrderDataCollector>(orderBook, Exchange::BITMEX);
+      make_shared<OrderDataCollector>(*binanceOrderBook, Exchange::BINANCE);
+
   for (auto _ : state) {
-    odc->constructAndPassOrderData(OrderTypes::ASK, 505, 100);
+    odc->constructAndPassOrderData(OrderTypes::ASK, 490, 100);
   }
 }
 #endif
+
+
 
 BENCHMARK_MAIN();

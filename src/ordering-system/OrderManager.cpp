@@ -11,7 +11,7 @@ OrderManager::OrderManager()
 
 void OrderManager::submitOrder(Exchange::ExchangeName exchange, Order order) {
   ExchangeOrderExecutor* executor = orderExecutors.at(exchange);
-  executor->enableOutput();
+  executor->disableOutput();
   executor->submitOrder(order);
   portfolio->push_back(order);
 }
