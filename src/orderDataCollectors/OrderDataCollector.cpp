@@ -17,6 +17,7 @@ void OrderDataCollector::constructAndPassOrderData(OrderTypes::OrderType type,
   std::shared_ptr<OrderData> data =
       std::make_shared<OrderData>(type, exchange, price, volume);
   notifyTradingStrategies(data);
+  // hotpath ends
   orderBook.addEntry(data);
 }
 
