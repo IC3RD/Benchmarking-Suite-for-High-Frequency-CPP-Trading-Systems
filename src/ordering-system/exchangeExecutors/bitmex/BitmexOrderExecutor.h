@@ -10,7 +10,7 @@ class BitmexOrderExecutor : public ExchangeOrderExecutor {
  private:
   std::string getSecretKey() override;
   std::string getPublicKey() override;
-  void generateHeaders(struct curl_slist **chunk, const std::string &data);
+  void generateHeaders(const std::string &data);
   static std::string parseOrder(const Order &order);
   static std::string generateTimestamp();
   std::string generateSignature(const std::string &message,
