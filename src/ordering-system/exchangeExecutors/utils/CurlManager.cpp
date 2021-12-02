@@ -14,6 +14,7 @@ size_t write_data(void* buffer, size_t size, size_t nmemb, void* userp) {
 
 void CurlManager::initCurl() {
 #if !(defined(ENABLE_CPP_BENCHMARKS) || defined(BENCHMARK_HOTPATH))
+  std::cout << "curl is Enabled!!" << std::endl;
   this->curl = curl_easy_init();
   this->chunk = nullptr;
 #endif
@@ -21,18 +22,21 @@ void CurlManager::initCurl() {
 
 void CurlManager::appendHeader(const std::string& header) {
 #if !(defined(ENABLE_CPP_BENCHMARKS) || defined(BENCHMARK_HOTPATH))
+  std::cout << "curl is Enabled!!" << std::endl;
   this->chunk = curl_slist_append(chunk, header.c_str());
 #endif
 }
 
 void CurlManager::appendHeadersToRequest() {
 #if !(defined(ENABLE_CPP_BENCHMARKS) || defined(BENCHMARK_HOTPATH))
+  std::cout << "curl is Enabled!!" << std::endl;
   curl_easy_setopt(this->curl, CURLOPT_HTTPHEADER, this->chunk);
 #endif
 }
 
 void CurlManager::sendRequest(bool output) {
 #if !(defined(ENABLE_CPP_BENCHMARKS) || defined(BENCHMARK_HOTPATH))
+  std::cout << "curl is Enabled!!" << std::endl;
   if (!output) {
     curl_easy_setopt(this->curl, CURLOPT_WRITEFUNCTION, write_data);
   }
@@ -56,6 +60,7 @@ void CurlManager::addDestination(const std::string& destination) {
 }
 void CurlManager::addPostFields(const std::string& fields) {
 #if !(defined(ENABLE_CPP_BENCHMARKS) || defined(BENCHMARK_HOTPATH))
+  std::cout << "curl is Enabled!!" << std::endl;
   curl_easy_setopt(this->curl, CURLOPT_POST, 1L);
   curl_easy_setopt(this->curl, CURLOPT_POSTFIELDS, fields.c_str());
   curl_easy_setopt(this->curl, CURLOPT_POSTFIELDSIZE, fields.length());

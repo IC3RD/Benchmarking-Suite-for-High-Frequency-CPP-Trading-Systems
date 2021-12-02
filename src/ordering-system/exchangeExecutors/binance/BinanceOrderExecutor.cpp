@@ -17,7 +17,9 @@ void BinanceOrderExecutor::submitOrder(Order order) {
 
   std::string URL = getDestination();
   curlManager->addDestination(URL);
+#ifndef BENCHMARK_HOTPATH
   order_data += "&signature=" + authenticate(order_data);
+#endif
   curlManager->addPostFields(order_data);
   generateHeaders();
   curlManager->appendHeadersToRequest();
