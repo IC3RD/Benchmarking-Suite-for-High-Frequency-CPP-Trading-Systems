@@ -5,6 +5,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import json
+import argparse
 from datetime import datetime
 from fpdf import FPDF
 
@@ -53,7 +54,7 @@ def plotting(old_data, new_data, functions_names, is_cpu: bool):
 
 # runs the benchmark and saved the output in /outputs
 # the name of the file will be "benchmark_at" + current time
-def run_benchmark():
+def run_benchmark(output_path):
     # get the time to create the name for the benchmark
     # (this takes more than 1sec to run so there should not be any conflicting namings)
     time = str(datetime.now())
@@ -62,8 +63,8 @@ def run_benchmark():
 
     # everything needs to be made correctly for this to work - make sure you follow the README.md
     file_name = f"benchmark_at[{time}]"
-    os.chdir("../cmake-build-debug/benchmarking")  # this is where the executable of benchmarking is
-    os.system(f"./benchmarker --benchmark_out=../../benchmarking/{dir_name}/{file_name}")
+    os.chdir("../build/benchmarking")  # this is where the executable of benchmarking is
+    os.system(f"./benchmarker --benchmark_out=../../benchmarking/outputs/{file_name}")
     os.chdir("../../benchmarking")
     return file_name
 
@@ -75,15 +76,14 @@ def init_dir():
 
 
 # main comparison function: compares the two given files (passed as arguments or from running the benchmarker)
-def compare(old_file, new_file):
+def compare(old_file, new_file, input_path, output_path):
     file_name = f"comparison_{old_file}_{new_file}"  # the name of the new file created (for the report)
     os.system(
-        f"python3 lib/benchmark/tools/compare.py benchmarks {dir_name}/{old_file} {dir_name}/{new_file} "
-        f"| sed 's/\x1b\[[0-9;]*m//g'")
+        f"python3 lib/benchmark/tools/compare.py benchmarks {input_path}/{old_file} {input_path}/{new_file}")
 
     # open the json files to read from (make sure you only provide the name and not the path)
-    f_old = open(f"{dir_name}/" + old_file)
-    f_new = open(f"{dir_name}/" + new_file)
+    f_old = open(input_path + "/" + old_file)
+    f_new = open(input_path + "/" + new_file)
 
     # make dictionaries from the json files
     dict_old = json.load(f_old)
@@ -256,26 +256,18 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
 
 
 if __name__ == "__main__":
-    length = len(sys.argv)
-    init_dir()  # create the output directory no matter how many arguments
-    if length < 1:  # case where not even the name of this file is given
-        os.rmdir(dir_name)  # remove the just-created directory
-        print("please provide a file name")
-        sys.exit(-1)
-    elif length == 1:
-        # no arguments case:
-        # run the benchmarker, output and then save the results in a json file (see naming convention on the README.md)
-        run_benchmark()
-    elif length == 2:
-        # one argument case:
-        # run the benchmarker (as no arguments case) and then compare the results with the specified results file
-        # produce, save and open a pdf report
-        compare(sys.argv[1], run_benchmark())
-    elif length == 3:
-        # two arguments case:
-        # compare the two results files given as arguments (as one argument case)
-        compare(sys.argv[1], sys.argv[2])
+    parser = argparse.ArgumentParser(description='Script to benchmark and produce reports.')
+    parser.add_argument('input_file_1', nargs='?', action='store', help='input file name')
+    parser.add_argument('input_file_2', nargs='?', action='store', help='input file name')
+    parser.add_argument('--output_path', '--out', action='store', default="outputs",
+                        help='path to output report (default: outputs)')
+    parser.add_argument('--input_path', '--in', action='store', default="outputs",
+                        help='path to input benchmarks (default: outputs)')
+    args = parser.parse_args()
+    if args.input_file_1 is None:
+        run_benchmark(args.output_path)
+    elif args.input_file_2 is None:
+        compare(args.input_file_1, run_benchmark(args.output_path), args.output_path, args.input_path)
     else:
-        # more than two arguments are not supported
-        print("too many arguments provided")
-        sys.exit(1)
+        compare(args.input_file_1, args.input_file_2, args.output_path, args.input_path)
+
