@@ -200,7 +200,7 @@ BENCHMARK_F(OrderDataStoreFixture, OrderDataStore_addEntry)
 /* End OrderDataStore */
 #endif
 
-#if BENCHMARK_HOTPATH && !defined(ENABLE_CPP_BENCHMARKS)
+#if defined(BENCHMARK_HOTPATH) && !defined(ENABLE_CPP_BENCHMARKS)
 BENCHMARK_F(OrderBookFixture, benchmark_hotpath)
 (benchmark::State &state) {
   std::shared_ptr<OrderBook> binanceOrderBook =
