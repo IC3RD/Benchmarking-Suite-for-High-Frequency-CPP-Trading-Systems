@@ -17,7 +17,6 @@ class OrderBook {
  public:
   OrderBook(Exchange::ExchangeName);
   ~OrderBook();
-  void addTradingStrategy(std::shared_ptr<TradingStrategy>);
   void addEntry(std::shared_ptr<OrderData>);
   void sendOrder();
   const Exchange::ExchangeName getExchange() const;

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES OrderDataCollector.cpp)
+set(SOURCE_FILES OrderDataCollector.cpp ../tradingStrategies/TradingStrategy.cpp)
 
 add_library(orderDataCollectors ${SOURCE_FILES})
 
