@@ -146,8 +146,7 @@ BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand_newData_runStrategy)
 // insertion.
 BENCHMARK_F(OrderBookFixture, TradingStrategy_insertNewOrderBook)
 (benchmark::State &state) {
-  std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>
-      ();
+  std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
   for (auto _ : state) {
     bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
   }
@@ -187,19 +186,19 @@ BENCHMARK_F(OrderBookFixture, OrderBook_getLowestAsk)
   }
 }
 
-//BENCHMARK_F(OrderBookFixture, OrderBook_getBidAt)
+// BENCHMARK_F(OrderBookFixture, OrderBook_getBidAt)
 //(benchmark::State &state) {
-//  for (auto _ : state) {
-//    orderBook.getBidAt(2);
-//  }
-//}
+//   for (auto _ : state) {
+//     orderBook.getBidAt(2);
+//   }
+// }
 
-//BENCHMARK_F(OrderBookFixture, OrderBook_getAskAt)
+// BENCHMARK_F(OrderBookFixture, OrderBook_getAskAt)
 //(benchmark::State &state) {
-//  for (auto _ : state) {
-//    orderBook.getAskAt(2);
-//  }
-//}
+//   for (auto _ : state) {
+//     orderBook.getAskAt(2);
+//   }
+// }
 
 /* End of benchmarking OrderBook */
 
@@ -218,8 +217,8 @@ BENCHMARK_F(OrderDataStoreFixture, OrderDataStore_addEntry)
 #if BENCHMARK_HOTPATH && !defined(ENABLE_CPP_BENCHMARKS)
 BENCHMARK_F(OrderBookFixture, benchmark_hotpath)
 (benchmark::State &state) {
-  std::shared_ptr<OrderDataCollector> odc = make_shared<OrderDataCollector>
-      (orderBook, Exchange::BITMEX);
+  std::shared_ptr<OrderDataCollector> odc =
+      make_shared<OrderDataCollector>(orderBook, Exchange::BITMEX);
   for (auto _ : state) {
     odc->constructAndPassOrderData(OrderTypes::ASK, 505, 100);
   }

@@ -5,9 +5,9 @@ SET(BENCHMARK_HOTPATH FALSE CACHE BOOL "Option to enable hotpath benchmarking
 .")
 
 if (ENABLE_CPP_BENCHMARKS AND BENCHMARK_HOTPATH)
-    message( SEND_ERROR "Invalid flag combination. Cannot benchmark hotpath and
-   individual functions at the same time." )
-endif()
+    message(SEND_ERROR "Invalid flag combination. Cannot benchmark hotpath and
+   individual functions at the same time.")
+endif ()
 
 if (ENABLE_CPP_BENCHMARKS)
     message(">>> !!Benchmarking ENABLED...")
