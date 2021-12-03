@@ -1,5 +1,7 @@
 # Low Latency Trading System Benchmarking Suite
 
+![](doc/images/CPP%20Project%20Design.jpg)
+
 ## Requirements
 **OS X**:
 
