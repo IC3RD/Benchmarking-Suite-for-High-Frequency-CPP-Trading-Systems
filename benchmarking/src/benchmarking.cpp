@@ -9,9 +9,9 @@
 #include "dataManager/OrderDataStore.h"
 #include "dataManager/OrderTypes.h"
 #include "exchange/Exchange.h"
+#include "orderDataCollectors/marketInfoListener/BinanceListener.h"
 #include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
 #include "tradingStrategies/TradingStrategy.h"
-#include "orderDataCollectors/marketInfoListener/BinanceListener.h"
 
 class OrderBookFixture : public benchmark::Fixture {
   int SIZE = 1000;
