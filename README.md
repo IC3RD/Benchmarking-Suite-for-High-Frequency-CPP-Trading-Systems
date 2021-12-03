@@ -88,6 +88,13 @@ To run perf, please follow the following steps:
 
 Please bear in mind that perf work on *Linux-only.*
 
+## Running benchmarking python script
+First set up a python venv: `python3 -m venv /path/to/new/virtual/environment`
+
+Pip install requirements: `pip install -r requirements.txt`
+
+TODO: what it does
+
 ## Implementing your own code for benchmarking
 
 ### Adding a new trading strategy/algo
