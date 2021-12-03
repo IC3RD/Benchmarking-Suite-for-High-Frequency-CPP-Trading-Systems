@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import json
@@ -52,9 +51,29 @@ def plotting(old_data, new_data, functions_names, is_cpu: bool):
         plt.savefig("time_graph", dpi=250)
 
 
+# function to recompile the project to benchmark the functions
+def run_functions():
+    os.chdir('..')
+    os.system('cmake -S . -DBENCHMARK_HOTPATH:BOOL=False -DENABLE_CPP_BENCHMARKS:BOOL=True -B build')
+    os.system('cmake --build build')
+    os.system('cmake --install build')
+
+
+# function to recompile the project to benchmark the hotpath
+def run_hot_path():
+    os.system('cmake -S . -DBENCHMARK_HOTPATH:BOOL=True -DENABLE_CPP_BENCHMARKS:BOOL=False -B build')
+    os.system('cmake --build build')
+    os.system('cmake --install build')
+    os.chdir('build/benchmarking')
+    os.system(f"./benchmarker --benchmark_out=../../benchmarking/{dir_name}/temp_hotpath")
+
+
 # runs the benchmark and saved the output in /outputs
 # the name of the file will be "benchmark_at" + current time
 def run_benchmark(output_path):
+    global dir_name
+    dir_name = output_path
+    run_functions()
     # get the time to create the name for the benchmark
     # (this takes more than 1sec to run so there should not be any conflicting namings)
     time = str(datetime.now())
@@ -63,9 +82,21 @@ def run_benchmark(output_path):
 
     # everything needs to be made correctly for this to work - make sure you follow the README.md
     file_name = f"benchmark_at[{time}]"
-    os.chdir("../build/benchmarking")  # this is where the executable of benchmarking is
-    os.system(f"./benchmarker --benchmark_out=../../benchmarking/outputs/{file_name}")
-    os.chdir("../../benchmarking")
+    os.chdir("build/benchmarking")  # this is where the executable of benchmarking is
+    os.system(f"./benchmarker --benchmark_out=../../benchmarking/{dir_name}/temp")
+    os.chdir('../..')
+    run_hot_path()
+    os.chdir(f"../../benchmarking/{dir_name}")
+    f_temp = open('temp')
+    dict_temp = dict(json.load(f_temp))
+    f_temp_hotpath = open('temp_hotpath')
+    dict_temp_hotpath = json.load(f_temp_hotpath)
+    dict_temp['benchmarks'] += dict_temp_hotpath['benchmarks']
+    with open(file_name, 'w') as f:
+        json.dump(dict_temp, f)
+    os.remove('temp')
+    os.remove('temp_hotpath')
+    os.chdir('..')
     return file_name
 
 
@@ -120,38 +151,43 @@ def compare(old_file, new_file, input_path, output_path):
 
     plotting(old_times, new_times, names_list, False)  # plot the total time graph
     plotting(old_cpu_times, new_cpu_times, names_list, True)  # plot the cpu time graph
-    produce_pdf(old_file, new_file, file_name,
-                split_data(zip(names_list, old_times, new_times, old_cpu_times, new_cpu_times, time_differences,
-                               cpu_time_differences)))  # produce the pdf with the data above
+    split = split_data(zip(names_list, old_times, new_times, old_cpu_times, new_cpu_times, time_differences,
+                           cpu_time_differences))
+    produce_pdf(old_file, new_file, file_name, split)  # produce the pdf with the data above
 
 
 # will get the zipped data and will split it into classes
 def split_data(zipped_data):
     order_book = []
     strategy = []
-    order_manager = []
+    order_executor = []
     order_data_store = []
+    hot_path = []
     for row in zipped_data:
         for col in row:
             if type(col) is str:  # we know that we have the function name now
                 ''' this is why the naming convention must be followed '''
                 # switch ont he beginning of the string
-                if str(col).startswith('BM_OrderBook'):
+                if str(col).startswith('OrderBookFixture/OrderBook'):
                     order_book.append(row)
                     break
-                elif str(col).startswith('BM_Strategy'):
+                elif str(col).startswith('OrderBookFixture/TradingStrategy'):
                     strategy.append(row)
                     break
-                elif str(col).startswith('BM_OrderManager'):
-                    order_manager.append(row)
+                elif str(col).startswith('ExchangeOrderExecutor'):
+                    order_executor.append(row)
                     break
-                elif str(col).startswith('BM_OrderDataStore'):
+                elif str(col).startswith('OrderDataStoreFixture/OrderDataStore'):
                     order_data_store.append(row)
+                    break
+                elif str(col).startswith('OrderBookFixture/benchmark_hotpath'):
+                    hot_path.append(row)
                     break
                 else:
                     print("something went wrong: " + col)
                     break
-    return [order_book, strategy, order_manager, order_data_store]
+
+    return [order_book, strategy, order_executor, order_data_store, hot_path]
 
 
 # function that adds the initial text to the pdf
@@ -167,13 +203,21 @@ def add_init_text(pdf, file1, file2, line_height):
 # function that adds the short description before each class table
 def add_text(class_name, pdf, line_height):
     pdf.set_font_size(10)
-    text = 'These are the results of the functions in the '  # split the text to make the class name bold
-    text2 = ' class'
-    pdf.cell(pdf.get_string_width(text), line_height * 3, text)  # add the first part of the text
-    pdf.set_font('Times', 'B', 10)  # change the text to bold
-    pdf.cell(pdf.get_string_width(class_name), line_height * 3, class_name)  # add the class name in bold
-    pdf.set_font('Times', '', 10)  # change back to normal text
-    pdf.cell(pdf.get_string_width(text2), line_height * 3, text2)  # add the last bit of text
+    if class_name == 'benchmark':
+        text = 'This is the benchmarked '
+        class_name = 'Hot Path'
+        pdf.cell(pdf.get_string_width(text), line_height * 3, text)
+        pdf.set_font('Times', 'B', 10)  # change the text to bold
+        pdf.cell(pdf.get_string_width(class_name), line_height * 3, class_name)  # add the class name in bold
+        pdf.set_font('Times', '', 10)  # change back to normal text
+    else:
+        text = 'These are the results of the functions in the '  # split the text to make the class name bold
+        text2 = ' class'
+        pdf.cell(pdf.get_string_width(text), line_height * 3, text)  # add the first part of the text
+        pdf.set_font('Times', 'B', 10)  # change the text to bold
+        pdf.cell(pdf.get_string_width(class_name), line_height * 3, class_name)  # add the class name in bold
+        pdf.set_font('Times', '', 10)  # change back to normal text
+        pdf.cell(pdf.get_string_width(text2), line_height * 3, text2)  # add the last bit of text
     pdf.ln(line_height)
 
 
@@ -199,15 +243,15 @@ def add_plots(pdf):
                                                             'time between runs:')
     pdf.ln(pdf.font_size * 2.5)
     # add the first graph to the pdf
-    pdf.image('time_graph.png', h=pdf.h / 2)
+    pdf.image('time_graph.png', h=pdf.h / 3)
 
-    pdf.add_page()
+    pdf.ln(pdf.font_size * 4)
     pdf.set_font_size(14)
     pdf.cell(pdf.w - 2 * pdf.l_margin, pdf.font_size * 2.5, 'This graph shows the difference in CPU '
                                                             'time between runs:')
     pdf.ln(pdf.font_size * 2.5)
     # add the second graph to the pdf
-    pdf.image('CPU_time_graph.png', h=pdf.h / 2)
+    pdf.image('CPU_time_graph.png', h=pdf.h / 3)
     # delete the graph files
     os.remove('time_graph.png')
     os.remove('CPU_time_graph.png')
@@ -225,7 +269,14 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
     add_init_text(pdf, old_file1, old_file2, line_height)  # add the initial text of the report (edit this to add more)
 
     for table in zipped_data:
-        class_name = str(table[0][0]).split('_')[1]  # naming convention is BM_CLASS-NAME_FUNCTION-NAME
+        fixture = str(table[0][0]).split('/')
+        if len(fixture) == 1:  # no fixture case
+            split = fixture[0].split('_')  # naming convention is FIXTURE?/CLASS-NAME_FUNCTION-NAME (sort of)
+            class_name = split[0]
+        else:  # we have fixture
+            split = fixture[1].split('_')
+            class_name = split[0]
+
         add_text(class_name, pdf, line_height)  # add the description of the table (which class it corresponds to)
         pdf.ln(line_height)
         add_title(pdf, col_width, line_height)  # add the titles of the table columns (Function Name, Time Prev., etc)
@@ -233,8 +284,10 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
         for row in table:
             for i, value in enumerate(row):
                 if type(value) is str:
+                    pdf.set_font_size(4)  # to account for large function names
                     # if the value has type string then we know it is the function name and allocate more width for it
                     pdf.cell(2 * col_width + 1, line_height, value, border=1)
+                    pdf.set_font_size(6)
                 else:
                     fill = False  # boolean flag to set cell filling on and off
                     if i >= 5:
@@ -242,9 +295,11 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
                         if value < 0:
                             # if the value is negative (meaning better performance) make it green
                             pdf.set_fill_color(0, 255, 0)
-                        else:
+                        elif value > 0:
                             # if the value is positive (meaning worse performance) make it red
                             pdf.set_fill_color(255, 0, 0)
+                        else:
+                            fill = False  # don't fill when value == 0
                     string = "{:.2f}".format(value)  # format the values to be in 2 decimal points
                     pdf.cell(col_width + 1, line_height, string, border=1, fill=fill)  # make the cell of the table
             pdf.ln(line_height)
@@ -264,10 +319,10 @@ if __name__ == "__main__":
     parser.add_argument('--input_path', '--in', action='store', default="outputs",
                         help='path to input benchmarks (default: outputs)')
     args = parser.parse_args()
-    if args.input_file_1 is None:
+    if args.input_file_1 is None:  # No arguments case: run the benchmarker
         run_benchmark(args.output_path)
-    elif args.input_file_2 is None:
+    elif args.input_file_2 is None:  # One argument: run benchmarker and compare with given file
         compare(args.input_file_1, run_benchmark(args.output_path), args.output_path, args.input_path)
-    else:
+    else:  # Two arguments: compare the two given files
         compare(args.input_file_1, args.input_file_2, args.output_path, args.input_path)
 
