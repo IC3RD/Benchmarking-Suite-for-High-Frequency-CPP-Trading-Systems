@@ -31,8 +31,14 @@ Alternatively:
 1. Install the files with: `cmake --install build`
 
 ## Testing
+![](doc/images/tests.png)
 
-TODO: @Peter
+We use Google Test for our testing, checked out as one of the submodules.
+
+1. Build
+2. Run `./test.sh`
+
+More details are in [the testing readme](test/README.md)
 
 ## Running
 ![](doc/images/sample_run.png)
@@ -44,15 +50,28 @@ TODO: @Peter
 
 # Benchmarking
 
-## Running Google Benchmark
+There are 2 benchmarking tools integrated into this project, both with 
+widely different features. 
+
+## Google Benchmark
 ![](doc/images/google-benchmark.png)
+
+Google Benchmark is a microbenchmarking tool that allows us to measure the 
+performance of each individual function in C++ - thus providing us with a 
+way to reliable benchmark improvements in our code and the whole hotpath.
+
+
 TODO + let's make sure we have a single script we can run here (similar to 
 build.sh, run.sh and benchmark-perf.sh)
 
-## Running perf
+## perf
 ![](doc/images/flame_graph.png)
 
-We use `perf` as our tool to profile our code. The advantages of perf are that it adds no extra overhead onto running processes - it simply samples stack frame at certain intervals. This ensure that the results as close to "real performance" as possible.
+`perf` is a profiler that is able to monitor the performance of our code in 
+real-time. It works by interrupting the program with frequency `f` and sampling 
+the current stack frame. Based on that, it is able to analyse which 
+functions consume the most of the execution path. It is a useful tool to 
+initially pintpoint which parts of our programme are the slowest.
 
 As a summary of your performance, we generate an HTML interactive FlameGraph that allows you to explore your call stacks.
 
@@ -102,6 +121,8 @@ of how to do this.
 
 ### Changing the map type within the order data system 
 TODO I guess?
+
+TODO: adding a new Google Benchmark
 
 ## Set up CLion
 For some strange mysterious reason, CLion uses their own version of CMake
