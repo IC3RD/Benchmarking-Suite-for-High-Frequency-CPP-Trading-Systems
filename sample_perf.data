@@ -1,0 +1,42 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+# dso: main
+#
+# Total Lost Samples: 0
+#
+# Samples: 6K of event 'cpu-clock'
+# Event count (approx.): 650700000
+#
+# Children      Self  Command          Symbol                                           
+# ........  ........  ...............  .................................................
+#
+     0.06%     0.00%  wss://ws.kraken  [.] OrderDataCollector::constructAndPassOrderData
+            |
+            ---OrderDataCollector::constructAndPassOrderData
+               OrderBook::addEntry
+               |          
+               |--75.00%--BollingerBand::newData
+               |          BollingerBand::runStrategy
+               |          |          
+               |          |--66.67%--TradingStrategy::sell
+               |          |          OrderManager::submitOrder
+               |          |          BinanceOrderExecutor::submitOrder
+               |          |          |          
+               |          |          |--50.00%--BinanceOrderExecutor::authenticate
+               |          |          |          SHA256Engine::SHA256Engine
+               |          |          |          CRYPTO_malloc
+               |          |          |          
+               |          |           --50.00%--ExchangeOrderExecutor::sendOrder
+               |          |          
+               |           --33.33%--OrderBook::getLowestAsk
+               |                     std::_Rb_tree<long, std::pair<long const, std::shared_ptr<OrderData> >, std::_Select1st<std::pair<long const, std::shared_ptr<OrderData> > >, std::less<long>, std::allocator<std::pair<long const, std::shared_ptr<OrderData> > > >::_M_erase
+               |                     std::_Rb_tree<long, std::pair<long const, std::shared_ptr<OrderData> >, std::_Select1st<std::pair<long const, std::shared_ptr<OrderData> > >, std::less<long>, std::allocator<std::pair<long const, std::shared_ptr<OrderData> > > >::_M_erase
+               |                     std::_Rb_tree<long, std::pair<long const, std::shared_ptr<OrderData> >, std::_Select1st<std::pair<long const, std::shared_ptr<OrderData> > >, std::less<long>, std::allocator<std::pair<long const, std::shared_ptr<OrderData> > > >::_M_erase
+               |          
+                --25.00%--__pthread_mutex_lock
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
