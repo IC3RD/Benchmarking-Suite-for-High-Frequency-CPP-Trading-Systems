@@ -21,7 +21,6 @@ void TradingStrategy::executeSell(std::shared_ptr<OrderData> data) {
   orderManager.submitOrder(
       data->getExchange(),
       Order("BTC", data->getOrderPrice(), data->getOrderVolume(), false));
-}
 
 // If benchmarking is enabled, don't actually execute the order.
 // We instead define the functionality in executeBuy/executeSell -

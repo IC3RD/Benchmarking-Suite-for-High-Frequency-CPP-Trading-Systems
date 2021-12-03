@@ -1,5 +1,7 @@
 #pragma once
 
+#include <json/single_include/nlohmann/json.hpp>
+
 #include "dataManager/OrderBook.h"
 #include "dataManager/OrderData.h"
 #include "dataManager/OrderTypes.h"
@@ -14,6 +16,7 @@ class OrderDataCollector {
 
  protected:
   const Exchange::ExchangeName exchange;
+  virtual void passJSON(nlohmann::json json) = 0;
 
  private:
   OrderBook &orderBook;

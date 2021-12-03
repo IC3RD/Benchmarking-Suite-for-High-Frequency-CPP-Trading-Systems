@@ -61,7 +61,7 @@ std::string CoinbaseOrderExecutor::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
   json->set("side", order.isBuyOrder() ? "buy" : "sell");
   json->set("product_id", "BTC-USD");
-  json->set("price", std::to_string(order.getPrice()));
+  json->set("price", std::to_string(order.getPrice() / 100));
   json->set("size", std::to_string(order.getVolume()));
   std::stringstream ss;
   Poco::JSON::Stringifier::stringify(json, ss);

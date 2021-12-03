@@ -49,12 +49,12 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
   std::string currency = "BTCUSDT";
   std::string timestamp = generateTimestamp();
-  double quantity = 0.005;
+  int quantity = order.getVolume();
   std::string output;
   output +=
       "symbol=" + currency + "&side=" + (order.isBuyOrder() ? "BUY" : "SELL") +
       "&type=LIMIT&timeInForce=GTC" + "&quantity=" + std::to_string(quantity) +
-      "&price=" + std::to_string(order.getPrice()) + "&recvWindow=60000" +
+      "&price=" + std::to_string(order.getPrice() / 100) + "&recvWindow=60000" +
       "&timestamp=" + timestamp;
   return output;
 }

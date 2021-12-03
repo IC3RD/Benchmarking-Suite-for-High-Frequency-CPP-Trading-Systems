@@ -27,6 +27,8 @@ class OrderBook {
   std::shared_ptr<OrderData> getLowestAsk();
   std::shared_ptr<OrderData> getBidAt(int i);
   std::shared_ptr<OrderData> getAskAt(int i);
+  bool hasAsks();
+  bool hasBids();
 
  private:
   std::deque<std::shared_ptr<TradingStrategy>> listenerStrategies;
