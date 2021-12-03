@@ -15,27 +15,13 @@ void BinanceOrderExecutor::submitOrder(Order order) {
           getExchangeName() + "...");
   }
 
-  CURL *curl;
-  curl = curl_easy_init();
-
-  if (curl) {
-    /* Set up request. */
-    curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getDestination();
-    curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
-
-    /* Add the sha256 signature to the post fields. */
-    order_data += "&signature=" + authenticate(order_data);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
-
-    /* Add required headers. */
-    struct curl_slist *chunk = nullptr;
-    generateHeaders(&chunk);
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-
-    sendOrder(curl);
-  }
+  std::string URL = getDestination();
+  curlManager->addDestination(URL);
+  order_data += "&signature=" + authenticate(order_data);
+  curlManager->addPostFields(order_data);
+  generateHeaders();
+  curlManager->appendHeadersToRequest();
+  sendOrder();
 }
 
 std::string BinanceOrderExecutor::generateTimestamp() {
@@ -47,12 +33,9 @@ std::string BinanceOrderExecutor::generateTimestamp() {
   return std::to_string(current_time);
 }
 
-void BinanceOrderExecutor::generateHeaders(struct curl_slist **chunk) {
-  *chunk =
-      curl_slist_append(*chunk, ("X-MBX-APIKEY: " + getPublicKey()).c_str());
-  *chunk = curl_slist_append(*chunk,
-                             "Content-Type: "
-                             "application/x-www-form-urlencoded");
+void BinanceOrderExecutor::generateHeaders() {
+  curlManager->addPostFields("X-MBX-APIKEY: " + getPublicKey());
+  curlManager->addPostFields("Content-Type: application/x-www-form-urlencoded");
 }
 
 std::string BinanceOrderExecutor::authenticate(std::string message) {
@@ -66,12 +49,12 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
   Poco::JSON::Object::Ptr json = new Poco::JSON::Object;
   std::string currency = "BTCUSDT";
   std::string timestamp = generateTimestamp();
-  double quantity = 0.005;
+  int quantity = order.getVolume();
   std::string output;
   output +=
       "symbol=" + currency + "&side=" + (order.isBuyOrder() ? "BUY" : "SELL") +
       "&type=LIMIT&timeInForce=GTC" + "&quantity=" + std::to_string(quantity) +
-      "&price=" + std::to_string(order.getPrice()) + "&recvWindow=60000" +
+      "&price=" + std::to_string(order.getPrice() / 100) + "&recvWindow=60000" +
       "&timestamp=" + timestamp;
   return output;
 }
@@ -79,14 +62,9 @@ std::string BinanceOrderExecutor::parseOrder(const Order &order) {
 BinanceOrderExecutor::BinanceOrderExecutor() : ExchangeOrderExecutor() {}
 
 std::string BinanceOrderExecutor::getDestination() {
-  // Amend if you are debugging.
-  bool debug = false;
-  if (debug) {
-    return "https://httpbin.org/post";
-  } else {
-    return "https://testnet.binance.vision/api/v3/order?";
-  }
+  return "https://testnet.binance.vision/api/v3/order?";
 }
+
 std::string BinanceOrderExecutor::getSecretKey() {
   return "d1CE8YF6bPuOkjUPobN0DMf0NnEX5FrzW4chWQduxMFr412dEsV9c1kCcvRkKNPU";
 }

@@ -1,7 +1,6 @@
 #include "debug.h"
 
 #include <OrderExecutor.h>
-#include <OrderManager.h>
 #include <ordering-system/exchangeExecutors/binance/BinanceOrderExecutor.h>
 #include <ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h>
 #include <ordering-system/exchangeExecutors/coinbase/CoinbaseOrderExecutor.h>
@@ -12,36 +11,19 @@
 
 int main() {
   DEBUG("Testing order system...");
-
-  /* Sample class usage:
-   * ExchangeAPIFactory factory {Exchange.Coinbase}; (Exchange.Coinbase is enum)
-   * OrderExecutor manager = factory.createOrderManager();
-   * // Since we haven't implemented a factory yet i'll just create an
-   * // instance.
-   */
-  DEBUG("Creating order manager...");
-  OrderManager manager{};
   Order order{"BTC", 1, 1, true};
-  manager.submitOrder(Exchange::COINBASE, order);
-  DEBUG("Did it work?");
+  auto bitmex = new BitmexOrderExecutor();
+  bitmex->enableOutput();
+  bitmex->submitOrder(order);
+  delete bitmex;
 
-  //  std::unique_ptr<OrderExecutor> coinbaseManager =
-  //      std::make_unique<CoinbaseOrderExecutor>();
-  //
-  //  std::unique_ptr<OrderExecutor> manager =
-  //      std::make_unique<BinanceOrderExecutor>();
-  //
-  //  OrderBuilder ob = coinbaseManager->createOrderBuilder();
-  //
-  //  ob.createBuyOrder(500);
-  //  ob.addLimit(1);
-  //  ob.amendVolume(100);
-  //  ob.createBuyOrder(60000);
-  //  ob.addLimit(52);
-  //
-  //  coinbaseManager->submitOrder(ob.toOrder());
-  //
-  //  std::unique_ptr<OrderExecutor> bitmex_manager =
-  //      std::make_unique<BitmexOrderExecutor>();
-  //  bitmex_manager->submitOrder(ob.toOrder());
+  auto binance = new BinanceOrderExecutor();
+  binance->enableOutput();
+  binance->submitOrder(order);
+  delete binance;
+
+  auto coinbase = new CoinbaseOrderExecutor();
+  coinbase->enableOutput();
+  coinbase->submitOrder(order);
+  delete coinbase;
 }
