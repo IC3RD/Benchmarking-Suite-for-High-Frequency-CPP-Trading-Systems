@@ -13,3 +13,6 @@
 [submodule "benchmarking/lib/benchmark"]
 	path = benchmarking/lib/benchmark
 	url = https://github.com/google/benchmark
+[submodule "lib/FlameGraph"]
+	path = lib/FlameGraph
+	url = git@github.com:brendangregg/FlameGraph.git
