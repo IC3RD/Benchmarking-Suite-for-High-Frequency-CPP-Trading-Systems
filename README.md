@@ -40,7 +40,24 @@ To change it, it's worth to edit some settings:
    G++ to point to your own versions (location of which you can get with 
    running `which <command>`).
 1. In CMake settings, please select `Build Directory` as `build/`.
-   
+
+# Benchmarking
+
+## Running Google Benchmark
+TODO
+
+## Running perf
+
+We use `perf` as our tool to profile our code. The advantages of perf are that it adds no extra overhead onto running processes - it simply samples stack frame at certain intervals. This ensure that the results as close to "real performance" as possible.
+
+To run perf, please follow the following steps:
+
+1. Follow the steps for Build
+1. Run `sudo ./benchmark-perf.sh {filename}`
+1. Press CTRL-C after 1-2 minutes of the profiler running.
+1. Explore output in your favourite text editor.
+
+Please bear in mind that perf work on *Linux-only.*
 
 ## Naming convention
 
