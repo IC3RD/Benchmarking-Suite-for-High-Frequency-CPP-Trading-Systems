@@ -50,12 +50,16 @@ TODO
 
 We use `perf` as our tool to profile our code. The advantages of perf are that it adds no extra overhead onto running processes - it simply samples stack frame at certain intervals. This ensure that the results as close to "real performance" as possible.
 
+As a summary of your performance, we generate an HTML interactive FlameGraph that allows you to explore your call stacks.
+
+To investigate more, we recommend you to run `perf report` and investigate call stacks and annotations (code).
+
 To run perf, please follow the following steps:
 
 1. Follow the steps for Build
-1. Run `sudo ./benchmark-perf.sh {filename}`
+1. Run `sudo ./benchmark-perf.sh {html_output_filename}`
 1. Press CTRL-C after 1-2 minutes of the profiler running.
-1. Explore output in your favourite text editor.
+1. Explore output in your favourite favourite browser.
 
 Please bear in mind that perf work on *Linux-only.*
 
