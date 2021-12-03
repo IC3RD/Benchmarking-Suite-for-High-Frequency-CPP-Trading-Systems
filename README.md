@@ -147,3 +147,10 @@ e.g. `git checkout -b JRA-123-firstbranch`
 commit message: "\<issue-key\> \<commit message\>"
 
 e.g. `git  commit -m "JRA-123 first message"`
+
+## Further Development Directions
+1. Run tests as part of CI
+1. Run benchmarks as part of CI
+1. Push orders to exchanges using websockets
+1. Improve the performance of the OrderBook class
+1. Experiment with more advanced strategies
