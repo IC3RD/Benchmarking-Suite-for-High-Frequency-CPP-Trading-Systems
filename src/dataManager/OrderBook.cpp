@@ -9,11 +9,6 @@ OrderBook::OrderBook(Exchange::ExchangeName exchange) : exchange(exchange) {
 
 OrderBook::~OrderBook() {}
 
-void OrderBook::addTradingStrategy(
-    std::shared_ptr<TradingStrategy> tradingStrategy) {
-  listenerStrategies.push_back(tradingStrategy);
-}
-
 void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
   switch (data->getOrderType()) {
     case (OrderTypes::ASK):
@@ -22,10 +17,6 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
     case (OrderTypes::BID):
       bidStore->addEntry(data);
       break;
-  }
-  for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
-       ++it) {
-    (*it)->newData(data);
   }
 }
 

@@ -6,6 +6,7 @@
 #include "dataManager/OrderData.h"
 #include "dataManager/OrderTypes.h"
 #include "exchange/Exchange.h"
+#include "tradingStrategies/TradingStrategy.h"
 
 class OrderDataCollector {
  public:
@@ -13,11 +14,14 @@ class OrderDataCollector {
   ~OrderDataCollector();
   void constructAndPassOrderData(OrderTypes::OrderType type, int price,
                                  double volume);
+  void addTradingStrategy(std::shared_ptr<TradingStrategy>);
 
  protected:
   const Exchange::ExchangeName exchange;
   virtual void passJSON(nlohmann::json json) = 0;
+  void notifyTradingStrategies(std::shared_ptr<OrderData>);
+  OrderBook &orderBook;
 
  private:
-  OrderBook &orderBook;
+  std::deque<std::shared_ptr<TradingStrategy>> listenerStrategies;
 };

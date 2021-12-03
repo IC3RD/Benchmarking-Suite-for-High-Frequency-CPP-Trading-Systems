@@ -9,7 +9,7 @@
 #include "dataManager/OrderBook.h"
 #include "orderDataCollectors/OrderDataCollector.h"
 
-class Listener : OrderDataCollector {
+class Listener : public OrderDataCollector {
  public:
   Listener(std::string url, std::string request,
            Exchange::ExchangeName exchange, OrderBook &orderBook);

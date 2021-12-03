@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
-set(SOURCE_FILES FileReaderListener.cpp ../OrderDataCollector.cpp)
+set(SOURCE_FILES FileReaderListener.cpp ../OrderDataCollector.cpp ../../tradingStrategies/TradingStrategy.cpp)
 
 add_library(fileListener ${SOURCE_FILES})
 
