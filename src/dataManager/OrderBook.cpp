@@ -25,7 +25,9 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
   }
   for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
        ++it) {
+#ifndef ENABLE_CPP_BENCHMARKS
     (*it)->newData(data);
+#endif
   }
 }
 

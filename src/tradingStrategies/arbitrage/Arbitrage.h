@@ -16,6 +16,7 @@ class Arbitrage : public TradingStrategy {
   Arbitrage();
   ~Arbitrage();
   void runStrategy() override;
+  virtual void newData(std::shared_ptr<OrderData>);
 
  private:
   void process(std::shared_ptr<OrderBook> exchange1Book,

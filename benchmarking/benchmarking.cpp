@@ -1,4 +1,6 @@
+#include <arbitrage/Arbitrage.h>
 #include <benchmark/benchmark.h>
+#include <orderDataCollectors/OrderDataCollector.h>
 
 #include <memory>
 
@@ -18,14 +20,17 @@ class OrderBookFixture : public benchmark::Fixture {
 
   void SetUp(const ::benchmark::State &state) {
     OrderTypes::OrderType orderType;
+    double price = 500;
     for (auto i = 0; i < SIZE; i++) {
       if (i % 2 == 0) {
         orderType = OrderTypes::ASK;
+        price = price + i;
       } else {
         orderType = OrderTypes::BID;
+        price = price - i;
       }
-      std::shared_ptr ptr = std::make_shared<OrderData>(
-          OrderTypes::ASK, Exchange::BITMEX, 500 + i, 100);
+      std::shared_ptr ptr =
+          std::make_shared<OrderData>(orderType, Exchange::BITMEX, price, 100);
       orderBook.addEntry(ptr);
     }
   }
@@ -56,73 +61,174 @@ class OrderDataStoreFixture : public benchmark::Fixture {
   void TearDown(const ::benchmark::State &state) {}
 };
 
-// Define another benchmark
-static void BM_OrderExecutor_submitOrder(benchmark::State &state) {
+#if defined(ENABLE_CPP_BENCHMARKS) && !defined(BENCHMARK_HOTPATH)
+/* Benchmarking ExchangeOrderExecutor implementations: */
+
+// *** START of Binance ***
+static void ExchangeOrderExecutor_BinanceOrderExecutor_parseOrder(
+    benchmark::State &state) {
   Order order{"XBTUSD", 100, 5, true};
   BinanceOrderExecutor executor{};
-  executor.enableBenchmarking();
   executor.disableOutput();
-  //    executor.enableOutput();
+  for (auto _ : state) {
+    executor.parseOrder(order);
+  }
+};
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_parseOrder);
+
+static void ExchangeOrderExecutor_BinanceOrderExecutor_authenticate(
+    benchmark::State &state) {
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
+  for (auto _ : state) {
+    executor.authenticate("Dummy Message");
+  }
+}
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_authenticate);
+
+static void ExchangeOrderExecutor_BinanceOrderExecutor_generateTimestamp(
+    benchmark::State &state) {
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
+  for (auto _ : state) {
+    executor.generateTimestamp();
+  }
+}
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_generateTimestamp);
+
+static void ExchangeOrderExecutor_BinanceOrderExecutor_generateHeaders(
+    benchmark::State &state) {
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
+  for (auto _ : state) {
+    executor.generateHeaders();
+  }
+}
+
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_generateHeaders);
+
+// This benchmarks the entire BinanceOrderExecutor 'hotpath'.
+// Make sure to compile with -DENABLE_CPP_BENCHMARKS
+// This function will not execute otherwise.
+static void ExchangeOrderExecutor_BinanceOrderExecutor_submitOrder(
+    benchmark::State &state) {
+  Order order{"XBTUSD", 100, 5, true};
+  BinanceOrderExecutor executor{};
+  executor.disableOutput();
   for (auto _ : state) {
     executor.submitOrder(order);
   }
 }
 
-BENCHMARK(BM_OrderExecutor_submitOrder);
+BENCHMARK(ExchangeOrderExecutor_BinanceOrderExecutor_submitOrder);
 
-// Define another benchmark
-BENCHMARK_F(OrderBookFixture, BM_OrderBook_getHighestBid)
+// *** END of Binance ***
+/* End of benchmarking ExchangeOrderExecutors */
+
+/* Benchmarking TradingStrategy */
+
+BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand_newData_runStrategy)
+(benchmark::State &state) {
+  std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
+  std::shared_ptr<OrderData> data =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 505, 100);
+  for (auto _ : state) {
+    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+    bollingerBand->newData(data);
+    // newData will implicitly call runStrategy
+  }
+}
+
+// This is an example with one order book. Add more order books to test
+// insertion.
+BENCHMARK_F(OrderBookFixture, TradingStrategy_insertNewOrderBook)
+(benchmark::State &state) {
+  std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
+  for (auto _ : state) {
+    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
+  }
+}
+
+/* End of benchmarking TradingStrategy */
+
+/* OrderBook */
+BENCHMARK_F(OrderBookFixture, OrderBook_addTradingStrategy)
+(benchmark::State &state) {
+  std::shared_ptr<TradingStrategy> bollingerBand = make_shared<BollingerBand>();
+  for (auto _ : state) {
+    orderBook.addTradingStrategy(bollingerBand);
+  }
+}
+
+BENCHMARK_F(OrderBookFixture, OrderBook_addEntry)
+(benchmark::State &state) {
+  std::shared_ptr<OrderData> data =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 505, 100);
+  for (auto _ : state) {
+    orderBook.addEntry(data);
+  }
+}
+
+BENCHMARK_F(OrderBookFixture, OrderBook_getHighestBid)
 (benchmark::State &state) {
   for (auto _ : state) {
     orderBook.getHighestBid();
   }
 }
 
-// Define another benchmark
-BENCHMARK_F(OrderBookFixture, BM_OrderBook_getLowestAsk)
+BENCHMARK_F(OrderBookFixture, OrderBook_getLowestAsk)
 (benchmark::State &state) {
   for (auto _ : state) {
     orderBook.getLowestAsk();
   }
 }
 
-// Define another benchmark
-BENCHMARK_F(OrderDataStoreFixture, BM_OrderDataStore_addEntry)
+/* End of benchmarking OrderBook */
+
+/* OrderDataStore */
+BENCHMARK_F(OrderDataStoreFixture, OrderDataStore_addEntry)
 (benchmark::State &state) {
-  std::shared_ptr ptr =
-      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 600, 100);
+  std::shared_ptr<OrderData> data =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 505, 100);
   for (auto _ : state) {
-    orderDataStore.addEntry(ptr);
+    orderDataStore.addEntry(data);
   }
 }
+/* End OrderDataStore */
+#endif
 
-// OrderDataStore but path where key already exists...but volume != 0
-BENCHMARK_F(OrderDataStoreFixture, BM_OrderDataStore_addEntry_keyAlreadyExists)
+#if defined(BENCHMARK_HOTPATH) && !defined(ENABLE_CPP_BENCHMARKS)
+BENCHMARK_F(OrderBookFixture, benchmark_hotpath)
 (benchmark::State &state) {
-  std::shared_ptr ptr =
-      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 200, 100);
-  orderDataStore.addEntry(ptr);
+  std::shared_ptr<OrderBook> binanceOrderBook =
+      std::make_shared<OrderBook>(Exchange::BINANCE);
+
+  std::shared_ptr<BollingerBand> strategy = std::make_shared<BollingerBand>();
+
+  strategy->insertNewOrderBook(binanceOrderBook);
+  strategy->addExchange(Exchange::BINANCE);
+
+  binanceOrderBook->addTradingStrategy(strategy);
+
+  std::shared_ptr<OrderData> data1 =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BINANCE, 600, 100);
+  std::shared_ptr<OrderData> data2 =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BINANCE, 550, 100);
+  binanceOrderBook->addEntry(data1);
+  binanceOrderBook->addEntry(data2);
+
+  std::shared_ptr<OrderDataCollector> odc =
+      make_shared<OrderDataCollector>(*binanceOrderBook, Exchange::BINANCE);
+
   for (auto _ : state) {
-    orderDataStore.addEntry(ptr);
+    odc->constructAndPassOrderData(OrderTypes::ASK, 490, 100);
   }
 }
-BENCHMARK_F(OrderDataStoreFixture,
-            BM_OrderDataStore_addEntry_keyAlreadyExists_zeroVolume)
-(benchmark::State &state) {
-  std::shared_ptr ptr =
-      std::make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 0, 0);
-  orderDataStore.addEntry(ptr);
-  for (auto _ : state) {
-    orderDataStore.addEntry(ptr);
-  }
-}
+#endif
 
-// Define another benchmark
-static void BM_BollingerBand_runStrat(benchmark::State &state) {
-  BollingerBand band{};
-  for (auto _ : state) band.runStrategy();
-}
 
-BENCHMARK(BM_BollingerBand_runStrat);
 
 BENCHMARK_MAIN();

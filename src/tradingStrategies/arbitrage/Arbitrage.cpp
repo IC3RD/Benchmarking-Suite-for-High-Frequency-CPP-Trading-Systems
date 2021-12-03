@@ -83,4 +83,8 @@ void Arbitrage::process(std::shared_ptr<OrderBook> exchange1Book,
       }
     }
   }
+}
+
+void Arbitrage::newData(std::shared_ptr<OrderData>){
+    // TODO: Implement this? Or don't make this pure in TradingStrategy?
 };
