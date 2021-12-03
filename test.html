@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" width="1200" height="134" onload="init(evt)" viewBox="0 0 1200 134" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg version="1.1" width="1200" height="646" onload="init(evt)" viewBox="0 0 1200 646" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
 <!-- NOTES:  -->
 <defs>
@@ -412,33 +412,1525 @@
 	}
 ]]>
 </script>
-<rect x="0.0" y="0" width="1200.0" height="134.0" fill="url(#background)"  />
+<rect x="0.0" y="0" width="1200.0" height="646.0" fill="url(#background)"  />
 <text id="title" x="600.00" y="24" >Flame Graph</text>
-<text id="details" x="10.00" y="117" > </text>
+<text id="details" x="10.00" y="629" > </text>
 <text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
 <text id="search" x="1090.00" y="24" >Search</text>
 <text id="ignorecase" x="1174.00" y="24" >ic</text>
-<text id="matched" x="1090.00" y="117" > </text>
+<text id="matched" x="1090.00" y="629" > </text>
 <g id="frames">
 <g >
-<title>std::basic_streambuf&lt;char, (1 samples, 0.34%)</title><rect x="10.0" y="37" width="4.0" height="15.0" fill="rgb(206,146,33)" rx="2" ry="2" />
-<text  x="13.00" y="47.5" ></text>
+<title>std::function&lt;bool ()&gt;::operator() (2 samples, 0.03%)</title><rect x="1172.7" y="373" width="0.3" height="15.0" fill="rgb(213,189,24)" rx="2" ry="2" />
+<text  x="1175.67" y="383.5" ></text>
 </g>
 <g >
-<title>std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (291 samples, 99.66%)</title><rect x="14.0" y="53" width="1176.0" height="15.0" fill="rgb(219,8,52)" rx="2" ry="2" />
-<text  x="17.04" y="63.5" >std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void</text>
+<title>std::_Rb_tree&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;, std::_Select1st&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::less&lt;void&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx1 (8 samples, 0.12%)</title><rect x="1146.8" y="293" width="1.4" height="15.0" fill="rgb(250,132,20)" rx="2" ry="2" />
+<text  x="1149.85" y="303.5" ></text>
 </g>
 <g >
-<title>all (292 samples, 100%)</title><rect x="10.0" y="85" width="1180.0" height="15.0" fill="rgb(235,188,31)" rx="2" ry="2" />
-<text  x="13.00" y="95.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;__gnu_cxx::__normal_iterator&lt;unsigned char*, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; (9 samples, 0.13%)</title><rect x="1169.4" y="453" width="1.5" height="15.0" fill="rgb(236,192,11)" rx="2" ry="2" />
+<text  x="1172.38" y="463.5" ></text>
 </g>
 <g >
-<title>main (292 samples, 100.00%)</title><rect x="10.0" y="69" width="1180.0" height="15.0" fill="rgb(216,107,42)" rx="2" ry="2" />
-<text  x="13.00" y="79.5" >main</text>
+<title>nlohmann::detail::parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::parse (5 samples, 0.07%)</title><rect x="1188.3" y="309" width="0.8" height="15.0" fill="rgb(211,200,24)" rx="2" ry="2" />
+<text  x="1191.27" y="319.5" ></text>
 </g>
 <g >
-<title>Poco::RandomBuf::~RandomBuf (1 samples, 0.34%)</title><rect x="10.0" y="53" width="4.0" height="15.0" fill="rgb(246,83,32)" rx="2" ry="2" />
-<text  x="13.00" y="63.5" ></text>
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (52 samples, 0.76%)</title><rect x="1173.4" y="197" width="9.0" height="15.0" fill="rgb(252,39,4)" rx="2" ry="2" />
+<text  x="1176.36" y="207.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::sax_parse_internal&lt;nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt; (1 samples, 0.01%)</title><rect x="40.7" y="293" width="0.1" height="15.0" fill="rgb(225,39,53)" rx="2" ry="2" />
+<text  x="43.67" y="303.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (2 samples, 0.03%)</title><rect x="1093.8" y="101" width="0.4" height="15.0" fill="rgb(240,102,25)" rx="2" ry="2" />
+<text  x="1096.82" y="111.5" ></text>
+</g>
+<g >
+<title>std::function&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)&gt;::operator() (93 samples, 1.37%)</title><rect x="1173.4" y="373" width="16.1" height="15.0" fill="rgb(213,217,34)" rx="2" ry="2" />
+<text  x="1176.36" y="383.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::parse (122 samples, 1.79%)</title><rect x="1148.2" y="309" width="21.2" height="15.0" fill="rgb(217,63,0)" rx="2" ry="2" />
+<text  x="1151.23" y="319.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (8 samples, 0.12%)</title><rect x="1146.8" y="277" width="1.4" height="15.0" fill="rgb(244,74,53)" rx="2" ry="2" />
+<text  x="1149.85" y="287.5" ></text>
+</g>
+<g >
+<title>ix::Socket::readLine[abi:cxx11] (5 samples, 0.07%)</title><rect x="1171.1" y="405" width="0.9" height="15.0" fill="rgb(248,140,43)" rx="2" ry="2" />
+<text  x="1174.11" y="415.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (1 samples, 0.01%)</title><rect x="1144.2" y="277" width="0.2" height="15.0" fill="rgb(215,210,1)" rx="2" ry="2" />
+<text  x="1147.25" y="287.5" ></text>
+</g>
+<g >
+<title>TradingStrategy::buy (1 samples, 0.01%)</title><rect x="1187.9" y="229" width="0.2" height="15.0" fill="rgb(234,17,43)" rx="2" ry="2" />
+<text  x="1190.92" y="239.5" ></text>
+</g>
+<g >
+<title>ix::Socket::readByte (2 samples, 0.03%)</title><rect x="1171.3" y="389" width="0.3" height="15.0" fill="rgb(234,167,41)" rx="2" ry="2" />
+<text  x="1174.28" y="399.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (109 samples, 1.60%)</title><rect x="829.0" y="85" width="18.9" height="15.0" fill="rgb(220,135,2)" rx="2" ry="2" />
+<text  x="832.02" y="95.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (3 samples, 0.04%)</title><rect x="309.8" y="53" width="0.5" height="15.0" fill="rgb(229,71,12)" rx="2" ry="2" />
+<text  x="312.81" y="63.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,208 samples, 17.74%)</title><rect x="923.3" y="149" width="209.3" height="15.0" fill="rgb(207,168,0)" rx="2" ry="2" />
+<text  x="926.29" y="159.5" >std::_Rb_tree&lt;long, std::pa..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="29.6" y="181" width="0.2" height="15.0" fill="rgb(217,24,38)" rx="2" ry="2" />
+<text  x="32.58" y="191.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (20 samples, 0.29%)</title><rect x="1184.3" y="149" width="3.4" height="15.0" fill="rgb(252,163,4)" rx="2" ry="2" />
+<text  x="1187.28" y="159.5" ></text>
+</g>
+<g >
+<title>OrderBook::addEntry (6,294 samples, 92.44%)</title><rect x="51.1" y="277" width="1090.7" height="15.0" fill="rgb(229,83,4)" rx="2" ry="2" />
+<text  x="54.07" y="287.5" >OrderBook::addEntry</text>
+</g>
+<g >
+<title>Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}::operator() (93 samples, 1.37%)</title><rect x="1173.4" y="341" width="16.1" height="15.0" fill="rgb(247,17,4)" rx="2" ry="2" />
+<text  x="1176.36" y="351.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (497 samples, 7.30%)</title><rect x="1046.5" y="117" width="86.1" height="15.0" fill="rgb(234,143,54)" rx="2" ry="2" />
+<text  x="1049.51" y="127.5" >std::_Rb_t..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, Poco::Dynamic::Var&gt;, std::_Select1st&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, Poco::Dynamic::Var&gt; &gt;, std::less&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, Poco::Dynamic::Var&gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="40.5" y="181" width="0.2" height="15.0" fill="rgb(217,88,23)" rx="2" ry="2" />
+<text  x="43.50" y="191.5" ></text>
+</g>
+<g >
+<title>ix::Socket::readByte (4 samples, 0.06%)</title><rect x="10.0" y="389" width="0.7" height="15.0" fill="rgb(208,186,31)" rx="2" ry="2" />
+<text  x="13.00" y="399.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,419 samples, 20.84%)</title><rect x="64.4" y="165" width="245.9" height="15.0" fill="rgb(209,3,47)" rx="2" ry="2" />
+<text  x="67.42" y="175.5" >std::_Rb_tree&lt;long, std::pair&lt;lo..</text>
+</g>
+<g >
+<title>OrderManager::submitOrder (2 samples, 0.03%)</title><rect x="40.3" y="213" width="0.4" height="15.0" fill="rgb(233,147,22)" rx="2" ry="2" />
+<text  x="43.33" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (854 samples, 12.54%)</title><rect x="984.6" y="133" width="148.0" height="15.0" fill="rgb(226,182,22)" rx="2" ry="2" />
+<text  x="987.64" y="143.5" >std::_Rb_tree&lt;long..</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (1 samples, 0.01%)</title><rect x="1144.1" y="293" width="0.1" height="15.0" fill="rgb(217,160,42)" rx="2" ry="2" />
+<text  x="1147.08" y="303.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;bool, std::allocator&lt;bool&gt; &gt;::push_back (2 samples, 0.03%)</title><rect x="1168.5" y="277" width="0.4" height="15.0" fill="rgb(218,17,50)" rx="2" ry="2" />
+<text  x="1171.51" y="287.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (2 samples, 0.03%)</title><rect x="850.3" y="197" width="0.4" height="15.0" fill="rgb(229,116,29)" rx="2" ry="2" />
+<text  x="853.33" y="207.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (6 samples, 0.09%)</title><rect x="340.3" y="165" width="1.0" height="15.0" fill="rgb(242,93,12)" rx="2" ry="2" />
+<text  x="343.31" y="175.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (20 samples, 0.29%)</title><rect x="36.9" y="165" width="3.4" height="15.0" fill="rgb(246,23,10)" rx="2" ry="2" />
+<text  x="39.86" y="175.5" ></text>
+</g>
+<g >
+<title>Band::getStd (1 samples, 0.01%)</title><rect x="51.4" y="245" width="0.2" height="15.0" fill="rgb(251,104,43)" rx="2" ry="2" />
+<text  x="54.42" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="1187.6" y="69" width="0.1" height="15.0" fill="rgb(219,50,49)" rx="2" ry="2" />
+<text  x="1190.57" y="79.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (73 samples, 1.07%)</title><rect x="569.9" y="85" width="12.7" height="15.0" fill="rgb(241,1,48)" rx="2" ry="2" />
+<text  x="572.93" y="95.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (52 samples, 0.76%)</title><rect x="1173.4" y="181" width="9.0" height="15.0" fill="rgb(208,24,46)" rx="2" ry="2" />
+<text  x="1176.36" y="191.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (58 samples, 0.85%)</title><rect x="1122.6" y="85" width="10.0" height="15.0" fill="rgb(214,194,28)" rx="2" ry="2" />
+<text  x="1125.59" y="95.5" ></text>
+</g>
+<g >
+<title>0x55d1080056b0 (1 samples, 0.01%)</title><rect x="40.3" y="117" width="0.2" height="15.0" fill="rgb(205,13,13)" rx="2" ry="2" />
+<text  x="43.33" y="127.5" ></text>
+</g>
+<g >
+<title>OrderBook::getLowestAsk (1 samples, 0.01%)</title><rect x="1187.7" y="229" width="0.2" height="15.0" fill="rgb(221,19,45)" rx="2" ry="2" />
+<text  x="1190.75" y="239.5" ></text>
+</g>
+<g >
+<title>0x7f2434104bd4 (1 samples, 0.01%)</title><rect x="1189.8" y="533" width="0.2" height="15.0" fill="rgb(219,73,44)" rx="2" ry="2" />
+<text  x="1192.83" y="543.5" ></text>
+</g>
+<g >
+<title>0x55d108005364 (2 samples, 0.03%)</title><rect x="738.2" y="117" width="0.4" height="15.0" fill="rgb(231,38,24)" rx="2" ry="2" />
+<text  x="741.21" y="127.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind), ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}&gt;::_M_invoke (65 samples, 0.95%)</title><rect x="29.6" y="421" width="11.2" height="15.0" fill="rgb(245,9,21)" rx="2" ry="2" />
+<text  x="32.58" y="431.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;), Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}&gt;::_M_invoke (65 samples, 0.95%)</title><rect x="29.6" y="357" width="11.2" height="15.0" fill="rgb(240,152,28)" rx="2" ry="2" />
+<text  x="32.58" y="367.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;bool, std::allocator&lt;bool&gt; &gt;::empty (15 samples, 0.22%)</title><rect x="1165.9" y="277" width="2.6" height="15.0" fill="rgb(237,214,20)" rx="2" ry="2" />
+<text  x="1168.91" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,643 samples, 24.13%)</title><rect x="847.9" y="213" width="284.7" height="15.0" fill="rgb(230,21,4)" rx="2" ry="2" />
+<text  x="850.91" y="223.5" >std::_Rb_tree&lt;long, std::pair&lt;long con..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,558 samples, 22.88%)</title><rect x="312.6" y="197" width="270.0" height="15.0" fill="rgb(234,172,23)" rx="2" ry="2" />
+<text  x="315.58" y="207.5" >std::_Rb_tree&lt;long, std::pair&lt;long c..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (51 samples, 0.75%)</title><rect x="1173.5" y="165" width="8.9" height="15.0" fill="rgb(211,65,29)" rx="2" ry="2" />
+<text  x="1176.54" y="175.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;bool, std::allocator&lt;bool&gt; &gt;::empty (1 samples, 0.01%)</title><rect x="40.7" y="277" width="0.1" height="15.0" fill="rgb(233,131,44)" rx="2" ry="2" />
+<text  x="43.67" y="287.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::run (108 samples, 1.59%)</title><rect x="1170.9" y="485" width="18.8" height="15.0" fill="rgb(224,120,25)" rx="2" ry="2" />
+<text  x="1173.94" y="495.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (31 samples, 0.46%)</title><rect x="1182.4" y="197" width="5.3" height="15.0" fill="rgb(237,141,37)" rx="2" ry="2" />
+<text  x="1185.37" y="207.5" ></text>
+</g>
+<g >
+<title>all (6,809 samples, 100%)</title><rect x="10.0" y="597" width="1180.0" height="15.0" fill="rgb(233,36,21)" rx="2" ry="2" />
+<text  x="13.00" y="607.5" ></text>
+</g>
+<g >
+<title>0x7f2434053034 (1 samples, 0.01%)</title><rect x="1189.7" y="533" width="0.1" height="15.0" fill="rgb(211,158,48)" rx="2" ry="2" />
+<text  x="1192.65" y="543.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::run (179 samples, 2.63%)</title><rect x="10.0" y="485" width="31.0" height="15.0" fill="rgb(235,93,47)" rx="2" ry="2" />
+<text  x="13.00" y="495.5" >ix..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (31 samples, 0.46%)</title><rect x="1182.4" y="213" width="5.3" height="15.0" fill="rgb(240,161,18)" rx="2" ry="2" />
+<text  x="1185.37" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (35 samples, 0.51%)</title><rect x="30.8" y="149" width="6.1" height="15.0" fill="rgb(208,222,44)" rx="2" ry="2" />
+<text  x="33.80" y="159.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (6 samples, 0.09%)</title><rect x="1138.0" y="181" width="1.0" height="15.0" fill="rgb(249,188,34)" rx="2" ry="2" />
+<text  x="1141.01" y="191.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;char, std::allocator&lt;char&gt; &gt;::emplace_back&lt;char&gt; (1 samples, 0.01%)</title><rect x="1164.5" y="261" width="0.2" height="15.0" fill="rgb(235,91,35)" rx="2" ry="2" />
+<text  x="1167.52" y="271.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::recv (2 samples, 0.03%)</title><rect x="10.3" y="373" width="0.4" height="15.0" fill="rgb(246,209,41)" rx="2" ry="2" />
+<text  x="13.35" y="383.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::invokeTrafficTrackerCallback (1 samples, 0.01%)</title><rect x="1173.2" y="389" width="0.2" height="15.0" fill="rgb(223,79,29)" rx="2" ry="2" />
+<text  x="1176.19" y="399.5" ></text>
+</g>
+<g >
+<title>BinanceOrderExecutor::authenticate (1 samples, 0.01%)</title><rect x="40.3" y="181" width="0.2" height="15.0" fill="rgb(250,29,30)" rx="2" ry="2" />
+<text  x="43.33" y="191.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketHandshake::clientHandshake (4 samples, 0.06%)</title><rect x="41.2" y="421" width="0.7" height="15.0" fill="rgb(247,112,8)" rx="2" ry="2" />
+<text  x="44.19" y="431.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (1 samples, 0.01%)</title><rect x="588.3" y="181" width="0.2" height="15.0" fill="rgb(215,43,53)" rx="2" ry="2" />
+<text  x="591.30" y="191.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::scan (60 samples, 0.88%)</title><rect x="1154.3" y="277" width="10.4" height="15.0" fill="rgb(253,165,32)" rx="2" ry="2" />
+<text  x="1157.30" y="287.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::operator[] (1 samples, 0.01%)</title><rect x="1144.9" y="309" width="0.2" height="15.0" fill="rgb(210,21,24)" rx="2" ry="2" />
+<text  x="1147.94" y="319.5" ></text>
+</g>
+<g >
+<title>TradingStrategy::buy (2 samples, 0.03%)</title><rect x="40.3" y="229" width="0.4" height="15.0" fill="rgb(205,161,7)" rx="2" ry="2" />
+<text  x="43.33" y="239.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketHandshake::clientHandshake (113 samples, 1.66%)</title><rect x="10.0" y="421" width="19.6" height="15.0" fill="rgb(219,16,26)" rx="2" ry="2" />
+<text  x="13.00" y="431.5" ></text>
+</g>
+<g >
+<title>0x55d108005364 (1 samples, 0.01%)</title><rect x="64.2" y="165" width="0.2" height="15.0" fill="rgb(234,4,42)" rx="2" ry="2" />
+<text  x="67.24" y="175.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::scan (2 samples, 0.03%)</title><rect x="1148.2" y="293" width="0.4" height="15.0" fill="rgb(234,217,31)" rx="2" ry="2" />
+<text  x="1151.23" y="303.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::parse&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;&gt; (5 samples, 0.07%)</title><rect x="1188.3" y="325" width="0.8" height="15.0" fill="rgb(229,138,0)" rx="2" ry="2" />
+<text  x="1191.27" y="335.5" ></text>
+</g>
+<g >
+<title>Listener::collectOrderData (85 samples, 1.25%)</title><rect x="1173.4" y="309" width="14.7" height="15.0" fill="rgb(215,77,4)" rx="2" ry="2" />
+<text  x="1176.36" y="319.5" ></text>
+</g>
+<g >
+<title>OrderBook::getHighestBid (3,166 samples, 46.50%)</title><rect x="584.0" y="229" width="548.6" height="15.0" fill="rgb(248,172,34)" rx="2" ry="2" />
+<text  x="586.97" y="239.5" >OrderBook::getHighestBid</text>
+</g>
+<g >
+<title>0x55d1080052c0 (2 samples, 0.03%)</title><rect x="860.0" y="181" width="0.4" height="15.0" fill="rgb(232,138,37)" rx="2" ry="2" />
+<text  x="863.04" y="191.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::_M_realloc_insert&lt;nlohmann::detail::value_t&gt; (4 samples, 0.06%)</title><rect x="1153.6" y="229" width="0.7" height="15.0" fill="rgb(230,145,50)" rx="2" ry="2" />
+<text  x="1156.61" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (23 samples, 0.34%)</title><rect x="1133.7" y="181" width="4.0" height="15.0" fill="rgb(207,58,48)" rx="2" ry="2" />
+<text  x="1136.68" y="191.5" ></text>
+</g>
+<g >
+<title>OrderBook::getHighestBid (61 samples, 0.90%)</title><rect x="29.8" y="229" width="10.5" height="15.0" fill="rgb(254,221,16)" rx="2" ry="2" />
+<text  x="32.76" y="239.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (8 samples, 0.12%)</title><rect x="1145.5" y="261" width="1.3" height="15.0" fill="rgb(218,206,23)" rx="2" ry="2" />
+<text  x="1148.46" y="271.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (14 samples, 0.21%)</title><rect x="1135.2" y="165" width="2.5" height="15.0" fill="rgb(240,26,1)" rx="2" ry="2" />
+<text  x="1138.24" y="175.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (5 samples, 0.07%)</title><rect x="1186.9" y="101" width="0.8" height="15.0" fill="rgb(208,40,24)" rx="2" ry="2" />
+<text  x="1189.88" y="111.5" ></text>
+</g>
+<g >
+<title>CoinbaseListener::passJSON (6,321 samples, 92.83%)</title><rect x="49.9" y="325" width="1095.4" height="15.0" fill="rgb(238,10,22)" rx="2" ry="2" />
+<text  x="52.86" y="335.5" >CoinbaseListener::passJSON</text>
+</g>
+<g >
+<title>ix::WebSocketTransport::connectToUrl (11 samples, 0.16%)</title><rect x="1171.1" y="437" width="1.9" height="15.0" fill="rgb(211,221,19)" rx="2" ry="2" />
+<text  x="1174.11" y="447.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::poll (1 samples, 0.01%)</title><rect x="40.8" y="469" width="0.2" height="15.0" fill="rgb(235,70,20)" rx="2" ry="2" />
+<text  x="43.85" y="479.5" ></text>
+</g>
+<g >
+<title>Poco::Crypto::OpenSSLInitializer::initialize (1 samples, 0.01%)</title><rect x="40.3" y="133" width="0.2" height="15.0" fill="rgb(221,102,15)" rx="2" ry="2" />
+<text  x="43.33" y="143.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::scan (2 samples, 0.03%)</title><rect x="1188.6" y="277" width="0.4" height="15.0" fill="rgb(233,82,42)" rx="2" ry="2" />
+<text  x="1191.61" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (20 samples, 0.29%)</title><rect x="36.9" y="213" width="3.4" height="15.0" fill="rgb(238,164,24)" rx="2" ry="2" />
+<text  x="39.86" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,473 samples, 21.63%)</title><rect x="55.1" y="181" width="255.2" height="15.0" fill="rgb(229,162,31)" rx="2" ry="2" />
+<text  x="58.06" y="191.5" >std::_Rb_tree&lt;long, std::pair&lt;long..</text>
+</g>
+<g >
+<title>std::_Function_handler&lt;bool (), ix::makeCancellationRequestWithTimeout(int, std::atomic&lt;bool&gt;&amp;)::{lambda()#1}&gt;::_M_invoke (55 samples, 0.81%)</title><rect x="19.0" y="357" width="9.5" height="15.0" fill="rgb(237,103,50)" rx="2" ry="2" />
+<text  x="22.01" y="367.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (1 samples, 0.01%)</title><rect x="1154.1" y="213" width="0.2" height="15.0" fill="rgb(242,57,1)" rx="2" ry="2" />
+<text  x="1157.13" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;), Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}&gt;::_M_invoke (93 samples, 1.37%)</title><rect x="1173.4" y="357" width="16.1" height="15.0" fill="rgb(249,20,53)" rx="2" ry="2" />
+<text  x="1176.36" y="367.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (2 samples, 0.03%)</title><rect x="36.5" y="69" width="0.4" height="15.0" fill="rgb(214,228,19)" rx="2" ry="2" />
+<text  x="39.51" y="79.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (19 samples, 0.28%)</title><rect x="33.6" y="117" width="3.3" height="15.0" fill="rgb(218,220,23)" rx="2" ry="2" />
+<text  x="36.57" y="127.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;::handle_value&lt;nlohmann::detail::value_t&gt; (6 samples, 0.09%)</title><rect x="1153.3" y="261" width="1.0" height="15.0" fill="rgb(254,38,35)" rx="2" ry="2" />
+<text  x="1156.26" y="271.5" ></text>
+</g>
+<g >
+<title>std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (ix::WebSocket::*)(), ix::WebSocket*&gt; &gt; &gt;::_M_run (108 samples, 1.59%)</title><rect x="1170.9" y="501" width="18.8" height="15.0" fill="rgb(233,40,35)" rx="2" ry="2" />
+<text  x="1173.94" y="511.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;char, std::allocator&lt;char&gt; &gt;::emplace_back&lt;char&gt; (1 samples, 0.01%)</title><rect x="1188.6" y="245" width="0.2" height="15.0" fill="rgb(213,52,33)" rx="2" ry="2" />
+<text  x="1191.61" y="255.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;::start_array (1 samples, 0.01%)</title><rect x="1188.4" y="277" width="0.2" height="15.0" fill="rgb(206,105,46)" rx="2" ry="2" />
+<text  x="1191.44" y="287.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (8 samples, 0.12%)</title><rect x="881.9" y="165" width="1.4" height="15.0" fill="rgb(206,160,43)" rx="2" ry="2" />
+<text  x="884.87" y="175.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char*&gt; (1 samples, 0.01%)</title><rect x="1147.9" y="197" width="0.2" height="15.0" fill="rgb(225,136,38)" rx="2" ry="2" />
+<text  x="1150.89" y="207.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::getPriceToOrderDataMap (1,520 samples, 22.32%)</title><rect x="584.5" y="213" width="263.4" height="15.0" fill="rgb(229,166,41)" rx="2" ry="2" />
+<text  x="587.49" y="223.5" >OrderDataStore::getPriceToOrderData..</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (1 samples, 0.01%)</title><rect x="1188.1" y="213" width="0.2" height="15.0" fill="rgb(206,202,34)" rx="2" ry="2" />
+<text  x="1191.09" y="223.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::connectToUrl (4 samples, 0.06%)</title><rect x="41.2" y="437" width="0.7" height="15.0" fill="rgb(209,72,53)" rx="2" ry="2" />
+<text  x="44.19" y="447.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::get (29 samples, 0.43%)</title><rect x="1159.3" y="245" width="5.1" height="15.0" fill="rgb(237,225,19)" rx="2" ry="2" />
+<text  x="1162.33" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,186 samples, 17.42%)</title><rect x="377.0" y="149" width="205.6" height="15.0" fill="rgb(239,110,22)" rx="2" ry="2" />
+<text  x="380.05" y="159.5" >std::_Rb_tree&lt;long, std::pa..</text>
+</g>
+<g >
+<title>TradingStrategy::buy (1 samples, 0.01%)</title><rect x="1139.2" y="229" width="0.2" height="15.0" fill="rgb(206,118,54)" rx="2" ry="2" />
+<text  x="1142.22" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (983 samples, 14.44%)</title><rect x="677.6" y="133" width="170.3" height="15.0" fill="rgb(208,9,22)" rx="2" ry="2" />
+<text  x="680.55" y="143.5" >std::_Rb_tree&lt;long, st..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (31 samples, 0.46%)</title><rect x="1182.4" y="181" width="5.3" height="15.0" fill="rgb(210,139,52)" rx="2" ry="2" />
+<text  x="1185.37" y="191.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;bool (), ix::makeCancellationRequestWithTimeout(int, std::atomic&lt;bool&gt;&amp;)::{lambda()#1}&gt;::_M_invoke (2 samples, 0.03%)</title><rect x="1172.3" y="373" width="0.4" height="15.0" fill="rgb(243,12,47)" rx="2" ry="2" />
+<text  x="1175.32" y="383.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::scan_string (44 samples, 0.65%)</title><rect x="1156.9" y="261" width="7.6" height="15.0" fill="rgb(241,186,1)" rx="2" ry="2" />
+<text  x="1159.90" y="271.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::connect (11 samples, 0.16%)</title><rect x="1171.1" y="453" width="1.9" height="15.0" fill="rgb(254,70,25)" rx="2" ry="2" />
+<text  x="1174.11" y="463.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::openSSLClientHandshake (6 samples, 0.09%)</title><rect x="1172.0" y="389" width="1.0" height="15.0" fill="rgb(245,165,31)" rx="2" ry="2" />
+<text  x="1174.98" y="399.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (28 samples, 0.41%)</title><rect x="1177.5" y="117" width="4.9" height="15.0" fill="rgb(211,218,53)" rx="2" ry="2" />
+<text  x="1180.52" y="127.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::to_json&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, 0&gt; (5 samples, 0.07%)</title><rect x="1151.9" y="229" width="0.8" height="15.0" fill="rgb(219,163,42)" rx="2" ry="2" />
+<text  x="1154.87" y="239.5" ></text>
+</g>
+<g >
+<title>0x55d108005a04 (2 samples, 0.03%)</title><rect x="10.9" y="389" width="0.3" height="15.0" fill="rgb(245,136,23)" rx="2" ry="2" />
+<text  x="13.87" y="399.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::checkConnection (12 samples, 0.18%)</title><rect x="1170.9" y="469" width="2.1" height="15.0" fill="rgb(236,217,46)" rx="2" ry="2" />
+<text  x="1173.94" y="479.5" ></text>
+</g>
+<g >
+<title>Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}::operator() (6,460 samples, 94.87%)</title><rect x="49.9" y="341" width="1119.5" height="15.0" fill="rgb(235,176,26)" rx="2" ry="2" />
+<text  x="52.86" y="351.5" >Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}::operator()</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (20 samples, 0.29%)</title><rect x="36.9" y="197" width="3.4" height="15.0" fill="rgb(236,198,49)" rx="2" ry="2" />
+<text  x="39.86" y="207.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;bool (), ix::makeCancellationRequestWithTimeout(int, std::atomic&lt;bool&gt;&amp;)::{lambda()#1}&gt;::_M_invoke (1 samples, 0.01%)</title><rect x="41.7" y="357" width="0.2" height="15.0" fill="rgb(228,2,35)" rx="2" ry="2" />
+<text  x="44.71" y="367.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (222 samples, 3.26%)</title><rect x="1094.2" y="101" width="38.4" height="15.0" fill="rgb(237,52,34)" rx="2" ry="2" />
+<text  x="1097.17" y="111.5" >std..</text>
+</g>
+<g >
+<title>0x55d108005364 (1 samples, 0.01%)</title><rect x="795.2" y="101" width="0.2" height="15.0" fill="rgb(218,29,12)" rx="2" ry="2" />
+<text  x="798.22" y="111.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (4 samples, 0.06%)</title><rect x="63.5" y="165" width="0.7" height="15.0" fill="rgb(214,53,34)" rx="2" ry="2" />
+<text  x="66.55" y="175.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;, std::_Select1st&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::less&lt;void&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx1 (1 samples, 0.01%)</title><rect x="1188.1" y="293" width="0.2" height="15.0" fill="rgb(254,94,19)" rx="2" ry="2" />
+<text  x="1191.09" y="303.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (6 samples, 0.09%)</title><rect x="794.2" y="101" width="1.0" height="15.0" fill="rgb(205,32,18)" rx="2" ry="2" />
+<text  x="797.18" y="111.5" ></text>
+</g>
+<g >
+<title>Listener::collectOrderData (6,298 samples, 92.50%)</title><rect x="50.4" y="309" width="1091.4" height="15.0" fill="rgb(250,175,24)" rx="2" ry="2" />
+<text  x="53.38" y="319.5" >Listener::collectOrderData</text>
+</g>
+<g >
+<title>ix::WebSocketTransport::emitMessage (94 samples, 1.38%)</title><rect x="1173.2" y="453" width="16.3" height="15.0" fill="rgb(221,42,17)" rx="2" ry="2" />
+<text  x="1176.19" y="463.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;bool (), ix::makeCancellationRequestWithTimeout(int, std::atomic&lt;bool&gt;&amp;)::{lambda()#1}&gt;::_M_invoke (2 samples, 0.03%)</title><rect x="1172.7" y="357" width="0.3" height="15.0" fill="rgb(222,24,46)" rx="2" ry="2" />
+<text  x="1175.67" y="367.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,571 samples, 23.07%)</title><rect x="310.3" y="213" width="272.3" height="15.0" fill="rgb(238,202,13)" rx="2" ry="2" />
+<text  x="313.33" y="223.5" >std::_Rb_tree&lt;long, std::pair&lt;long c..</text>
+</g>
+<g >
+<title>0x55d1080052c0 (2 samples, 0.03%)</title><rect x="312.2" y="197" width="0.4" height="15.0" fill="rgb(216,110,49)" rx="2" ry="2" />
+<text  x="315.24" y="207.5" ></text>
+</g>
+<g >
+<title>BinanceOrderExecutor::submitOrder (2 samples, 0.03%)</title><rect x="40.3" y="197" width="0.4" height="15.0" fill="rgb(219,165,17)" rx="2" ry="2" />
+<text  x="43.33" y="207.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::find (1 samples, 0.01%)</title><rect x="1141.5" y="245" width="0.1" height="15.0" fill="rgb(207,208,28)" rx="2" ry="2" />
+<text  x="1144.48" y="255.5" ></text>
+</g>
+<g >
+<title>0x55d108005364 (1 samples, 0.01%)</title><rect x="54.9" y="181" width="0.2" height="15.0" fill="rgb(230,180,52)" rx="2" ry="2" />
+<text  x="57.88" y="191.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (3 samples, 0.04%)</title><rect x="1187.2" y="85" width="0.5" height="15.0" fill="rgb(249,182,37)" rx="2" ry="2" />
+<text  x="1190.23" y="95.5" ></text>
+</g>
+<g >
+<title>__gnu_cxx::__stoa&lt;double, double, char&gt; (3 samples, 0.04%)</title><rect x="1141.8" y="309" width="0.5" height="15.0" fill="rgb(213,55,13)" rx="2" ry="2" />
+<text  x="1144.82" y="319.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (1 samples, 0.01%)</title><rect x="1188.1" y="309" width="0.2" height="15.0" fill="rgb(211,182,31)" rx="2" ry="2" />
+<text  x="1191.09" y="319.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::json_value (1 samples, 0.01%)</title><rect x="1153.4" y="229" width="0.2" height="15.0" fill="rgb(240,42,7)" rx="2" ry="2" />
+<text  x="1156.43" y="239.5" ></text>
+</g>
+<g >
+<title>Poco::BasicBufferedStreamBuf&lt;char, std::char_traits&lt;char&gt;, Poco::BufferAllocator&lt;char&gt; &gt;::underflow (1 samples, 0.01%)</title><rect x="1189.8" y="517" width="0.2" height="15.0" fill="rgb(213,3,41)" rx="2" ry="2" />
+<text  x="1192.83" y="527.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="29.6" y="165" width="0.2" height="15.0" fill="rgb(227,179,33)" rx="2" ry="2" />
+<text  x="32.58" y="175.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::parse&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;&gt; (1 samples, 0.01%)</title><rect x="40.7" y="325" width="0.1" height="15.0" fill="rgb(221,114,10)" rx="2" ry="2" />
+<text  x="43.67" y="335.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (7 samples, 0.10%)</title><rect x="90.2" y="149" width="1.3" height="15.0" fill="rgb(205,177,13)" rx="2" ry="2" />
+<text  x="93.24" y="159.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::dispatch (6,515 samples, 95.68%)</title><rect x="41.9" y="469" width="1129.0" height="15.0" fill="rgb(247,136,45)" rx="2" ry="2" />
+<text  x="44.89" y="479.5" >ix::WebSocketTransport::dispatch</text>
+</g>
+<g >
+<title>0x55d108005364 (1 samples, 0.01%)</title><rect x="629.0" y="149" width="0.2" height="15.0" fill="rgb(231,85,42)" rx="2" ry="2" />
+<text  x="632.03" y="159.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (1 samples, 0.01%)</title><rect x="1143.0" y="277" width="0.2" height="15.0" fill="rgb(248,209,2)" rx="2" ry="2" />
+<text  x="1146.04" y="287.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::recv (1 samples, 0.01%)</title><rect x="10.7" y="389" width="0.2" height="15.0" fill="rgb(234,205,0)" rx="2" ry="2" />
+<text  x="13.69" y="399.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}::operator() (93 samples, 1.37%)</title><rect x="1173.4" y="389" width="16.1" height="15.0" fill="rgb(240,66,1)" rx="2" ry="2" />
+<text  x="1176.36" y="399.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (43 samples, 0.63%)</title><rect x="1174.9" y="149" width="7.5" height="15.0" fill="rgb(205,112,0)" rx="2" ry="2" />
+<text  x="1177.92" y="159.5" ></text>
+</g>
+<g >
+<title>0x55d108005364 (3 samples, 0.04%)</title><rect x="600.3" y="165" width="0.5" height="15.0" fill="rgb(230,126,29)" rx="2" ry="2" />
+<text  x="603.26" y="175.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (40 samples, 0.59%)</title><rect x="29.9" y="165" width="7.0" height="15.0" fill="rgb(205,135,16)" rx="2" ry="2" />
+<text  x="32.93" y="175.5" ></text>
+</g>
+<g >
+<title>OrderBook::getHighestBid (3,063 samples, 44.98%)</title><rect x="51.8" y="229" width="530.8" height="15.0" fill="rgb(232,194,39)" rx="2" ry="2" />
+<text  x="54.77" y="239.5" >OrderBook::getHighestBid</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (8 samples, 0.12%)</title><rect x="1146.8" y="261" width="1.4" height="15.0" fill="rgb(222,74,38)" rx="2" ry="2" />
+<text  x="1149.85" y="271.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,517 samples, 22.28%)</title><rect x="585.0" y="197" width="262.9" height="15.0" fill="rgb(218,192,5)" rx="2" ry="2" />
+<text  x="588.01" y="207.5" >std::_Rb_tree&lt;long, std::pair&lt;long ..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,262 samples, 18.53%)</title><rect x="91.6" y="149" width="218.7" height="15.0" fill="rgb(216,76,22)" rx="2" ry="2" />
+<text  x="94.62" y="159.5" >std::_Rb_tree&lt;long, std::pai..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (254 samples, 3.73%)</title><rect x="538.6" y="101" width="44.0" height="15.0" fill="rgb(228,13,52)" rx="2" ry="2" />
+<text  x="541.57" y="111.5" >std:..</text>
+</g>
+<g >
+<title>0x55d1080052c0 (9 samples, 0.13%)</title><rect x="983.1" y="133" width="1.5" height="15.0" fill="rgb(234,65,21)" rx="2" ry="2" />
+<text  x="986.08" y="143.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,439 samples, 21.13%)</title><rect x="883.3" y="165" width="249.3" height="15.0" fill="rgb(229,125,29)" rx="2" ry="2" />
+<text  x="886.26" y="175.5" >std::_Rb_tree&lt;long, std::pair&lt;lon..</text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::emplace_back&lt;nlohmann::detail::value_t&gt; (6 samples, 0.09%)</title><rect x="1153.3" y="245" width="1.0" height="15.0" fill="rgb(236,187,39)" rx="2" ry="2" />
+<text  x="1156.26" y="255.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}::operator() (65 samples, 0.95%)</title><rect x="29.6" y="389" width="11.2" height="15.0" fill="rgb(207,167,24)" rx="2" ry="2" />
+<text  x="32.58" y="399.5" ></text>
+</g>
+<g >
+<title>OrderManager::submitOrder (1 samples, 0.01%)</title><rect x="1139.2" y="213" width="0.2" height="15.0" fill="rgb(246,21,6)" rx="2" ry="2" />
+<text  x="1142.22" y="223.5" ></text>
+</g>
+<g >
+<title>std::function&lt;bool ()&gt;::operator() (65 samples, 0.95%)</title><rect x="17.3" y="373" width="11.2" height="15.0" fill="rgb(229,199,16)" rx="2" ry="2" />
+<text  x="20.28" y="383.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (35 samples, 0.51%)</title><rect x="1176.3" y="133" width="6.1" height="15.0" fill="rgb(250,62,23)" rx="2" ry="2" />
+<text  x="1179.31" y="143.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,497 samples, 21.99%)</title><rect x="588.5" y="181" width="259.4" height="15.0" fill="rgb(215,8,31)" rx="2" ry="2" />
+<text  x="591.48" y="191.5" >std::_Rb_tree&lt;long, std::pair&lt;long..</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::assert_invariant (1 samples, 0.01%)</title><rect x="1147.0" y="229" width="0.2" height="15.0" fill="rgb(229,128,46)" rx="2" ry="2" />
+<text  x="1150.02" y="239.5" ></text>
+</g>
+<g >
+<title>OrderDataCollector::constructAndPassOrderData (64 samples, 0.94%)</title><rect x="29.6" y="293" width="11.1" height="15.0" fill="rgb(246,10,19)" rx="2" ry="2" />
+<text  x="32.58" y="303.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (32 samples, 0.47%)</title><rect x="842.4" y="69" width="5.5" height="15.0" fill="rgb(214,29,49)" rx="2" ry="2" />
+<text  x="845.36" y="79.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (8 samples, 0.12%)</title><rect x="1137.7" y="213" width="1.3" height="15.0" fill="rgb(217,29,9)" rx="2" ry="2" />
+<text  x="1140.66" y="223.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::connect (108 samples, 1.59%)</title><rect x="10.9" y="405" width="18.7" height="15.0" fill="rgb(253,136,31)" rx="2" ry="2" />
+<text  x="13.87" y="415.5" ></text>
+</g>
+<g >
+<title>Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}::operator() (65 samples, 0.95%)</title><rect x="29.6" y="341" width="11.2" height="15.0" fill="rgb(237,9,21)" rx="2" ry="2" />
+<text  x="32.58" y="351.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;char, std::allocator&lt;char&gt; &gt;::emplace_back&lt;char&gt; (1 samples, 0.01%)</title><rect x="1164.4" y="245" width="0.1" height="15.0" fill="rgb(252,185,11)" rx="2" ry="2" />
+<text  x="1167.35" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (15 samples, 0.22%)</title><rect x="1185.1" y="133" width="2.6" height="15.0" fill="rgb(245,25,10)" rx="2" ry="2" />
+<text  x="1188.15" y="143.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}::operator() (6,460 samples, 94.87%)</title><rect x="49.9" y="389" width="1119.5" height="15.0" fill="rgb(208,45,17)" rx="2" ry="2" />
+<text  x="52.86" y="399.5" >ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTran..</text>
+</g>
+<g >
+<title>main (6,809 samples, 100.00%)</title><rect x="10.0" y="581" width="1180.0" height="15.0" fill="rgb(252,146,10)" rx="2" ry="2" />
+<text  x="13.00" y="591.5" >main</text>
+</g>
+<g >
+<title>0x55d1080061b0 (2 samples, 0.03%)</title><rect x="11.6" y="389" width="0.3" height="15.0" fill="rgb(229,171,41)" rx="2" ry="2" />
+<text  x="14.56" y="399.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (8 samples, 0.12%)</title><rect x="921.9" y="149" width="1.4" height="15.0" fill="rgb(235,70,16)" rx="2" ry="2" />
+<text  x="924.90" y="159.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::isEmpty (1 samples, 0.01%)</title><rect x="582.6" y="229" width="0.2" height="15.0" fill="rgb(241,139,5)" rx="2" ry="2" />
+<text  x="585.58" y="239.5" ></text>
+</g>
+<g >
+<title>BollingerBand::newData (6,283 samples, 92.27%)</title><rect x="51.2" y="261" width="1088.9" height="15.0" fill="rgb(207,139,45)" rx="2" ry="2" />
+<text  x="54.25" y="271.5" >BollingerBand::newData</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (8 samples, 0.12%)</title><rect x="1145.5" y="293" width="1.3" height="15.0" fill="rgb(221,217,36)" rx="2" ry="2" />
+<text  x="1148.46" y="303.5" ></text>
+</g>
+<g >
+<title>std::function&lt;bool ()&gt;::operator() (6 samples, 0.09%)</title><rect x="28.5" y="389" width="1.1" height="15.0" fill="rgb(218,2,26)" rx="2" ry="2" />
+<text  x="31.54" y="399.5" ></text>
+</g>
+<g >
+<title>0x55d108005364 (3 samples, 0.04%)</title><rect x="138.2" y="133" width="0.6" height="15.0" fill="rgb(247,64,32)" rx="2" ry="2" />
+<text  x="141.24" y="143.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (6 samples, 0.09%)</title><rect x="581.5" y="53" width="1.1" height="15.0" fill="rgb(251,161,16)" rx="2" ry="2" />
+<text  x="584.54" y="63.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (4 samples, 0.06%)</title><rect x="628.3" y="149" width="0.7" height="15.0" fill="rgb(242,39,7)" rx="2" ry="2" />
+<text  x="631.33" y="159.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::openSSLClientHandshake (2 samples, 0.03%)</title><rect x="41.5" y="389" width="0.4" height="15.0" fill="rgb(248,145,47)" rx="2" ry="2" />
+<text  x="44.54" y="399.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (5 samples, 0.07%)</title><rect x="1147.2" y="229" width="0.9" height="15.0" fill="rgb(227,173,48)" rx="2" ry="2" />
+<text  x="1150.19" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (336 samples, 4.93%)</title><rect x="252.1" y="101" width="58.2" height="15.0" fill="rgb(233,106,17)" rx="2" ry="2" />
+<text  x="255.10" y="111.5" >std::_..</text>
+</g>
+<g >
+<title>BollingerBand::newData (64 samples, 0.94%)</title><rect x="29.6" y="261" width="11.1" height="15.0" fill="rgb(217,133,3)" rx="2" ry="2" />
+<text  x="32.58" y="271.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::openSSLClientHandshake (96 samples, 1.41%)</title><rect x="11.9" y="389" width="16.6" height="15.0" fill="rgb(242,173,20)" rx="2" ry="2" />
+<text  x="14.91" y="399.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (2 samples, 0.03%)</title><rect x="737.9" y="117" width="0.3" height="15.0" fill="rgb(244,52,22)" rx="2" ry="2" />
+<text  x="740.86" y="127.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (41 samples, 0.60%)</title><rect x="29.8" y="197" width="7.1" height="15.0" fill="rgb(216,74,41)" rx="2" ry="2" />
+<text  x="32.76" y="207.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,627 samples, 23.89%)</title><rect x="850.7" y="197" width="281.9" height="15.0" fill="rgb(249,105,14)" rx="2" ry="2" />
+<text  x="853.68" y="207.5" >std::_Rb_tree&lt;long, std::pair&lt;long co..</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (7 samples, 0.10%)</title><rect x="1145.6" y="245" width="1.2" height="15.0" fill="rgb(243,25,6)" rx="2" ry="2" />
+<text  x="1148.64" y="255.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (1 samples, 0.01%)</title><rect x="1188.1" y="277" width="0.2" height="15.0" fill="rgb(245,99,17)" rx="2" ry="2" />
+<text  x="1191.09" y="287.5" ></text>
+</g>
+<g >
+<title>std::function&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)&gt;::operator() (65 samples, 0.95%)</title><rect x="29.6" y="437" width="11.2" height="15.0" fill="rgb(206,62,32)" rx="2" ry="2" />
+<text  x="32.58" y="447.5" ></text>
+</g>
+<g >
+<title> 0x53e589480005869c (2 samples, 0.03%)</title><rect x="1189.7" y="565" width="0.3" height="15.0" fill="rgb(234,63,19)" rx="2" ry="2" />
+<text  x="1192.65" y="575.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::emplace_back&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;&gt; (15 samples, 0.22%)</title><rect x="1150.3" y="261" width="2.6" height="15.0" fill="rgb(251,59,5)" rx="2" ry="2" />
+<text  x="1153.31" y="271.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (5 samples, 0.07%)</title><rect x="1146.0" y="229" width="0.8" height="15.0" fill="rgb(207,225,4)" rx="2" ry="2" />
+<text  x="1148.98" y="239.5" ></text>
+</g>
+<g >
+<title>0x55d108005b90 (2 samples, 0.03%)</title><rect x="18.7" y="357" width="0.3" height="15.0" fill="rgb(250,50,11)" rx="2" ry="2" />
+<text  x="21.67" y="367.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="29.6" y="213" width="0.2" height="15.0" fill="rgb(248,162,48)" rx="2" ry="2" />
+<text  x="32.58" y="223.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::recv (1 samples, 0.01%)</title><rect x="41.4" y="373" width="0.1" height="15.0" fill="rgb(242,168,43)" rx="2" ry="2" />
+<text  x="44.37" y="383.5" ></text>
+</g>
+<g >
+<title>0x55d1086be1a8 (6,520 samples, 95.76%)</title><rect x="41.0" y="533" width="1129.9" height="15.0" fill="rgb(243,23,38)" rx="2" ry="2" />
+<text  x="44.02" y="543.5" >0x55d1086be1a8</text>
+</g>
+<g >
+<title>ix::WebSocketTransport::connectToUrl (113 samples, 1.66%)</title><rect x="10.0" y="437" width="19.6" height="15.0" fill="rgb(208,166,37)" rx="2" ry="2" />
+<text  x="13.00" y="447.5" ></text>
+</g>
+<g >
+<title>0x55d1086c6818 (108 samples, 1.59%)</title><rect x="1170.9" y="533" width="18.8" height="15.0" fill="rgb(236,23,0)" rx="2" ry="2" />
+<text  x="1173.94" y="543.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,504 samples, 22.09%)</title><rect x="321.9" y="181" width="260.7" height="15.0" fill="rgb(234,77,19)" rx="2" ry="2" />
+<text  x="324.94" y="191.5" >std::_Rb_tree&lt;long, std::pair&lt;long..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,262 samples, 18.53%)</title><rect x="629.2" y="149" width="218.7" height="15.0" fill="rgb(254,223,9)" rx="2" ry="2" />
+<text  x="632.20" y="159.5" >std::_Rb_tree&lt;long, std::pai..</text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::emplace_back&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; (3 samples, 0.04%)</title><rect x="1144.4" y="293" width="0.5" height="15.0" fill="rgb(220,16,36)" rx="2" ry="2" />
+<text  x="1147.42" y="303.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (1 samples, 0.01%)</title><rect x="1132.8" y="213" width="0.2" height="15.0" fill="rgb(228,122,2)" rx="2" ry="2" />
+<text  x="1135.81" y="223.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::addEntry (10 samples, 0.15%)</title><rect x="1140.1" y="261" width="1.7" height="15.0" fill="rgb(216,36,46)" rx="2" ry="2" />
+<text  x="1143.09" y="271.5" ></text>
+</g>
+<g >
+<title>ix::Socket::poll (1 samples, 0.01%)</title><rect x="10.2" y="373" width="0.1" height="15.0" fill="rgb(254,154,8)" rx="2" ry="2" />
+<text  x="13.17" y="383.5" ></text>
+</g>
+<g >
+<title>std::__invoke_r&lt;void, ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind&gt; (65 samples, 0.95%)</title><rect x="29.6" y="405" width="11.2" height="15.0" fill="rgb(205,1,26)" rx="2" ry="2" />
+<text  x="32.58" y="415.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;bool, std::allocator&lt;bool&gt; &gt;::empty (2 samples, 0.03%)</title><rect x="1169.0" y="293" width="0.4" height="15.0" fill="rgb(219,30,39)" rx="2" ry="2" />
+<text  x="1172.03" y="303.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (3 samples, 0.04%)</title><rect x="1147.5" y="213" width="0.6" height="15.0" fill="rgb(241,170,0)" rx="2" ry="2" />
+<text  x="1150.54" y="223.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::run (6,520 samples, 95.76%)</title><rect x="41.0" y="485" width="1129.9" height="15.0" fill="rgb(207,24,11)" rx="2" ry="2" />
+<text  x="44.02" y="495.5" >ix::WebSocket::run</text>
+</g>
+<g >
+<title>ix::Socket::readLine[abi:cxx11] (2 samples, 0.03%)</title><rect x="41.2" y="405" width="0.3" height="15.0" fill="rgb(229,33,51)" rx="2" ry="2" />
+<text  x="44.19" y="415.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (3 samples, 0.04%)</title><rect x="36.3" y="85" width="0.6" height="15.0" fill="rgb(225,157,40)" rx="2" ry="2" />
+<text  x="39.34" y="95.5" ></text>
+</g>
+<g >
+<title>0x7f243b158de4 (179 samples, 2.63%)</title><rect x="10.0" y="517" width="31.0" height="15.0" fill="rgb(240,3,32)" rx="2" ry="2" />
+<text  x="13.00" y="527.5" >0x..</text>
+</g>
+<g >
+<title>0x55d108005f90 (2 samples, 0.03%)</title><rect x="11.2" y="389" width="0.4" height="15.0" fill="rgb(234,95,25)" rx="2" ry="2" />
+<text  x="14.21" y="399.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::parse&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;&gt; (122 samples, 1.79%)</title><rect x="1148.2" y="325" width="21.2" height="15.0" fill="rgb(223,28,40)" rx="2" ry="2" />
+<text  x="1151.23" y="335.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (9 samples, 0.13%)</title><rect x="136.7" y="133" width="1.5" height="15.0" fill="rgb(213,159,15)" rx="2" ry="2" />
+<text  x="139.68" y="143.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (13 samples, 0.19%)</title><rect x="34.6" y="101" width="2.3" height="15.0" fill="rgb(242,38,17)" rx="2" ry="2" />
+<text  x="37.61" y="111.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (2 samples, 0.03%)</title><rect x="304.8" y="69" width="0.3" height="15.0" fill="rgb(254,105,34)" rx="2" ry="2" />
+<text  x="307.78" y="79.5" ></text>
+</g>
+<g >
+<title> 0x480007a1f5058d48 (6,807 samples, 99.97%)</title><rect x="10.0" y="565" width="1179.7" height="15.0" fill="rgb(222,93,39)" rx="2" ry="2" />
+<text  x="13.00" y="575.5" > 0x480007a1f5058d48</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_lower_bound (6 samples, 0.09%)</title><rect x="1140.4" y="245" width="1.1" height="15.0" fill="rgb(237,90,2)" rx="2" ry="2" />
+<text  x="1143.44" y="255.5" ></text>
+</g>
+<g >
+<title>std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (ix::WebSocket::*)(), ix::WebSocket*&gt; &gt; &gt;::_M_run (179 samples, 2.63%)</title><rect x="10.0" y="501" width="31.0" height="15.0" fill="rgb(215,20,36)" rx="2" ry="2" />
+<text  x="13.00" y="511.5" >st..</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (1 samples, 0.01%)</title><rect x="1152.0" y="213" width="0.2" height="15.0" fill="rgb(233,81,37)" rx="2" ry="2" />
+<text  x="1155.05" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;, std::_Select1st&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::less&lt;void&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, nlohmann::basic_json&lt;std::map, std::vector, std::__cxx1 (16 samples, 0.23%)</title><rect x="1145.5" y="309" width="2.7" height="15.0" fill="rgb(211,45,9)" rx="2" ry="2" />
+<text  x="1148.46" y="319.5" ></text>
+</g>
+<g >
+<title>OrderBook::getLowestAsk (1 samples, 0.01%)</title><rect x="29.6" y="229" width="0.2" height="15.0" fill="rgb(254,130,33)" rx="2" ry="2" />
+<text  x="32.58" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (6 samples, 0.09%)</title><rect x="1181.3" y="85" width="1.1" height="15.0" fill="rgb(250,31,32)" rx="2" ry="2" />
+<text  x="1184.33" y="95.5" ></text>
+</g>
+<g >
+<title>ix::Socket::readByte (2 samples, 0.03%)</title><rect x="41.2" y="389" width="0.3" height="15.0" fill="rgb(220,192,34)" rx="2" ry="2" />
+<text  x="44.19" y="399.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char*&gt; (3 samples, 0.04%)</title><rect x="1152.2" y="213" width="0.5" height="15.0" fill="rgb(232,195,5)" rx="2" ry="2" />
+<text  x="1155.22" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;bool (), ix::makeCancellationRequestWithTimeout(int, std::atomic&lt;bool&gt;&amp;)::{lambda()#1}&gt;::_M_invoke (14 samples, 0.21%)</title><rect x="14.9" y="373" width="2.4" height="15.0" fill="rgb(237,56,50)" rx="2" ry="2" />
+<text  x="17.85" y="383.5" ></text>
+</g>
+<g >
+<title>0x55d1080061b4 (1 samples, 0.01%)</title><rect x="41.2" y="373" width="0.2" height="15.0" fill="rgb(241,167,38)" rx="2" ry="2" />
+<text  x="44.19" y="383.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (864 samples, 12.69%)</title><rect x="432.9" y="133" width="149.7" height="15.0" fill="rgb(216,210,33)" rx="2" ry="2" />
+<text  x="435.85" y="143.5" >std::_Rb_tree&lt;long,..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (2 samples, 0.03%)</title><rect x="847.6" y="37" width="0.3" height="15.0" fill="rgb(251,105,6)" rx="2" ry="2" />
+<text  x="850.56" y="47.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::getPriceToOrderDataMap (41 samples, 0.60%)</title><rect x="29.8" y="213" width="7.1" height="15.0" fill="rgb(251,102,35)" rx="2" ry="2" />
+<text  x="32.76" y="223.5" ></text>
+</g>
+<g >
+<title>std::__invoke_r&lt;void, ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind&gt; (94 samples, 1.38%)</title><rect x="1173.2" y="405" width="16.3" height="15.0" fill="rgb(228,38,39)" rx="2" ry="2" />
+<text  x="1176.19" y="415.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (30 samples, 0.44%)</title><rect x="305.1" y="69" width="5.2" height="15.0" fill="rgb(245,57,30)" rx="2" ry="2" />
+<text  x="308.13" y="79.5" ></text>
+</g>
+<g >
+<title>BollingerBand::runStrategy (85 samples, 1.25%)</title><rect x="1173.4" y="245" width="14.7" height="15.0" fill="rgb(229,30,19)" rx="2" ry="2" />
+<text  x="1176.36" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (3 samples, 0.04%)</title><rect x="1138.5" y="165" width="0.5" height="15.0" fill="rgb(235,156,51)" rx="2" ry="2" />
+<text  x="1141.53" y="175.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (6 samples, 0.09%)</title><rect x="287.3" y="85" width="1.0" height="15.0" fill="rgb(220,86,37)" rx="2" ry="2" />
+<text  x="290.28" y="95.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (13 samples, 0.19%)</title><rect x="1185.5" y="117" width="2.2" height="15.0" fill="rgb(213,94,43)" rx="2" ry="2" />
+<text  x="1188.49" y="127.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (1 samples, 0.01%)</title><rect x="1188.1" y="261" width="0.2" height="15.0" fill="rgb(208,26,38)" rx="2" ry="2" />
+<text  x="1191.09" y="271.5" ></text>
+</g>
+<g >
+<title>std::function&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)&gt;::operator() (94 samples, 1.38%)</title><rect x="1173.2" y="437" width="16.3" height="15.0" fill="rgb(220,196,29)" rx="2" ry="2" />
+<text  x="1176.19" y="447.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (7 samples, 0.10%)</title><rect x="1137.8" y="197" width="1.2" height="15.0" fill="rgb(240,52,11)" rx="2" ry="2" />
+<text  x="1140.84" y="207.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (1 samples, 0.01%)</title><rect x="1188.1" y="245" width="0.2" height="15.0" fill="rgb(248,188,41)" rx="2" ry="2" />
+<text  x="1191.09" y="255.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::sax_parse_internal&lt;nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt; (5 samples, 0.07%)</title><rect x="1188.3" y="293" width="0.8" height="15.0" fill="rgb(230,193,16)" rx="2" ry="2" />
+<text  x="1191.27" y="303.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (127 samples, 1.87%)</title><rect x="288.3" y="85" width="22.0" height="15.0" fill="rgb(224,175,36)" rx="2" ry="2" />
+<text  x="291.32" y="95.5" >s..</text>
+</g>
+<g >
+<title>0x55d1080052c0 (3 samples, 0.04%)</title><rect x="1046.0" y="117" width="0.5" height="15.0" fill="rgb(221,127,21)" rx="2" ry="2" />
+<text  x="1048.99" y="127.5" ></text>
+</g>
+<g >
+<title>Band::insertNewData (1 samples, 0.01%)</title><rect x="29.6" y="245" width="0.2" height="15.0" fill="rgb(221,213,16)" rx="2" ry="2" />
+<text  x="32.58" y="255.5" ></text>
+</g>
+<g >
+<title>Poco::DigestEngine::digestToHex[abi:cxx11] (1 samples, 0.01%)</title><rect x="1187.9" y="165" width="0.2" height="15.0" fill="rgb(228,153,27)" rx="2" ry="2" />
+<text  x="1190.92" y="175.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (1 samples, 0.01%)</title><rect x="1182.7" y="165" width="0.2" height="15.0" fill="rgb(211,91,0)" rx="2" ry="2" />
+<text  x="1185.72" y="175.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (7 samples, 0.10%)</title><rect x="1146.8" y="245" width="1.3" height="15.0" fill="rgb(241,103,7)" rx="2" ry="2" />
+<text  x="1149.85" y="255.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::sax_parse_internal&lt;nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt; (118 samples, 1.73%)</title><rect x="1148.6" y="293" width="20.4" height="15.0" fill="rgb(243,179,24)" rx="2" ry="2" />
+<text  x="1151.58" y="303.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (2 samples, 0.03%)</title><rect x="1189.1" y="309" width="0.4" height="15.0" fill="rgb(233,30,51)" rx="2" ry="2" />
+<text  x="1192.13" y="319.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::connect (113 samples, 1.66%)</title><rect x="10.0" y="453" width="19.6" height="15.0" fill="rgb(212,36,36)" rx="2" ry="2" />
+<text  x="13.00" y="463.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (536 samples, 7.87%)</title><rect x="489.7" y="117" width="92.9" height="15.0" fill="rgb(233,147,10)" rx="2" ry="2" />
+<text  x="492.69" y="127.5" >std::_Rb_tr..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char*&gt; (1 samples, 0.01%)</title><rect x="1188.1" y="197" width="0.2" height="15.0" fill="rgb(245,16,23)" rx="2" ry="2" />
+<text  x="1191.09" y="207.5" ></text>
+</g>
+<g >
+<title>OrderManager::submitOrder (1 samples, 0.01%)</title><rect x="1187.9" y="213" width="0.2" height="15.0" fill="rgb(207,169,26)" rx="2" ry="2" />
+<text  x="1190.92" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (18 samples, 0.26%)</title><rect x="579.5" y="69" width="3.1" height="15.0" fill="rgb(227,205,51)" rx="2" ry="2" />
+<text  x="582.46" y="79.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (1 samples, 0.01%)</title><rect x="1143.0" y="293" width="0.2" height="15.0" fill="rgb(213,200,27)" rx="2" ry="2" />
+<text  x="1146.04" y="303.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;::handle_value&lt;nlohmann::detail::value_t&gt; (1 samples, 0.01%)</title><rect x="1188.4" y="261" width="0.2" height="15.0" fill="rgb(205,209,7)" rx="2" ry="2" />
+<text  x="1191.44" y="271.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (28 samples, 0.41%)</title><rect x="32.0" y="133" width="4.9" height="15.0" fill="rgb(238,167,44)" rx="2" ry="2" />
+<text  x="35.01" y="143.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;::start_array (8 samples, 0.12%)</title><rect x="1152.9" y="277" width="1.4" height="15.0" fill="rgb(250,76,4)" rx="2" ry="2" />
+<text  x="1155.91" y="287.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::connect (6 samples, 0.09%)</title><rect x="1172.0" y="405" width="1.0" height="15.0" fill="rgb(232,150,45)" rx="2" ry="2" />
+<text  x="1174.98" y="415.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::_M_construct&lt;char*&gt; (1 samples, 0.01%)</title><rect x="1152.7" y="229" width="0.2" height="15.0" fill="rgb(244,75,49)" rx="2" ry="2" />
+<text  x="1155.74" y="239.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::assert_invariant (1 samples, 0.01%)</title><rect x="1146.7" y="213" width="0.1" height="15.0" fill="rgb(209,197,51)" rx="2" ry="2" />
+<text  x="1149.67" y="223.5" ></text>
+</g>
+<g >
+<title>Band::insertNewData (3,065 samples, 45.01%)</title><rect x="51.6" y="245" width="531.2" height="15.0" fill="rgb(241,55,50)" rx="2" ry="2" />
+<text  x="54.59" y="255.5" >Band::insertNewData</text>
+</g>
+<g >
+<title>std::function&lt;bool ()&gt;::operator() (1 samples, 0.01%)</title><rect x="41.7" y="373" width="0.2" height="15.0" fill="rgb(252,139,9)" rx="2" ry="2" />
+<text  x="44.71" y="383.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (28 samples, 0.41%)</title><rect x="1182.9" y="165" width="4.8" height="15.0" fill="rgb(250,9,53)" rx="2" ry="2" />
+<text  x="1185.89" y="175.5" ></text>
+</g>
+<g >
+<title>ix::Socket::isWaitNeeded (1 samples, 0.01%)</title><rect x="1171.1" y="389" width="0.2" height="15.0" fill="rgb(209,113,5)" rx="2" ry="2" />
+<text  x="1174.11" y="399.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::scan_string (1 samples, 0.01%)</title><rect x="1188.6" y="261" width="0.2" height="15.0" fill="rgb(242,221,25)" rx="2" ry="2" />
+<text  x="1191.61" y="271.5" ></text>
+</g>
+<g >
+<title>ix::Socket::isReadyToRead (1 samples, 0.01%)</title><rect x="1171.5" y="373" width="0.1" height="15.0" fill="rgb(236,160,19)" rx="2" ry="2" />
+<text  x="1174.46" y="383.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind), ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}&gt;::_M_invoke (6,460 samples, 94.87%)</title><rect x="49.9" y="421" width="1119.5" height="15.0" fill="rgb(254,197,36)" rx="2" ry="2" />
+<text  x="52.86" y="431.5" >std::_Function_handler&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTrans..</text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (10 samples, 0.15%)</title><rect x="1143.2" y="309" width="1.7" height="15.0" fill="rgb(246,208,29)" rx="2" ry="2" />
+<text  x="1146.21" y="319.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::emplace_back&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; (1 samples, 0.01%)</title><rect x="1189.3" y="293" width="0.2" height="15.0" fill="rgb(220,61,8)" rx="2" ry="2" />
+<text  x="1192.31" y="303.5" ></text>
+</g>
+<g >
+<title>OrderData::getOrderPrice (1 samples, 0.01%)</title><rect x="1139.9" y="245" width="0.2" height="15.0" fill="rgb(229,9,44)" rx="2" ry="2" />
+<text  x="1142.92" y="255.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (1 samples, 0.01%)</title><rect x="1188.1" y="229" width="0.2" height="15.0" fill="rgb(236,29,28)" rx="2" ry="2" />
+<text  x="1191.09" y="239.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::dispatch (95 samples, 1.40%)</title><rect x="1173.0" y="469" width="16.5" height="15.0" fill="rgb(232,8,15)" rx="2" ry="2" />
+<text  x="1176.02" y="479.5" ></text>
+</g>
+<g >
+<title>__gnu_cxx::__stoa&lt;long, long, char, int&gt; (2 samples, 0.03%)</title><rect x="1142.3" y="309" width="0.4" height="15.0" fill="rgb(208,111,6)" rx="2" ry="2" />
+<text  x="1145.34" y="319.5" ></text>
+</g>
+<g >
+<title>ix::Socket::readLine[abi:cxx11] (5 samples, 0.07%)</title><rect x="10.0" y="405" width="0.9" height="15.0" fill="rgb(210,24,4)" rx="2" ry="2" />
+<text  x="13.00" y="415.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketHandshake::clientHandshake (11 samples, 0.16%)</title><rect x="1171.1" y="421" width="1.9" height="15.0" fill="rgb(227,212,27)" rx="2" ry="2" />
+<text  x="1174.11" y="431.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::checkConnection (5 samples, 0.07%)</title><rect x="41.0" y="469" width="0.9" height="15.0" fill="rgb(218,96,24)" rx="2" ry="2" />
+<text  x="44.02" y="479.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::json_value::destroy (1 samples, 0.01%)</title><rect x="1188.4" y="245" width="0.2" height="15.0" fill="rgb(247,190,28)" rx="2" ry="2" />
+<text  x="1191.44" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (26 samples, 0.38%)</title><rect x="1133.2" y="197" width="4.5" height="15.0" fill="rgb(251,143,2)" rx="2" ry="2" />
+<text  x="1136.16" y="207.5" ></text>
+</g>
+<g >
+<title>std::basic_streambuf&lt;char, std::char_traits&lt;char&gt; &gt;::xsgetn (1 samples, 0.01%)</title><rect x="1189.7" y="517" width="0.1" height="15.0" fill="rgb(238,209,31)" rx="2" ry="2" />
+<text  x="1192.65" y="527.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::getPriceToOrderDataMap (52 samples, 0.76%)</title><rect x="1173.4" y="213" width="9.0" height="15.0" fill="rgb(219,229,51)" rx="2" ry="2" />
+<text  x="1176.36" y="223.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (3 samples, 0.04%)</title><rect x="599.7" y="165" width="0.6" height="15.0" fill="rgb(228,14,37)" rx="2" ry="2" />
+<text  x="602.74" y="175.5" ></text>
+</g>
+<g >
+<title>0x55d1086b5b28 (179 samples, 2.63%)</title><rect x="10.0" y="533" width="31.0" height="15.0" fill="rgb(226,9,4)" rx="2" ry="2" />
+<text  x="13.00" y="543.5" >0x..</text>
+</g>
+<g >
+<title>OrderBook::addEntry (85 samples, 1.25%)</title><rect x="1173.4" y="277" width="14.7" height="15.0" fill="rgb(207,117,10)" rx="2" ry="2" />
+<text  x="1176.36" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (41 samples, 0.60%)</title><rect x="29.8" y="181" width="7.1" height="15.0" fill="rgb(208,18,50)" rx="2" ry="2" />
+<text  x="32.76" y="191.5" ></text>
+</g>
+<g >
+<title>BollingerBand::runStrategy (3,215 samples, 47.22%)</title><rect x="582.8" y="245" width="557.1" height="15.0" fill="rgb(232,92,4)" rx="2" ry="2" />
+<text  x="585.76" y="255.5" >BollingerBand::runStrategy</text>
+</g>
+<g >
+<title>BinanceOrderExecutor::authenticate (1 samples, 0.01%)</title><rect x="1187.9" y="181" width="0.2" height="15.0" fill="rgb(220,117,47)" rx="2" ry="2" />
+<text  x="1190.92" y="191.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (631 samples, 9.27%)</title><rect x="738.6" y="117" width="109.3" height="15.0" fill="rgb(248,51,15)" rx="2" ry="2" />
+<text  x="741.55" y="127.5" >std::_Rb_tree..</text>
+</g>
+<g >
+<title>Poco::JSON::Object::~Object (1 samples, 0.01%)</title><rect x="1139.2" y="181" width="0.2" height="15.0" fill="rgb(242,165,34)" rx="2" ry="2" />
+<text  x="1142.22" y="191.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (8 samples, 0.12%)</title><rect x="846.5" y="53" width="1.4" height="15.0" fill="rgb(233,48,46)" rx="2" ry="2" />
+<text  x="849.52" y="63.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1 samples, 0.01%)</title><rect x="36.7" y="53" width="0.2" height="15.0" fill="rgb(234,62,2)" rx="2" ry="2" />
+<text  x="39.69" y="63.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (3 samples, 0.04%)</title><rect x="251.6" y="101" width="0.5" height="15.0" fill="rgb(206,66,43)" rx="2" ry="2" />
+<text  x="254.58" y="111.5" ></text>
+</g>
+<g >
+<title>BollingerBand::newData (85 samples, 1.25%)</title><rect x="1173.4" y="261" width="14.7" height="15.0" fill="rgb(212,23,18)" rx="2" ry="2" />
+<text  x="1176.36" y="271.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (1 samples, 0.01%)</title><rect x="1148.1" y="245" width="0.1" height="15.0" fill="rgb(253,50,5)" rx="2" ry="2" />
+<text  x="1151.06" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (16 samples, 0.23%)</title><rect x="1179.6" y="101" width="2.8" height="15.0" fill="rgb(248,180,38)" rx="2" ry="2" />
+<text  x="1182.60" y="111.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (1 samples, 0.01%)</title><rect x="31.8" y="133" width="0.2" height="15.0" fill="rgb(206,147,41)" rx="2" ry="2" />
+<text  x="34.84" y="143.5" ></text>
+</g>
+<g >
+<title>KrakenListener::passJSON (86 samples, 1.26%)</title><rect x="1173.4" y="325" width="14.9" height="15.0" fill="rgb(236,74,8)" rx="2" ry="2" />
+<text  x="1176.36" y="335.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (9 samples, 0.13%)</title><rect x="1131.1" y="69" width="1.5" height="15.0" fill="rgb(246,36,50)" rx="2" ry="2" />
+<text  x="1134.08" y="79.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::back (1 samples, 0.01%)</title><rect x="1168.9" y="277" width="0.1" height="15.0" fill="rgb(210,220,8)" rx="2" ry="2" />
+<text  x="1171.86" y="287.5" ></text>
+</g>
+<g >
+<title>OrderDataCollector::constructAndPassOrderData (6,298 samples, 92.50%)</title><rect x="50.4" y="293" width="1091.4" height="15.0" fill="rgb(239,98,26)" rx="2" ry="2" />
+<text  x="53.38" y="303.5" >OrderDataCollector::constructAndPassOrderData</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1 samples, 0.01%)</title><rect x="1182.2" y="69" width="0.2" height="15.0" fill="rgb(218,82,35)" rx="2" ry="2" />
+<text  x="1185.20" y="79.5" ></text>
+</g>
+<g >
+<title>std::function&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)&gt;::operator() (6,460 samples, 94.87%)</title><rect x="49.9" y="437" width="1119.5" height="15.0" fill="rgb(233,152,18)" rx="2" ry="2" />
+<text  x="52.86" y="447.5" >std::function&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::Mes..</text>
+</g>
+<g >
+<title>std::function&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)&gt;::operator() (6,460 samples, 94.87%)</title><rect x="49.9" y="373" width="1119.5" height="15.0" fill="rgb(209,7,15)" rx="2" ry="2" />
+<text  x="52.86" y="383.5" >std::function&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)&gt;::operator()</text>
+</g>
+<g >
+<title>std::vector&lt;char, std::allocator&lt;char&gt; &gt;::emplace_back&lt;char&gt; (9 samples, 0.13%)</title><rect x="1162.8" y="229" width="1.6" height="15.0" fill="rgb(220,123,44)" rx="2" ry="2" />
+<text  x="1165.79" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;), Listener::setHandlers()::{lambda(std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)#1}&gt;::_M_invoke (6,460 samples, 94.87%)</title><rect x="49.9" y="357" width="1119.5" height="15.0" fill="rgb(224,24,25)" rx="2" ry="2" />
+<text  x="52.86" y="367.5" >std::_Function_handler&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;), Listener::setHandlers()::{lambda(std..</text>
+</g>
+<g >
+<title>OrderBook::getHighestBid (83 samples, 1.22%)</title><rect x="1173.4" y="229" width="14.3" height="15.0" fill="rgb(218,144,9)" rx="2" ry="2" />
+<text  x="1176.36" y="239.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::connect (4 samples, 0.06%)</title><rect x="41.2" y="453" width="0.7" height="15.0" fill="rgb(231,154,17)" rx="2" ry="2" />
+<text  x="44.19" y="463.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (2 samples, 0.03%)</title><rect x="38.2" y="133" width="0.4" height="15.0" fill="rgb(235,184,48)" rx="2" ry="2" />
+<text  x="41.25" y="143.5" ></text>
+</g>
+<g >
+<title>std::__niter_base&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;*, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt; &gt; (1 samples, 0.01%)</title><rect x="1145.1" y="309" width="0.2" height="15.0" fill="rgb(237,91,22)" rx="2" ry="2" />
+<text  x="1148.12" y="319.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (631 samples, 9.27%)</title><rect x="201.0" y="117" width="109.3" height="15.0" fill="rgb(248,14,51)" rx="2" ry="2" />
+<text  x="203.98" y="127.5" >std::_Rb_tree..</text>
+</g>
+<g >
+<title>std::function&lt;void (std::unique_ptr&lt;ix::WebSocketMessage, std::default_delete&lt;ix::WebSocketMessage&gt; &gt; const&amp;)&gt;::operator() (65 samples, 0.95%)</title><rect x="29.6" y="373" width="11.2" height="15.0" fill="rgb(238,215,21)" rx="2" ry="2" />
+<text  x="32.58" y="383.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::dispatch (65 samples, 0.95%)</title><rect x="29.6" y="469" width="11.2" height="15.0" fill="rgb(218,66,13)" rx="2" ry="2" />
+<text  x="32.58" y="479.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (6 samples, 0.09%)</title><rect x="376.0" y="149" width="1.0" height="15.0" fill="rgb(251,80,53)" rx="2" ry="2" />
+<text  x="379.01" y="159.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::poll (1 samples, 0.01%)</title><rect x="1189.5" y="469" width="0.2" height="15.0" fill="rgb(227,116,49)" rx="2" ry="2" />
+<text  x="1192.48" y="479.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;Exchange::ExchangeName, std::pair&lt;Exchange::ExchangeName const, std::shared_ptr&lt;OrderBook&gt; &gt;, std::allocator&lt;std::pair&lt;Exchange::ExchangeName const, std::shared_ptr&lt;OrderBook&gt; &gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;Exchange::ExchangeName&gt;, std::hash&lt;int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_find_before_node (3 samples, 0.04%)</title><rect x="1139.4" y="229" width="0.5" height="15.0" fill="rgb(210,100,32)" rx="2" ry="2" />
+<text  x="1142.40" y="239.5" ></text>
+</g>
+<g >
+<title>ix::WebSocket::checkConnection (113 samples, 1.66%)</title><rect x="10.0" y="469" width="19.6" height="15.0" fill="rgb(254,114,31)" rx="2" ry="2" />
+<text  x="13.00" y="479.5" ></text>
+</g>
+<g >
+<title>0x55d108005364 (2 samples, 0.03%)</title><rect x="200.6" y="117" width="0.4" height="15.0" fill="rgb(208,126,36)" rx="2" ry="2" />
+<text  x="203.63" y="127.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::parse (1 samples, 0.01%)</title><rect x="40.7" y="309" width="0.1" height="15.0" fill="rgb(252,89,10)" rx="2" ry="2" />
+<text  x="43.67" y="319.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::~basic_json (1 samples, 0.01%)</title><rect x="1144.2" y="293" width="0.2" height="15.0" fill="rgb(232,37,28)" rx="2" ry="2" />
+<text  x="1147.25" y="303.5" ></text>
+</g>
+<g >
+<title>BinanceOrderExecutor::submitOrder (1 samples, 0.01%)</title><rect x="1139.2" y="197" width="0.2" height="15.0" fill="rgb(251,7,5)" rx="2" ry="2" />
+<text  x="1142.22" y="207.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (7 samples, 0.10%)</title><rect x="39.1" y="117" width="1.2" height="15.0" fill="rgb(234,135,48)" rx="2" ry="2" />
+<text  x="42.11" y="127.5" ></text>
+</g>
+<g >
+<title>OrderDataCollector::constructAndPassOrderData (85 samples, 1.25%)</title><rect x="1173.4" y="293" width="14.7" height="15.0" fill="rgb(252,192,53)" rx="2" ry="2" />
+<text  x="1176.36" y="303.5" ></text>
+</g>
+<g >
+<title>Poco::BasicBufferedStreamBuf&lt;char, std::char_traits&lt;char&gt;, Poco::BufferAllocator&lt;char&gt; &gt;::underflow (1 samples, 0.01%)</title><rect x="1189.7" y="501" width="0.1" height="15.0" fill="rgb(207,84,12)" rx="2" ry="2" />
+<text  x="1192.65" y="511.5" ></text>
+</g>
+<g >
+<title>std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (ix::WebSocket::*)(), ix::WebSocket*&gt; &gt; &gt;::_M_run (6,520 samples, 95.76%)</title><rect x="41.0" y="501" width="1129.9" height="15.0" fill="rgb(216,183,0)" rx="2" ry="2" />
+<text  x="44.02" y="511.5" >std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (ix::WebSocket::*)(), ix::WebSocket*&gt; &gt; &gt;::_M_run</text>
+</g>
+<g >
+<title>nlohmann::detail::json_sax_dom_parser&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt;::handle_value&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;&gt; (20 samples, 0.29%)</title><rect x="1149.4" y="277" width="3.5" height="15.0" fill="rgb(220,137,51)" rx="2" ry="2" />
+<text  x="1152.45" y="287.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;char, std::allocator&lt;char&gt; &gt;::emplace_back&lt;char&gt; (1 samples, 0.01%)</title><rect x="1188.8" y="261" width="0.2" height="15.0" fill="rgb(254,128,16)" rx="2" ry="2" />
+<text  x="1191.79" y="271.5" ></text>
+</g>
+<g >
+<title>OrderBook::addEntry (64 samples, 0.94%)</title><rect x="29.6" y="277" width="11.1" height="15.0" fill="rgb(243,220,18)" rx="2" ry="2" />
+<text  x="32.58" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="1187.7" y="213" width="0.2" height="15.0" fill="rgb(250,41,45)" rx="2" ry="2" />
+<text  x="1190.75" y="223.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::_M_realloc_insert&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;&gt; (14 samples, 0.21%)</title><rect x="1150.5" y="245" width="2.4" height="15.0" fill="rgb(245,110,19)" rx="2" ry="2" />
+<text  x="1153.49" y="255.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (5 samples, 0.07%)</title><rect x="488.8" y="117" width="0.9" height="15.0" fill="rgb(216,67,51)" rx="2" ry="2" />
+<text  x="491.83" y="127.5" ></text>
+</g>
+<g >
+<title>BollingerBand::runStrategy (63 samples, 0.93%)</title><rect x="29.8" y="245" width="10.9" height="15.0" fill="rgb(222,126,27)" rx="2" ry="2" />
+<text  x="32.76" y="255.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::emitMessage (65 samples, 0.95%)</title><rect x="29.6" y="453" width="11.2" height="15.0" fill="rgb(229,96,4)" rx="2" ry="2" />
+<text  x="32.58" y="463.5" ></text>
+</g>
+<g >
+<title>std::_Function_handler&lt;void (std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind), ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}&gt;::_M_invoke (94 samples, 1.38%)</title><rect x="1173.2" y="421" width="16.3" height="15.0" fill="rgb(242,96,41)" rx="2" ry="2" />
+<text  x="1176.19" y="431.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (8 samples, 0.12%)</title><rect x="320.6" y="181" width="1.3" height="15.0" fill="rgb(224,7,3)" rx="2" ry="2" />
+<text  x="323.55" y="191.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;::_M_realloc_insert&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;&gt; (1 samples, 0.01%)</title><rect x="1150.1" y="261" width="0.2" height="15.0" fill="rgb(207,25,10)" rx="2" ry="2" />
+<text  x="1153.14" y="271.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (6 samples, 0.09%)</title><rect x="1136.6" y="133" width="1.1" height="15.0" fill="rgb(241,173,43)" rx="2" ry="2" />
+<text  x="1139.62" y="143.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (9 samples, 0.13%)</title><rect x="1136.1" y="149" width="1.6" height="15.0" fill="rgb(244,65,54)" rx="2" ry="2" />
+<text  x="1139.10" y="159.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (11 samples, 0.16%)</title><rect x="675.6" y="133" width="2.0" height="15.0" fill="rgb(254,191,3)" rx="2" ry="2" />
+<text  x="678.65" y="143.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (990 samples, 14.54%)</title><rect x="138.8" y="133" width="171.5" height="15.0" fill="rgb(242,1,25)" rx="2" ry="2" />
+<text  x="141.76" y="143.5" >std::_Rb_tree&lt;long, st..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,486 samples, 21.82%)</title><rect x="52.8" y="197" width="257.5" height="15.0" fill="rgb(212,34,7)" rx="2" ry="2" />
+<text  x="55.81" y="207.5" >std::_Rb_tree&lt;long, std::pair&lt;long..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,571 samples, 23.07%)</title><rect x="860.4" y="181" width="272.2" height="15.0" fill="rgb(246,67,10)" rx="2" ry="2" />
+<text  x="863.38" y="191.5" >std::_Rb_tree&lt;long, std::pair&lt;long c..</text>
+</g>
+<g >
+<title>Poco::RandomBuf::~RandomBuf (2 samples, 0.03%)</title><rect x="1189.7" y="549" width="0.3" height="15.0" fill="rgb(221,54,1)" rx="2" ry="2" />
+<text  x="1192.65" y="559.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::connect (2 samples, 0.03%)</title><rect x="41.5" y="405" width="0.4" height="15.0" fill="rgb(207,88,42)" rx="2" ry="2" />
+<text  x="44.54" y="415.5" ></text>
+</g>
+<g >
+<title>std::_Sp_counted_ptr_inplace&lt;OrderData, std::allocator&lt;OrderData&gt;, (__gnu_cxx::_Lock_policy)2&gt;::_M_destroy (1 samples, 0.01%)</title><rect x="1141.6" y="245" width="0.2" height="15.0" fill="rgb(239,153,35)" rx="2" ry="2" />
+<text  x="1144.65" y="255.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::getPriceToOrderDataMap (1,491 samples, 21.90%)</title><rect x="51.9" y="213" width="258.4" height="15.0" fill="rgb(216,210,22)" rx="2" ry="2" />
+<text  x="54.94" y="223.5" >OrderDataStore::getPriceToOrderDat..</text>
+</g>
+<g >
+<title>0x55d108005364 (1 samples, 0.01%)</title><rect x="91.5" y="149" width="0.1" height="15.0" fill="rgb(234,135,26)" rx="2" ry="2" />
+<text  x="94.45" y="159.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::getPriceToOrderDataMap (27 samples, 0.40%)</title><rect x="1133.0" y="213" width="4.7" height="15.0" fill="rgb(220,9,26)" rx="2" ry="2" />
+<text  x="1135.98" y="223.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (1,426 samples, 20.94%)</title><rect x="600.8" y="165" width="247.1" height="15.0" fill="rgb(221,206,18)" rx="2" ry="2" />
+<text  x="603.78" y="175.5" >std::_Rb_tree&lt;long, std::pair&lt;lo..</text>
+</g>
+<g >
+<title>0x55d1080052c0 (7 samples, 0.10%)</title><rect x="431.6" y="133" width="1.3" height="15.0" fill="rgb(222,93,13)" rx="2" ry="2" />
+<text  x="434.64" y="143.5" ></text>
+</g>
+<g >
+<title>0x7f243b158de4 (6,520 samples, 95.76%)</title><rect x="41.0" y="517" width="1129.9" height="15.0" fill="rgb(221,17,1)" rx="2" ry="2" />
+<text  x="44.02" y="527.5" >0x7f243b158de4</text>
+</g>
+<g >
+<title>0x7f243b158de4 (108 samples, 1.59%)</title><rect x="1170.9" y="517" width="18.8" height="15.0" fill="rgb(205,47,53)" rx="2" ry="2" />
+<text  x="1173.94" y="527.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1,392 samples, 20.44%)</title><rect x="341.3" y="165" width="241.3" height="15.0" fill="rgb(240,2,10)" rx="2" ry="2" />
+<text  x="344.35" y="175.5" >std::_Rb_tree&lt;long, std::pair&lt;lo..</text>
+</g>
+<g >
+<title>SHA256Engine::SHA256Engine (1 samples, 0.01%)</title><rect x="40.3" y="165" width="0.2" height="15.0" fill="rgb(253,115,46)" rx="2" ry="2" />
+<text  x="43.33" y="175.5" ></text>
+</g>
+<g >
+<title>0x55d1080052c0 (1 samples, 0.01%)</title><rect x="538.4" y="101" width="0.2" height="15.0" fill="rgb(250,116,17)" rx="2" ry="2" />
+<text  x="541.39" y="111.5" ></text>
+</g>
+<g >
+<title>Poco::Crypto::DigestEngine::DigestEngine (1 samples, 0.01%)</title><rect x="40.3" y="149" width="0.2" height="15.0" fill="rgb(207,228,22)" rx="2" ry="2" />
+<text  x="43.33" y="159.5" ></text>
+</g>
+<g >
+<title>Listener::collectOrderData (64 samples, 0.94%)</title><rect x="29.6" y="309" width="11.1" height="15.0" fill="rgb(242,160,51)" rx="2" ry="2" />
+<text  x="32.58" y="319.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::assert_invariant (1 samples, 0.01%)</title><rect x="1151.7" y="229" width="0.2" height="15.0" fill="rgb(231,57,36)" rx="2" ry="2" />
+<text  x="1154.70" y="239.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;bool, std::allocator&lt;bool&gt; &gt;::empty (1 samples, 0.01%)</title><rect x="1189.0" y="277" width="0.1" height="15.0" fill="rgb(221,85,31)" rx="2" ry="2" />
+<text  x="1191.96" y="287.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::~basic_json (2 samples, 0.03%)</title><rect x="1189.1" y="325" width="0.4" height="15.0" fill="rgb(242,98,10)" rx="2" ry="2" />
+<text  x="1192.13" y="335.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (3 samples, 0.04%)</title><rect x="1142.7" y="309" width="0.5" height="15.0" fill="rgb(219,161,20)" rx="2" ry="2" />
+<text  x="1145.69" y="319.5" ></text>
+</g>
+<g >
+<title>ix::WebSocketTransport::emitMessage (6,506 samples, 95.55%)</title><rect x="41.9" y="453" width="1127.5" height="15.0" fill="rgb(229,44,18)" rx="2" ry="2" />
+<text  x="44.89" y="463.5" >ix::WebSocketTransport::emitMessage</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (4 samples, 0.06%)</title><rect x="39.6" y="101" width="0.7" height="15.0" fill="rgb(235,227,38)" rx="2" ry="2" />
+<text  x="42.63" y="111.5" ></text>
+</g>
+<g >
+<title>0x55d108005360 (13 samples, 0.19%)</title><rect x="198.4" y="117" width="2.2" height="15.0" fill="rgb(217,52,50)" rx="2" ry="2" />
+<text  x="201.38" y="127.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::basic_json (17 samples, 0.25%)</title><rect x="1145.3" y="325" width="2.9" height="15.0" fill="rgb(210,56,22)" rx="2" ry="2" />
+<text  x="1148.29" y="335.5" ></text>
+</g>
+<g >
+<title>nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;::create&lt;std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, std::allocator&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt; &gt; &gt;, std::vector&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohm (8 samples, 0.12%)</title><rect x="1145.5" y="277" width="1.3" height="15.0" fill="rgb(232,108,54)" rx="2" ry="2" />
+<text  x="1148.46" y="287.5" ></text>
+</g>
+<g >
+<title>BinanceListener::passJSON (64 samples, 0.94%)</title><rect x="29.6" y="325" width="11.1" height="15.0" fill="rgb(242,81,33)" rx="2" ry="2" />
+<text  x="32.58" y="335.5" ></text>
+</g>
+<g >
+<title>std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (ix::WebSocket::*)(), ix::WebSocket*&gt; &gt; &gt;::~_State_impl (6,807 samples, 99.97%)</title><rect x="10.0" y="549" width="1179.7" height="15.0" fill="rgb(211,195,41)" rx="2" ry="2" />
+<text  x="13.00" y="559.5" >std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;void (ix::WebSocket::*)(), ix::WebSocket*&gt; &gt; &gt;::~_State_impl</text>
+</g>
+<g >
+<title>std::vector&lt;bool, std::allocator&lt;bool&gt; &gt;::back (7 samples, 0.10%)</title><rect x="1164.7" y="277" width="1.2" height="15.0" fill="rgb(224,10,1)" rx="2" ry="2" />
+<text  x="1167.70" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (16 samples, 0.23%)</title><rect x="37.6" y="149" width="2.7" height="15.0" fill="rgb(243,177,35)" rx="2" ry="2" />
+<text  x="40.55" y="159.5" ></text>
+</g>
+<g >
+<title>nlohmann::detail::lexer&lt;nlohmann::basic_json&lt;std::map, std::vector, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, bool, long, unsigned long, double, std::allocator, nlohmann::adl_serializer, std::vector&lt;unsigned char, std::allocator&lt;unsigned char&gt; &gt; &gt;, nlohmann::detail::iterator_input_adapter&lt;__gnu_cxx::__normal_iterator&lt;char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &gt;::get (1 samples, 0.01%)</title><rect x="1156.7" y="261" width="0.2" height="15.0" fill="rgb(227,26,18)" rx="2" ry="2" />
+<text  x="1159.73" y="271.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (2 samples, 0.03%)</title><rect x="40.0" y="85" width="0.3" height="15.0" fill="rgb(206,98,28)" rx="2" ry="2" />
+<text  x="42.98" y="95.5" ></text>
+</g>
+<g >
+<title>ix::SocketOpenSSL::recv (2 samples, 0.03%)</title><rect x="1171.6" y="389" width="0.4" height="15.0" fill="rgb(227,63,44)" rx="2" ry="2" />
+<text  x="1174.63" y="399.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_copy&lt;std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_Alloc_node&gt; (303 samples, 4.45%)</title><rect x="795.4" y="101" width="52.5" height="15.0" fill="rgb(230,200,34)" rx="2" ry="2" />
+<text  x="798.40" y="111.5" >std::..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (10 samples, 0.15%)</title><rect x="38.6" y="133" width="1.7" height="15.0" fill="rgb(214,171,38)" rx="2" ry="2" />
+<text  x="41.59" y="143.5" ></text>
+</g>
+<g >
+<title>OrderBook::getLowestAsk (37 samples, 0.54%)</title><rect x="1132.6" y="229" width="6.4" height="15.0" fill="rgb(229,210,8)" rx="2" ry="2" />
+<text  x="1135.64" y="239.5" ></text>
+</g>
+<g >
+<title>OrderDataStore::isEmpty (1 samples, 0.01%)</title><rect x="1139.0" y="229" width="0.2" height="15.0" fill="rgb(232,17,29)" rx="2" ry="2" />
+<text  x="1142.05" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (1 samples, 0.01%)</title><rect x="29.6" y="197" width="0.2" height="15.0" fill="rgb(240,125,32)" rx="2" ry="2" />
+<text  x="32.58" y="207.5" ></text>
+</g>
+<g >
+<title>BinanceOrderExecutor::submitOrder (1 samples, 0.01%)</title><rect x="1187.9" y="197" width="0.2" height="15.0" fill="rgb(224,115,43)" rx="2" ry="2" />
+<text  x="1190.92" y="207.5" ></text>
+</g>
+<g >
+<title>std::__invoke_r&lt;void, ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind)#1}&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, bool, ix::WebSocketTransport::MessageKind&gt; (6,460 samples, 94.87%)</title><rect x="49.9" y="405" width="1119.5" height="15.0" fill="rgb(242,107,44)" rx="2" ry="2" />
+<text  x="52.86" y="415.5" >std::__invoke_r&lt;void, ix::WebSocket::run()::{lambda(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, b..</text>
+</g>
+<g >
+<title>std::_Rb_tree&lt;long, std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt;, std::_Select1st&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt;, std::less&lt;long&gt;, std::allocator&lt;std::pair&lt;long const, std::shared_ptr&lt;OrderData&gt; &gt; &gt; &gt;::_M_erase (20 samples, 0.29%)</title><rect x="36.9" y="181" width="3.4" height="15.0" fill="rgb(226,75,22)" rx="2" ry="2" />
+<text  x="39.86" y="191.5" ></text>
 </g>
 </g>
 </svg>
