@@ -26,8 +26,6 @@ void Arbitrage::runStrategy() {
   }
 }
 
-
-
 void Arbitrage::process(std::shared_ptr<OrderBook> exchange1Book,
                         std::shared_ptr<OrderBook> exchange2Book) {
   int fee1 = 0.01;

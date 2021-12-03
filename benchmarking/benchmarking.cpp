@@ -11,6 +11,7 @@
 #include "exchange/Exchange.h"
 #include "ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h"
 #include "tradingStrategies/TradingStrategy.h"
+#include "orderDataCollectors/marketInfoListener/BinanceListener.h"
 
 class OrderBookFixture : public benchmark::Fixture {
   int SIZE = 1000;
@@ -220,37 +221,14 @@ BENCHMARK_F(OrderBookFixture, benchmark_hotpath)
   binanceOrderBook->addEntry(data1);
   binanceOrderBook->addEntry(data2);
 
-  std::shared_ptr<OrderDataCollector> odc =
-      make_shared<OrderDataCollector>(*binanceOrderBook, Exchange::BINANCE);
+  std::shared_ptr<OrderData> newDataFromExchange =
+      make_shared<OrderData>(OrderTypes::ASK, Exchange::BINANCE, 490, 100);
 
   for (auto _ : state) {
-    odc->constructAndPassOrderData(OrderTypes::ASK, 490, 100);
+    // Will trigger a buy.
+    binanceOrderBook->addEntry(newDataFromExchange);
   }
 }
 #endif
-
-
-
-BENCHMARK_F(OrderBookFixture, TradingStrategy_Arbitrage)
-(benchmark::State &state) {
-  std::unique_ptr<TradingStrategy> arbitrage = make_unique<Arbitrage>();
-  for (auto _ : state) {
-    // Add two instances for arbitrage
-    arbitrage->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-    arbitrage->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-    arbitrage->runStrategy();
-  }
-}
-
-BENCHMARK_F(OrderBookFixture, TradingStrategy_BollingerBand)
-(benchmark::State &state) {
-  std::unique_ptr<TradingStrategy> bollingerBand = make_unique<BollingerBand>();
-  for (auto _ : state) {
-    // Add two instances for arbitrage
-    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-    bollingerBand->insertNewOrderBook(std::make_shared<OrderBook>(orderBook));
-    bollingerBand->runStrategy();
-  }
-}
 
 BENCHMARK_MAIN();
