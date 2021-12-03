@@ -93,45 +93,59 @@ First set up a python venv: `python3 -m venv /path/to/new/virtual/environment`
 
 Pip install requirements: `pip install -r requirements.txt`
 
-TODO: what it does
+How to run the benchmarking scripts:
+[Benchmarking your code](benchmarking/README.md)
 
 ## Implementing your own code for benchmarking
 
-### Adding a new trading strategy/algo
+#### Adding a new exchange/changing data input feed  
 
-1. Create a new algo to implement methods in `TradingStrategy.h`
-2. Add new files to source files within `tradingStrategies/CMakeLists.txt`
-3. OPTIONAL: To change how and when to run the strategy itself, alter `updateData` method within `TradingStrategy.cpp`
-
-
-### Adding a new exchange/changing data input feed  
-
-#### Getting data from exchanges 
+###### Getting data from exchanges 
 1. Create a new listener for the exchange to implement `Listener.h` methods, namely `passJSON(nlohmann::json json)`
-2. OPTIONAL: To change how order data is constructed and sent edit the methods in `Listener.cpp` as desired
+2. *OPTIONAL:* To change how order data is constructed and sent edit the methods in `Listener.cpp` as desired
 
-#### Getting data from a custom location
+###### Getting data from a custom location
 1. Implement methods from `OrderDataCollector.h` in a custom listener. Look at the `fileReaderListener` for an example
 of how to do this.
 2. Update CMake files as required
 
-### Executing orders
+#### Adding a new trading strategy/algo
 
-#### Sending orders to an exchange 
+1. Create a new algo to implement methods in `TradingStrategy.h`
+2. Add new files to source files within `tradingStrategies/CMakeLists.txt`
+3. *OPTIONAL:* To change how and when to run the strategy itself, alter `updateData` method within `TradingStrategy.cpp`
 
-1. Create a new order executor to implement `ExchangeOrderExecutor.h` methods in the ordering-system/exchangeExecutors folder
-2. Update `Exchange.h` to contain the exchange name as an enum
+#### Executing orders
+
+###### Sending orders to an exchange 
+
+1. Create a new order executor to implement `ExchangeOrderExecutor.h` methods in the `ordering-system/exchangeExecutors` folder
+2. Update `Exchange.h` to contain the exchange name in the enum
 3. Add new files to source files within `ordering-system/CMakeLists.txt`
 
-#### Sending orders to a custom location
+###### Sending orders to a custom location
 
 1. Create a new type of executor class to implement `OrderExecutor.h` similarly to `ExchangeOrderExecutor.h`
 2. Update CMake files as appropriate
 
-### Changing the map type within the order data system 
-TODO I guess?
+#### Changing order storage
 
-TODO: adding a new Google Benchmark
+###### Changing the order book
+
+1. Edit methods in `OrderBook.h/cpp` as desired
+2. To edit data contained in an order add desired fields to `Orderdata.h`
+3. Edit `OrderDataStore.h/cpp` to alter how data is added to the bid/ask stores
+
+###### Changing the order format to be passed to the order executor
+
+1. Edit fields in `Order.h/cpp` to contain required data
+2. *OPTIONAL:* Use `OrderBuilder.h/cpp` to construct orders as desired
+
+#### Adding custom data structures
+
+###### Using a custom map for the order book
+1. Add map implementation to the repository
+2. Change the map in `OrderDataStore.h` to use the custom map
 
 ## Set up CLion
 For some strange mysterious reason, CLion uses their own version of CMake
