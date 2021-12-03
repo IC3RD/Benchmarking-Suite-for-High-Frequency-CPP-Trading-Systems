@@ -22,19 +22,19 @@ void TradingStrategy::executeSell(std::shared_ptr<OrderData> data) {
       data->getExchange(),
       Order("BTC", data->getOrderPrice(), data->getOrderVolume(), false));
 
-// If benchmarking is enabled, don't actually execute the order.
-// We instead define the functionality in executeBuy/executeSell -
-// this will enable us to still benchmark the execution.
-void TradingStrategy::buy(std::shared_ptr<OrderData> data) {
+  // If benchmarking is enabled, don't actually execute the order.
+  // We instead define the functionality in executeBuy/executeSell -
+  // this will enable us to still benchmark the execution.
+  void TradingStrategy::buy(std::shared_ptr<OrderData> data) {
 #ifndef ENABLE_CPP_BENCHMARKS
-  // Actually execute the buy
-  executeBuy(std::move(data));
+    // Actually execute the buy
+    executeBuy(std::move(data));
 #endif
-}
+  }
 
-void TradingStrategy::sell(std::shared_ptr<OrderData> data) {
+  void TradingStrategy::sell(std::shared_ptr<OrderData> data) {
 #ifndef ENABLE_CPP_BENCHMARKS
-  // Actually execute the sell
-  executeSell(std::move(data));
+    // Actually execute the sell
+    executeSell(std::move(data));
 #endif
-}
+  }
