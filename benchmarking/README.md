@@ -11,7 +11,7 @@ There are two main components:
 
 
 ## Extensible Benchmarking
-The file `src/benchmarking.cpp` is typically where you would define benchmarking tests. Benchmarking is implemented using *Google Benchmark* .
+The file `src/benchmarking.cpp` is typically where you would define benchmarking tests. Benchmarking is implemented using *Google Benchmark*.
 
 
 
@@ -22,7 +22,7 @@ cmake -S . -DBENCHMARK_HOTPATH:BOOL=True/False -DENABLE_CPP_BENCHMARKS:BOOL=True
 cmake --build build
 cmake --install build
 ```
-Make sure to appropiately set the benchmarking flags (`-DBENCHMARK_HOTPATH` and `DENABLE_CPP_BENCHMARKS`) .
+Make sure to appropiately set the benchmarking flags (`-DBENCHMARK_HOTPATH` and `-DENABLE_CPP_BENCHMARKS`) .
 
 <u>Note</u> - these two options are mutually exclusive. You **cannot** enable hotpath benchmarking and per function benchmarking at the same time.
 
