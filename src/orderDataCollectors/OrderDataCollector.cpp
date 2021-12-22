@@ -1,5 +1,3 @@
-#pragma once
-
 #include "OrderDataCollector.h"
 
 #include <memory>

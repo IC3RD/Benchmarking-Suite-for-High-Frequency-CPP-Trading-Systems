@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Band.h"
 
 #include <math.h>
