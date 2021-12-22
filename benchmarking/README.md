@@ -16,11 +16,13 @@ The file `src/benchmarking.cpp` is typically where you would define benchmarking
 
 
 ### Running the Benchmarks
+
 Run the following commands from the project root directory (i.e `CPP-design-pattern-for-low-latency/`).
 ```shell
 cmake -S . -DBENCHMARK_HOTPATH:BOOL=True/False -DENABLE_CPP_BENCHMARKS:BOOL=True/False -B build
 cmake --build build
 cmake --install build
+./bin/benchmarker
 ```
 Make sure to appropiately set the benchmarking flags (`-DBENCHMARK_HOTPATH` and `-DENABLE_CPP_BENCHMARKS`) .
 
@@ -30,11 +32,17 @@ If attempted Cmake will throw an error *"Invalid flag combination. Cannot benchm
 
 If you'd like to switch from one mode to another, you must follow the above steps again with the appropriate flag selection.
 
-
+**Alternatively**, run the appropriate benchmarking shell script in the project 
+root directory (`benchmark-hotpath.sh`/`benchmark-functions.sh`) that will 
+run the above commands.
 
 ### Benchmarking Individual Functions
 
-Ensure  `-DBENCHMARK_HOTPATH:BOOL=False` and `-DENABLE_CPP_BENCHMARKS:BOOL=True`.
+Run `benchmark-functions.sh`.
+
+Ensure  `-DBENCHMARK_HOTPATH:BOOL=False` and 
+`-DENABLE_CPP_BENCHMARKS:BOOL=True` if running from the command line (i.e.
+not using the above script).
 
 Define benchmarks in `src/benchmarking.cpp`. There are sample implementations defined in the file for reference.
 
@@ -98,7 +106,11 @@ void CurlManager::addPostFields(const std::string& fields) {
 
 ### Benchmarking the Hotpath
 
-Ensure `-DBENCHMARK_HOTPATH:BOOL=True` and `-DENABLE_CPP_BENCHMARKS:BOOL=False`.
+Run `benchmark-hotpath.sh`.
+
+Ensure `-DBENCHMARK_HOTPATH:BOOL=True` and 
+`-DENABLE_CPP_BENCHMARKS:BOOL=False` if running from the command line (i.e. 
+not using the above script).
 
 Define benchmarks in `src/benchmarking.cpp`. There is a sample implementation defined in the file for reference.
 
@@ -203,17 +215,17 @@ Upon running `cmake -S . -DBENCHMARK_HOTPATH:BOOL=True/False -DENABLE_CPP_BENCHM
 
 - *Note: The script is configured to be run with three different configurations (based on the number of arguments provided):*
 ##### Number of arguments:
-####### No arguments:
+###### No arguments:
 - This will run the benchmarking with results printed in the **terminal**
 
-####### One argument:
+###### One argument:
 
 - Giving the script a **file name** as an argument will cause it to run the benchmarker and then compare the results with the
   results in the given file.
 - The script produces a report which will be saved in the `/outputs` folder as a pdf.
 - **Make sure the file given as an argument is in the `/outputs` folder**
 
-####### Two arguments:
+###### Two arguments:
 - Giving the script **two file names** as arguments will cause it to compare the results of the given files.
 - The script produces a report which will be saved in the `/outputs` folder as a pdf.
 - **Make sure the given files are in the `/outputs` folder**
