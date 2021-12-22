@@ -19,7 +19,7 @@
    linux-tools-generic linux-tools-\`uname -r\` ```
 
 ## Setup
-1. Check out submodules: `git submodule update --init --recursive`
+1. Check out the repo and the submodules: `git clone --recurse-submodules git@github.com:IC3RD/CPP-design-pattern-for-low-latency.git`
 
 ## Build
 Good introduction to CMake: https://cliutils.gitlab.io/modern-cmake/
