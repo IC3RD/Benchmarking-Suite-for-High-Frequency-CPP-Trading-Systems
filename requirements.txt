@@ -1,4 +1,4 @@
-absl==0.0
+absl-py==1.0.0
 fpdf==1.7.2
 matplotlib==3.5.0
 numpy==1.21.4

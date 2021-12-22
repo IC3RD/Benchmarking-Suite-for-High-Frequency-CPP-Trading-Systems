@@ -86,14 +86,20 @@ To run perf, please follow the following steps:
 1. Press CTRL-C after 1-2 minutes of the profiler running.
 1. Explore output in your favourite favourite browser.
 
-Please bear in mind that perf work on *Linux-only.*
+Please bear in mind that perf works on *Linux-only.*
 
 ## Running benchmarking python script
-First set up a python venv: `python3 -m venv /path/to/new/virtual/environment`
+**Setup:**
+1. Create a python venv `python3 -m venv /path/to/new/virtual/environment`
+1. Activate the venv: `source /path/to/new/virtual/environment/bin/activate`
+1. Pip install requirements: `pip3 install -r requirements.txt`
 
-Pip install requirements: `pip install -r requirements.txt`
+**Run:**
 
-How to run the benchmarking scripts:
+To benchmark the whole hotpath: `./benchmark-hotpath.sh`
+To benchmark all functions: `./benchmark-functions.sh`
+
+More details can be found here:
 [Benchmarking your code](benchmarking/README.md)
 
 ## Implementing your own code for benchmarking

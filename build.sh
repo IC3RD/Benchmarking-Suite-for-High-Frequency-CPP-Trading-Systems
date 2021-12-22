@@ -1,4 +1,4 @@
-rm -rf build && mkdir build
+mkdir build || true
 git pull --recurse-submodules
 cmake -S . -B build
 cmake --build build
