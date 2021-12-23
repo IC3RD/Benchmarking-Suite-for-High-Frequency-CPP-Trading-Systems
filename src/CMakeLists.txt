@@ -24,7 +24,6 @@ target_link_libraries(main PUBLIC
         dataManager
         tradingStrategies
         ordering-system
-        #concurrentUnorderedSet
         curl
         Foundation
         Crypto
@@ -37,7 +36,6 @@ target_link_libraries(main PUBLIC
 add_subdirectory(tradingStrategies)
 add_subdirectory(orderDataCollectors)
 add_subdirectory(dataManager)
-add_subdirectory(concurrentUnorderedSet)
 add_subdirectory(ordering-system)
 
 

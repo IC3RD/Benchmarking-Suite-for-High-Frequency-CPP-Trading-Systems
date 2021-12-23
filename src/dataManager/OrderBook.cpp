@@ -31,11 +31,6 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
   }
 }
 
-void OrderBook::sendOrder() {
-  askStore->sendOrder();
-  bidStore->sendOrder();
-}
-
 const Exchange::ExchangeName OrderBook::getExchange() const { return exchange; }
 
 std::shared_ptr<OrderData> OrderBook::getHighestBid() {
