@@ -21,7 +21,6 @@ void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
     priceToOrderDataMap.insert(
         std::make_pair(orderData->getOrderPrice(), orderData));
   }
-  int i = priceToOrderDataMap.size() - 1;
   mutex_dataHistory.unlock();
 }
 
