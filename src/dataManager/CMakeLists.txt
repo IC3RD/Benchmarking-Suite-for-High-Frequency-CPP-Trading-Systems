@@ -8,4 +8,4 @@ set(SOURCE_FILES OrderBook.cpp OrderDataStore.cpp Order.cpp
 add_library(dataManager ${SOURCE_FILES})
 
 target_link_libraries(dataManager PUBLIC
-        JSON concurrentUnorderedSet ordering-system)
+        JSON ordering-system)
