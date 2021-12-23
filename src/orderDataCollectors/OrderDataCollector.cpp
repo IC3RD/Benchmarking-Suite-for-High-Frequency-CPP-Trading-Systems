@@ -4,7 +4,7 @@
 
 OrderDataCollector::OrderDataCollector(OrderBook& orderBook,
                                        Exchange::ExchangeName exchange)
-    : orderBook(orderBook), exchange(exchange) {}
+    : exchange(exchange), orderBook(orderBook) {}
 
 OrderDataCollector::~OrderDataCollector() {}
 
