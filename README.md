@@ -40,6 +40,12 @@ We use Google Test for our testing, checked out as one of the submodules.
 1. Build
 2. Run `./test.sh`
 
+You can also obtain the current testing coverage by following these steps:
+1. Build
+1. Run `./test.sh`
+1. Run `cmake --build build --target gcov`
+1. Run `cmake --build build --target lcov` to obtain summary coverage.
+
 More details are in [the testing readme](test/README.md)
 
 ## Running
