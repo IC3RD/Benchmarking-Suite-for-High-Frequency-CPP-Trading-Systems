@@ -315,7 +315,7 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
 
 def find_latest_run():
     files = os.listdir(f'{ROOT_DIR}/benchmarking/{OUTPUT_DIR}/')
-    if len(files) == 0:
+    if FLAG_LAST and len(files) == 0:
         raise ValueError()
     newest = None
     for file in files:
@@ -336,7 +336,7 @@ if __name__ == "__main__":
                         help='path to output report (default: outputs)')
     parser.add_argument('--input_path', '--in', action='store', default="outputs",
                         help='path to input benchmarks (default: outputs)')
-    parser.add_argument('--last', '-l', action='store_true', default='False',
+    parser.add_argument('--last', '-l', action='store_true', default=False,
                         help='flag to set the option to use the last run for comparison')
     args = parser.parse_args()
     init_dir()
