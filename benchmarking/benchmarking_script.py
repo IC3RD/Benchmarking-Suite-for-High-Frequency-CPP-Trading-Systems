@@ -315,6 +315,8 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
 
 def find_latest_run():
     files = os.listdir(f'{ROOT_DIR}/benchmarking/{OUTPUT_DIR}/')
+    if len(files) == 0:
+        raise ValueError()
     newest = None
     for file in files:
         if file.startswith('benchmark_at'):
@@ -323,7 +325,6 @@ def find_latest_run():
                 newest = timestamp
             elif newest < timestamp:
                 newest = timestamp
-    print(newest)
     return f'benchmark_at[{newest}]'
 
 
@@ -342,7 +343,13 @@ if __name__ == "__main__":
     FLAG_LAST = args.last
     if args.input_file_1 is None:  # No arguments case: run the benchmarker
         if FLAG_LAST:
-            compare(find_latest_run(), run_benchmark(args.output_path), args.output_path, args.input_path)
+            try:
+                compare(find_latest_run(), run_benchmark(args.output_path), args.output_path, args.input_path)
+            except ValueError:  # find_latest_run() will raise a ValueError if the OUTPUT_DIR is empty
+                # print an informative message
+                print(
+                    f"No files found in the specified output directory (~/{OUTPUT_DIR}). Please "
+                    f"run the script at least once without the -l flag.")
         else:
             run_benchmark(args.output_path)
     elif args.input_file_2 is None:  # One argument: run benchmarker and compare with given file
