@@ -8,7 +8,9 @@ import argparse
 from datetime import datetime
 from fpdf import FPDF
 
-dir_name = 'outputs'  # global variable that specifies the name of the outputs/inputs folder
+OUTPUT_DIR = 'outputs'  # global variable that specifies the name of the outputs/inputs folder
+FLAG_LAST = False
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # function for plotting the two graphs
@@ -53,7 +55,7 @@ def plotting(old_data, new_data, functions_names, is_cpu: bool):
 
 # function to recompile the project to benchmark the functions
 def run_functions():
-    os.chdir('..')
+    os.chdir(ROOT_DIR)
     os.system('cmake -S . -DBENCHMARK_HOTPATH:BOOL=False -DENABLE_CPP_BENCHMARKS:BOOL=True -B build')
     os.system('cmake --build build')
     os.system('cmake --install build')
@@ -61,18 +63,20 @@ def run_functions():
 
 # function to recompile the project to benchmark the hotpath
 def run_hot_path():
+    os.chdir(ROOT_DIR)
     os.system('cmake -S . -DBENCHMARK_HOTPATH:BOOL=True -DENABLE_CPP_BENCHMARKS:BOOL=False -B build')
     os.system('cmake --build build')
     os.system('cmake --install build')
-    os.chdir('build/benchmarking')
-    os.system(f"./benchmarker --benchmark_out=../../benchmarking/{dir_name}/temp_hotpath")
+    print(os.getcwd())
+    os.chdir(f'{ROOT_DIR}/bin')
+    os.system(f"./benchmarker --benchmark_out={ROOT_DIR}/benchmarking/{OUTPUT_DIR}/temp_hotpath")
 
 
 # runs the benchmark and saved the output in /outputs
 # the name of the file will be "benchmark_at" + current time
 def run_benchmark(output_path):
-    global dir_name
-    dir_name = output_path
+    global OUTPUT_DIR
+    OUTPUT_DIR = output_path
     run_functions()
     # get the time to create the name for the benchmark
     # (this takes more than 1sec to run so there should not be any conflicting namings)
@@ -82,11 +86,10 @@ def run_benchmark(output_path):
 
     # everything needs to be made correctly for this to work - make sure you follow the README.md
     file_name = f"benchmark_at[{time}]"
-    os.chdir("build/benchmarking")  # this is where the executable of benchmarking is
-    os.system(f"./benchmarker --benchmark_out=../../benchmarking/{dir_name}/temp")
-    os.chdir('../..')
+    os.chdir(f"{ROOT_DIR}/bin")  # this is where the executable of benchmarking is
+    os.system(f"./benchmarker --benchmark_out={ROOT_DIR}/benchmarking/{OUTPUT_DIR}/temp")
     run_hot_path()
-    os.chdir(f"../../benchmarking/{dir_name}")
+    os.chdir(f"{ROOT_DIR}/benchmarking/{OUTPUT_DIR}")
     f_temp = open('temp')
     dict_temp = dict(json.load(f_temp))
     f_temp_hotpath = open('temp_hotpath')
@@ -96,18 +99,18 @@ def run_benchmark(output_path):
         json.dump(dict_temp, f)
     os.remove('temp')
     os.remove('temp_hotpath')
-    os.chdir('..')
     return file_name
 
 
 # make sure that the directory for outputs/inputs is there, if not create it
 def init_dir():
-    if not os.path.isdir(dir_name):
-        os.makedirs(dir_name)
+    if not os.path.isdir(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
 
 
 # main comparison function: compares the two given files (passed as arguments or from running the benchmarker)
 def compare(old_file, new_file, input_path, output_path):
+    os.chdir(f'{ROOT_DIR}/benchmarking')
     file_name = f"comparison_{old_file}_{new_file}"  # the name of the new file created (for the report)
     os.system(
         f"python3 lib/benchmark/tools/compare.py benchmarks {input_path}/{old_file} {input_path}/{new_file}")
@@ -305,9 +308,24 @@ def produce_pdf(old_file1, old_file2, new_file_name, zipped_data):
             pdf.ln(line_height)
         pdf.ln(line_height * 1.5)
     add_plots(pdf)  # add the two graphs to the pdf
-    pdf.output(f'{dir_name}/{new_file_name}.pdf')  # save the pdf
+    pdf.output(f'{OUTPUT_DIR}/{new_file_name}.pdf')  # save the pdf
     # open the pdf automatically after generation (only works on linux - uses default application to open pdf)
-    os.system(f'mimeopen {dir_name}/{new_file_name}.pdf')
+    os.system(f'mimeopen {OUTPUT_DIR}/{new_file_name}.pdf')
+
+
+def find_latest_run():
+    files = os.listdir(f'{ROOT_DIR}/benchmarking/{OUTPUT_DIR}/')
+    if FLAG_LAST and len(files) == 0:
+        raise ValueError()
+    newest = None
+    for file in files:
+        if file.startswith('benchmark_at'):
+            prefix, timestamp = file[:-1].split('[')  # get the timestamp to compare
+            if newest is None:
+                newest = timestamp
+            elif newest < timestamp:
+                newest = timestamp
+    return f'benchmark_at[{newest}]'
 
 
 if __name__ == "__main__":
@@ -318,11 +336,23 @@ if __name__ == "__main__":
                         help='path to output report (default: outputs)')
     parser.add_argument('--input_path', '--in', action='store', default="outputs",
                         help='path to input benchmarks (default: outputs)')
+    parser.add_argument('--last', '-l', action='store_true', default=False,
+                        help='flag to set the option to use the last run for comparison')
     args = parser.parse_args()
+    init_dir()
+    FLAG_LAST = args.last
     if args.input_file_1 is None:  # No arguments case: run the benchmarker
-        run_benchmark(args.output_path)
+        if FLAG_LAST:
+            try:
+                compare(find_latest_run(), run_benchmark(args.output_path), args.output_path, args.input_path)
+            except ValueError:  # find_latest_run() will raise a ValueError if the OUTPUT_DIR is empty
+                # print an informative message
+                print(
+                    f"No files found in the specified output directory (~/{OUTPUT_DIR}). Please "
+                    f"run the script at least once without the -l flag.")
+        else:
+            run_benchmark(args.output_path)
     elif args.input_file_2 is None:  # One argument: run benchmarker and compare with given file
         compare(args.input_file_1, run_benchmark(args.output_path), args.output_path, args.input_path)
     else:  # Two arguments: compare the two given files
         compare(args.input_file_1, args.input_file_2, args.output_path, args.input_path)
-
