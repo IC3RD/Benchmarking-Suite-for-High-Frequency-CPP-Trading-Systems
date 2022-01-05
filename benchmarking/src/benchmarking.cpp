@@ -166,10 +166,12 @@ BENCHMARK_F(OrderBookFixture, OrderBook_addTradingStrategy)
 
 BENCHMARK_F(OrderBookFixture, OrderBook_addEntry)
 (benchmark::State &state) {
-  std::shared_ptr<OrderData> data =
-      make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 505, 100);
   for (auto _ : state) {
-    orderBook.addEntry(data);
+    for (int i = 0; i < 10000; i++) {
+      std::shared_ptr<OrderData> data = make_shared<OrderData>(
+          (OrderTypes::OrderType)(i % 2), Exchange::BITMEX, 505, 100);
+      orderBook.addEntry(data);
+    }
   }
 }
 
