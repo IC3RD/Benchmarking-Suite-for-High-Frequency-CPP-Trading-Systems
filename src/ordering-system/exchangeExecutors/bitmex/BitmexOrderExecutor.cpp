@@ -31,8 +31,9 @@ void BitmexOrderExecutor::submitOrder(Order order) {
   curlManager->addDestination(URL);
   BitmexOrderExecutor::generateHeaders(order_data);
   curlManager->appendHeadersToRequest();
-
-  sendOrder();
+  if (!order.isTestOrder()) {
+    sendOrder();
+  }
 }
 
 std::string BitmexOrderExecutor::getDestination() {

@@ -11,7 +11,7 @@
 
 int main() {
   DEBUG("Testing order system...");
-  Order order{"BTC", 1, 1, true};
+  Order order{"BTC", 1, 1, true, true};
   auto bitmex = new BitmexOrderExecutor();
   bitmex->enableOutput();
   bitmex->submitOrder(order);

@@ -21,7 +21,9 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
   curlManager->addPostFields(order_data);
   generateHeaders(order_data);
   curlManager->appendHeadersToRequest();
-  sendOrder();
+  if (!order.isTestOrder()) {
+    sendOrder();
+  }
 }
 
 std::string CoinbaseOrderExecutor::generateTimestamp() {

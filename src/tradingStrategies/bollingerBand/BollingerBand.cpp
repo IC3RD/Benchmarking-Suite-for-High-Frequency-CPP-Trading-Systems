@@ -46,3 +46,5 @@ void BollingerBand::runStrategy() {
     }
   }
 }
+
+bool BollingerBand::hasBand() { return !exchangeToBandMap.empty(); }
