@@ -1,6 +1,18 @@
 cmake_minimum_required(VERSION 3.17)
 project(CPPDesignPatternsforLowLatencyTrading)
 
+SET(ENABLE_CPP_BENCHMARKS FALSE CACHE BOOL "Option to enable benchmarking.")
+SET(BENCHMARK_HOTPATH FALSE CACHE BOOL "Option to enable hotpath benchmarking
+.")
+
+if (ENABLE_CPP_BENCHMARKS)
+    add_definitions(-DENABLE_CPP_BENCHMARKS)
+endif ()
+
+if (BENCHMARK_HOTPATH)
+    add_definitions(-DBENCHMARK_HOTPATH)
+endif ()
+
 set(SOURCE_FILES main.cpp)
 
 add_executable(main ${SOURCE_FILES})
@@ -12,7 +24,6 @@ target_link_libraries(main PUBLIC
         dataManager
         tradingStrategies
         ordering-system
-        #concurrentUnorderedSet
         curl
         Foundation
         Crypto
@@ -25,5 +36,6 @@ target_link_libraries(main PUBLIC
 add_subdirectory(tradingStrategies)
 add_subdirectory(orderDataCollectors)
 add_subdirectory(dataManager)
-add_subdirectory(concurrentUnorderedSet)
 add_subdirectory(ordering-system)
+
+

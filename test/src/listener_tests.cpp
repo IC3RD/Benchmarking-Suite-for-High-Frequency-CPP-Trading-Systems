@@ -1,5 +1,3 @@
-#pragma once
-
 #include "gtest/gtest.h"
 #include "../../src/orderDataCollectors/fileReaderListener/FileReaderListener.h"
 #include "../../src/exchange/Exchange.h"

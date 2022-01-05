@@ -1,5 +1,3 @@
-#pragma once
-
 #include "gtest/gtest.h"
 #include "../../src/dataManager/OrderBook.h"
 #include "../../src/exchange/Exchange.h"
