@@ -16,6 +16,7 @@ class BollingerBand : public TradingStrategy {
   void runStrategy();
   void newData(std::shared_ptr<OrderData>);
   void addExchange(Exchange::ExchangeName exchange);
+  bool hasBand();
 
  private:
   std::unordered_map<Exchange::ExchangeName, std::shared_ptr<Band>>
