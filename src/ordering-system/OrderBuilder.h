@@ -18,7 +18,7 @@ class OrderBuilder {
   void amendVolume(int volume);
 
   Order toOrder() const {
-    return {"implement this", price, volume, isBuyOrder};
+    return {"implement this", price, volume, isBuyOrder, false};
   }
 
  private:

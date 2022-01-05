@@ -8,9 +8,9 @@ class CoinbaseOrderExecutor : public ExchangeOrderExecutor {
   void submitOrder(Order order) override;
   std::string getDestination() override;
   std::string getExchangeName() override;
+  static std::string parseOrder(const Order &order);
 
  private:
-  static std::string parseOrder(const Order &order);
   std::string authenticate(const std::string &message,
                            const std::string &timestamp);
   static std::string generateTimestamp();

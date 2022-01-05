@@ -21,7 +21,9 @@ void BinanceOrderExecutor::submitOrder(Order order) {
   curlManager->addPostFields(order_data);
   generateHeaders();
   curlManager->appendHeadersToRequest();
-  sendOrder();
+  if (!order.isTestOrder()) {
+    sendOrder();
+  }
 }
 
 std::string BinanceOrderExecutor::generateTimestamp() {
