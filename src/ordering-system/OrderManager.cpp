@@ -6,7 +6,7 @@ OrderManager::OrderManager()
     : orderExecutors({{Exchange::BINANCE, new BinanceOrderExecutor()},
                       {Exchange::BITMEX, new BitmexOrderExecutor()},
                       {Exchange::COINBASE, new CoinbaseOrderExecutor()}}) {
-  portfolio = new std::vector<Order>();
+  portfolio = new std::list<Order>();
 }
 
 void OrderManager::submitOrder(Exchange::ExchangeName exchange, Order order) {

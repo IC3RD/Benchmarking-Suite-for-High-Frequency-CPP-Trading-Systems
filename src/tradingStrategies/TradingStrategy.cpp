@@ -27,13 +27,13 @@ void TradingStrategy::executeSell(std::shared_ptr<OrderData> data) {
 void TradingStrategy::buy(std::shared_ptr<OrderData> data) {
 #ifndef ENABLE_CPP_BENCHMARKS
   // Actually execute the buy
-  executeBuy(std::move(data));
+  executeBuy(data);
 #endif
 }
 
 void TradingStrategy::sell(std::shared_ptr<OrderData> data) {
 #ifndef ENABLE_CPP_BENCHMARKS
   // Actually execute the sell
-  executeSell(std::move(data));
+  executeSell(data);
 #endif
 }

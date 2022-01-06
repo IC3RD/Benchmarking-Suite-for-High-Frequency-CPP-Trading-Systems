@@ -7,7 +7,7 @@
 #include <ordering-system/exchangeExecutors/coinbase/CoinbaseOrderExecutor.h>
 
 #include <unordered_map>
-#include <vector>
+#include <list>
 
 class OrderManager {
  public:
@@ -16,7 +16,7 @@ class OrderManager {
   void submitOrder(Exchange::ExchangeName exchange, Order order);
 
  private:
-  std::vector<Order> *portfolio;
+  std::list<Order> *portfolio;
   const std::unordered_map<Exchange::ExchangeName, ExchangeOrderExecutor *>
       orderExecutors;
 };
