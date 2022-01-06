@@ -173,19 +173,6 @@ BENCHMARK_F(OrderBookFixture, OrderBook_addEntry)
   }
 }
 
-BENCHMARK_F(OrderBookFixture, OrderBook_getHighestBid)
-(benchmark::State &state) {
-  for (auto _ : state) {
-    orderBook.getHighestBid();
-  }
-}
-
-BENCHMARK_F(OrderBookFixture, OrderBook_getLowestAsk)
-(benchmark::State &state) {
-  for (auto _ : state) {
-    orderBook.getLowestAsk();
-  }
-}
 
 /* End of benchmarking OrderBook */
 
