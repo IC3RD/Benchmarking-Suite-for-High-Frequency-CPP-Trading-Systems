@@ -24,19 +24,6 @@ void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
   mutex_dataHistory.unlock();
 }
 
-void OrderDataStore::sendOrder() {
-  while (true) {
-    set.lock();
-    while (set.contains(nextIdx)) {
-      // process and send order if necessary
-      // std::cout << "The asset being processed is " << nextIdx << std::endl;
-      nextIdx++;
-      // set.erase(nextIdx++);
-    }
-    set.unlock();
-  }
-}
-
 bool OrderDataStore::isEmpty() { return priceToOrderDataMap.empty(); }
 
 std::shared_ptr<OrderData> OrderDataStore::getLast() {
