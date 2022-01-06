@@ -8,6 +8,8 @@
 #include "ordering-system/exchangeExecutors/utils/SHA256Engine.h"
 
 void BinanceOrderExecutor::submitOrder(Order order) {
+  mtx.lock();
+  curlManager->initCurl();
   std::string order_data = parseOrder(order);
 
   if (output) {
@@ -22,6 +24,7 @@ void BinanceOrderExecutor::submitOrder(Order order) {
   generateHeaders();
   curlManager->appendHeadersToRequest();
   sendOrder();
+  mtx.unlock();
 }
 
 std::string BinanceOrderExecutor::generateTimestamp() {

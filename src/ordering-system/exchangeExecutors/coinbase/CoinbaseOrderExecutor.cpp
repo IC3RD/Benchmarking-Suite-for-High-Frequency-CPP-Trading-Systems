@@ -9,6 +9,8 @@
 #include <chrono>
 
 void CoinbaseOrderExecutor::submitOrder(Order order) {
+  mtx.lock();
+  curlManager->initCurl();
   std::string order_data = parseOrder(order);
 
   if (output) {
@@ -22,6 +24,7 @@ void CoinbaseOrderExecutor::submitOrder(Order order) {
   generateHeaders(order_data);
   curlManager->appendHeadersToRequest();
   sendOrder();
+  mtx.unlock();
 }
 
 std::string CoinbaseOrderExecutor::generateTimestamp() {

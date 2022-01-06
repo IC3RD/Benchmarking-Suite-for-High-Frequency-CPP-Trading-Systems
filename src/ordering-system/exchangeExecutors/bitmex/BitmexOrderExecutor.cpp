@@ -19,6 +19,8 @@ std::string BitmexOrderExecutor::parseOrder(const Order &order) {
 }
 
 void BitmexOrderExecutor::submitOrder(Order order) {
+  mtx.lock();
+  curlManager->initCurl();
   std::string order_data = parseOrder(order);
 
   if (output) {
@@ -33,6 +35,7 @@ void BitmexOrderExecutor::submitOrder(Order order) {
   curlManager->appendHeadersToRequest();
 
   sendOrder();
+  mtx.unlock();
 }
 
 std::string BitmexOrderExecutor::getDestination() {

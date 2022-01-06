@@ -3,6 +3,7 @@
 #include <ordering-system/OrderExecutor.h>
 
 #include <memory>
+#include <mutex>
 
 #include "utils/CurlManager.h"
 
@@ -22,6 +23,7 @@ class ExchangeOrderExecutor : public OrderExecutor {
   virtual std::string getPublicKey() = 0;
 
  protected:
+  std::mutex mtx;
   void sendOrder();
   bool output = true;
   std::unique_ptr<CurlManager> curlManager;
