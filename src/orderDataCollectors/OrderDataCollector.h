@@ -11,7 +11,7 @@ class OrderDataCollector {
  public:
   OrderDataCollector(OrderBook &, Exchange::ExchangeName);
   ~OrderDataCollector();
-  void constructAndPassOrderData(OrderTypes::OrderType type, int price,
+  void constructAndPassOrderData(OrderTypes::OrderType type, long long price,
                                  double volume);
 
  protected:

@@ -22,14 +22,14 @@ void BinanceListener::passJSON(nlohmann::json json) {
       for (auto ask : json.at("a")) {
         std::string askPrice = ask[0];
         std::string askVolume = ask[1];
-        collectOrderData(OrderTypes::ASK, (int)std::stol(askPrice) * 100,
+        collectOrderData(OrderTypes::ASK, std::stoll(askPrice) * 100,
                          std::stod(askVolume));
       }
 
       for (auto bid : json.at("b")) {
         std::string bidPrice = bid[0];
         std::string bidVolume = bid[1];
-        collectOrderData(OrderTypes::BID, (int)std::stol(bidPrice) * 100,
+        collectOrderData(OrderTypes::BID, std::stoll(bidPrice) * 100,
                          std::stod(bidVolume));
       }
       lastUpdated = json.at("u");

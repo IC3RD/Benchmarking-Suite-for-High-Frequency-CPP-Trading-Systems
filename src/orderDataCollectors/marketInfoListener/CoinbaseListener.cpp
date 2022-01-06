@@ -19,7 +19,7 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
         for (auto bid : json.at("bids")) {
           std::string priceS = bid[0];
           std::string volumeS = bid[1];
-          collectOrderData(OrderTypes::BID, std::stol(priceS),
+          collectOrderData(OrderTypes::BID, std::stoll(priceS),
                            std::stod(volumeS));
         }
       }
@@ -27,7 +27,7 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
         for (auto ask : json.at("asks")) {
           std::string priceS = ask[0];
           std::string volumeS = ask[1];
-          collectOrderData(OrderTypes::ASK, std::stol(priceS),
+          collectOrderData(OrderTypes::ASK, std::stoll(priceS),
                            std::stod(volumeS));
         }
       }
@@ -43,7 +43,7 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
           }
           std::string priceS = change[1];
           std::string volumeS = change[2];
-          collectOrderData(type, std::stoi(priceS), std::stod(volumeS));
+          collectOrderData(type, std::stoll(priceS), std::stod(volumeS));
         }
       }
     }

@@ -43,7 +43,7 @@ void Listener::setHandlers() {
 
 void Listener::sendRequest() { webSocket.send(request); }
 
-void Listener::collectOrderData(OrderTypes::OrderType type, int price,
+void Listener::collectOrderData(OrderTypes::OrderType type, long long price,
                                 double volume) {
   constructAndPassOrderData(type, price, volume);
 }

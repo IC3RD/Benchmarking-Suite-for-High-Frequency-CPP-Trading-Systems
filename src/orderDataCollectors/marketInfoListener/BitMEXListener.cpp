@@ -8,24 +8,17 @@ BitMEXListener::BitMEXListener(OrderBook &orderBook)
                Exchange::BITMEX, orderBook) {}
 
 void BitMEXListener::passJSON(nlohmann::json json) {
-  if (json.contains("data")) {
-    int askPrice = -1;
-    int bidPrice = -1;
-    int askVolume = -1;
-    int bidVolume = -1;
+  if (json.contains("data") && json.at("action") == "insert") {
+    if (json.at("data")[0].at("side") == "Sell") {
+      long long price = json.at("data")[0].at("price");
+      int volume = json.at("data")[0].at("size");
+      collectOrderData(OrderTypes::BID, price, volume);
+    }
 
-    if (json.at("data")[0].contains("askPrice")) {
-      askPrice = json.at("data")[0].at("askPrice");
-    }
-    if (json.at("data")[0].contains("bidPrice")) {
-      bidPrice = json.at("data")[0].at("bidPrice");
-    }
-    if (json.at("data")[0].contains("volume")) {
-      askVolume = json.at("data")[0].at("volume");
-      bidVolume = askVolume;
-    }
-    if (askPrice != -1 || bidPrice != -1 || askVolume != -1) {
-      // constructAndPassMarketData(bidPrice, askPrice, bidVolume, askVolume);
+    if (json.at("data")[0].at("side") == "Buy") {
+      long long price = json.at("data")[0].at("price");
+      int volume = json.at("data")[0].at("size");
+      collectOrderData(OrderTypes::ASK, price, volume);
     }
   }
 }

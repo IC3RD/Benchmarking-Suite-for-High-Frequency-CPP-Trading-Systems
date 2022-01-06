@@ -9,13 +9,13 @@ class Band {
  public:
   Band();
   ~Band();
-  long getMean();
-  long getStd();
+  long long getMean();
+  long long getStd();
   int getNoOfElements();
   void insertNewData(long, std::shared_ptr<OrderBook>);
 
  private:
-  long meanPrice;
-  long stdDeviation;
+  long long meanPrice;
+  long long stdDeviation;
   int noOfElements;
 };

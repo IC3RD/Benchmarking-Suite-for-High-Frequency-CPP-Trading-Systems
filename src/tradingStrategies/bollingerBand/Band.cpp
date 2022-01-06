@@ -10,9 +10,9 @@ Band::Band() {
 
 Band::~Band() {}
 
-long Band::getMean() { return meanPrice; }
+long long Band::getMean() { return meanPrice; }
 
-long Band::getStd() { return stdDeviation; }
+long long Band::getStd() { return stdDeviation; }
 
 int Band::getNoOfElements() { return noOfElements; }
 
@@ -28,12 +28,12 @@ void Band::insertNewData(long price, std::shared_ptr<OrderBook> book) {
     }
   }
 
-  long newMean = (meanPrice * noOfElements + price) / (noOfElements + 1);
-  long delta = newMean - meanPrice;
+  long long newMean = (meanPrice * noOfElements + price) / (noOfElements + 1);
+  long long delta = newMean - meanPrice;
   int newNoOfElements = noOfElements + 1;
-  long newVar = ((price - newMean) * (price - newMean) / newNoOfElements) +
-                (noOfElements / newNoOfElements) *
-                    ((stdDeviation * stdDeviation) + (delta * delta));
+  long long newVar = ((price - newMean) * (price - newMean) / newNoOfElements) +
+                     (noOfElements / newNoOfElements) *
+                         ((stdDeviation * stdDeviation) + (delta * delta));
   meanPrice = newMean;
   stdDeviation = sqrt(newVar);
   noOfElements = newNoOfElements;
