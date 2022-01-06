@@ -27,7 +27,6 @@ void CoinbaseListener::passJSON(nlohmann::json json) {
         for (auto ask : json.at("asks")) {
           std::string priceS = ask[0];
           std::string volumeS = ask[1];
-          std::cout << priceS << " " << std::stoll(priceS) << std::endl;
           collectOrderData(OrderTypes::ASK, std::stoll(priceS),
                            std::stod(volumeS));
         }
