@@ -1,8 +1,8 @@
 #include "OrderData.h"
 
 OrderData::OrderData(OrderTypes::OrderType type,
-                     Exchange::ExchangeName exchange, long long price, double
-                                                                      volume)
+                     Exchange::ExchangeName exchange, long long price,
+                     double volume)
     : orderType(type),
       exchange(exchange),
       orderPrice(price),

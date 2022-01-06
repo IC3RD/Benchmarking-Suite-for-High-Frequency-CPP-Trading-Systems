@@ -9,9 +9,9 @@ OrderDataCollector::OrderDataCollector(OrderBook& orderBook,
 OrderDataCollector::~OrderDataCollector() {}
 
 void OrderDataCollector::constructAndPassOrderData(OrderTypes::OrderType type,
-                                                   long long price, double
-                                                                     volume) {
-  std::shared_ptr<OrderData> data = std::make_shared<OrderData>(type,
-                                                                exchange, price, volume);
+                                                   long long price,
+                                                   double volume) {
+  std::shared_ptr<OrderData> data =
+      std::make_shared<OrderData>(type, exchange, price, volume);
   orderBook.addEntry(data);
 }

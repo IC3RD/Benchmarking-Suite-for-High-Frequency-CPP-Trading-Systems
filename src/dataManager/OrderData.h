@@ -5,9 +5,8 @@
 
 class OrderData {
  public:
-  OrderData(OrderTypes::OrderType type, Exchange::ExchangeName name, long long
-                                                                         price,
-            double volume);
+  OrderData(OrderTypes::OrderType type, Exchange::ExchangeName name,
+            long long price, double volume);
   ~OrderData();
   const OrderTypes::OrderType getOrderType() const;
   const Exchange::ExchangeName getExchange() const;

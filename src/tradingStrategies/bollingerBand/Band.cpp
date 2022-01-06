@@ -32,8 +32,8 @@ void Band::insertNewData(long price, std::shared_ptr<OrderBook> book) {
   long long delta = newMean - meanPrice;
   int newNoOfElements = noOfElements + 1;
   long long newVar = ((price - newMean) * (price - newMean) / newNoOfElements) +
-                (noOfElements / newNoOfElements) *
-                    ((stdDeviation * stdDeviation) + (delta * delta));
+                     (noOfElements / newNoOfElements) *
+                         ((stdDeviation * stdDeviation) + (delta * delta));
   meanPrice = newMean;
   stdDeviation = sqrt(newVar);
   noOfElements = newNoOfElements;
