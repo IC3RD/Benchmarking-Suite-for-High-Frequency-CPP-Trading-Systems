@@ -20,7 +20,8 @@ class Listener : OrderDataCollector {
   void sendRequest();
 
  protected:
-  void collectOrderData(OrderTypes::OrderType type, int price, double volume);
+  void collectOrderData(OrderTypes::OrderType type, long long price, double
+                                                                      volume);
   /* Does the exchange specific parsing of json recieved from exchange */
   virtual void passJSON(nlohmann::json json) = 0;
   void setHandlers();

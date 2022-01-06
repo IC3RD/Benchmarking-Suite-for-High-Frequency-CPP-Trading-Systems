@@ -9,8 +9,8 @@ BitMEXListener::BitMEXListener(OrderBook &orderBook)
 
 void BitMEXListener::passJSON(nlohmann::json json) {
   if (json.contains("data")) {
-    int askPrice = -1;
-    int bidPrice = -1;
+    long long askPrice = -1;
+    long long bidPrice = -1;
     int askVolume = -1;
     int bidVolume = -1;
 

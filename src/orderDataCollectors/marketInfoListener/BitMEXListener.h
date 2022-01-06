@@ -9,5 +9,5 @@ class BitMEXListener : public Listener {
   void passJSON(nlohmann::json json);
 
  private:
-  std::map<int, long> uniqueIdToPriceMap;
+  std::map<int, long long> uniqueIdToPriceMap;
 };

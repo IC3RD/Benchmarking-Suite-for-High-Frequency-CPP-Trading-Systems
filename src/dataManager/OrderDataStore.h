@@ -10,9 +10,9 @@ class OrderDataStore {
   OrderDataStore();
   void addEntry(std::shared_ptr<OrderData>);
   bool isEmpty();
-  std::map<long, std::shared_ptr<OrderData>> getPriceToOrderDataMap();
+  std::map<long long, std::shared_ptr<OrderData>> getPriceToOrderDataMap();
 
  private:
-  std::map<long, std::shared_ptr<OrderData>> priceToOrderDataMap;
+  std::map<long long, std::shared_ptr<OrderData>> priceToOrderDataMap;
   std::mutex mutex_dataHistory;
 };

@@ -2,14 +2,14 @@
 
 OrderDataStore::OrderDataStore() {}
 
-std::map<long, std::shared_ptr<OrderData>>
+std::map<long long, std::shared_ptr<OrderData>>
 OrderDataStore::getPriceToOrderDataMap() {
   return priceToOrderDataMap;
 }
 
 void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
   mutex_dataHistory.lock();
-  std::map<long, std::shared_ptr<OrderData>>::iterator it =
+  std::map<long long, std::shared_ptr<OrderData>>::iterator it =
       priceToOrderDataMap.find(orderData->getOrderPrice());
   if (it != priceToOrderDataMap.end()) {  // if this key already in map
     if (orderData->getOrderVolume() == 0) {
