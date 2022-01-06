@@ -2,13 +2,10 @@
 #include <dataManager/Order.h>
 #include <ordering-system/OrderExecutor.h>
 
-#define BENCHMARK_CPP_TEST
+#include <memory>
+#include <mutex>
 
-#ifdef BENCHMARK_CPP_TEST
-#include "../../../benchmarking/mocks/mockCurl.h"
-#else
-#include <curl/curl.h>
-#endif
+#include "utils/CurlManager.h"
 
 #define PRINT(x)                 \
   do {                           \
@@ -17,9 +14,7 @@
 
 class ExchangeOrderExecutor : public OrderExecutor {
  public:
-  ExchangeOrderExecutor() = default;
-  void enableBenchmarking();
-  void disableBenchmarking();
+  ExchangeOrderExecutor();
   void enableOutput();
   void disableOutput();
 
@@ -28,7 +23,8 @@ class ExchangeOrderExecutor : public OrderExecutor {
   virtual std::string getPublicKey() = 0;
 
  protected:
-  void sendOrder(CURL *curl);
-  bool benchmark = false;
+  std::mutex mtx;
+  void sendOrder();
   bool output = true;
+  std::unique_ptr<CurlManager> curlManager;
 };

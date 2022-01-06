@@ -18,18 +18,17 @@ void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
   switch (data->getOrderType()) {
     case (OrderTypes::ASK):
       askStore->addEntry(data);
+      break;
     case (OrderTypes::BID):
       bidStore->addEntry(data);
+      break;
   }
   for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
        ++it) {
+#ifndef ENABLE_CPP_BENCHMARKS
     (*it)->newData(data);
+#endif
   }
-}
-
-void OrderBook::sendOrder() {
-  askStore->sendOrder();
-  bidStore->sendOrder();
 }
 
 const Exchange::ExchangeName OrderBook::getExchange() const { return exchange; }
@@ -74,3 +73,7 @@ std::shared_ptr<OrderData> OrderBook::getAskAt(int i) {
 std::shared_ptr<OrderDataStore> OrderBook::getBidStore() { return bidStore; }
 
 std::shared_ptr<OrderDataStore> OrderBook::getAskStore() { return askStore; }
+
+bool OrderBook::hasAsks() { return !askStore->isEmpty(); }
+
+bool OrderBook::hasBids() { return !bidStore->isEmpty(); }

@@ -18,7 +18,7 @@ project(CPPDesignPatternsLowLatency)
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Og -ggdb -g3 -fno-omit-frame-pointer")
 
 set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
 set(OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib")
@@ -70,6 +70,6 @@ include_directories(${CURL_INCLUDE_DIR})
 
 add_subdirectory(src)
 add_subdirectory(benchmarking)
-#add_subdirectory(test)
+add_subdirectory(test)
 add_subdirectory(lib)
 

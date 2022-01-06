@@ -1,6 +1,6 @@
 #include "OrderDataStore.h"
 
-OrderDataStore::OrderDataStore() { nextIdx = 0; }
+OrderDataStore::OrderDataStore() {}
 
 std::map<long, std::shared_ptr<OrderData>>
 OrderDataStore::getPriceToOrderDataMap() {
@@ -21,9 +21,7 @@ void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
     priceToOrderDataMap.insert(
         std::make_pair(orderData->getOrderPrice(), orderData));
   }
-  int i = priceToOrderDataMap.size() - 1;
   mutex_dataHistory.unlock();
-  // std::cout << "index where the data should be stored is " << i << std::endl;
 }
 
 void OrderDataStore::sendOrder() {

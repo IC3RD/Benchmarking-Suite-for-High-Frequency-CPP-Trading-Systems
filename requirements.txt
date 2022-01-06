@@ -1,0 +1,6 @@
+absl-py==1.0.0
+fpdf==1.7.2
+matplotlib==3.5.0
+numpy==1.21.4
+scipy==1.7.3
+setuptools==45.2.0

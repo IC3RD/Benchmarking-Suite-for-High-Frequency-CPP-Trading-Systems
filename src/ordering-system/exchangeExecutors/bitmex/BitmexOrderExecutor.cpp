@@ -1,7 +1,6 @@
 #include "BitmexOrderExecutor.h"
 
 #include <Poco/HMACEngine.h>
-#include <ordering-system/exchangeExecutors/debug.h>
 #include <ordering-system/exchangeExecutors/utils/SHA256Engine.h>
 
 #include <chrono>
@@ -20,6 +19,8 @@ std::string BitmexOrderExecutor::parseOrder(const Order &order) {
 }
 
 void BitmexOrderExecutor::submitOrder(Order order) {
+  mtx.lock();
+  curlManager->initCurl();
   std::string order_data = parseOrder(order);
 
   if (output) {
@@ -27,27 +28,19 @@ void BitmexOrderExecutor::submitOrder(Order order) {
           getExchangeName() + "...");
   }
 
-  CURL *curl;
-  curl = curl_easy_init();
+  curlManager->addPostFields(order_data);
+  std::string URL = getDestination();
+  curlManager->addDestination(URL);
+  BitmexOrderExecutor::generateHeaders(order_data);
+  curlManager->appendHeadersToRequest();
 
-  if (curl) {
-    curl_easy_setopt(curl, CURLOPT_POST, 1L);
-    std::string URL = getDestination();
-    curl_easy_setopt(curl, CURLOPT_URL, URL.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, order_data.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, order_data.length());
-
-    /* Add the required headers. */
-    struct curl_slist *chunk = nullptr;
-    BitmexOrderExecutor::generateHeaders(&chunk, order_data);
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-
-    sendOrder(curl);
-  }
+  sendOrder();
+  mtx.unlock();
 }
 
 std::string BitmexOrderExecutor::getDestination() {
   return "https://testnet.bitmex.com/api/v1/order";
+  //    return "https://httpbin.org/post";
 }
 
 std::string BitmexOrderExecutor::getExchangeName() { return "BitMEX"; }
@@ -72,19 +65,16 @@ std::string BitmexOrderExecutor::generateTimestamp() {
   return std::to_string(expiry_time);
 }
 
-void BitmexOrderExecutor::generateHeaders(struct curl_slist **chunk,
-                                          const std::string &data) {
+void BitmexOrderExecutor::generateHeaders(const std::string &data) {
   std::string timestamp = generateTimestamp();
-  *chunk = curl_slist_append(*chunk, ("api-expires: " + timestamp).c_str());
-  *chunk = curl_slist_append(*chunk, ("api-key: " + getPublicKey()).c_str());
   std::string signature =
       BitmexOrderExecutor::generateSignature(data, timestamp);
-  *chunk = curl_slist_append(*chunk, ("api-signature: " + signature).c_str());
-
-  *chunk = curl_slist_append(*chunk,
-                             "Content-Type: application/x-www-form-urlencoded");
-  *chunk = curl_slist_append(*chunk, "Accept: application/json");
-  *chunk = curl_slist_append(*chunk, "X-Requested-With: XMLHttpRequest");
+  curlManager->appendHeader("api-expires: " + timestamp);
+  curlManager->appendHeader("api-key: " + getPublicKey());
+  curlManager->appendHeader("api-signature: " + signature);
+  curlManager->appendHeader("Content-Type: application/x-www-form-urlencoded");
+  curlManager->appendHeader("Accept: application/json");
+  curlManager->appendHeader("X-Requested-With: XMLHttpRequest");
 }
 
 std::string BitmexOrderExecutor::generateSignature(
@@ -93,8 +83,7 @@ std::string BitmexOrderExecutor::generateSignature(
   std::string verb = "POST";
   std::string path = "/api/v1/order";
   Poco::HMACEngine<SHA256Engine> hmac{getSecretKey()};
-  hmac.update(verb + path + timestamp + message.c_str());
+  hmac.update(verb + path + timestamp + message);
   std::string hmac_hex = Poco::DigestEngine::digestToHex(hmac.digest());
-
   return hmac_hex;
 }
