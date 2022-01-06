@@ -6,8 +6,8 @@
 #include <ordering-system/exchangeExecutors/bitmex/BitmexOrderExecutor.h>
 #include <ordering-system/exchangeExecutors/coinbase/CoinbaseOrderExecutor.h>
 
-#include <unordered_map>
 #include <list>
+#include <unordered_map>
 
 class OrderManager {
  public:
