@@ -25,3 +25,17 @@ void OrderDataStore::addEntry(std::shared_ptr<OrderData> orderData) {
 }
 
 bool OrderDataStore::isEmpty() { return priceToOrderDataMap.empty(); }
+
+std::shared_ptr<OrderData> OrderDataStore::getLast() {
+  mutex_dataHistory.lock();
+  std::shared_ptr<OrderData> res = std::prev(priceToOrderDataMap.end())->second;
+  mutex_dataHistory.unlock();
+  return res;
+}
+
+std::shared_ptr<OrderData> OrderDataStore::getFirst() {
+  mutex_dataHistory.lock();
+  std::shared_ptr<OrderData> res = priceToOrderDataMap.begin()->second;
+  mutex_dataHistory.unlock();
+  return res;
+}
