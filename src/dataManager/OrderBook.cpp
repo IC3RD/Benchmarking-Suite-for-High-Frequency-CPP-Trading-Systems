@@ -15,12 +15,6 @@ void OrderBook::addTradingStrategy(
 }
 
 void OrderBook::addEntry(std::shared_ptr<OrderData> data) {
-  /*
-  if (data->getOrderType() == OrderTypes::ASK) {
-    askStore->addEntry(data);
-  } else {
-    bidStore->addEntry(data);
-  } */
   stores[data->getOrderType()]->addEntry(data);
   for (auto it = listenerStrategies.begin(); it != listenerStrategies.end();
        ++it) {

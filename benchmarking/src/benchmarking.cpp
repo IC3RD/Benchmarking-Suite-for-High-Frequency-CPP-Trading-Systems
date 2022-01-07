@@ -62,6 +62,27 @@ class OrderDataStoreFixture : public benchmark::Fixture {
   void TearDown(const ::benchmark::State &state) {}
 };
 
+class BranchPredictorBiasedOrderBookFixture : public benchmark::Fixture {
+  int SIZE = 1000;
+
+ public:
+  OrderBook biasedOrderBook{Exchange::BITMEX};
+
+  void SetUp(const ::benchmark::State &state) {
+    OrderTypes::OrderType orderType;
+    double price = 500;
+    for (auto i = 0; i < SIZE; i++) {
+      orderType = OrderTypes::ASK;
+      price = price + i;
+      std::shared_ptr<OrderData> ptr =
+          std::make_shared<OrderData>(orderType, Exchange::BITMEX, price, 100);
+      biasedOrderBook.addEntry(ptr);
+    }
+  }
+
+  void TearDown(const ::benchmark::State &state) {}
+};
+
 #if defined(ENABLE_CPP_BENCHMARKS) && !defined(BENCHMARK_HOTPATH)
 /* Benchmarking ExchangeOrderExecutor implementations: */
 
@@ -164,14 +185,22 @@ BENCHMARK_F(OrderBookFixture, OrderBook_addTradingStrategy)
   }
 }
 
+BENCHMARK_F(BranchPredictorBiasedOrderBookFixture,
+            OrderBookBiased_addBidInAskBiasEntry)
+(benchmark::State &state) {
+  for (auto _ : state) {
+    std::shared_ptr<OrderData> data =
+        make_shared<OrderData>(OrderTypes::BID, Exchange::BITMEX, 495, 100);
+    biasedOrderBook.addEntry(data);
+  }
+}
+
 BENCHMARK_F(OrderBookFixture, OrderBook_addEntry)
 (benchmark::State &state) {
   for (auto _ : state) {
-    for (int i = 0; i < 10000; i++) {
-      std::shared_ptr<OrderData> data = make_shared<OrderData>(
-          (OrderTypes::OrderType)(i % 2), Exchange::BITMEX, 505, 100);
-      orderBook.addEntry(data);
-    }
+    std::shared_ptr<OrderData> data =
+        make_shared<OrderData>(OrderTypes::ASK, Exchange::BITMEX, 505, 100);
+    orderBook.addEntry(data);
   }
 }
 
