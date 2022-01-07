@@ -2,5 +2,5 @@
 
 class OrderTypes {
  public:
-  enum OrderType { ASK = 0, BID = 1};
+  enum OrderType { ASK = 0, BID = 1 };
 };
