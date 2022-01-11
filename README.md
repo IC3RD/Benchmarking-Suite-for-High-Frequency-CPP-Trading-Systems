@@ -64,13 +64,10 @@ widely different features.
 ## Google Benchmark
 ![](doc/images/google-benchmark.png)
 
-Google Benchmark is a microbenchmarking tool that allows us to measure the 
-performance of each individual function in C++ - thus providing us with a 
-way to reliable benchmark improvements in our code and the whole hotpath.
+Google Benchmark is a microbenchmarking tool that enables the measure of performance of an arbritrary code segment in C++. This provides a 
+reliable method to benchmark improvements in any point of the code and the hotpath as a whole.
 
-
-TODO + let's make sure we have a single script we can run here (similar to 
-build.sh, run.sh and benchmark-perf.sh)
+To see how to use and run the benchmarking suite, please refer to the [benchmarking documentation](benchmarking/README.md).
 
 ## perf
 ![](doc/images/flame_graph.png)
